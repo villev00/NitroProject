@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
@@ -54,19 +55,20 @@ public class FireSpells : MonoBehaviour
         {
             Debug.Log("Blaze impact used");
             blazeImpactOnCooldown = true;
-            Instantiate(blazeImpact.spellPrefab);
+            Instantiate(blazeImpact.spellPrefab, Camera.main.transform);
             StartCoroutine(BlazeImpactCooldown());
         }else if(spell.spellName == "Fire Torrent" && !fireTorrentOnCooldown)
         {
             Debug.Log("Fire Torrent used");
+            Instantiate(fireTorrent.spellPrefab, Camera.main.transform);
             fireTorrentOnCooldown = true;
             StartCoroutine(FireTorrentCooldown());
         }else if (spell.spellName == "Flame Barrier" && !flameBarrierOnCooldown)
         {
             Debug.Log("Flame Barrier used");
             flameBarrierOnCooldown = true;
-
-            StartCoroutine(FlameBarrierCooldown());
+            GameObject barrier = Instantiate(flameBarrier.spellPrefab, Camera.main.transform);
+            StartCoroutine(FlameBarrierCooldown(barrier));
         }     
     }
 
@@ -84,9 +86,12 @@ public class FireSpells : MonoBehaviour
         fireTorrentOnCooldown = false;
         Debug.Log("Torrent ready");
     }
-    IEnumerator FlameBarrierCooldown()
+    IEnumerator FlameBarrierCooldown(GameObject barrier)
     {
-        yield return new WaitForSeconds(flameBarrier.spellCooldown);
+        yield return new WaitForSeconds(flameBarrier.spellDuration);
+        Destroy(barrier);
+        Debug.Log("Barrier ended");
+        yield return new WaitForSeconds(flameBarrier.spellCooldown-flameBarrier.spellDuration);
         flameBarrierOnCooldown = false;
         Debug.Log("Barrier ready");
     }
