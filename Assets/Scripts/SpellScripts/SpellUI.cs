@@ -37,18 +37,18 @@ public class SpellUI : MonoBehaviour
             spellSlots[i].GetComponent<Button>().onClick.RemoveAllListeners();
             if (spells[i].spellElement == Element.Fire)
             {
-                int buttonId = i;
-                spellSlots[buttonId].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<FireSpells>().UseFireSpell(spells[buttonId]); });
+                int index = i;
+                spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<FireSpells>().UseFireSpell(spells[index]); });
             }
             else if (spells[i].spellElement == Element.Lightning)
             {
-                int buttonId = i;
-                spellSlots[buttonId].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<LightningSpells>().UseLightningSpell(spells[buttonId]); });
+                int index = i;
+                spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<LightningSpells>().UseLightningSpell(spells[index]); });
             }
             else if (spells[i].spellElement == Element.Aether)
             {
-                int buttonId = i;
-                spellSlots[buttonId].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<AetherSpells>().UseAetherSpell(spells[buttonId]); });
+                int index = i;
+                spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<AetherSpells>().UseAetherSpell(spells[index]); });
             }
 
         }
