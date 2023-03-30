@@ -15,8 +15,8 @@ MonoBehaviour:
   spellName: Fire Torrent
   spellElement: 1
   spellSprite: {fileID: 21300000, guid: 983faa7da49ffd14aab67d0ada9b3188, type: 3}
-  spellManaCost: 0
-  spellDamage: 0
+  spellManaCost: 15
+  spellDamage: 10
   spellAreaDamage: 0
-  spellCooldown: 0
-  spellDuration: 0
+  spellCooldown: 20
+  spellDuration: 5
