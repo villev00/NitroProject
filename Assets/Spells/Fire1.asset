@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Blaze Impact
   spellElement: 1
+  spellPrefab: {fileID: 6337419644721762474, guid: 9c767a1c04bc96d4489c9bb1bf2be771, type: 3}
   spellSprite: {fileID: 21300000, guid: e337f520c8ff0574fb5df0ae7e613d77, type: 3}
   spellManaCost: 15
   spellDamage: 50

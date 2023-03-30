@@ -53,7 +53,7 @@ public class FireSpells : MonoBehaviour
         if (blazeImpactUsed) return;
         Debug.Log("Blaze impact used");
         blazeImpactUsed = true;
-
+        Instantiate(blazeImpact.spellPrefab);
         StartCoroutine(BlazeImpactCooldown());
     }
 

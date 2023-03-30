@@ -7,7 +7,10 @@ public class Spell : ScriptableObject
 {
     public string spellName;
     public Element spellElement;
+    public GameObject spellPrefab;
     public Sprite spellSprite;
+
+    [Header("Spell stats")]
     public int spellManaCost;
     public int spellDamage;
     public int spellAreaDamage;
