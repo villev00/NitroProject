@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Chains of Lightning
   spellElement: 2
+  spellPrefab: {fileID: 0}
   spellSprite: {fileID: 21300000, guid: b1d56b393f9a17142ad0651523451156, type: 3}
-  spellManaCost: 0
+  spellManaCost: 15
   spellDamage: 0
-  spellAreaDamage: 0
-  spellCooldown: 0
-  spellDuration: 0
+  spellAreaDamage: 20
+  spellCooldown: 20
+  spellDuration: 5

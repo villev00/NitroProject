@@ -12,7 +12,7 @@ public class FireSpells : MonoBehaviour
     Spell[] fireSpells;
 
     Spell blazeImpact, fireTorrent, flameBarrier;
-    bool blazeImpactUsed, fireTorrentUsed, flameBarrierUsed;
+    bool blazeImpactOnCooldown, fireTorrentOnCooldown, flameBarrierOnCooldown;
 
     void Start()
     {
@@ -47,56 +47,47 @@ public class FireSpells : MonoBehaviour
             spellUI.ChangeSpellSet(fireSpells);  
         }
     }
-    #region BlazeImpact
-    public void BlazeImpact()
+
+    public void UseFireSpell(Spell spell)
     {
-        if (blazeImpactUsed) return;
-        Debug.Log("Blaze impact used");
-        blazeImpactUsed = true;
-        Instantiate(blazeImpact.spellPrefab);
-        StartCoroutine(BlazeImpactCooldown());
+        if(spell.spellName=="Blaze Impact" && !blazeImpactOnCooldown)
+        {
+            Debug.Log("Blaze impact used");
+            blazeImpactOnCooldown = true;
+            Instantiate(blazeImpact.spellPrefab);
+            StartCoroutine(BlazeImpactCooldown());
+        }else if(spell.spellName == "Fire Torrent" && !fireTorrentOnCooldown)
+        {
+            Debug.Log("Fire Torrent used");
+            fireTorrentOnCooldown = true;
+            StartCoroutine(FireTorrentCooldown());
+        }else if (spell.spellName == "Flame Barrier" && !flameBarrierOnCooldown)
+        {
+            Debug.Log("Flame Barrier used");
+            flameBarrierOnCooldown = true;
+
+            StartCoroutine(FlameBarrierCooldown());
+        }     
     }
 
+    #region SpellCooldowns
+   
     IEnumerator BlazeImpactCooldown()
     {
         yield return new WaitForSeconds(blazeImpact.spellCooldown);
-        blazeImpactUsed = false;
+        blazeImpactOnCooldown = false;
         Debug.Log("Blaze impact ready");
     }
-    #endregion
-
-    #region FireTorrent
-    public void FireTorrent()
-    {
-        if (fireTorrentUsed) return;
-        Debug.Log("Fire Torrent used");
-        fireTorrentUsed = true;
-
-        StartCoroutine(FireTorrentCooldown());
-    }
-
     IEnumerator FireTorrentCooldown()
     {
         yield return new WaitForSeconds(fireTorrent.spellCooldown);
-        fireTorrentUsed = false;
+        fireTorrentOnCooldown = false;
         Debug.Log("Torrent ready");
     }
-    #endregion
-
-    #region FlameBarrier
-    public void FlameBarrier()
-    {
-        if (flameBarrierUsed) return;
-        Debug.Log("Flame Barrier used");
-        flameBarrierUsed = true;
-
-        StartCoroutine(FlameBarrierCooldown());
-    }
-
     IEnumerator FlameBarrierCooldown()
     {
         yield return new WaitForSeconds(flameBarrier.spellCooldown);
-        flameBarrierUsed = false;
+        flameBarrierOnCooldown = false;
         Debug.Log("Barrier ready");
     }
     #endregion
