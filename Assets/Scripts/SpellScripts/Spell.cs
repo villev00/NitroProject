@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SpellData", menuName = "ScriptableObjects/SpellData", order = 1)]
@@ -16,8 +17,16 @@ public class Spell : ScriptableObject
     public int spellAreaDamage;
 
     public float spellCooldown;
+    public bool isSpellOnCooldown;
     public float spellDuration;
 
+  
+    public IEnumerator SpellCooldown()
+    {
+        yield return new WaitForSeconds(spellCooldown);
+        isSpellOnCooldown = false;
+        Debug.Log(spellName+" ready");
+    }
 }
 
 

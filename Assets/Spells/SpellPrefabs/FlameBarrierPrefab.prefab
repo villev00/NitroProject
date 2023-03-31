@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6337419644721762452}
   - component: {fileID: 6337419644721762475}
   - component: {fileID: 4403670417235368544}
+  - component: {fileID: -595298927877466901}
   m_Layer: 0
   m_Name: FlameBarrierPrefab
   m_TagString: Untagged
@@ -4826,3 +4827,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.8
   m_Center: {x: -0.0029999614, y: -0.003000021, z: 0}
+--- !u!114 &-595298927877466901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337419644721762474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70d3991552ef9348a43042c94a59af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}

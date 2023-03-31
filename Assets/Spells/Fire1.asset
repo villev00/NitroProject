@@ -20,4 +20,5 @@ MonoBehaviour:
   spellDamage: 50
   spellAreaDamage: 25
   spellCooldown: 10
+  isSpellOnCooldown: 0
   spellDuration: 0

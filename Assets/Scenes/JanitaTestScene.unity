@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4022,100 +4022,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 496582, guid: 85f5f4776e3804945ab0095870a1212b, type: 3}
   m_PrefabInstance: {fileID: 143310434}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &143986811
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 143986813}
-  - component: {fileID: 143986812}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &143986812
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143986811}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 1
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 2
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &143986813
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143986811}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 8.779884, y: 4.5332346, z: -1.92}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &145096303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13041,7 +12947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 95.6, y: 47.2}
+  m_AnchoredPosition: {x: 95.6, y: 47.19995}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &491892374
@@ -15554,7 +15460,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &605347747
 PrefabInstance:
@@ -22450,7 +22356,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955985627
 GameObject:
@@ -24197,7 +24103,7 @@ Transform:
   - {fileID: 832169980}
   - {fileID: 845848275}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1051470632
 GameObject:
@@ -24329,7 +24235,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1055103686
 PrefabInstance:
@@ -24528,7 +24434,7 @@ Transform:
   - {fileID: 1879532056}
   - {fileID: 426002816}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1063147606
 PrefabInstance:
@@ -28136,7 +28042,7 @@ RectTransform:
   - {fileID: 1680314877}
   - {fileID: 485417139}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -37649,7 +37555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -3.3, y: 47.2}
+  m_AnchoredPosition: {x: -3.3, y: 47.19995}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1680314878
@@ -45227,9 +45133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2068260226}
-  - component: {fileID: 2068260225}
-  - component: {fileID: 2068260224}
-  - component: {fileID: 2068260223}
+  - component: {fileID: 2068260227}
   m_Layer: 0
   m_Name: SpellManager
   m_TagString: Untagged
@@ -45237,57 +45141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2068260223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068260222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f654fb48a0ff546a72672b3c21756e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellUI: {fileID: 0}
-  lightningSpells:
-  - {fileID: 11400000, guid: 974e007d179b39a4983455d9532de107, type: 2}
-  - {fileID: 11400000, guid: 0cf9c58da17d72f47806e648dc576b27, type: 2}
-  - {fileID: 11400000, guid: eb55c1a369cac6e439e95ae557d7187f, type: 2}
---- !u!114 &2068260224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068260222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022196bb51a9e194d977cb0bf76c2b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellUI: {fileID: 0}
-  aetherSpells:
-  - {fileID: 11400000, guid: 7244cecaa10dc664d85daad439a791a1, type: 2}
-  - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
-  - {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
---- !u!114 &2068260225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068260222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b51b5ecab265141b91470355128d77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellUI: {fileID: 0}
-  fireSpells:
-  - {fileID: 11400000, guid: 64ca67a14215b4048a4e840668315d95, type: 2}
-  - {fileID: 11400000, guid: 2a886b660bbc6ae4cbfe365100d301e2, type: 2}
-  - {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}
 --- !u!4 &2068260226
 Transform:
   m_ObjectHideFlags: 0
@@ -45301,8 +45154,33 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 77.355, z: 0}
+--- !u!114 &2068260227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068260222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c81b3f5b2960f4e91caf13b2830b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellUI: {fileID: 0}
+  fireSpells:
+  - {fileID: 11400000, guid: 64ca67a14215b4048a4e840668315d95, type: 2}
+  - {fileID: 11400000, guid: 2a886b660bbc6ae4cbfe365100d301e2, type: 2}
+  - {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}
+  lightningSpells:
+  - {fileID: 11400000, guid: 974e007d179b39a4983455d9532de107, type: 2}
+  - {fileID: 11400000, guid: 0cf9c58da17d72f47806e648dc576b27, type: 2}
+  - {fileID: 11400000, guid: eb55c1a369cac6e439e95ae557d7187f, type: 2}
+  aetherSpells:
+  - {fileID: 11400000, guid: 7244cecaa10dc664d85daad439a791a1, type: 2}
+  - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
+  - {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
 --- !u!1001 &2073607419
 PrefabInstance:
   m_ObjectHideFlags: 0

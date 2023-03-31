@@ -29,28 +29,15 @@ public class SpellUI : MonoBehaviour
         }
     }
 
+
     public void ChangeSpellSet(Spell[] spells)
     {
         for (int i = 0; i < spells.Length; i++)
         {
             spellSlots[i].GetComponent<Image>().sprite = spells[i].spellSprite;
             spellSlots[i].GetComponent<Button>().onClick.RemoveAllListeners();
-            if (spells[i].spellElement == Element.Fire)
-            {
-                int index = i;
-                spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<FireSpells>().UseFireSpell(spells[index]); });
-            }
-            else if (spells[i].spellElement == Element.Lightning)
-            {
-                int index = i;
-                spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<LightningSpells>().UseLightningSpell(spells[index]); });
-            }
-            else if (spells[i].spellElement == Element.Aether)
-            {
-                int index = i;
-                spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<AetherSpells>().UseAetherSpell(spells[index]); });
-            }
-
+            int index = i;
+            spellSlots[index].GetComponent<Button>().onClick.AddListener(delegate { spellManager.GetComponent<Spells>().UseSpell(spells[index]); });
         }
     }
 }
