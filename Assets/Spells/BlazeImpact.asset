@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edbf5ad678c17344be49a8b2cf2bdf3, type: 3}
-  m_Name: Aether1
+  m_Name: BlazeImpact
   m_EditorClassIdentifier: 
-  spellName: Magnetic Grasp
-  spellElement: 3
-  spellPrefab: {fileID: 0}
-  spellSprite: {fileID: 21300000, guid: e1ce3690438772f4a9d5656e978104da, type: 3}
+  spellName: Blaze Impact
+  spellElement: 1
+  spellPrefab: {fileID: 6337419644721762474, guid: 9c767a1c04bc96d4489c9bb1bf2be771, type: 3}
+  spellSprite: {fileID: 21300000, guid: e337f520c8ff0574fb5df0ae7e613d77, type: 3}
   spellManaCost: 15
-  spellDamage: 5
-  spellAreaDamage: 10
+  spellDamage: 50
+  spellAreaDamage: 25
   spellCooldown: 10
+  isSpellOnCooldown: 0
   spellDuration: 0

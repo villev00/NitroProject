@@ -27,13 +27,7 @@ public class Spells : MonoBehaviour
         for (int i = 0; i < fireSpells.Length; i++)
         {
             fireSpells[i].isSpellOnCooldown = false;
-        }
-        for (int i = 0; i < lightningSpells.Length; i++)
-        {
-           lightningSpells[i].isSpellOnCooldown = false;
-        }
-        for (int i = 0; i < aetherSpells.Length; i++)
-        {
+            lightningSpells[i].isSpellOnCooldown = false;
             aetherSpells[i].isSpellOnCooldown = false;
         }
 

@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edbf5ad678c17344be49a8b2cf2bdf3, type: 3}
-  m_Name: Fire3
+  m_Name: BlackHole
   m_EditorClassIdentifier: 
-  spellName: Flame Barrier
-  spellElement: 1
-  spellPrefab: {fileID: 6337419644721762474, guid: 52665883cfdf3ed47bb9940a16302d83, type: 3}
-  spellSprite: {fileID: 21300000, guid: 33e0cfc1f26a96d4f844e2bcea369b15, type: 3}
+  spellName: Black Hole
+  spellElement: 3
+  spellPrefab: {fileID: 0}
+  spellSprite: {fileID: 21300000, guid: 4c3b49291b18cb14887a6a580ee71b1e, type: 3}
   spellManaCost: 15
   spellDamage: 0
   spellAreaDamage: 0
-  spellCooldown: 45
-  isSpellOnCooldown: 0
-  spellDuration: 5
+  spellCooldown: 15
+  spellDuration: 0

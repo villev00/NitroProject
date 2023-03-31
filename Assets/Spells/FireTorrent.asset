@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edbf5ad678c17344be49a8b2cf2bdf3, type: 3}
-  m_Name: Lightning1
+  m_Name: FireTorrent
   m_EditorClassIdentifier: 
-  spellName: Static Field
-  spellElement: 2
-  spellPrefab: {fileID: 0}
-  spellSprite: {fileID: 21300000, guid: b1d19a067b0b04b4b9c263d431bd0ab4, type: 3}
+  spellName: Fire Torrent
+  spellElement: 1
+  spellPrefab: {fileID: 6337419644721762474, guid: aaa707e7259b85e42af1954e215a8990, type: 3}
+  spellSprite: {fileID: 21300000, guid: 983faa7da49ffd14aab67d0ada9b3188, type: 3}
   spellManaCost: 15
-  spellDamage: 0
-  spellAreaDamage: 25
-  spellCooldown: 10
+  spellDamage: 10
+  spellAreaDamage: 0
+  spellCooldown: 20
+  isSpellOnCooldown: 0
   spellDuration: 5

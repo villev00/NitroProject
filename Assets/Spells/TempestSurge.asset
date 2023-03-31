@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edbf5ad678c17344be49a8b2cf2bdf3, type: 3}
-  m_Name: Aether2
+  m_Name: TempestSurge
   m_EditorClassIdentifier: 
-  spellName: Aetheric Leap
-  spellElement: 3
+  spellName: Tempest Surge
+  spellElement: 2
   spellPrefab: {fileID: 0}
-  spellSprite: {fileID: 21300000, guid: 2589788796a79ea42a38df723c5ad56e, type: 3}
-  spellManaCost: 5
+  spellSprite: {fileID: 21300000, guid: b4a9da8d164dff449bbd5b6dfa53bace, type: 3}
+  spellManaCost: 10
   spellDamage: 0
   spellAreaDamage: 0
-  spellCooldown: 5
+  spellCooldown: 20
   spellDuration: 0
