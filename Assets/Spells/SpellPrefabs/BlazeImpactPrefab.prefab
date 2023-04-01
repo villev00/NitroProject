@@ -24298,7 +24298,7 @@ GameObject:
   - component: {fileID: 1297676369509748211}
   - component: {fileID: 323566400104091916}
   - component: {fileID: 8689209815712068496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29276,7 +29276,7 @@ GameObject:
   - component: {fileID: 3157038716338248536}
   - component: {fileID: 4425648149742415663}
   - component: {fileID: 980512991062877982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34146,7 +34146,7 @@ GameObject:
   - component: {fileID: 7077933550279579636}
   - component: {fileID: 6593902951870784608}
   - component: {fileID: 63254013946697340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39016,7 +39016,7 @@ GameObject:
   - component: {fileID: 773086994954841948}
   - component: {fileID: 4536151028019071728}
   - component: {fileID: 8861590668635524623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

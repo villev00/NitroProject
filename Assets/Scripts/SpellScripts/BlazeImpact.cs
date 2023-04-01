@@ -54,7 +54,6 @@ public class BlazeImpact : MonoBehaviour
             if(collision.gameObject.GetComponent<Rigidbody>()!=null)
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(0, knockbackStrength, 0);
         }
-       
     }
 
     private void OnTriggerEnter(Collider other)
