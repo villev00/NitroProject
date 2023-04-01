@@ -9,6 +9,7 @@ public class FlameBarrier : MonoBehaviour
     Spell spell;
     void Start()
     {
+        transform.position = transform.root.position;
         Destroy(this.gameObject, spell.spellDuration);
     }
 

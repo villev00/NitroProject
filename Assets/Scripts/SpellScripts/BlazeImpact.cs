@@ -7,20 +7,21 @@ using UnityEngine.UIElements;
 public class BlazeImpact : MonoBehaviour
 {
     [SerializeField]
-    Spell spell;
-    Vector3 target;
+    Spell spell; //get damage details from spell object
+    Vector3 target; 
+
     [SerializeField]
     SphereCollider explosionCollider, hitCollider;
-
     [SerializeField]
     GameObject explosionEffect;
 
     [SerializeField]
     float spellMovementSpeed;
-
     [SerializeField]
     int knockbackStrength;
-    bool damagedEnemy;
+
+
+    bool firstHit;
     private void Start()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -37,20 +38,21 @@ public class BlazeImpact : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Damage first enemy hit with blaze impact,
-        //making collider bigger later for knockback effect and dont want to do first hit damage again
-        if (collision.gameObject.CompareTag("Enemy") && !damagedEnemy)
+        //or explode when hitting wall
+        if (collision.gameObject.CompareTag("Enemy") && !firstHit || collision.gameObject.CompareTag("Wall") && !firstHit)
         {
-            Debug.Log("Hit enemy "+collision.gameObject.name);
+            Debug.Log("Hit target "+collision.gameObject.name);
            // other.GetComponent<Enemy>().TakeDamage(spell.spellDamage) tms
             //enable trigger collider for explosion damage which has bigger radius
             explosionCollider.enabled = true;
-            damagedEnemy = true;
+            firstHit = true;
             StartCoroutine(DestroySpell());
         }
-        //add force to explosion knockback
-        if (damagedEnemy)
+        //add force to explosion knockback after initial hit
+        if (firstHit)
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(0, knockbackStrength, 0);
+            if(collision.gameObject.GetComponent<Rigidbody>()!=null)
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(0, knockbackStrength, 0);
         }
        
     }
