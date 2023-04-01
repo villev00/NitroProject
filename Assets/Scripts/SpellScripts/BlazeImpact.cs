@@ -10,8 +10,16 @@ public class BlazeImpact : MonoBehaviour
     Spell spell;
     Vector3 target;
     [SerializeField]
-    SphereCollider explosionCollider;
+    SphereCollider explosionCollider, hitCollider;
 
+    [SerializeField]
+    GameObject explosionEffect;
+
+    [SerializeField]
+    float spellMovementSpeed;
+
+    [SerializeField]
+    int knockbackStrength;
     bool damagedEnemy;
     private void Start()
     {
@@ -23,7 +31,7 @@ public class BlazeImpact : MonoBehaviour
     }
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime *5);
+        transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime *spellMovementSpeed);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,6 +46,11 @@ public class BlazeImpact : MonoBehaviour
             explosionCollider.enabled = true;
             damagedEnemy = true;
             StartCoroutine(DestroySpell());
+        }
+        //add force to explosion knockback
+        if (damagedEnemy)
+        {
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(0, knockbackStrength, 0);
         }
        
     }
@@ -55,8 +68,11 @@ public class BlazeImpact : MonoBehaviour
 
     IEnumerator DestroySpell()
     {
-        transform.localScale = transform.localScale * 7;
-        yield return new WaitForSeconds(0.2f);
+        //increase spell visual effect and hitcollider size to knock nearby enemies
+        transform.localScale = transform.localScale * 5;
+        hitCollider.radius = explosionCollider.radius;
+        explosionEffect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

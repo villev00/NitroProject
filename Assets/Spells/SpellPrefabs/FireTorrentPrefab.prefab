@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6337419644721762475}
   - component: {fileID: 4403670417235368544}
   - component: {fileID: -747368068078751681}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireTorrentPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

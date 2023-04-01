@@ -13,7 +13,8 @@ public class Spells : MonoBehaviour
     [SerializeField]
     Spell[] aetherSpells;
 
-    
+    [SerializeField]
+    GameObject spellSpawn;
     void Start()
     {
         spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
@@ -55,7 +56,7 @@ public class Spells : MonoBehaviour
             Debug.Log(spell.spellName + " used");
             spell.isSpellOnCooldown = true;
             if (spell.spellPrefab != null)
-                Instantiate(spell.spellPrefab, Camera.main.transform);
+                Instantiate(spell.spellPrefab, spellSpawn.transform);
         }
         StartCoroutine(spell.SpellCooldown());
     }
