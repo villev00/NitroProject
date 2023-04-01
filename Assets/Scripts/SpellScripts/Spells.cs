@@ -15,6 +15,7 @@ public class Spells : MonoBehaviour
 
     [SerializeField]
     GameObject spellSpawn;
+
     void Start()
     {
         spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
@@ -53,12 +54,16 @@ public class Spells : MonoBehaviour
     {
         if (!spell.isSpellOnCooldown)
         {
+            if (spell.spellName != "Magnetic Grasp")
+            {
+                spell.isSpellOnCooldown = true;
+                StartCoroutine(spell.SpellCooldown());
+            }
             Debug.Log(spell.spellName + " used");
-            spell.isSpellOnCooldown = true;
             if (spell.spellPrefab != null)
                 Instantiate(spell.spellPrefab, spellSpawn.transform);
         }
-        StartCoroutine(spell.SpellCooldown());
+       
     }
 
 }
