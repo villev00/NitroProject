@@ -7,15 +7,24 @@ public class FlameBarrier : MonoBehaviour
 {
     [SerializeField]
     Spell spell;
+
+    [SerializeField]
+    float barrierHealth;
+
     void Start()
     {
         transform.position = transform.root.position;
-        Destroy(this.gameObject, spell.spellDuration);
+        Destroy(gameObject, spell.spellDuration);
+        //  transform.root.GetComponent<InsertPlayerScriptHere>().barrier = gameObject; 
+        //InsertPlayerScriptHere: TakeDamage(float amount) if(barrier!=null) barrier.AbsorbDamage(amount); else reducehp(amount);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AbsorbDamage(float damage)
     {
-        
+        barrierHealth -= damage;
+        if (barrierHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

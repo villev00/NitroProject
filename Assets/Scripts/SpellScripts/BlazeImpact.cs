@@ -74,7 +74,11 @@ public class BlazeImpact : MonoBehaviour
         transform.localScale = transform.localScale * 5;
         hitCollider.radius = explosionCollider.radius;
         explosionEffect.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
+        transform.localScale = transform.localScale / 5;
+        hitCollider.radius = 1;
+        yield return new WaitForSeconds(1f);
+      
         Destroy(gameObject);
     }
 }
