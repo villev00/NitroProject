@@ -14579,6 +14579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
+  pullSpeed: 10
 --- !u!135 &6756089641495187915
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14590,7 +14591,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 4
   m_Center: {x: 0, y: 0.00050002337, z: 0}
 --- !u!1 &6295000606605177562
 GameObject:
