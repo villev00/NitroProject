@@ -73,7 +73,11 @@ public class Spells : MonoBehaviour
             }
             Debug.Log(spell.spellName + " used");
             if (spell.spellPrefab != null)
-                Instantiate(spell.spellPrefab, spellSpawn.transform);
+            {
+                GameObject go = Instantiate(spell.spellPrefab, spellSpawn.transform.position, Quaternion.identity);
+                go.transform.parent = spellSpawn.transform;
+            }
+                
         }
        
     }

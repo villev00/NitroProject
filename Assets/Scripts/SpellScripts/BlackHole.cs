@@ -8,18 +8,15 @@ public class BlackHole : MonoBehaviour
     Spell spell;
 
 
-    GameObject target;
-  
     void Start()
     {
-        target = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1, QueryTriggerInteraction.Ignore))
         {
-            target = hit.transform.gameObject;
-            transform.position = hit.point;
+            transform.position = new Vector3(hit.point.x, hit.point.y + 0.2f, hit.point.z);
+            transform.eulerAngles = new Vector3(-90, 0, 0);
+            transform.parent = null;
         }
-        transform.parent = target.transform;
        
     }
 
@@ -28,7 +25,7 @@ public class BlackHole : MonoBehaviour
         if (other.GetComponentInChildren<MagneticGrasp>() != null)
         {
             Debug.Log("other magnetic " + other.name);
-            target = other.gameObject;
+           
          
         }
     }
