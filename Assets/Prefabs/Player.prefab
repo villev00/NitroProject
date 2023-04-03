@@ -1421,6 +1421,9 @@ GameObject:
   - component: {fileID: 2263745141384612595}
   - component: {fileID: 2296090261740438463}
   - component: {fileID: 4733211619430426104}
+  - component: {fileID: -5676463682969635489}
+  - component: {fileID: 178034721968379857}
+  - component: {fileID: 2789158608036640280}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1507,6 +1510,51 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
   - {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
   spellSpawn: {fileID: 5389196278571430488}
+--- !u!114 &-5676463682969635489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179025851270780379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d648823a24589d49ab801b5be062d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  moveSpeed: 8
+--- !u!114 &178034721968379857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179025851270780379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496336a2f23be9d4da62355daeff27da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: -1
+--- !u!143 &2789158608036640280
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179025851270780379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.7
+  m_Radius: 0.39
+  m_SlopeLimit: 60
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2179043081201098983
 GameObject:
   m_ObjectHideFlags: 0
