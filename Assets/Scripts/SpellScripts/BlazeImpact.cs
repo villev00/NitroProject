@@ -8,8 +8,8 @@ public class BlazeImpact : MonoBehaviour
 {
     [SerializeField]
     Spell spell; //get damage details from spell object
-    Vector3 target; 
-
+    Vector3 target;
+   
     [SerializeField]
     SphereCollider explosionCollider, hitCollider;
     [SerializeField]
@@ -29,10 +29,14 @@ public class BlazeImpact : MonoBehaviour
         {
             target = hit.point;
         }
+        transform.parent = null;
+       
     }
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime *spellMovementSpeed);
+
+        transform.position = Vector3.MoveTowards(transform.position, target,spellMovementSpeed*Time.deltaTime);
+
     }
 
     private void OnCollisionEnter(Collision collision)
