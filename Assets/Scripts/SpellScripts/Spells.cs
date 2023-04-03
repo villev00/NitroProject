@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
-    public SpellUI spellUI;
+    SpellUI spellUI;
 
     [SerializeField]
     Spell[] fireSpells;
@@ -15,6 +15,8 @@ public class Spells : MonoBehaviour
 
     [SerializeField]
     GameObject spellSpawn;
+
+    int magnetCounter;
 
     void Start()
     {
@@ -58,6 +60,16 @@ public class Spells : MonoBehaviour
             {
                 spell.isSpellOnCooldown = true;
                 StartCoroutine(spell.SpellCooldown());
+            }
+            else
+            {
+                magnetCounter++;
+                if(magnetCounter==2)
+                {
+                    magnetCounter = 0;
+                    spell.isSpellOnCooldown = true;
+                    StartCoroutine(spell.SpellCooldown());
+                }
             }
             Debug.Log(spell.spellName + " used");
             if (spell.spellPrefab != null)

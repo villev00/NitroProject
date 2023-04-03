@@ -22,7 +22,7 @@ public class MagneticGrasp : MonoBehaviour
             transform.position = hit.point;
         }
         transform.parent = target.transform;
-        Invoke("DestroyGrasp", 10);
+        Invoke("DestroyGrasp", 5);
     }
     private void Update()
     {
@@ -45,8 +45,6 @@ public class MagneticGrasp : MonoBehaviour
             Debug.Log("other magnetic " + other.name);
             target = other.gameObject;
             magnetEnabled = true;
-            spell.isSpellOnCooldown = true;
-            StartCoroutine(spell.SpellCooldown());
         }
     }
     

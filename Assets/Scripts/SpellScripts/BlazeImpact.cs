@@ -25,7 +25,7 @@ public class BlazeImpact : MonoBehaviour
     private void Start()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 999f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 999f,1))
         {
             target = hit.point;
         }

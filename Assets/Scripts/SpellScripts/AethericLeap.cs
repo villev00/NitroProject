@@ -23,8 +23,10 @@ public class AethericLeap : MonoBehaviour
     IEnumerator Teleport()
     {
         yield return new WaitForSeconds(0.2f);
+      
+        transform.root.gameObject.GetComponent<CharacterController>().enabled = false;
         transform.root.position = target;
-       
+        transform.root.gameObject.GetComponent<CharacterController>().enabled = true;
         Destroy(gameObject);
     }
 }
