@@ -18,6 +18,12 @@ public class CameraRotate : MonoBehaviour
     float yRotation;
 
     Vector3 offset = new Vector3(0, 1.5f, 0);
+
+    private void Awake()
+    {
+        orientation = GameObject.Find("Orientation").GetComponent<Transform>();
+        player = GameObject.Find("Player (1)").GetComponent<Transform>();
+    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
