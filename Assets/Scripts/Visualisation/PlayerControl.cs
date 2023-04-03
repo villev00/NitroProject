@@ -1,19 +1,29 @@
 using UnityEngine;
+using data;
+using logic;
 
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
+    PlayerData pdata;
+    Movement mlogic;
+    Transform orientation;
 
     [SerializeField]
-    int moveSpeed = 8;     // Spagettia
+    float moveSpeed;
+    float jumpForce;
     float verticalSpeed;    // Spagettia
-    float jumpForce = 2;    // Spagettia
+    float horizontal;
+    float vertical;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        mlogic = GetComponent<Movement>();
+        pdata = GetComponent<PlayerData>();
+        orientation = GameObject.Find("Orientation").GetComponent<Transform>();
     }
 
     private void Start()
@@ -23,9 +33,14 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0, vertical);
+        PlayerInput();
+        if(horizontal != 0 || vertical != 0)
+        {
+            Vector3 moveDirection = mlogic.MovePlayer(horizontal,vertical,orientation.forward, orientation.right);
+            controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+        }
+       // transform.rotation = orientation.rotation;
+        /*
 
         if (controller.isGrounded)
         {
@@ -40,20 +55,26 @@ public class PlayerControl : MonoBehaviour
             verticalSpeed -= gravity * Time.deltaTime;
         }
 
-        Vector3 moveDirection = new Vector3(0, 0, 0);
+        Vector3 direction = new Vector3(horizontal, 0, vertical);
+        Vector3 moveDirection = mlogic.ResetDirection();
         if (direction.magnitude >= 0.1)
         {
-            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;        // Spagettia
-            //angle = playerLogic.GetMoveAngle(directionX, directionZ);
-            moveDirection = Quaternion.Euler(0, angle + transform.eulerAngles.y, 0) * Vector3.forward;
+            moveDirection = mlogic.GetDirection(direction.x, direction.z);
         }
         moveDirection.y = verticalSpeed;
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
-    }
+        */
 
+    }
+    void PlayerInput()
+    {
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+    }
+    
     public void FetchData()
     {
-        // moveSpeed = PlayerData.getSpeed();
-        // jumpForce = PlayerData.getJumpForce();
+        moveSpeed = pdata.moveSpeed;
+        jumpForce = pdata.jumpForce;
     }
 }
