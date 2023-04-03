@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -19,15 +20,21 @@ public class FireTorrent : MonoBehaviour
    
     List<GameObject> enemies = new List<GameObject>();
     bool onCooldown;
+   
     void Start()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 999f))
-        {
-            transform.LookAt(hit.point);
-        }
+     
         Destroy(this.gameObject, spell.spellDuration);
         InvokeRepeating("Damage", 0, 1);
+    }
+    private void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 999f,1))
+        {
+            transform.LookAt(hit.point);
+
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
