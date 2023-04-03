@@ -10,6 +10,8 @@ namespace data
         public  int maxHealth;
         public int lives = 5;
         public int shield = 0;
+        public float moveSpeed = 8;
+        public float jumpForce = 2;
     }
     
 }
