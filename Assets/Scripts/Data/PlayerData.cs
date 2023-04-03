@@ -1,10 +1,11 @@
 using System;
+using UnityEngine;
 
 namespace data
 {
     [Serializable]
 
-    public class Player
+    public class PlayerData: MonoBehaviour
     {
         public int health;
         public  int maxHealth;

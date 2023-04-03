@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using data;
 using UnityEngine;
 
-public class Healtlogic : Player
+public class HealthLogic : PlayerData
 
 {
+    public GameObject flameBarrier;
 
     public void TakeDamage(int damage)
     {
-        if (shield > 0)
+        if (flameBarrier != null)
         {
             shield -= damage;
             if (shield < 0)
             {
                 health += shield;
                 shield = 0;
+                Destroy(flameBarrier);
             }
         }
         else
