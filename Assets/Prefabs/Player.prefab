@@ -1496,7 +1496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c81b3f5b2960f4e91caf13b2830b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellUI: {fileID: 0}
   fireSpells:
   - {fileID: 11400000, guid: 64ca67a14215b4048a4e840668315d95, type: 2}
   - {fileID: 11400000, guid: 2a886b660bbc6ae4cbfe365100d301e2, type: 2}

@@ -9,22 +9,21 @@ public class FlameBarrier : MonoBehaviour
     Spell spell;
 
     [SerializeField]
-    float barrierHealth;
-
+    int barrierHealth;
+  
     void Start()
     {
+        
         transform.position = transform.root.position;
         Destroy(gameObject, spell.spellDuration);
-        //  transform.root.GetComponent<InsertPlayerScriptHere>().barrier = gameObject; 
-        //InsertPlayerScriptHere: TakeDamage(float amount) if(barrier!=null) barrier.AbsorbDamage(amount); else reducehp(amount);
+        transform.root.GetComponent<HealthLogic>().flameBarrier = gameObject;
+        transform.root.GetComponent<HealthLogic>().shield = barrierHealth;
+     
     }
-
-    public void AbsorbDamage(float damage)
+   
+   
+    private void OnDestroy()
     {
-        barrierHealth -= damage;
-        if (barrierHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        transform.root.GetComponent<HealthLogic>().shield = 0;
     }
 }

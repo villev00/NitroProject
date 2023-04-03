@@ -19344,7 +19344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}
-  barrierHealth: 0
+  barrierHealth: 100
 --- !u!65 &566058888736523178
 BoxCollider:
   m_ObjectHideFlags: 0

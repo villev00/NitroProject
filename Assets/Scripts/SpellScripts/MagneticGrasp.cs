@@ -30,7 +30,7 @@ public class MagneticGrasp : MonoBehaviour
         {
             transform.root.position = Vector3.MoveTowards(transform.root.position, target.transform.position, 5*Time.deltaTime);
             target.transform.position = Vector3.MoveTowards(target.transform.position, transform.root.position, 5*Time.deltaTime);
-            if(Vector3.Distance(transform.root.position, target.transform.position) < 2f)
+            if(Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
             {
                 Destroy(target.transform.GetComponentInChildren<MagneticGrasp>().gameObject);
                 Destroy(gameObject);

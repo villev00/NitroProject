@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     int moveSpeed = 8;     // Spagettia
     float verticalSpeed;    // Spagettia
     float jumpForce = 2;    // Spagettia
-    
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
