@@ -4,12 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+//Blaze impact is a spell that travels in a straight line and hits the
+//first enemy or wall on its way. Enemies and the player will be
+//knocked back within its range. Blaze impact deals 50 dmg to the
+//enemy hit directly and 25 to enemies nearby. The mana cost 15
+//and the cooldown is 10 seconds.
 public class BlazeImpact : MonoBehaviour
 {
     [SerializeField]
     Spell spell; //get damage details from spell object
-    Vector3 target; 
-
+    Vector3 target;
+   
+    //Colliders for spell, one for direct hit and one for explosion radius
     [SerializeField]
     SphereCollider explosionCollider, hitCollider;
     [SerializeField]
@@ -29,10 +36,12 @@ public class BlazeImpact : MonoBehaviour
         {
             target = hit.point;
         }
+        transform.parent = null;
+       
     }
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime *spellMovementSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, target,spellMovementSpeed*Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -5023,9 +5023,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981952158343982687}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 16, z: 10}
+  m_LocalScale: {x: 0.1, y: 0.4, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1420158559287396245}
@@ -5035,7 +5035,7 @@ Transform:
   - {fileID: 1868478442329401092}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2550963575475752062
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9886,7 +9886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 7244cecaa10dc664d85daad439a791a1, type: 2}
-  target: {fileID: 0}
 --- !u!135 &7057587669991892130
 SphereCollider:
   m_ObjectHideFlags: 0
