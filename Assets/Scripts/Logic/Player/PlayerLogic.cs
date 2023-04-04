@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
 using data;
+using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 
 {
+    PlayerUI playerUI;
     public GameObject flameBarrier;
     [SerializeField]
     PlayerData data = new PlayerData();
-    
-   
+
+    private void Awake()
+    {
+        playerUI = GameObject.Find("UIManager").GetComponent<PlayerUI>();
+    }
     public void TakeDamage(int damage)
     {
         if (flameBarrier != null)
@@ -26,6 +31,7 @@ public class PlayerLogic : MonoBehaviour
         else
         {
             data.health -= damage;
+            playerUI.ChangeHealthSliderValue(-damage);
         }
 
         if (data.health <= 0)
@@ -40,10 +46,12 @@ public class PlayerLogic : MonoBehaviour
     public void Heal(int heal)
     {
         data.health += heal;
+        playerUI.ChangeHealthSliderValue(heal);
         if (data.health > data.maxHealth)
         {
             data.health = data.maxHealth;
         }
+        
     }
     public int GetMana()
     {
@@ -53,6 +61,7 @@ public class PlayerLogic : MonoBehaviour
     public void SetMana(int amount)
     {
         data.mana += amount;
+        playerUI.ChangeManaSliderValue(amount);
         if (data.mana > data.maxMana)
         {
             data.mana = data.maxMana;
@@ -108,7 +117,5 @@ public class PlayerLogic : MonoBehaviour
     {
         Debug.Log("Game Over");
     }
-    
-    
 
 }

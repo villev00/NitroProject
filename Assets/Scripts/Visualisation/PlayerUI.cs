@@ -7,12 +7,29 @@ public class PlayerUI : MonoBehaviour
 {
     [SerializeField]
     Slider healthSlider, manaSlider;
-    void ChangeHealthSliderValue(int value)
+    public void ChangeHealthSliderValue(int value)
     {
         healthSlider.value += value;
+        if (healthSlider.value > healthSlider.maxValue)
+        {
+            healthSlider.value = healthSlider.maxValue;
+        }
+        if (healthSlider.value < healthSlider.minValue)
+        {
+            healthSlider.value = healthSlider.minValue;
+        }
     }
-    void ChangeManaSliderValue(int value)
+   public  void ChangeManaSliderValue(int value)
     {
         manaSlider.value += value;
+        if (manaSlider.value > manaSlider.maxValue)
+        {
+            manaSlider.value = manaSlider.maxValue;
+        }
+        if (manaSlider.value < manaSlider.minValue)
+        {
+            manaSlider.value = manaSlider.minValue;
+        }
     }
+    
 }

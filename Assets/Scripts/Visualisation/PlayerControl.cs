@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
-    PlayerData pdata;
+ //   PlayerData pdata;
     Movement mlogic;
     Transform orientation;
 
@@ -22,13 +22,13 @@ public class PlayerControl : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         mlogic = GetComponent<Movement>();
-        pdata = GetComponent<PlayerData>();
+     //   pdata = GetComponent<PlayerData>();
         orientation = GameObject.Find("Orientation").GetComponent<Transform>();
     }
 
     private void Start()
     {
-        FetchData();
+     //   FetchData();
     }
 
     void Update()
@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
     
     public void FetchData()
     {
-        moveSpeed = pdata.moveSpeed;
-        jumpForce = pdata.jumpForce;
+      //  moveSpeed = pdata.moveSpeed;
+      //  jumpForce = pdata.jumpForce;
     }
 }

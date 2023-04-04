@@ -7,7 +7,7 @@ public class Spells : MonoBehaviour
 {
     PhotonView pv;
     SpellUI spellUI;
-
+  
     [SerializeField]
     Spell[] fireSpells;
     [SerializeField]
