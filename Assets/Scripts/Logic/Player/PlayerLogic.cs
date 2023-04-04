@@ -3,43 +3,65 @@ using System.Collections.Generic;
 using data;
 using UnityEngine;
 
-public class HealthLogic : PlayerData
+public class PlayerLogic : MonoBehaviour
 
 {
     public GameObject flameBarrier;
-
+    [SerializeField]
+    PlayerData data = new PlayerData();
+    
+   
     public void TakeDamage(int damage)
     {
         if (flameBarrier != null)
         {
-            shield -= damage;
-            if (shield < 0)
+            data.shield -= damage;
+            if (data.shield < 0)
             {
-                health += shield;
-                shield = 0;
+                data.health += data.shield;
+                data.shield = 0;
                 Destroy(flameBarrier);
             }
         }
         else
         {
-            health -= damage;
+            data.health -= damage;
         }
 
-        if (health <= 0)
+        if (data.health <= 0)
         {
             Die();
         }
     }
-
+    public void SetShieldValue(int value)
+    {
+        data.shield = value;
+    }
     public void Heal(int heal)
     {
-        health += heal;
-        if (health > maxHealth)
+        data.health += heal;
+        if (data.health > data.maxHealth)
         {
-            health = maxHealth;
+            data.health = data.maxHealth;
         }
     }
-    
+    public int GetMana()
+    {
+        return data.mana;
+    }
+
+    public void SetMana(int amount)
+    {
+        data.mana += amount;
+        if (data.mana > data.maxMana)
+        {
+            data.mana = data.maxMana;
+        }
+        if (data.mana < 0)
+        {
+            data.mana = 0;
+        }
+    }
     public IEnumerable<WaitForSeconds> Tickdamage(int damage, int tickrate , int duration) 
     {
         
@@ -70,13 +92,13 @@ public class HealthLogic : PlayerData
     public void Die()
     {
         Debug.Log("Player died");
-        loseLife(1);
+        LoseLife(1);
     }
     
-    public void loseLife(int lives)
+    public void LoseLife(int lives)
     {
-        lives -= 1;
-        if (lives <= 0)
+        data.lives -= 1;
+        if (data.lives <= 0)
         {
             GameOver();
         }

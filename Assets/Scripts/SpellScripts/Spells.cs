@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
+    PhotonView pv;
     SpellUI spellUI;
 
     [SerializeField]
@@ -18,9 +20,13 @@ public class Spells : MonoBehaviour
 
     int magnetCounter;
 
+    private void Awake()
+    {
+      //  pv = GetComponent<PhotonView>();
+        spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
+    }
     void Start()
     {
-        spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
         spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
         SetupSpells();
     }
@@ -37,6 +43,7 @@ public class Spells : MonoBehaviour
     }
     private void Update()
     {
+     //   if (!pv.IsMine) return;
         //Keybinds for different spell sets
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -51,10 +58,14 @@ public class Spells : MonoBehaviour
             spellUI.ChangeSpellSet(aetherSpells);
         }
     }
+  
+
 
     public void UseSpell(Spell spell)
     {
-        if (!spell.isSpellOnCooldown) //If spell is not on cooldown, use that spell and set it on cooldown
+        //   if (!pv.IsMine) return;
+        //If spell is not on cooldown and theres enough mana, use that spell and set it on cooldown
+        if (!spell.isSpellOnCooldown && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost) 
         {
             if (spell.spellName != "Magnetic Grasp") 
             {
@@ -71,6 +82,7 @@ public class Spells : MonoBehaviour
                     StartCoroutine(spell.SpellCooldown());
                 }
             }
+
             Debug.Log(spell.spellName + " used");
             if (spell.spellPrefab != null)
             {
@@ -78,7 +90,7 @@ public class Spells : MonoBehaviour
                 GameObject go = Instantiate(spell.spellPrefab, spellSpawn.transform.position, Quaternion.identity);
                 go.transform.parent = spellSpawn.transform;
             }
-                
+            GetComponent<PlayerLogic>().SetMana(-spell.spellManaCost);
         }
        
     }

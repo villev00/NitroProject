@@ -19336,7 +19336,8 @@ MonoBehaviour:
   hitCollider: {fileID: -2782640511010309094}
   explosionEffect: {fileID: 2968525791063129226}
   spellMovementSpeed: 10
-  knockbackStrength: 800
+  knockbackStrength: 50
+  enemies: []
 --- !u!135 &-7627768750298435819
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19346,7 +19347,7 @@ SphereCollider:
   m_GameObject: {fileID: 1027669318461816044}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: -0.0029999614, y: -0.003000021, z: 0}

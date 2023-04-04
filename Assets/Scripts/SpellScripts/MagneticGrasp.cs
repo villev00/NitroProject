@@ -14,6 +14,8 @@ public class MagneticGrasp : MonoBehaviour
     Spell spell;
     GameObject target;
     bool magnetEnabled;
+    public bool enemy;
+    bool bothEnemies;
     void Start()
     {
         target = null;
@@ -24,20 +26,19 @@ public class MagneticGrasp : MonoBehaviour
             transform.position = hit.point;
         }
         transform.parent = target.transform;
-        //direct hit damage
+        if (transform.parent.GetComponent<EnemyHealth>() != null)
+        {
+            enemy = true;
+            transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
+        }
+            
         Invoke("DestroyGrasp", 5);
     }
     private void Update()
     {
-        if (magnetEnabled) //TO DO WALL MAGNET
+        if (magnetEnabled) 
         {
-            transform.root.position = Vector3.MoveTowards(transform.root.position, target.transform.position, 5*Time.deltaTime);
-            target.transform.position = Vector3.MoveTowards(target.transform.position, transform.root.position, 5*Time.deltaTime);
-            if(Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
-            {
-                Destroy(target.transform.GetComponentInChildren<MagneticGrasp>().gameObject);
-                Destroy(gameObject);
-            }
+            MagnetEffect();
         }
             
     }
@@ -48,10 +49,46 @@ public class MagneticGrasp : MonoBehaviour
             Debug.Log("other magnetic " + other.name);
             target = other.gameObject;
             magnetEnabled = true;
-            //pull damage
+            if (other.GetComponentInChildren<MagneticGrasp>().enemy)
+            {
+                target.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
+                if (enemy) bothEnemies = true;
+            }
         }
+
     }
-    
+    void MagnetEffect()
+    {
+        //if both targets are enemies, pull them towards each other
+        if (bothEnemies)
+        {
+            transform.root.position = Vector3.MoveTowards(transform.root.position, target.transform.position, 5 * Time.deltaTime);
+            target.transform.position = Vector3.MoveTowards(target.transform.position, transform.root.position, 5 * Time.deltaTime);
+            if (Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
+            {
+                Destroy(target.transform.GetComponentInChildren<MagneticGrasp>().gameObject);
+                Destroy(gameObject);
+            }
+        }
+        else if (enemy) //this magnet is on enemy but other one is on environment, pull this object towards environment
+        {
+            transform.root.position = Vector3.MoveTowards(transform.root.position, target.transform.position, 5 * Time.deltaTime);
+            if (Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
+            {
+                Destroy(target.transform.GetComponentInChildren<MagneticGrasp>().gameObject);
+                Destroy(gameObject);
+            }
+        }
+        else if (!enemy)//this magnet is on environment but other one is on enemy, pull that enemy towards this object
+        {
+            target.transform.position = Vector3.MoveTowards(target.transform.position, transform.root.position, 5 * Time.deltaTime);
+            if (Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
+            {
+                Destroy(target.transform.GetComponentInChildren<MagneticGrasp>().gameObject);
+                Destroy(gameObject);
+            }
+        }
+}
     void DestroyGrasp()
     {
         if (!magnetEnabled)

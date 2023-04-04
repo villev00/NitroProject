@@ -19,15 +19,21 @@ public class FireTorrent : MonoBehaviour
    
     List<GameObject> enemies = new List<GameObject>();
     bool onCooldown;
+   
     void Start()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 999f))
-        {
-            transform.LookAt(hit.point);
-        }
+     
         Destroy(this.gameObject, spell.spellDuration);
         InvokeRepeating("Damage", 0, 1);
+    }
+    private void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 999f,1))
+        {
+            transform.LookAt(hit.point);
+
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -60,7 +66,7 @@ public class FireTorrent : MonoBehaviour
         {
             if (enemy != null)
                 Debug.Log("Damaged " + enemy.name);
-             //   enemy.GetComponent<Enemy>().TakeDamage(spell.spellDamage);
+                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
         }
     }
 }
