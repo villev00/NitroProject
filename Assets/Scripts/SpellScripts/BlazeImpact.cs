@@ -59,7 +59,8 @@ public class BlazeImpact : MonoBehaviour
             explosionCollider.enabled = true;
             firstHit = true;
             StartCoroutine(DestroySpell());
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
+            if(collision.gameObject.GetComponent<EnemyHealth>()!=null)
+                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
            
            
         }

@@ -5,7 +5,7 @@ namespace data
 {
     [Serializable]
 
-    public class PlayerData: MonoBehaviour
+    public class PlayerData
     {
         public int health;
         public  int maxHealth;
@@ -13,6 +13,9 @@ namespace data
         public int shield = 0;
         public float moveSpeed = 8;
         public float jumpForce = 2;
+
+        public int mana;
+        public int maxMana;
     }
     
 }

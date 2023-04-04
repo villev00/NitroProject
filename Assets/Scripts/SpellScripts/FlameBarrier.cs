@@ -16,13 +16,13 @@ public class FlameBarrier : MonoBehaviour
         //Move objects location to players location (from spawnpoint)
         transform.position = transform.root.position;
         Destroy(gameObject, spell.spellDuration);
-        //Let healthlogic know flamebarrier is up and set shield amount
-        transform.root.GetComponent<HealthLogic>().flameBarrier = gameObject;
-        transform.root.GetComponent<HealthLogic>().shield = barrierHealth;
+        //Let player know flamebarrier is up and set shield amount
+        transform.root.GetComponent<PlayerLogic>().flameBarrier = gameObject;
+        transform.root.GetComponent<PlayerLogic>().SetShieldValue(barrierHealth);
     }
    
     private void OnDestroy()
     {
-        transform.root.GetComponent<HealthLogic>().shield = 0;
+        transform.root.GetComponent<PlayerLogic>().SetShieldValue(0);
     }
 }
