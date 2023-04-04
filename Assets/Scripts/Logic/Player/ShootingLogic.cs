@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShootingLogic : MonoBehaviour
 {
+    [SerializeField]
     ShootingData data = new ShootingData();
     void Start()
     {
