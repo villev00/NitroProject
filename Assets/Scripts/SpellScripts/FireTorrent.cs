@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -67,7 +66,7 @@ public class FireTorrent : MonoBehaviour
         {
             if (enemy != null)
                 Debug.Log("Damaged " + enemy.name);
-             //   enemy.GetComponent<Enemy>().TakeDamage(spell.spellDamage);
+                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
         }
     }
 }
