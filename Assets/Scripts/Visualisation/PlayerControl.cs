@@ -34,12 +34,27 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         PlayerInput();
-        if(horizontal != 0 || vertical != 0)
+        Vector3 moveDirection = mlogic.MovePlayer(horizontal,vertical,orientation.forward, orientation.right);
+        
+        //if(horizontal != 0 || vertical != 0)
+        //{
+            
+        //}
+        if (controller.isGrounded)
         {
-            Vector3 moveDirection = mlogic.MovePlayer(horizontal,vertical,orientation.forward, orientation.right);
-            controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+            moveDirection.y = -1;
+            if (Input.GetKeyDown("space"))
+            {
+                moveDirection.y += 10;
+            }
         }
-       // transform.rotation = orientation.rotation;
+        else
+        {
+            moveDirection.y -= 5 * gravity * Time.deltaTime;
+        }
+        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+
+        // transform.rotation = orientation.rotation;
         /*
 
         if (controller.isGrounded)
