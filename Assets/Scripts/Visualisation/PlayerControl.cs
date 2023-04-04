@@ -7,7 +7,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
-    PlayerData pdata;
+    //PlayerData pdata;
+    PlayerLogic plogic;
     Movement mlogic;
     Transform orientation;
 
@@ -22,7 +23,8 @@ public class PlayerControl : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         mlogic = GetComponent<Movement>();
-        pdata = GetComponent<PlayerData>();
+        //pdata = GetComponent<PlayerData>();
+        plogic = GetComponent<PlayerLogic>();
         orientation = GameObject.Find("Orientation").GetComponent<Transform>();
     }
 
@@ -54,32 +56,6 @@ public class PlayerControl : MonoBehaviour
         }
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
 
-        // transform.rotation = orientation.rotation;
-        /*
-
-        if (controller.isGrounded)
-        {
-            verticalSpeed = 0;
-            if (Input.GetKeyDown("space"))
-            {
-                verticalSpeed = jumpForce;
-            }
-        }
-        else
-        {
-            verticalSpeed -= gravity * Time.deltaTime;
-        }
-
-        Vector3 direction = new Vector3(horizontal, 0, vertical);
-        Vector3 moveDirection = mlogic.ResetDirection();
-        if (direction.magnitude >= 0.1)
-        {
-            moveDirection = mlogic.GetDirection(direction.x, direction.z);
-        }
-        moveDirection.y = verticalSpeed;
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
-        */
-
     }
     void PlayerInput()
     {
@@ -89,7 +65,7 @@ public class PlayerControl : MonoBehaviour
     
     public void FetchData()
     {
-        moveSpeed = pdata.moveSpeed;
-        jumpForce = pdata.jumpForce;
+        moveSpeed = plogic.GetSpeed();
+        jumpForce = plogic.GetJumpForce();
     }
 }
