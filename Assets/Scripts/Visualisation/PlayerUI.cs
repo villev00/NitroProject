@@ -19,7 +19,7 @@ public class PlayerUI : MonoBehaviour
             healthSlider.value = healthSlider.minValue;
         }
     }
-   public  void ChangeManaSliderValue(int value)
+    public void ChangeManaSliderValue(int value)
     {
         manaSlider.value += value;
         if (manaSlider.value > manaSlider.maxValue)
@@ -31,5 +31,4 @@ public class PlayerUI : MonoBehaviour
             manaSlider.value = manaSlider.minValue;
         }
     }
-    
 }

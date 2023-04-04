@@ -13,12 +13,7 @@ namespace logic
             direction = Quaternion.Euler(0, angle + transform.eulerAngles.y, 0) * Vector3.forward;
             return direction;
         }
-        //public Vector3 ResetDirection()
-        //{
-        //    Vector3 vector = new Vector3(0, 0, 0);
-        //
-        //    return vector; 
-        //}
+
         public Vector3 MovePlayer(float x, float z, Vector3 orientationForward, Vector3 orientationRight)
         {
             //float verticalSpeed = 0;

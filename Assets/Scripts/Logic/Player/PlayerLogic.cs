@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
 using data;
-using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 
 {
-    PlayerUI playerUI;
     public GameObject flameBarrier;
     [SerializeField]
     PlayerData data = new PlayerData();
+    PlayerUI playerUI;
 
     private void Awake()
     {
         playerUI = GameObject.Find("UIManager").GetComponent<PlayerUI>();
     }
+
     public void TakeDamage(int damage)
     {
         if (flameBarrier != null)
@@ -51,7 +51,6 @@ public class PlayerLogic : MonoBehaviour
         {
             data.health = data.maxHealth;
         }
-        
     }
     public int GetMana()
     {
@@ -70,6 +69,15 @@ public class PlayerLogic : MonoBehaviour
         {
             data.mana = 0;
         }
+    }
+
+    public float GetSpeed()
+    {
+        return data.moveSpeed;
+    }
+    public float GetJumpForce()
+    {
+        return data.jumpForce;
     }
     public IEnumerable<WaitForSeconds> Tickdamage(int damage, int tickrate , int duration) 
     {
@@ -117,5 +125,7 @@ public class PlayerLogic : MonoBehaviour
     {
         Debug.Log("Game Over");
     }
+    
+    
 
 }
