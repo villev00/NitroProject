@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
-    //PlayerData pdata;
     PlayerLogic plogic;
     Movement mlogic;
     Transform orientation;
@@ -18,12 +17,11 @@ public class PlayerControl : MonoBehaviour
     float verticalSpeed;    // Spagettia
     float horizontal;
     float vertical;
-
+    Vector3 moveDirection = new Vector3();
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         mlogic = GetComponent<Movement>();
-        //pdata = GetComponent<PlayerData>();
         plogic = GetComponent<PlayerLogic>();
         orientation = GameObject.Find("Orientation").GetComponent<Transform>();
     }
@@ -36,33 +34,41 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         PlayerInput();
-        Vector3 moveDirection = mlogic.MovePlayer(horizontal,vertical,orientation.forward, orientation.right);
-        
-        //if(horizontal != 0 || vertical != 0)
-        //{
-            
-        //}
+        GetDirection();
+        HandleJump();
+        MoveCharacter();
+    }
+    void HandleJump()
+    {
         if (controller.isGrounded)
         {
             moveDirection.y = -1;
             if (Input.GetKeyDown("space"))
             {
-                moveDirection.y += 10;
+                moveDirection.y += 20;
             }
         }
         else
         {
-            moveDirection.y -= 5 * gravity * Time.deltaTime;
+            moveDirection.y -= 7 * gravity * Time.deltaTime;
         }
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+    }
 
+    void GetDirection()
+    {
+        moveDirection = mlogic.MovePlayer(horizontal, vertical, orientation.forward, orientation.right);
+    }
+
+    void MoveCharacter()
+    {
+        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
     void PlayerInput()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
     }
-    
+
     public void FetchData()
     {
         moveSpeed = plogic.GetSpeed();
