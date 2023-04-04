@@ -7,10 +7,10 @@ public class MeleeEnemy : MonoBehaviour
 {
     private NavMeshAgent meleeEnemy;
     public Transform player;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        meleeEnemy= GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        meleeEnemy = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 
@@ -55,6 +56,7 @@ public class BlazeImpact : MonoBehaviour
             //enable trigger collider for explosion damage which has bigger radius
             explosionCollider.enabled = true;
             firstHit = true;
+            collision.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             StartCoroutine(DestroySpell());
         }
         //add force to explosion knockback after initial hit
@@ -70,6 +72,7 @@ public class BlazeImpact : MonoBehaviour
         //damage enemies within explosion radius
         if (other.gameObject.CompareTag("Enemy"))
         {
+           
             Debug.Log("Explosion hit: " + other.name);
            // other.GetComponent<Enemy>().TakeDamage(spell.spellAreaDamage); tms
         }
