@@ -7,4 +7,5 @@ public class ShootingData
     public float bulletSpeed = 40;
     public int bulletDamage = 10;
     public int headshotDamage = 25;
+    public Element currentElement;
 }
