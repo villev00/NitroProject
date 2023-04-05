@@ -10,21 +10,23 @@ namespace Logic.Enemy
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField]
-        private  Transform[] spawnPoint; 
-        
+        private Transform[] spawnPoint;
+
         [SerializeField]
-        private SpawnData spawndata = new SpawnData();
+        private SpawnData spawnData = new SpawnData();
         [SerializeField]
         private PuzzleData puzzleData = new PuzzleData();
+
+        private bool stopSpawning = false;
         
         
         
         void Start()
         {
             
-            spawndata.enemyList.Add(spawndata.fireEnemyMelee);
-            spawndata.enemyList.Add(spawndata.fireEnemyRanged);
-            StartCoroutine(spawnEnemyCoroutine());
+            spawnData.enemyList.Add(spawnData.fireEnemyMelee);
+            spawnData.enemyList.Add(spawnData.fireEnemyRanged);
+            StartCoroutine(SpawnEnemyCoroutine());
         }
 
 
@@ -33,16 +35,24 @@ namespace Logic.Enemy
             // after puzzle is solved add enemy to list and spawn from list at start fire enemy
 
 
-            if (puzzleData.isSolved1 == true)
+            if (puzzleData.isSolved1 == true )
             {
-                spawndata.enemyList.Add(spawndata.lightningEnemyMelee);
-                spawndata.enemyList.Add(spawndata.lightningEnemyRanged);
+                spawnData.enemyList.Add(spawnData.lightningEnemyMelee);
+                spawnData.enemyList.Add(spawnData.lightningEnemyRanged);
+                
             }
 
             if (puzzleData.isSolved2 == true)
             {
-                spawndata.enemyList.Add(spawndata.aetherEnemyMelee);
-                spawndata.enemyList.Add(spawndata.aetherEnemyRanged);
+                spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
+                spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
+                
+            }
+            if (puzzleData.isSolved3 == true)
+            {
+                stopSpawning = true;
+
+
             }
             
             
@@ -50,20 +60,22 @@ namespace Logic.Enemy
         
         public void spawnEnemy()
         {
-            int randomEnemy = UnityEngine.Random.Range(0, spawndata.enemyList.Count);
+            int randomEnemy = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
             int randomSpawnPoint = UnityEngine.Random.Range(0, spawnPoint.Length);
-            Instantiate(spawndata.enemyList[randomEnemy], spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+            Instantiate(spawnData.enemyList[randomEnemy], spawnPoint[randomSpawnPoint].position, Quaternion.identity);
         }
 
-        private IEnumerator spawnEnemyCoroutine()
+       private IEnumerator SpawnEnemyCoroutine()
+    {
+        while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
         {
-            while (spawndata.spawnCount < spawndata.maxSpawnCount)
-            {
-                spawnEnemy();
-                spawndata.spawnCount++;
-                yield return new WaitForSeconds(spawndata.spawnRate);
-            }
+            int randomEnemyIndex = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
+            int randomSpawnPointIndex = UnityEngine.Random.Range(0, spawnPoint.Length);
+            Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint[randomSpawnPointIndex].position, Quaternion.identity);
+            spawnData.spawnCount++;
+            yield return new WaitForSeconds(spawnData.spawnRate);
         }
+    }
 
         private void Update()
         {
@@ -72,12 +84,22 @@ namespace Logic.Enemy
             if (Input.GetKeyDown(KeyCode.J))
             {
                 puzzleData.isSolved1 = true;
+                addEnemyToList();
+
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
                 puzzleData.isSolved2 = true;
+                addEnemyToList();
+
             }
-            addEnemyToList();
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                puzzleData.isSolved3 = true;
+                
+            }
+
+            
 
 
 
