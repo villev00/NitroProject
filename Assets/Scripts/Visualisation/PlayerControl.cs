@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
     PhotonView pv;
+    SpellUI spellUI;
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
@@ -27,12 +28,14 @@ public class PlayerControl : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mlogic = GetComponent<Movement>();
         plogic = GetComponent<PlayerLogic>();
-        orientation = GameObject.Find("Orientation").GetComponent<Transform>();
+        spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
+        orientation = transform.GetChild(1).GetComponent<Transform>();
     }
 
     private void Start()
     {
         FetchData();
+        spellUI.spellManager = gameObject;
     }
 
     void Update()
