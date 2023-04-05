@@ -7242,15 +7242,15 @@ MonoBehaviour:
   - {fileID: 708807716}
   - {fileID: 1956132717}
   - {fileID: 1328858084}
-  spawndata:
+  spawnData:
     fireEnemyMelee: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
     lightningEnemyMelee: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
-    aetherEnemyMelee: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
+    aetherEnemyMelee: {fileID: 1996115503351386788, guid: e889b3f67d1aa324baaaa9a0c420f4dd, type: 3}
     fireEnemyRanged: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
     lightningEnemyRanged: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
-    aetherEnemyRanged: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
+    aetherEnemyRanged: {fileID: 1996115503351386788, guid: e889b3f67d1aa324baaaa9a0c420f4dd, type: 3}
     enemyList: []
-    spawnTime: 1
+    spawnTime: 3
     spawnDelay: 3
     spawnRate: 3
     spawnCount: 0
