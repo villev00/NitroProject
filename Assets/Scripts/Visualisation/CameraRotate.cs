@@ -24,7 +24,8 @@ public class CameraRotate : MonoBehaviour
 
     private void Awake()
     {
-
+        pv = transform.parent.GetComponent<PhotonView>();
+        if (!pv.IsMine) Destroy(gameObject);
         orientation = transform.parent.GetChild(1).transform;
         player = transform.root;
        
