@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5589888949794078256}
   - component: {fileID: 5804311631518597840}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5d4ddea598dea4eafee8ea613e7b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  meleeRange: 2
+  meleeDamage: 10
+  timeBetweenAttacks: 1
+  player: {fileID: 2177138990328041411, guid: 676aa45ff34838e44beedfd9cc0aed5d, type: 3}
 --- !u!114 &412789166332123074
 MonoBehaviour:
   m_ObjectHideFlags: 0
