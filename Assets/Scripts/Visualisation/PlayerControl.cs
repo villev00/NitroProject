@@ -25,11 +25,16 @@ public class PlayerControl : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        controller = GetComponent<CharacterController>();
-        mlogic = GetComponent<Movement>();
-        plogic = GetComponent<PlayerLogic>();
-        spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
-        orientation = transform.GetChild(1).GetComponent<Transform>();
+        if (pv.IsMine)
+        {
+            controller = GetComponent<CharacterController>();
+            mlogic = GetComponent<Movement>();
+            plogic = GetComponent<PlayerLogic>();
+            spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
+            orientation = transform.GetChild(1).GetComponent<Transform>();
+
+        }
+      
     }
 
     private void Start()
