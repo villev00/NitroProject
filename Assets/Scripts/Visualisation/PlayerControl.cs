@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class PlayerControl : MonoBehaviour
 {
+    [SerializeField]
     PhotonView pv;
     [SerializeField]
     CharacterController controller;
