@@ -1,9 +1,11 @@
 using UnityEngine;
 using data;
 using logic;
+using Photon.Pun;
 
 public class PlayerControl : MonoBehaviour
 {
+    PhotonView pv;
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
@@ -20,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     Vector3 moveDirection = new Vector3();
     private void Awake()
     {
+        pv = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
         mlogic = GetComponent<Movement>();
         plogic = GetComponent<PlayerLogic>();
@@ -33,6 +36,7 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        if (!pv.IsMine) return;
         PlayerInput();
         GetDirection();
         HandleJump();

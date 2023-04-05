@@ -16,7 +16,7 @@ public class BlackHole : MonoBehaviour
     void Start()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1))
         {
             transform.position = new Vector3(hit.point.x, hit.point.y + 0.2f, hit.point.z);
             transform.eulerAngles = new Vector3(-90, 0, 0);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShootingController : MonoBehaviour
 {
@@ -15,15 +16,21 @@ public class ShootingController : MonoBehaviour
     [SerializeField]
     GameObject bullet;
 
+    public UnityAction statChange;
+
+
     private void Awake()
     {
         slogic = GetComponent<ShootingLogic>();
         playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
+
+        statChange += FetchData;
     }
 
     private void Start()
     {
         FetchData();
+        readyToShoot = true;
     }
 
     void Update()
@@ -71,6 +78,6 @@ public class ShootingController : MonoBehaviour
     {
         rateOfFire = slogic.GetRateOfFire();
         bulletSpeed = slogic.GetBulletSpeed();
-        readyToShoot = true;
+       
     }
 }

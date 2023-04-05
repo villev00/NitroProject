@@ -39,6 +39,8 @@ public class PlayerLogic : MonoBehaviour
             Die();
         }
     }
+ 
+   
     public void SetShieldValue(int value)
     {
         data.shield = value;
@@ -74,6 +76,10 @@ public class PlayerLogic : MonoBehaviour
     public float GetSpeed()
     {
         return data.moveSpeed;
+    }
+    public void SetSpeed(float speed)
+    {
+        data.moveSpeed = speed;
     }
     public float GetJumpForce()
     {
