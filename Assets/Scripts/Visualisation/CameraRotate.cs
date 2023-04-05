@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.ComponentModel.Design.Serialization;
 
 public class CameraRotate : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class CameraRotate : MonoBehaviour
     private void Awake()
     {
         orientation = GameObject.Find("Orientation").GetComponent<Transform>();
-        player = GameObject.Find("Player (1)").GetComponent<Transform>();
+        player = transform.root;
     }
     void Start()
     {
