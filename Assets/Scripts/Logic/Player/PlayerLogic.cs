@@ -1,39 +1,67 @@
 using System;
 using System.Collections.Generic;
 using data;
+using Photon.Pun;
 using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 
 {
+    PhotonView pv;
     public GameObject flameBarrier;
     [SerializeField]
     PlayerData data = new PlayerData();
     PlayerUI playerUI;
 
+
+    [SerializeField]
+    GameObject[] allPlayers = new GameObject[2];
+
+    [SerializeField]
+    GameObject otherPlayer;
     private void Awake()
     {
-        playerUI = GameObject.Find("UIManager").GetComponent<PlayerUI>();
+        pv = GetComponent<PhotonView>();
+        if (pv.IsMine)
+        {
+            playerUI = GameObject.Find("UIManager").GetComponent<PlayerUI>();
+            playerUI.ChangeLives(5);
+        }
     }
-
+    private void Start()
+    {
+        Invoke("FindPlayers", 1);
+    }
+    void FindPlayers()
+    {
+        allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in allPlayers)
+        {
+            if (!player.GetComponent<PhotonView>().IsMine)
+            {
+                otherPlayer = player;
+            }
+        }
+    }
     public void TakeDamage(int damage)
     {
         if (flameBarrier != null)
-        {
-            data.shield -= damage;
-            if (data.shield < 0)
             {
-                data.health += data.shield;
-                data.shield = 0;
-                Destroy(flameBarrier);
+                data.shield -= damage;
+                if (data.shield < 0)
+                {
+                    data.health += data.shield;
+                    data.shield = 0;
+                    Destroy(flameBarrier);
+                }
             }
-        }
-        else
-        {
-            data.health -= damage;
-            playerUI.ChangeHealthSliderValue(-damage);
-        }
-
+            else
+            {
+                data.health -= damage;
+                if (pv.IsMine)
+                    playerUI.ChangeHealthSliderValue(-damage);
+            }
+        
         if (data.health <= 0)
         {
             Die();
@@ -48,7 +76,8 @@ public class PlayerLogic : MonoBehaviour
     public void Heal(int heal)
     {
         data.health += heal;
-        playerUI.ChangeHealthSliderValue(heal);
+        if (pv.IsMine)
+            playerUI.ChangeHealthSliderValue(heal);
         if (data.health > data.maxHealth)
         {
             data.health = data.maxHealth;
@@ -59,18 +88,55 @@ public class PlayerLogic : MonoBehaviour
         return data.mana;
     }
 
-    public void SetMana(int amount)
+    public void LoseMana(int amount)
     {
+        if (pv.IsMine)
+        {
+            data.mana -= amount;
+            playerUI.ChangeManaSliderValue(-amount);
+            if (data.mana > data.maxMana)
+            {
+                data.mana = data.maxMana;
+            }
+            if (data.mana < 0)
+            {
+                data.mana = 0;
+            } 
+        }
+
+        otherPlayer.GetComponent<PhotonView>().RPC("RPC_GainMana", RpcTarget.All, amount);
+       // otherPlayer.GetComponent<PlayerLogic>().GainMana(amount);
+    }
+
+    void GainMana(int amount)
+    {
+        if (pv.IsMine)
+        {
+            Debug.Log("halo");
+            data.mana += amount;
+            playerUI.ChangeManaSliderValue(amount);
+            if (data.mana > data.maxMana)
+            {
+                data.mana = data.maxMana;
+            }
+
+        }
+           
+
+    }
+
+    [PunRPC]
+    void RPC_GainMana(int amount)
+    {
+        Debug.Log("halo");
         data.mana += amount;
-        playerUI.ChangeManaSliderValue(amount);
+        if (pv.IsMine)
+            playerUI.ChangeManaSliderValue(amount);
         if (data.mana > data.maxMana)
         {
             data.mana = data.maxMana;
         }
-        if (data.mana < 0)
-        {
-            data.mana = 0;
-        }
+      
     }
 
     public float GetSpeed()
@@ -114,16 +180,38 @@ public class PlayerLogic : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Player died");
-        LoseLife(1);
+      Debug.Log("Player died");
+      pv.RPC("LoseLife", RpcTarget.All);
+
     }
-    
-    public void LoseLife(int lives)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+             Die();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            TakeDamage(10);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Heal(10);
+        }
+    }
+    [PunRPC]
+    public void LoseLife()
     {
         data.lives -= 1;
+        if(pv.IsMine)
+            playerUI.ChangeLives(1);
         if (data.lives <= 0)
         {
             GameOver();
+        }
+        else
+        {
+            Heal(data.maxHealth);
         }
     }
     

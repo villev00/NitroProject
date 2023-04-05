@@ -2,6 +2,7 @@ using UnityEngine;
 using data;
 using logic;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -32,16 +33,14 @@ public class PlayerControl : MonoBehaviour
             plogic = GetComponent<PlayerLogic>();
             spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
             orientation = transform.GetChild(1).GetComponent<Transform>();
-
+            FetchData();
+            spellUI.spellManager = gameObject;
+            spellUI.pv = pv;
         }
       
     }
 
-    private void Start()
-    {
-        FetchData();
-        spellUI.spellManager = gameObject;
-    }
+ 
 
     void Update()
     {

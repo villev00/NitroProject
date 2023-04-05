@@ -1,6 +1,5 @@
 using Photon.Pun;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Spells : MonoBehaviour
@@ -23,7 +22,7 @@ public class Spells : MonoBehaviour
 
     private void Awake()
     {
-      //  pv = GetComponent<PhotonView>();
+        pv = GetComponent<PhotonView>();
         spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
         slogic = GetComponent<ShootingLogic>();
     }
@@ -44,7 +43,7 @@ public class Spells : MonoBehaviour
     }
     private void Update()
     {
-     //   if (!pv.IsMine) return;
+        if (!pv.IsMine) return;
         //Keybinds for different spell sets
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -67,7 +66,7 @@ public class Spells : MonoBehaviour
 
     public void UseSpell(Spell spell)
     {
-        //   if (!pv.IsMine) return;
+        if (!pv.IsMine) return;
         //If spell is not on cooldown and theres enough mana, use that spell and set it on cooldown
         if (!spell.isSpellOnCooldown && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost) 
         {
@@ -94,7 +93,7 @@ public class Spells : MonoBehaviour
                 GameObject go = Instantiate(spell.spellPrefab, spellSpawn.transform.position, Quaternion.identity);
                 go.transform.parent = spellSpawn.transform;
             }
-            GetComponent<PlayerLogic>().SetMana(-spell.spellManaCost);
+            GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
            
         }
        
