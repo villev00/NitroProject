@@ -11,7 +11,9 @@ public class SpellUI : MonoBehaviour
     GameObject [] spellSlots;
 
     [SerializeField]
-    GameObject spellManager;
+    public GameObject spellManager;
+
+  
 
     private void Update()
     {
