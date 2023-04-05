@@ -1070,13 +1070,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc3361848701b45b24ed9444b90a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 100
-  lives: 5
-  shield: 0
-  moveSpeed: 8
-  jumpForce: 2
   flameBarrier: {fileID: 0}
+  data:
+    health: 0
+    maxHealth: 0
+    lives: 5
+    shield: 0
+    moveSpeed: 8
+    jumpForce: 2
+    mana: 0
+    maxMana: 0
 --- !u!114 &5600637907279743595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +1098,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 8435297622931791594}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
