@@ -7,7 +7,8 @@ public class Spells : MonoBehaviour
 {
     PhotonView pv;
     SpellUI spellUI;
-  
+    ShootingLogic slogic;
+
     [SerializeField]
     Spell[] fireSpells;
     [SerializeField]
@@ -24,6 +25,7 @@ public class Spells : MonoBehaviour
     {
       //  pv = GetComponent<PhotonView>();
         spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
+        slogic = GetComponent<ShootingLogic>();
     }
     void Start()
     {
@@ -39,7 +41,6 @@ public class Spells : MonoBehaviour
             lightningSpells[i].isSpellOnCooldown = false;
             aetherSpells[i].isSpellOnCooldown = false;
         }
-
     }
     private void Update()
     {
@@ -48,14 +49,17 @@ public class Spells : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             spellUI.ChangeSpellSet(fireSpells);
+            slogic.SetElement(Element.Fire);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             spellUI.ChangeSpellSet(lightningSpells);
+            slogic.SetElement(Element.Lightning);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             spellUI.ChangeSpellSet(aetherSpells);
+            slogic.SetElement(Element.Aether);
         }
     }
   
@@ -91,6 +95,7 @@ public class Spells : MonoBehaviour
                 go.transform.parent = spellSpawn.transform;
             }
             GetComponent<PlayerLogic>().SetMana(-spell.spellManaCost);
+           
         }
        
     }
