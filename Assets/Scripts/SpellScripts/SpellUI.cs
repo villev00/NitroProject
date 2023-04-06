@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,10 +12,14 @@ public class SpellUI : MonoBehaviour
     GameObject [] spellSlots;
 
     [SerializeField]
-    GameObject spellManager;
+    public GameObject spellManager;
 
+    [SerializeField]
+    public PhotonView pv;
+   
     private void Update()
     {
+        if (!pv.IsMine) return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             spellSlots[0].GetComponent<Button>().onClick.Invoke();
@@ -32,6 +37,7 @@ public class SpellUI : MonoBehaviour
 
     public void ChangeSpellSet(Spell[] spells)
     {
+        if (!spellManager.GetComponent<PhotonView>().IsMine) return;
         for (int i = 0; i < spells.Length; i++)
         {
             spellSlots[i].GetComponent<Image>().sprite = spells[i].spellSprite;

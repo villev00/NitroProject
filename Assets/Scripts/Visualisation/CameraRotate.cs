@@ -1,8 +1,11 @@
 using UnityEngine;
 using System;
+using System.ComponentModel.Design.Serialization;
+using Photon.Pun;
 
 public class CameraRotate : MonoBehaviour
 {
+    PhotonView pv;
     [SerializeField]
     float sensitivity = 1000;
 
@@ -21,8 +24,11 @@ public class CameraRotate : MonoBehaviour
 
     private void Awake()
     {
-        orientation = GameObject.Find("Orientation").GetComponent<Transform>();
-        player = GameObject.Find("Player (1)").GetComponent<Transform>();
+        pv = transform.parent.GetComponent<PhotonView>();
+        if (!pv.IsMine) Destroy(gameObject);
+        orientation = transform.parent.GetChild(1).transform;
+        player = transform.root;
+       
     }
     void Start()
     {
