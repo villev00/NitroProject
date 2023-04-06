@@ -927,12 +927,13 @@ GameObject:
   - component: {fileID: 3893751399065775620}
   - component: {fileID: 7528757755379566659}
   - component: {fileID: 1796124755830200548}
-  - component: {fileID: 3147094796421003882}
   - component: {fileID: 3544848078432220866}
   - component: {fileID: 1108219004113394595}
   - component: {fileID: 3014099650140288849}
   - component: {fileID: 5600637907279743595}
   - component: {fileID: 1121903502231841013}
+  - component: {fileID: -8091996282518932126}
+  - component: {fileID: -5394619225051058619}
   m_Layer: 3
   m_Name: PhotonPlayer
   m_TagString: Player
@@ -1031,21 +1032,6 @@ MonoBehaviour:
   pv: {fileID: 0}
   controller: {fileID: 0}
   moveSpeed: 8
---- !u!114 &3147094796421003882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4028839158756178016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496336a2f23be9d4da62355daeff27da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: -1
-  orientation: {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &3544848078432220866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,14 +1076,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flameBarrier: {fileID: 0}
   data:
-    health: 0
-    maxHealth: 0
+    health: 100
+    maxHealth: 100
     lives: 5
     shield: 0
     moveSpeed: 8
     jumpForce: 2
-    mana: 0
-    maxMana: 0
+    mana: 50
+    maxMana: 100
+  allPlayers: []
+  otherPlayer: {fileID: 0}
 --- !u!114 &5600637907279743595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,6 +1126,34 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-8091996282518932126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028839158756178016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c309fa646f7ad946896ca0583dc9ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawn: {fileID: 9017317396137134144, guid: 676aa45ff34838e44beedfd9cc0aed5d, type: 3}
+  rateOfFire: 0
+  bulletSpeed: 0
+  bullet: {fileID: 2006565949142461861, guid: 3ba6389700eefaf42be35d9cbe38c19a, type: 3}
+--- !u!114 &-5394619225051058619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028839158756178016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7966a8d73a6fcb34bbb8beb6d66310cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4028841888299286122
 GameObject:
   m_ObjectHideFlags: 0
