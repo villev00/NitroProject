@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,6 +29,7 @@ public class BlazeImpact : MonoBehaviour
     [SerializeField]
     int knockbackStrength;
 
+   public PhotonView pv;
 
     bool firstHit;
 
@@ -35,6 +37,7 @@ public class BlazeImpact : MonoBehaviour
     List<GameObject> enemies = new List<GameObject>();
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f,1))
         {
@@ -52,7 +55,7 @@ public class BlazeImpact : MonoBehaviour
     {
         //Damage first enemy hit with blaze impact,
         //or explode when hitting wall
-        if (collision.gameObject.CompareTag("Enemy") && !firstHit || collision.gameObject.CompareTag("Wall") && !firstHit)
+        if (!firstHit)
         {
             //enable trigger collider for explosion damage which has bigger radius
             Debug.Log("Hit target "+collision.gameObject.name);
@@ -93,7 +96,7 @@ public class BlazeImpact : MonoBehaviour
 
     IEnumerator DestroySpell()
     {
-       
+        Debug.Log("gnpsnpgon");
         //increase spell visual effect and hitcollider size to knock nearby enemies
         transform.localScale = transform.localScale * 5;
         hitCollider.radius = explosionCollider.radius;
@@ -114,7 +117,16 @@ public class BlazeImpact : MonoBehaviour
             }
               
         }
-        
+        if (pv.IsMine)
+        {
+            pv.RPC("rpc_destroySpell", RpcTarget.All);
+        }
+       
+       // Destroy(gameObject);
+    }
+    [PunRPC]
+    void rpc_destroySpell()
+    {
         Destroy(gameObject);
     }
 }

@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -90,7 +91,8 @@ public class Spells : MonoBehaviour
             if (spell.spellPrefab != null)
             {
                 //Instantiate spellprefab at the end of magical weapon,and set its parent
-                GameObject go = Instantiate(spell.spellPrefab, spellSpawn.transform.position, Quaternion.identity);
+               //GameObject go = Instantiate(spell.spellPrefab, spellSpawn.transform.position, Quaternion.identity);       
+                GameObject go = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
                 go.transform.parent = spellSpawn.transform;
             }
             GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);

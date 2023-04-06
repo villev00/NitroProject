@@ -41,6 +41,7 @@ MonoBehaviour:
   - RPC_GainMana
   - RPC_LoseMana
   - KillFriend
+  - rpc_destroySpell
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
