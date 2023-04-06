@@ -55,11 +55,10 @@ public class PlayerLogic : MonoBehaviour
                     Destroy(flameBarrier);
                 }
             }
-            else
+            else if (pv.IsMine) 
             {
                 data.health -= damage;
-                if (pv.IsMine)
-                    playerUI.ChangeHealthSliderValue(-damage);
+                playerUI.ChangeHealthSliderValue(-damage);
             }
         
         if (data.health <= 0)
@@ -104,31 +103,13 @@ public class PlayerLogic : MonoBehaviour
             } 
         }
 
-        otherPlayer.GetComponent<PhotonView>().RPC("RPC_GainMana", RpcTarget.All, amount);
-       // otherPlayer.GetComponent<PlayerLogic>().GainMana(amount);
+        otherPlayer.GetComponent<PhotonView>().RPC("RPC_GainMana", RpcTarget.All, amount);    
     }
 
-    void GainMana(int amount)
-    {
-        if (pv.IsMine)
-        {
-            Debug.Log("halo");
-            data.mana += amount;
-            playerUI.ChangeManaSliderValue(amount);
-            if (data.mana > data.maxMana)
-            {
-                data.mana = data.maxMana;
-            }
-
-        }
-           
-
-    }
 
     [PunRPC]
     void RPC_GainMana(int amount)
     {
-        Debug.Log("halo");
         data.mana += amount;
         if (pv.IsMine)
             playerUI.ChangeManaSliderValue(amount);
@@ -181,7 +162,8 @@ public class PlayerLogic : MonoBehaviour
     public void Die()
     {
       Debug.Log("Player died");
-      pv.RPC("LoseLife", RpcTarget.All);
+      otherPlayer.GetComponent<PhotonView>().RPC("KillFriend", RpcTarget.All);
+      LoseLife();
 
     }
     private void Update()
@@ -200,6 +182,20 @@ public class PlayerLogic : MonoBehaviour
         }
     }
     [PunRPC]
+    public void KillFriend()
+    {
+        if (pv.IsMine) 
+        {
+            data.lives -= 1;
+
+            playerUI.ChangeLives(1);
+            if (data.lives <= 0)
+            {
+                GameOver();
+            }
+        }
+            
+    }
     public void LoseLife()
     {
         data.lives -= 1;
