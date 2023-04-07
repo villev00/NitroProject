@@ -14,45 +14,42 @@ using UnityEngine.UIElements;
 //and the cooldown is 10 seconds.
 public class BlazeImpact : MonoBehaviour
 {
-    [SerializeField]
-    Spell spell; //get damage details from spell object
-    Vector3 target;
-   
+    PhotonView pv;
+
+    [SerializeField] Spell spell; //get damage details from spell object
     //Colliders for spell, one for direct hit and one for explosion radius
-    [SerializeField]
-    SphereCollider explosionCollider, hitCollider;
-    [SerializeField]
-    GameObject explosionEffect;
+    [SerializeField] SphereCollider explosionCollider, hitCollider;
+    [SerializeField] GameObject explosionEffect;
 
-    [SerializeField]
-    float spellMovementSpeed;
-    [SerializeField]
-    int knockbackStrength;
+    [SerializeField] float spellMovementSpeed;
+    [SerializeField] int knockbackStrength;
 
-   public PhotonView pv;
 
+    Vector3 target;
     bool firstHit;
-
-    [SerializeField]
     List<GameObject> enemies = new List<GameObject>();
-    private void Start()
+    private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 999f,1))
-        {
-            target = hit.point;
-        }
+    }
+    private void Start()
+    {
         transform.parent = null;
-       
+
+        if (!pv.IsMine) return;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1))
+             target = hit.point;
     }
     void Update()
     {
+        if (!pv.IsMine) return;
         transform.position = Vector3.MoveTowards(transform.position, target,spellMovementSpeed*Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!pv.IsMine) return;
         //Damage first enemy hit with blaze impact,
         //or explode when hitting wall
         if (!firstHit)
@@ -77,6 +74,7 @@ public class BlazeImpact : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!pv.IsMine) return;
         //damage enemies within explosion radius
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -96,7 +94,6 @@ public class BlazeImpact : MonoBehaviour
 
     IEnumerator DestroySpell()
     {
-        Debug.Log("gnpsnpgon");
         //increase spell visual effect and hitcollider size to knock nearby enemies
         transform.localScale = transform.localScale * 5;
         hitCollider.radius = explosionCollider.radius;
@@ -117,15 +114,11 @@ public class BlazeImpact : MonoBehaviour
             }
               
         }
-        if (pv.IsMine)
-        {
-            pv.RPC("rpc_destroySpell", RpcTarget.All);
-        }
-       
-       // Destroy(gameObject);
+         pv.RPC("RPC_DestroySpell", RpcTarget.All);
+        
     }
     [PunRPC]
-    void rpc_destroySpell()
+    void RPC_DestroySpell()
     {
         Destroy(gameObject);
     }

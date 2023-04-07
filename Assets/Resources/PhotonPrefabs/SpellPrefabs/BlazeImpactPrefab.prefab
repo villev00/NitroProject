@@ -19339,8 +19339,6 @@ MonoBehaviour:
   explosionEffect: {fileID: 2968525791063129226}
   spellMovementSpeed: 10
   knockbackStrength: 50
-  pv: {fileID: 0}
-  enemies: []
 --- !u!135 &-7627768750298435819
 SphereCollider:
   m_ObjectHideFlags: 0

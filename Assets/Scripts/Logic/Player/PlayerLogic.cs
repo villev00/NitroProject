@@ -17,8 +17,8 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField]
     GameObject[] allPlayers = new GameObject[2];
 
-    [SerializeField]
-    GameObject otherPlayer;
+    
+    public GameObject otherPlayer;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();

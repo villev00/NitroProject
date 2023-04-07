@@ -1,6 +1,5 @@
 using Photon.Pun;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spells : MonoBehaviour
@@ -20,7 +19,8 @@ public class Spells : MonoBehaviour
     GameObject spellSpawn;
 
     int magnetCounter;
-
+    [SerializeField]
+    GameObject spellObj;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -67,38 +67,60 @@ public class Spells : MonoBehaviour
 
     public void UseSpell(Spell spell)
     {
-        if (!pv.IsMine) return;
-        //If spell is not on cooldown and theres enough mana, use that spell and set it on cooldown
-        if (!spell.isSpellOnCooldown && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost) 
+        if (pv.IsMine)
         {
-            if (spell.spellName != "Magnetic Grasp") 
-            {
-                spell.isSpellOnCooldown = true;
-                StartCoroutine(spell.SpellCooldown());
-            }
-            else //Magnetic grasp needs to be cast twice for it to work
-            {
-                magnetCounter++;
-                if(magnetCounter==2)
+            //If spell is not on cooldown and theres enough mana, use that spell and set it on cooldown
+            if (!spell.isSpellOnCooldown && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost) 
+              {
+                if (spell.spellName != "Magnetic Grasp")
                 {
-                    magnetCounter = 0;
                     spell.isSpellOnCooldown = true;
                     StartCoroutine(spell.SpellCooldown());
                 }
-            }
+                else //Magnetic grasp needs to be cast twice for it to work
+                {
+                    magnetCounter++;
+                    if (magnetCounter == 2)
+                    {
+                        magnetCounter = 0;
+                        spell.isSpellOnCooldown = true;
+                        StartCoroutine(spell.SpellCooldown());
+                    }
+                }
 
-            Debug.Log(spell.spellName + " used");
-            if (spell.spellPrefab != null)
-            {
-                //Instantiate spellprefab at the end of magical weapon,and set its parent
-               //GameObject go = Instantiate(spell.spellPrefab, spellSpawn.transform.position, Quaternion.identity);       
-                GameObject go = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
-                go.transform.parent = spellSpawn.transform;
-            }
-            GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
+                Debug.Log(spell.spellName + " used");
+                GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
+                spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
+                spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
+
+                pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));
+            
+        }
            
         }
-       
+
+    }
+    int GetParentViewID(GameObject child)
+    {
+        Transform parent = child.transform.parent;
+        while (parent != null)
+        {
+            PhotonView view = parent.GetComponent<PhotonView>();
+            if (view != null)
+            {
+                return view.ViewID;
+            }
+            parent = parent.parent;
+        }
+        return -1;
     }
 
+    [PunRPC]
+    void RPC_SetParent(int spellObjID, int spellSpawnParentID)
+    {
+        GameObject spellObj = PhotonView.Find(spellObjID).gameObject;
+        GameObject spellSpawnParent = PhotonView.Find(spellSpawnParentID).gameObject;
+        GameObject spellSpawn = spellSpawnParent.transform.GetChild(0).GetChild(2).GetChild(3).gameObject;
+        spellObj.transform.SetParent(spellSpawn.transform);
+    }
 }

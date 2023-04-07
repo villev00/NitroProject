@@ -1,6 +1,7 @@
+using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 
 //Aetheric leap is a spell that works in a similar way like magnetic 
@@ -9,9 +10,15 @@ using static UnityEngine.GraphicsBuffer;
 public class AethericLeap : MonoBehaviour
 {
     Vector3 target;
+    PhotonView pv;
 
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+    }
     void Start()
     {
+        if (!pv.IsMine) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 30f))
         {
@@ -30,6 +37,12 @@ public class AethericLeap : MonoBehaviour
         transform.root.gameObject.GetComponent<CharacterController>().enabled = false; 
         transform.root.position = target;
         transform.root.gameObject.GetComponent<CharacterController>().enabled = true;
+        pv.RPC("RPC_DestroySpell", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void RPC_DestroySpell()
+    {
         Destroy(gameObject);
     }
 }
