@@ -52,7 +52,14 @@ MonoBehaviour:
   meleeRange: 2
   meleeDamage: 10
   timeBetweenAttacks: 1
+  Player:
+    serializedVersion: 2
+    m_Bits: 8
   player: {fileID: 2177138990328041411, guid: 676aa45ff34838e44beedfd9cc0aed5d, type: 3}
+  sightRange: 1
+  attackRange: 1
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!114 &412789166332123074
 MonoBehaviour:
   m_ObjectHideFlags: 0

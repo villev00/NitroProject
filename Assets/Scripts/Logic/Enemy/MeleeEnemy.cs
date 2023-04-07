@@ -1,3 +1,4 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,14 @@ public class MeleeEnemy : MonoBehaviour
     public float meleeRange = 2f; // adjust this value to set the range of the melee attack
     public int meleeDamage = 10; // adjust this value to set the damage done by the melee attack
     public float timeBetweenAttacks = 1f; // adjust this value to set the time between melee attacks
-    
+    public LayerMask Player;
     bool alreadyAttacked;
     private NavMeshAgent meleeEnemy;
     public Transform player;
+
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -21,7 +26,14 @@ public class MeleeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (meleeEnemy.enabled == false) return;
+
         meleeEnemy.SetDestination(player.position);
+        //Check for sight and attack range
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
+
+        if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
     private void AttackPlayer()
     {
@@ -36,6 +48,7 @@ public class MeleeEnemy : MonoBehaviour
             {
                 // apply damage to the player
                 player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);
+                Debug.Log(" damage");
             }
 
             alreadyAttacked = true;

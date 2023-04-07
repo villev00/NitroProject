@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class RangedEnemy : MonoBehaviour
 {
     public NavMeshAgent rangedEnemy;
-
+    
     public Transform player;
 
-    public LayerMask whatIsGround, Player;
+    public LayerMask Player;
 
     public Transform gun;
 
@@ -29,7 +29,8 @@ public class RangedEnemy : MonoBehaviour
 
     private void Update()
     {
-       
+        if (rangedEnemy.enabled == false) return;
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);

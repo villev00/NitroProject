@@ -11843,10 +11843,10 @@ MonoBehaviour:
   - {fileID: 1956132717}
   - {fileID: 1328858084}
   spawnData:
-    fireEnemyMelee: {fileID: 0}
+    fireEnemyMelee: {fileID: 8689310065359600455, guid: fa36923e5138bc74195ca124eeac9d41, type: 3}
     lightningEnemyMelee: {fileID: 0}
     aetherEnemyMelee: {fileID: 0}
-    fireEnemyRanged: {fileID: 0}
+    fireEnemyRanged: {fileID: 8689310065359600455, guid: d8b7ec6bec29329439c47c2a97b871d5, type: 3}
     lightningEnemyRanged: {fileID: 0}
     aetherEnemyRanged: {fileID: 0}
     enemyList: []

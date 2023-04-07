@@ -247,17 +247,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangedEnemy: {fileID: 6147697191656392264}
   player: {fileID: 2177138990328041411, guid: 676aa45ff34838e44beedfd9cc0aed5d, type: 3}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
   Player:
     serializedVersion: 2
     m_Bits: 8
   gun: {fileID: 6119670358779625537}
   timeBetweenAttacks: 2
   projectile: {fileID: 2006565949142461861, guid: 3ba6389700eefaf42be35d9cbe38c19a, type: 3}
-  sightRange: 10
-  attackRange: 9
+  sightRange: 100
+  attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!1001 &589098867247411375

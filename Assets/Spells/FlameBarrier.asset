@@ -15,10 +15,10 @@ MonoBehaviour:
   spellName: Flame Barrier
   spellElement: 1
   spellPrefab: {fileID: 8783713133556971685, guid: 52665883cfdf3ed47bb9940a16302d83, type: 3}
-  spellSprite: {fileID: 21300000, guid: 33e0cfc1f26a96d4f844e2bcea369b15, type: 3}
+  spellSprite: {fileID: 21300000, guid: 3ca8e410032a39946947b6162b30f4e3, type: 3}
   spellManaCost: 15
   spellDamage: 0
   spellAreaDamage: 0
   spellCooldown: 45
-  isSpellOnCooldown: 1
+  isSpellOnCooldown: 0
   spellDuration: 5

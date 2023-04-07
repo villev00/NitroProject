@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,26 +11,40 @@ using UnityEngine;
 //cooldown is 20 seconds. Mana cost is 10.
 public class TempestSurge : MonoBehaviour
 {
-    [SerializeField]
-    Spell spell;
-    [SerializeField]
-    float speedModifier, attackSpeedModifier;
+    PhotonView pv;
+    [SerializeField] Spell spell;
+    [SerializeField] float speedModifier, attackSpeedModifier;
     float speed;
     float attackSpeed;
+
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+     
+    }
     void Start()
     {
+        if (!pv.IsMine) return;
+        
         speed = transform.root.GetComponent<PlayerLogic>().GetSpeed();
         attackSpeed = transform.root.GetComponent<ShootingLogic>().GetRateOfFire();
-        transform.root.GetComponent<ShootingLogic>().SetRateOfFire(attackSpeed* attackSpeedModifier);
+        transform.root.GetComponent<ShootingLogic>().SetRateOfFire(attackSpeed * attackSpeedModifier);
         transform.root.GetComponent<PlayerLogic>().SetSpeed(speed * speedModifier);
         transform.root.GetComponent<ShootingController>().statChange();
-        Destroy(gameObject, spell.spellDuration);
+        Invoke("DestroySpell", spell.spellDuration);
     }
 
-    private void OnDestroy()
+
+    void DestroySpell()
     {
-        transform.root.GetComponent<PlayerLogic>().SetSpeed(speed);
-        transform.root.GetComponent<ShootingLogic>().SetRateOfFire(attackSpeed);
-        transform.root.GetComponent<ShootingController>().statChange();
+       transform.root.GetComponent<PlayerLogic>().SetSpeed(speed);
+       transform.root.GetComponent<ShootingLogic>().SetRateOfFire(attackSpeed);
+       transform.root.GetComponent<ShootingController>().statChange();
+       pv.RPC("RPC_DestroySpell", RpcTarget.All);
+    }
+    [PunRPC]
+    void RPC_DestroySpell()
+    {
+        Destroy(gameObject);
     }
 }

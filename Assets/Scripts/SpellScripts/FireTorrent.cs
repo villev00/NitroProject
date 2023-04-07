@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,30 +15,34 @@ using static UnityEngine.GraphicsBuffer;
 //cooldown is 20 seconds.
 public class FireTorrent : MonoBehaviour
 {
-    [SerializeField]
-    Spell spell;
+    PhotonView pv;
+    [SerializeField] Spell spell;
    
     List<GameObject> enemies = new List<GameObject>();
-    bool onCooldown;
    
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+    }
     void Start()
     {
-     
-        Destroy(this.gameObject, spell.spellDuration);
+        if (!pv.IsMine) return;
+
         InvokeRepeating("Damage", 0, 1);
+        Invoke("DestroySpell", spell.spellDuration);
     }
     private void Update()
     {
+        if (!pv.IsMine) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f,1))
         {
             transform.LookAt(hit.point);
-
         }
     }
     private void OnTriggerEnter(Collider other)
     {
- 
+        if (!pv.IsMine) return;
         if (other.CompareTag("Enemy"))
         {
             if (!enemies.Contains(other.gameObject))
@@ -49,7 +54,7 @@ public class FireTorrent : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-
+        if (!pv.IsMine) return;
         if (other.CompareTag("Enemy"))
         {
             if (enemies.Contains(other.gameObject))
@@ -68,5 +73,15 @@ public class FireTorrent : MonoBehaviour
                 Debug.Log("Damaged " + enemy.name);
                 enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
         }
+    }
+
+    void DestroySpell()
+    {
+        pv.RPC("RPC_DestroySpell", RpcTarget.All);
+    }
+    [PunRPC]
+    void RPC_DestroySpell()
+    {
+        Destroy(gameObject);
     }
 }
