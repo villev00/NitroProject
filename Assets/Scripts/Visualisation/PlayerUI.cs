@@ -7,28 +7,33 @@ public class PlayerUI : MonoBehaviour
 {
     [SerializeField]
     Slider healthSlider, manaSlider;
+
+    [SerializeField]
+    GameObject lives, lifePrefab;
+
+
     public void ChangeHealthSliderValue(int value)
     {
         healthSlider.value += value;
-        if (healthSlider.value > healthSlider.maxValue)
-        {
-            healthSlider.value = healthSlider.maxValue;
-        }
-        if (healthSlider.value < healthSlider.minValue)
-        {
-            healthSlider.value = healthSlider.minValue;
-        }
     }
     public void ChangeManaSliderValue(int value)
     {
         manaSlider.value += value;
-        if (manaSlider.value > manaSlider.maxValue)
+      
+    }
+
+    public void ChangeLives(int amount)
+    {
+        if (amount != 1)
         {
-            manaSlider.value = manaSlider.maxValue;
+            for (int i = 0; i < amount; i++)
+                Instantiate(lifePrefab, lives.transform);
         }
-        if (manaSlider.value < manaSlider.minValue)
+        else
         {
-            manaSlider.value = manaSlider.minValue;
+            int livesLeft = lives.transform.childCount;
+            Destroy(lives.transform.GetChild(livesLeft - 1).gameObject);
         }
+        
     }
 }

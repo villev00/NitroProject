@@ -1,4 +1,5 @@
 
+using Photon.Pun;
 using UnityEngine;
 
 //Flame barrier is a protective spell that absorbs damage.
@@ -6,23 +7,37 @@ using UnityEngine;
 //The mana cost is 15 and the cooldown is 45 seconds.
 public class FlameBarrier : MonoBehaviour
 {
-    [SerializeField]
-    Spell spell;
-    [SerializeField]
-    int barrierHealth;
-  
+    PhotonView pv;
+
+    [SerializeField] Spell spell;
+    [SerializeField] int barrierHealth;
+
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+       
+    }
     void Start()
     {
-        //Move objects location to players location (from spawnpoint)
-        transform.position = transform.root.position;
-        Destroy(gameObject, spell.spellDuration);
+        if (!pv.IsMine) return;
+        
         //Let player know flamebarrier is up and set shield amount
         transform.root.GetComponent<PlayerLogic>().flameBarrier = gameObject;
         transform.root.GetComponent<PlayerLogic>().SetShieldValue(barrierHealth);
+
+        //Move objects location to players location (from spawnpoint)
+        transform.position = new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z);
+        Invoke("DestroySpell", spell.spellDuration);
     }
-   
-    private void OnDestroy()
+    void DestroySpell()
     {
         transform.root.GetComponent<PlayerLogic>().SetShieldValue(0);
+        pv.RPC("RPC_DestroySpell", RpcTarget.All);
     }
+    [PunRPC]
+    void RPC_DestroySpell()
+    {
+        Destroy(gameObject);
+    }
+  
 }

@@ -1,9 +1,14 @@
 using UnityEngine;
 using data;
 using logic;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerControl : MonoBehaviour
 {
+    [SerializeField]
+    PhotonView pv;
+    SpellUI spellUI;
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
@@ -20,19 +25,26 @@ public class PlayerControl : MonoBehaviour
     Vector3 moveDirection = new Vector3();
     private void Awake()
     {
-        controller = GetComponent<CharacterController>();
-        mlogic = GetComponent<Movement>();
-        plogic = GetComponent<PlayerLogic>();
-        orientation = GameObject.Find("Orientation").GetComponent<Transform>();
+        pv = GetComponent<PhotonView>();
+        if (pv.IsMine)
+        {
+            controller = GetComponent<CharacterController>();
+            mlogic = GetComponent<Movement>();
+            plogic = GetComponent<PlayerLogic>();
+            spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
+            orientation = transform.GetChild(1).GetComponent<Transform>();
+            FetchData();
+            spellUI.spellManager = gameObject;
+            spellUI.pv = pv;
+        }
+      
     }
 
-    private void Start()
-    {
-        FetchData();
-    }
+ 
 
     void Update()
     {
+        if (!pv.IsMine) return;
         PlayerInput();
         GetDirection();
         HandleJump();
