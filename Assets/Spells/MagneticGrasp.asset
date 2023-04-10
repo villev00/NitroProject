@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: Magnetic Grasp
   spellElement: 3
   spellPrefab: {fileID: 1981952158343982687, guid: 1e97108dffca5e141befc18d8d77a67c, type: 3}
-  spellSprite: {fileID: 21300000, guid: e1ce3690438772f4a9d5656e978104da, type: 3}
+  spellSprite: {fileID: 21300000, guid: 19984c2b64a957246b891d6b7a0f00e2, type: 3}
   spellManaCost: 15
   spellDamage: 5
   spellAreaDamage: 10
