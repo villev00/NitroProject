@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: Chains of Lightning
   spellElement: 2
   spellPrefab: {fileID: 4351747321639488839, guid: 381fb68a8cf692246b9d6ab2c520a593, type: 3}
-  spellSprite: {fileID: 21300000, guid: b1d56b393f9a17142ad0651523451156, type: 3}
+  spellSprite: {fileID: 21300000, guid: fca1d6f2f0c03064e88cc77eb8db3335, type: 3}
   spellManaCost: 15
   spellDamage: 0
   spellAreaDamage: 20

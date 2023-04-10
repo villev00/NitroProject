@@ -15,10 +15,10 @@ MonoBehaviour:
   spellName: Tempest Surge
   spellElement: 2
   spellPrefab: {fileID: 2559113796480507430, guid: 22c11a376ec2f5c47b93dfe7064f6836, type: 3}
-  spellSprite: {fileID: 21300000, guid: b4a9da8d164dff449bbd5b6dfa53bace, type: 3}
+  spellSprite: {fileID: 21300000, guid: b9c70302ad74e5841a51aa876a9fafd3, type: 3}
   spellManaCost: 10
   spellDamage: 0
   spellAreaDamage: 0
   spellCooldown: 20
-  isSpellOnCooldown: 1
+  isSpellOnCooldown: 0
   spellDuration: 10

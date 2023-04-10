@@ -8,7 +8,6 @@ public class ShootingLogic : MonoBehaviour
     [SerializeField]
     ShootingData data = new ShootingData();
 
-
     // Update is called once per frame
     void Update()
     {
@@ -40,4 +39,5 @@ public class ShootingLogic : MonoBehaviour
     {
         data.rateOfFire = newRate;
     }
+
 }

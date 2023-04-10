@@ -11,9 +11,11 @@ public class StaticField : MonoBehaviour
 {
     PhotonView pv;
     [SerializeField] Spell spell;
+    bool firstHit;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        
     }
     void Start()
     {
@@ -26,7 +28,23 @@ public class StaticField : MonoBehaviour
             transform.position = hit.point;
         }
 
-        Invoke("DestroySpell", spell.spellDuration);
+        Invoke("EnableTrap", 2);
+        
+    }
+    void EnableTrap()
+    {
+        GetComponent<SphereCollider>().enabled = true;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if(!firstHit) Invoke("DestroySpell", spell.spellDuration);
+            firstHit = true;
+            other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
+          //  other.GetComponent<EnemyHealth>().GetStunned(5);
+            Debug.Log(other.name +" hit by trap");
+        }
     }
     void DestroySpell()
     {

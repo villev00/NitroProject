@@ -48,8 +48,12 @@ public class ChainsOfLightning : MonoBehaviour
         if (hitTriggered && !isDestroyed) StartCoroutine(DestroySpell());
         Debug.Log("Explosion hit: " + other.name);
         if (other.gameObject.CompareTag("Enemy"))
-                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
-  
+        {
+            other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
+            //  other.GetComponent<EnemyHealth>().GetStunned(5);
+        }
+
+
     }
     IEnumerator DestroySpell()
     {

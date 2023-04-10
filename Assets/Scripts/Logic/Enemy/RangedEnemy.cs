@@ -23,8 +23,12 @@ public class RangedEnemy : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         rangedEnemy = GetComponent<NavMeshAgent>();
+    }
+    private void Start()
+    {
+        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()

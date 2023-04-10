@@ -978,6 +978,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &3893751399065775620
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1009,15 +1010,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a886b660bbc6ae4cbfe365100d301e2, type: 2}
   - {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}
   lightningSpells:
+  - {fileID: 11400000, guid: eb55c1a369cac6e439e95ae557d7187f, type: 2}
   - {fileID: 11400000, guid: 974e007d179b39a4983455d9532de107, type: 2}
   - {fileID: 11400000, guid: 0cf9c58da17d72f47806e648dc576b27, type: 2}
-  - {fileID: 11400000, guid: eb55c1a369cac6e439e95ae557d7187f, type: 2}
   aetherSpells:
   - {fileID: 11400000, guid: 7244cecaa10dc664d85daad439a791a1, type: 2}
-  - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
   - {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
+  - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
   spellSpawn: {fileID: 7142285558228738019}
-  spellObj: {fileID: 0}
+  magnetCounter: 0
 --- !u!114 &1796124755830200548
 MonoBehaviour:
   m_ObjectHideFlags: 0
