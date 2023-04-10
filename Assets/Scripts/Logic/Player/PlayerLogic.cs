@@ -12,6 +12,7 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField]
     PlayerData data = new PlayerData();
     PlayerUI playerUI;
+    HealtPotion healthPotion;
 
 
     [SerializeField]
@@ -180,6 +181,9 @@ public class PlayerLogic : MonoBehaviour
         {
             Heal(10);
         }
+      
+
+       
     }
     [PunRPC]
     public void KillFriend()
@@ -210,7 +214,11 @@ public class PlayerLogic : MonoBehaviour
             Heal(data.maxHealth);
         }
     }
-    
+
+  
+
+
+
     public void GameOver()
     {
         Debug.Log("Game Over");

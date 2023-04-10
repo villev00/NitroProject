@@ -26,7 +26,13 @@ namespace Logic.Enemy
             
             spawnData.enemyList.Add(spawnData.fireEnemyMelee);
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
-            StartCoroutine(SpawnEnemyCoroutine());
+            
+           // add deylay to start spawning enemies 
+           
+           
+           
+           
+           StartCoroutine(SpawnEnemyCoroutine());
         }
 
 

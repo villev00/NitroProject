@@ -11,6 +11,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     GameObject lives, lifePrefab;
 
+    [SerializeField]
+    TMPro.TextMeshProUGUI PotionText;
+
 
     public void ChangeHealthSliderValue(int value)
     {
@@ -36,4 +39,13 @@ public class PlayerUI : MonoBehaviour
         }
         
     }
+
+    public void ChangePotionText(int amount)
+    {
+        PotionText.text = amount.ToString();
+    }
+
+    
+
+    
 }
