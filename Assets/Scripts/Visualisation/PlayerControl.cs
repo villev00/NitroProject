@@ -12,8 +12,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     CharacterController controller;
     float gravity = 9.81f;
-    PlayerLogic plogic;
-    Movement mlogic;
+    PlayerLogic pLogic;
+    Movement mLogic;
     Transform orientation;
 
     [SerializeField]
@@ -29,46 +29,64 @@ public class PlayerControl : MonoBehaviour
         if (pv.IsMine)
         {
             controller = GetComponent<CharacterController>();
-            mlogic = GetComponent<Movement>();
-            plogic = GetComponent<PlayerLogic>();
+            mLogic = GetComponent<Movement>();
+            pLogic = GetComponent<PlayerLogic>();
             spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
             orientation = transform.GetChild(1).GetComponent<Transform>();
             FetchData();
             spellUI.spellManager = gameObject;
             spellUI.pv = pv;
         }
-      
     }
 
- 
 
     void Update()
     {
         if (!pv.IsMine) return;
         PlayerInput();
         GetDirection();
-        HandleJump();
-        MoveCharacter();
-    }
-    void HandleJump()
-    {
+        //HandleJump();
         if (controller.isGrounded)
         {
             moveDirection.y = -1;
             if (Input.GetKeyDown("space"))
             {
-                moveDirection.y += 20;
+                moveDirection.y += 10; // jumpForcee is not updated correctly
+            }
+        }
+        else
+        {
+            moveDirection.y -= 4 * gravity * Time.deltaTime;
+        }
+        MoveCharacter();
+    }
+    void HandleJump()
+    {
+        moveDirection.y -= gravity * Time.deltaTime;
+
+        if (controller.isGrounded && Input.GetKeyDown("space"))
+        {
+            moveDirection.y = 20; // jumpForcee is not updated correctly
+        }
+        /*
+        if (controller.isGrounded)
+        {
+            moveDirection.y = -1;
+            if (Input.GetKeyDown("space"))
+            {
+                moveDirection.y += 20; // jumpForcee is not updated correctly
             }
         }
         else
         {
             moveDirection.y -= 7 * gravity * Time.deltaTime;
         }
+         */
     }
 
     void GetDirection()
     {
-        moveDirection = mlogic.MovePlayer(horizontal, vertical, orientation.forward, orientation.right);
+        moveDirection = mLogic.MovePlayer(horizontal, vertical, orientation.forward, orientation.right);
     }
 
     void MoveCharacter()
@@ -83,7 +101,7 @@ public class PlayerControl : MonoBehaviour
 
     public void FetchData()
     {
-        moveSpeed = plogic.GetSpeed();
-        jumpForce = plogic.GetJumpForce();
+        moveSpeed = pLogic.GetSpeed();
+        jumpForce = pLogic.GetJumpForce();
     }
 }

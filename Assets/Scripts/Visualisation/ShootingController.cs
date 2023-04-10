@@ -7,7 +7,7 @@ public class ShootingController : MonoBehaviour
 {
     [SerializeField]
     Transform bulletSpawn;
-    ShootingLogic slogic;
+    ShootingLogic sLogic;
     public float rateOfFire;
     public float bulletSpeed;
     bool readyToShoot;
@@ -21,9 +21,9 @@ public class ShootingController : MonoBehaviour
 
     private void Awake()
     {
-        slogic = GetComponent<ShootingLogic>();
+        sLogic = GetComponent<ShootingLogic>();
         playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
-
+        bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
         statChange += FetchData;
     }
 
@@ -76,8 +76,8 @@ public class ShootingController : MonoBehaviour
 
     void FetchData()
     {
-        rateOfFire = slogic.GetRateOfFire();
-        bulletSpeed = slogic.GetBulletSpeed();
+        rateOfFire = sLogic.GetRateOfFire();
+        bulletSpeed = sLogic.GetBulletSpeed();
        
     }
 }
