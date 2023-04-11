@@ -3,6 +3,7 @@ using data;
 using logic;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.Events;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     PlayerLogic pLogic;
     Movement mLogic;
     Transform orientation;
+    public UnityAction statChange;
 
     [SerializeField]
     float moveSpeed;
@@ -36,6 +38,7 @@ public class PlayerControl : MonoBehaviour
             FetchData();
             spellUI.spellManager = gameObject;
             spellUI.pv = pv;
+            statChange += FetchData;
         }
     }
 
