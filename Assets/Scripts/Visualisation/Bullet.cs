@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Element element;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -12,4 +13,5 @@ public class Bullet : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
+
 }

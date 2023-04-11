@@ -30,6 +30,7 @@ public class ShootingController : MonoBehaviour
     private void Start()
     {
         FetchData();
+        sLogic.SetElement(Element.Fire);
         readyToShoot = true;
     }
 
@@ -63,7 +64,7 @@ public class ShootingController : MonoBehaviour
         Vector3 direction = targetPoint - bulletSpawn.position;
         GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
         currentBullet.transform.forward = direction.normalized;
-
+        currentBullet.GetComponent<Bullet>().element = sLogic.GetElement();
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
         StartCoroutine(ResetShot());
     }
