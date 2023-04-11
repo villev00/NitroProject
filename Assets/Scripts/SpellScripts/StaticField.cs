@@ -29,6 +29,7 @@ public class StaticField : MonoBehaviour
         }
 
         Invoke("EnableTrap", 2);
+        Invoke("DestroySpell", spell.spellCooldown);
         
     }
     void EnableTrap()

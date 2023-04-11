@@ -1086,6 +1086,10 @@ MonoBehaviour:
     jumpForce: 2
     mana: 50
     maxMana: 100
+    chargeRate: 5
+    chargeInterval: 2
+    timeSinceLastCharge: 0
+    healthPotionCharge: 0
   allPlayers: []
   otherPlayer: {fileID: 0}
 --- !u!114 &5600637907279743595

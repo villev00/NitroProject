@@ -45,8 +45,9 @@ public class ChainsOfLightning : MonoBehaviour
         if (!pv.IsMine) return;
         //damage enemies within explosion radius
         hitTriggered = true;
+        Debug.Log("chains hit: " + other.name);
         if (hitTriggered && !isDestroyed) StartCoroutine(DestroySpell());
-        Debug.Log("Explosion hit: " + other.name);
+       
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
@@ -57,6 +58,7 @@ public class ChainsOfLightning : MonoBehaviour
     }
     IEnumerator DestroySpell()
     {
+        Debug.Log("chains destroy inc");
         isDestroyed = true;
         GetComponent<SphereCollider>().radius = 3;
         GetComponent<AudioSource>().Play();
