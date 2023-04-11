@@ -35,6 +35,10 @@ public class ShootingLogic : MonoBehaviour
     {
         data.currentElement = element;
     }
+    public Element GetElement()
+    {
+        return data.currentElement;
+    }
     public void SetRateOfFire(float newRate)
     {
         data.rateOfFire = newRate;
