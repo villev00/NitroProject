@@ -12,12 +12,13 @@ public class rune : MonoBehaviour
     [SerializeField] private GameObject aetherRune;
     [SerializeField] private GameObject puzzle1PlattformRuneFire, puzzle1PlattformRuneLightning, puzzle1PlattformRuneAether;
 
-    Spell spellComponent;
+    
     PuzzleData puzzleData;
+    ShootingData shootingData;
 
     private void Start()
     {
-        spellComponent = runeHolder.GetComponent<Spell>();
+        
         randomRune();
     }
 
@@ -51,19 +52,21 @@ public class rune : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            if (spellComponent.spellElement == Element.Fire && fireRune != null)
+            if(shootingData.currentElement == Element.Fire && fireRune.activeSelf)
+            {
+                 puzzleData.isSolved1 = true;
+            }
+            else if(shootingData.currentElement == Element.Lightning && lightningRune.activeSelf)
             {
                 puzzleData.isSolved1 = true;
             }
-            else if (spellComponent.spellElement == Element.Lightning && lightningRune != null)
+            else if(shootingData.currentElement == Element.Aether && aetherRune.activeSelf)
             {
                 puzzleData.isSolved1 = true;
-
             }
-            else if (spellComponent.spellElement == Element.Aether && aetherRune != null)
+            else
             {
                 puzzleData.isSolved1 = true;
-
             }
 
 
