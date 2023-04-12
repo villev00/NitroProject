@@ -11,8 +11,6 @@ public class Teleporter : MonoBehaviour
 
     private bool isOverlapping = false;
 
-  
-
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +41,7 @@ public class Teleporter : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("1");
-
+            player = other.transform;
             isOverlapping = true;
         }
     }
