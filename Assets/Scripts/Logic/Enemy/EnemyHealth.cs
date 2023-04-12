@@ -13,6 +13,7 @@ public class EnemyHealth : EnemyData
         health -= damage;
         if (health <= 0)
         {
+            Debug.Log("Enemy Died");
             Die();
         }
         

@@ -39,7 +39,8 @@ public class BlackHole : MonoBehaviour
         {
             foreach(GameObject enemy in enemies)
             {
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, transform.position, pullSpeed * Time.deltaTime);
+                if(enemy!=null)
+                    enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, transform.position, pullSpeed * Time.deltaTime);
             }
         }
     }

@@ -8,19 +8,13 @@ public class Spells : MonoBehaviour
     SpellUI spellUI;
     ShootingLogic slogic;
 
-    [SerializeField]
-    Spell[] fireSpells;
-    [SerializeField]
-    Spell[] lightningSpells;
-    [SerializeField]
-    Spell[] aetherSpells;
+    [SerializeField] Spell[] fireSpells;
+    [SerializeField] Spell[] lightningSpells;
+    [SerializeField] Spell[] aetherSpells;
 
-    [SerializeField]
-    GameObject spellSpawn;
-
-    int magnetCounter;
-    [SerializeField]
-    GameObject spellObj;
+    [SerializeField] GameObject spellSpawn;
+    public int magnetCounter;
+    
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -53,14 +47,15 @@ public class Spells : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            spellUI.ChangeSpellSet(lightningSpells);
-            slogic.SetElement(Element.Lightning);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
             spellUI.ChangeSpellSet(aetherSpells);
             slogic.SetElement(Element.Aether);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            spellUI.ChangeSpellSet(lightningSpells);
+            slogic.SetElement(Element.Lightning);
+        }
+       
     }
   
 
@@ -70,17 +65,25 @@ public class Spells : MonoBehaviour
         if (pv.IsMine)
         {
             //If spell is not on cooldown and theres enough mana, use that spell and set it on cooldown
-            if (!spell.isSpellOnCooldown && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost) 
+            if (!spell.isSpellOnCooldown) 
               {
-                if (spell.spellName != "Magnetic Grasp")
+                if (spell.spellName != "Magnetic Grasp" && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost)
                 {
                     spell.isSpellOnCooldown = true;
                     StartCoroutine(spell.SpellCooldown());
+                    GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
                 }
-                else //Magnetic grasp needs to be cast twice for it to work
+                else if(spell.spellName == "Magnetic Grasp") //Cast magnetic grasp
                 {
                     magnetCounter++;
-                    if (magnetCounter == 2)
+                    //Magnetic grasp needs to be cast twice for it to work
+                    if (magnetCounter != 2 && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost)
+                    {
+                       
+                        //Mana cost only on first grasp
+                        GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
+                    }
+                    else if(magnetCounter==2)
                     {
                         magnetCounter = 0;
                         spell.isSpellOnCooldown = true;
@@ -89,8 +92,8 @@ public class Spells : MonoBehaviour
                 }
 
                 Debug.Log(spell.spellName + " used");
-                GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
-                spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
+               
+                GameObject spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
                 spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
 
                 pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));

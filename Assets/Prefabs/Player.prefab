@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2177138990328041411}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!20 &1174516204
 Camera:
@@ -1461,8 +1461,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1174516205}
   - {fileID: 4274267309503941232}
+  - {fileID: 1174516205}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1486,6 +1486,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &2296090261740438463
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1525,6 +1526,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
   - {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
   spellSpawn: {fileID: 5389196278571430488}
+  magnetCounter: 0
 --- !u!114 &-5676463682969635489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,6 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d648823a24589d49ab801b5be062d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 0}
   controller: {fileID: 0}
   moveSpeed: 8
 --- !u!114 &-7429269079928169607
@@ -2818,7 +2821,7 @@ Transform:
   - {fileID: 2173424031085732661}
   - {fileID: 2173456339494675589}
   m_Father: {fileID: 2177138990328041411}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5389196278571430488
 GameObject:

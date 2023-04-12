@@ -31,6 +31,7 @@ public class TempestSurge : MonoBehaviour
         transform.root.GetComponent<ShootingLogic>().SetRateOfFire(attackSpeed * attackSpeedModifier);
         transform.root.GetComponent<PlayerLogic>().SetSpeed(speed * speedModifier);
         transform.root.GetComponent<ShootingController>().statChange();
+        transform.root.GetComponent<PlayerControl>().statChange();
         Invoke("DestroySpell", spell.spellDuration);
     }
 
@@ -40,7 +41,8 @@ public class TempestSurge : MonoBehaviour
        transform.root.GetComponent<PlayerLogic>().SetSpeed(speed);
        transform.root.GetComponent<ShootingLogic>().SetRateOfFire(attackSpeed);
        transform.root.GetComponent<ShootingController>().statChange();
-       pv.RPC("RPC_DestroySpell", RpcTarget.All);
+       transform.root.GetComponent<PlayerControl>().statChange();
+        pv.RPC("RPC_DestroySpell", RpcTarget.All);
     }
     [PunRPC]
     void RPC_DestroySpell()

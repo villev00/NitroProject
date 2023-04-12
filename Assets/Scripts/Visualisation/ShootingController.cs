@@ -7,7 +7,7 @@ public class ShootingController : MonoBehaviour
 {
     [SerializeField]
     Transform bulletSpawn;
-    ShootingLogic slogic;
+    ShootingLogic sLogic;
     public float rateOfFire;
     public float bulletSpeed;
     bool readyToShoot;
@@ -21,15 +21,18 @@ public class ShootingController : MonoBehaviour
 
     private void Awake()
     {
-        slogic = GetComponent<ShootingLogic>();
-        playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
-
+        sLogic = GetComponent<ShootingLogic>();
+        playerCamera = Camera.main.GetComponent<Camera>();
+        //playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
+       // playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
+        bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
         statChange += FetchData;
     }
 
     private void Start()
     {
         FetchData();
+        sLogic.SetElement(Element.Fire);
         readyToShoot = true;
     }
 
@@ -52,7 +55,7 @@ public class ShootingController : MonoBehaviour
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         Vector3 targetPoint;
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(ray, out hit, 999, 1))
         {
             targetPoint = hit.point;
         }
@@ -63,7 +66,7 @@ public class ShootingController : MonoBehaviour
         Vector3 direction = targetPoint - bulletSpawn.position;
         GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
         currentBullet.transform.forward = direction.normalized;
-
+        currentBullet.GetComponent<Bullet>().element = sLogic.GetElement();
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
         StartCoroutine(ResetShot());
     }
@@ -76,8 +79,8 @@ public class ShootingController : MonoBehaviour
 
     void FetchData()
     {
-        rateOfFire = slogic.GetRateOfFire();
-        bulletSpeed = slogic.GetBulletSpeed();
+        rateOfFire = sLogic.GetRateOfFire();
+        bulletSpeed = sLogic.GetBulletSpeed();
        
     }
 }

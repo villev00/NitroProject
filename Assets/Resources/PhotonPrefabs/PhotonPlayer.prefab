@@ -29,11 +29,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1203042460297867349}
   - {fileID: 4026882260879111532}
   - {fileID: 4034581012046581390}
   - {fileID: 4034539924733397310}
   m_Father: {fileID: 4027057859922289272}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338172437478845544
 MonoBehaviour:
@@ -69,7 +70,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3014099650769230934
 Transform:
   m_ObjectHideFlags: 0
@@ -78,12 +79,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3014099650769230929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.412}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4027057859922289272}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3014099650769230935
 Camera:
@@ -108,7 +109,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 200
   orientation: {fileID: 0}
-  player: {fileID: 4027057859922289272}
+  cameraHolder: {fileID: 0}
 --- !u!1 &4028492102185708242
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +540,7 @@ Transform:
   - {fileID: 4027212827193464984}
   - {fileID: 6122584099129353723}
   m_Father: {fileID: 1334478161046874059}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4028636893494611694
 GameObject:
@@ -766,7 +767,7 @@ Transform:
   m_Children:
   - {fileID: 4034608564502356212}
   m_Father: {fileID: 1334478161046874059}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4028797837480682556
 GameObject:
@@ -924,6 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4027057859922289272}
   - component: {fileID: 3944673472739026760}
+  - component: {fileID: 3893751399065775620}
   - component: {fileID: 7528757755379566659}
   - component: {fileID: 1796124755830200548}
   - component: {fileID: 3544848078432220866}
@@ -952,8 +954,8 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3014099650769230934}
   - {fileID: 1334478161046874059}
+  - {fileID: 3014099650769230934}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -978,6 +980,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &3893751399065775620
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028839158756178016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3072609
+  m_Height: 1.882848
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!114 &7528757755379566659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,15 +1011,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a886b660bbc6ae4cbfe365100d301e2, type: 2}
   - {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}
   lightningSpells:
+  - {fileID: 11400000, guid: eb55c1a369cac6e439e95ae557d7187f, type: 2}
   - {fileID: 11400000, guid: 974e007d179b39a4983455d9532de107, type: 2}
   - {fileID: 11400000, guid: 0cf9c58da17d72f47806e648dc576b27, type: 2}
-  - {fileID: 11400000, guid: eb55c1a369cac6e439e95ae557d7187f, type: 2}
   aetherSpells:
   - {fileID: 11400000, guid: 7244cecaa10dc664d85daad439a791a1, type: 2}
-  - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
   - {fileID: 11400000, guid: 8ab3f20ef2e0f0342942f1843738f2c4, type: 2}
+  - {fileID: 11400000, guid: 9378ab58018e0b542b1cb7c419255689, type: 2}
   spellSpawn: {fileID: 7142285558228738019}
-  spellObj: {fileID: 0}
+  magnetCounter: 0
 --- !u!114 &1796124755830200548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,13 +1058,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.39
+  m_Height: 0.7
+  m_Radius: 0.4
   m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.2, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &3014099650140288849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,6 +1087,10 @@ MonoBehaviour:
     jumpForce: 2
     mana: 50
     maxMana: 100
+    chargeRate: 5
+    chargeInterval: 2
+    timeSinceLastCharge: 0
+    healthPotionCharge: 0
   allPlayers: []
   otherPlayer: {fileID: 0}
 --- !u!114 &5600637907279743595
@@ -1543,7 +1563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1334478161046874059}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3892414550168297048
 SkinnedMeshRenderer:
@@ -2923,3 +2943,34 @@ Transform:
   m_Father: {fileID: 4034539924733397310}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &8302320792283314011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1203042460297867349}
+  m_Layer: 3
+  m_Name: Camera Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1203042460297867349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302320792283314011}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.706, z: 0.5}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1334478161046874059}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

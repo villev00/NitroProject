@@ -12,6 +12,7 @@ public class AethericLeap : MonoBehaviour
     Vector3 target;
     PhotonView pv;
 
+    //leap menee seinien läpi
     private void Awake()
     {
         pv = GetComponent<PhotonView>();

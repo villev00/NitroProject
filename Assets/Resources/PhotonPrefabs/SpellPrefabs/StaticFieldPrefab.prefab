@@ -4894,6 +4894,7 @@ GameObject:
   - component: {fileID: -1568664737770117738}
   - component: {fileID: -4095847516092802897}
   - component: {fileID: 7267450076870370553}
+  - component: {fileID: 8853367318542274920}
   m_Layer: 6
   m_Name: StaticFieldPrefab
   m_TagString: Untagged
@@ -9961,6 +9962,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &8853367318542274920
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497472470251595392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5515929738165210162
 GameObject:
   m_ObjectHideFlags: 0

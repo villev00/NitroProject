@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: Black Hole
   spellElement: 3
   spellPrefab: {fileID: 3975907315562620316, guid: ea40137f3f5fddf4eb9a212c9284e4b1, type: 3}
-  spellSprite: {fileID: 21300000, guid: 4c3b49291b18cb14887a6a580ee71b1e, type: 3}
+  spellSprite: {fileID: 21300000, guid: 76722ca41140ffb41a2b0c8ff40cc816, type: 3}
   spellManaCost: 15
   spellDamage: 0
   spellAreaDamage: 0

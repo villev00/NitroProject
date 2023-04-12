@@ -8,6 +8,7 @@ namespace Data
     [Serializable]
     public class SpawnData 
     {
+        public bool isSpwaning = false;
         
         public GameObject fireEnemyMelee;
         public GameObject lightningEnemyMelee;

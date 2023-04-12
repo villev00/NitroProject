@@ -20,7 +20,11 @@ public class MagneticGrasp : MonoBehaviour
     public bool isEnemy;
     bool areBothEnemies;
 
-   
+    Rigidbody parentRb;
+    NavMeshAgent parentNav;
+
+   //feature: jos vihu kuolee graspin aikana niin kyseinen spelli j‰‰ n‰kyviin toiselle pelaajalle
+  
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -32,14 +36,15 @@ public class MagneticGrasp : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1, QueryTriggerInteraction.Ignore))
         {
-            target = hit.transform.gameObject;
+            transform.parent = hit.transform;
             transform.position = hit.point;
         }
-        transform.parent = target.transform;
         if (transform.parent.GetComponent<EnemyHealth>() != null)
         {
             isEnemy = true;
             transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
+            parentNav = transform.root.GetComponent<NavMeshAgent>();
+            parentRb = transform.root.GetComponent<Rigidbody>();
         }
         Invoke("DestroySpell", 5);
        
@@ -54,65 +59,65 @@ public class MagneticGrasp : MonoBehaviour
         if (!pv.IsMine) return;
         if (other.GetComponentInChildren<MagneticGrasp>() != null)
         {
-            Debug.Log("other magnetic " + other.name);
             target = other.gameObject;
             magnetEnabled = true;
-            if (other.GetComponentInChildren<MagneticGrasp>().isEnemy)
+            if (other.GetComponentInChildren<MagneticGrasp>().isEnemy && isEnemy)
+            { 
+               areBothEnemies = true;
+            }
+            if (isEnemy)
             {
-                other.GetComponent<NavMeshAgent>().enabled = false;
-                other.GetComponent<Rigidbody>().isKinematic = false;
-                target.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
-                if (isEnemy)
-                {
-                    transform.root.GetComponent<NavMeshAgent>().enabled = false;
-                    transform.root.GetComponent<Rigidbody>().isKinematic = false;
-                    areBothEnemies = true;
-                }
+                parentNav.enabled = false;
+                parentRb.isKinematic = false;
+                parentRb.useGravity = false;
+                transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
 
             }
+           
         }
 
     }
     void MagnetEffect()
     {
         //if both targets are enemies, pull them towards each other
-        if (areBothEnemies)
+        if (areBothEnemies && target!=null)
         {
-            transform.root.position = Vector3.MoveTowards(transform.root.position, target.transform.position, 2 * Time.deltaTime);
-            target.transform.position = Vector3.MoveTowards(target.transform.position, transform.root.position, 2 * Time.deltaTime);
-            if (Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
-            {
-                transform.root.GetComponent<NavMeshAgent>().enabled = true;
-                target.GetComponent<NavMeshAgent>().enabled = true;
-                target.transform.GetComponentInChildren<MagneticGrasp>().DestroySpell();
-                DestroySpell();
-            }
+            transform.root.position = Vector3.MoveTowards(transform.root.position, target.transform.position, 5 * Time.deltaTime);
+           
         }
-        else if (isEnemy) //this magnet is on enemy but other one is on environment, pull this object towards environment
+        else if (!isEnemy && target != null && target.GetComponentInChildren<MagneticGrasp>()!=null) //this magnet is on environment but other one is on enemy, pull enemy towards this object
         {
-            transform.root.position = Vector3.MoveTowards(transform.root.position, target.GetComponentInChildren<MagneticGrasp>().gameObject.transform.position, 2 * Time.deltaTime);
-            if (Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
-            {
-                transform.root.GetComponent<NavMeshAgent>().enabled = true;
-                target.transform.GetComponentInChildren<MagneticGrasp>().DestroySpell();
-                DestroySpell();
-            }
+            target.transform.position = Vector3.MoveTowards(target.transform.position, transform.position, 5 * Time.deltaTime);
+           
         }
-        else if (!isEnemy)//this magnet is on environment but other one is on enemy, pull that enemy towards this object
+        else if (target == null)
         {
-            target.transform.position = Vector3.MoveTowards(target.transform.position, transform.position, 2 * Time.deltaTime);
-            if (Vector3.Distance(transform.root.position, target.transform.position) < 0.1f)
-            {
-                target.GetComponent<NavMeshAgent>().enabled = true;
-                target.transform.GetComponentInChildren<MagneticGrasp>().DestroySpell();
-                DestroySpell();
-            }
+            DestroySpell();
         }
     }
     public void DestroySpell()
     {
-        if (pv.IsMine)
-            pv.RPC("RPC_DestroySpell", RpcTarget.All);
+        
+        pv.RPC("RPC_DestroySpell", RpcTarget.All);
+        if (isEnemy)
+        {
+            parentNav.enabled = true;
+            parentRb.isKinematic = true;
+            parentRb.useGravity = true;
+        }
+        if (!magnetEnabled)
+        {
+            var photonViews = UnityEngine.Object.FindObjectsOfType<PhotonView>();
+            foreach (var view in photonViews)
+            {
+             if (view.gameObject.CompareTag("Player") == true && view.IsMine)
+             {
+                var playerPrefabObject = view.gameObject;
+                playerPrefabObject.GetComponent<Spells>().magnetCounter = 0;
+             }
+            }
+           
+        }
     }
     [PunRPC]
     void RPC_DestroySpell()

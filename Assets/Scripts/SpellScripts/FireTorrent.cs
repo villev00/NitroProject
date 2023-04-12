@@ -70,9 +70,8 @@ public class FireTorrent : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             if (enemy != null)
-                Debug.Log("Damaged " + enemy.name);
-                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
-        }
+                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);  //NULLCHECK 
+        }                                                                           //trap ei tuhoudu eikä chains     
     }
 
     void DestroySpell()

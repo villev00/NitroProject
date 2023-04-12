@@ -12,6 +12,7 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField]
     PlayerData data = new PlayerData();
     PlayerUI playerUI;
+    HealtPotion healthPotion;
 
 
     [SerializeField]
@@ -45,6 +46,7 @@ public class PlayerLogic : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        return;
         if (flameBarrier != null)
             {
                 data.shield -= damage;
@@ -117,7 +119,6 @@ public class PlayerLogic : MonoBehaviour
         {
             data.mana = data.maxMana;
         }
-      
     }
 
     public float GetSpeed()
@@ -134,16 +135,12 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerable<WaitForSeconds> Tickdamage(int damage, int tickrate , int duration) 
     {
-        
         for (int i = 0; i < duration; i++)
         {
             TakeDamage(damage);
             Debug.Log("Player took " + damage + " damage");
                yield return new WaitForSeconds(tickrate);
-           
-        }
-        
-        
+        }  
     }
     
     public IEnumerable<WaitForSeconds>  Healtick(int heal, int tickrate , int duration) 
@@ -154,9 +151,7 @@ public class PlayerLogic : MonoBehaviour
             Heal(heal);
             Debug.Log("Player healed " + heal + " health");
             yield return new WaitForSeconds(tickrate);
-        }
-        
-        
+        }  
     }
 
     public void Die()
@@ -180,6 +175,9 @@ public class PlayerLogic : MonoBehaviour
         {
             Heal(10);
         }
+      
+
+       
     }
     [PunRPC]
     public void KillFriend()
@@ -210,12 +208,13 @@ public class PlayerLogic : MonoBehaviour
             Heal(data.maxHealth);
         }
     }
-    
+
+  
+
+
+
     public void GameOver()
     {
         Debug.Log("Game Over");
     }
-    
-    
-
 }
