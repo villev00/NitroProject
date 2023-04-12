@@ -20,9 +20,11 @@ public class ShootingController : MonoBehaviour
 
     public UnityAction statChange;
 
-
+    PhotonView pv;
     private void Awake()
     {
+        pv = GetComponent<PhotonView>();
+        if (!pv.IsMine) return;
         sLogic = GetComponent<ShootingLogic>();
         playerCamera = Camera.main.GetComponent<Camera>();
         //playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
@@ -33,6 +35,7 @@ public class ShootingController : MonoBehaviour
 
     private void Start()
     {
+        if (!pv.IsMine) return;
         FetchData();
         sLogic.SetElement(Element.Fire);
         readyToShoot = true;
@@ -40,6 +43,7 @@ public class ShootingController : MonoBehaviour
 
     void Update()
     {
+        if (!pv.IsMine) return;
         UserInput();
     }
 
