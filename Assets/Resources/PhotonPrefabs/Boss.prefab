@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5785193313596478855}
   - component: {fileID: 5529044841484020965}
-  - component: {fileID: 2426999446580755435}
   - component: {fileID: 5459332621222478248}
+  - component: {fileID: 5877594252016701822}
+  - component: {fileID: 1666924192973013761}
+  - component: {fileID: 3202769875063429912}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -57,21 +59,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2426999446580755435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40102689496708850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f00bc9f7757fc84a9932ebc01b42307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1000
-  maxHealth: 1000
-  moveSpeed: 1
 --- !u!114 &5459332621222478248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +75,6 @@ MonoBehaviour:
   magmaPoolPrefab: {fileID: 7552862850180081767, guid: ce64a5871226115418e8aca988d973dc, type: 3}
   homingDeathPrefab: {fileID: 7698235062396501670, guid: f865f120e84953b43b35de4d933c01ed, type: 3}
   player: {fileID: 0}
-  body: {fileID: 0}
   staff: {fileID: 1214806868891673852}
   Player:
     serializedVersion: 2
@@ -106,6 +92,60 @@ MonoBehaviour:
   attackRange: 100
   playerInSightRange: 0
   playerInAttackRange: 0
+--- !u!114 &5877594252016701822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40102689496708850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c68b4fdceed5746aa1b60edf794992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  moveSpeed: 8
+--- !u!114 &1666924192973013761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40102689496708850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &3202769875063429912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40102689496708850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1666924192973013761}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5119188547477810775
 GameObject:
   m_ObjectHideFlags: 0
