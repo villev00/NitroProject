@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5877594252016701822}
   - component: {fileID: 1666924192973013761}
   - component: {fileID: 3202769875063429912}
+  - component: {fileID: 6996378388895465365}
+  - component: {fileID: 3615701416976388332}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -146,6 +148,36 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!136 &6996378388895465365
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40102689496708850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6859705
+  m_Height: 4.2024345
+  m_Direction: 1
+  m_Center: {x: -0.032149494, y: 1.6012173, z: 0}
+--- !u!54 &3615701416976388332
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40102689496708850}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5119188547477810775
 GameObject:
   m_ObjectHideFlags: 0
