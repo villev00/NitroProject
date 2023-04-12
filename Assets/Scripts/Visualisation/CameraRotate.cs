@@ -12,8 +12,11 @@ public class CameraRotate : MonoBehaviour
     [SerializeField]
     Transform orientation;
 
+    //[SerializeField]
+    //Transform player;
+
     [SerializeField]
-    Transform player;
+    Transform cameraHolder;
 
     float mouseX;
     float mouseY;
@@ -24,10 +27,10 @@ public class CameraRotate : MonoBehaviour
 
     private void Awake()
     {
-        pv = transform.parent.GetComponent<PhotonView>();
-        if (!pv.IsMine) Destroy(gameObject);
-        orientation = transform.parent.GetChild(1).transform;
-        player = transform.root;
+        //pv = transform.parent.GetComponent<PhotonView>();
+        //if (!pv.IsMine) Destroy(gameObject);
+        //orientation = transform.parent.GetChild(1).transform;
+        //player = transform.root;
        
     }
     void Start()
@@ -36,7 +39,7 @@ public class CameraRotate : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    void LateUpdate()
     {
         mouseX = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
         mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
@@ -44,12 +47,22 @@ public class CameraRotate : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90);
 
-        // Camera rotation
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        // Player model rotation
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        
-        // Camera position
-        transform.position = player.transform.position + orientation.forward / 2 + offset;
+        if(cameraHolder != null && orientation != null)
+        {
+            // Camera rotation
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            // Player model rotation
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+            // Camera position
+            transform.position = cameraHolder.position;
+            //transform.position = player.transform.position + orientation.forward / 2 + offset;
+        }
+    }
+
+    public void FindPlayer(Transform orientationTransform, Transform cameraHolderTransform)
+    {
+        cameraHolder = cameraHolderTransform;
+        orientation = orientationTransform;
     }
 }

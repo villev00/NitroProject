@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     PlayerLogic pLogic;
     Movement mLogic;
     Transform orientation;
+    Transform cameraHolder;
     public UnityAction statChange;
 
     [SerializeField]
@@ -34,11 +35,20 @@ public class PlayerControl : MonoBehaviour
             mLogic = GetComponent<Movement>();
             pLogic = GetComponent<PlayerLogic>();
             spellUI = GameObject.Find("UIManager").GetComponent<SpellUI>();
-            orientation = transform.GetChild(1).GetComponent<Transform>();
+            orientation = transform.GetChild(0).GetComponent<Transform>();
+            cameraHolder = orientation.GetChild(0).GetComponent<Transform>();
             FetchData();
             spellUI.spellManager = gameObject;
             spellUI.pv = pv;
             statChange += FetchData;
+        }
+    }
+    private void Start()
+    {
+        if (pv.IsMine)
+        {
+            Camera.main.GetComponent<CameraRotate>().FindPlayer(orientation, cameraHolder);
+
         }
     }
 

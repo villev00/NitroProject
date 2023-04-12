@@ -22,7 +22,9 @@ public class ShootingController : MonoBehaviour
     private void Awake()
     {
         sLogic = GetComponent<ShootingLogic>();
-        playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
+        playerCamera = Camera.main.GetComponent<Camera>();
+        //playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
+       // playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
         bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
         statChange += FetchData;
     }
