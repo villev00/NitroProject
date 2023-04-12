@@ -69,6 +69,12 @@ public class Spells : MonoBehaviour
               {
                 if (spell.spellName != "Magnetic Grasp" && GetComponent<PlayerLogic>().GetMana() >= spell.spellManaCost)
                 {
+                    Debug.Log(spell.spellName + " used");
+
+                    GameObject spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
+                    spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
+
+                    pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));
                     spell.isSpellOnCooldown = true;
                     StartCoroutine(spell.SpellCooldown());
                     GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
@@ -89,16 +95,14 @@ public class Spells : MonoBehaviour
                         spell.isSpellOnCooldown = true;
                         StartCoroutine(spell.SpellCooldown());
                     }
-                }
+                    Debug.Log(spell.spellName + " used");
 
-                Debug.Log(spell.spellName + " used");
-               
-                GameObject spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
-                spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
+                    GameObject spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
+                    spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
 
-                pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));
-            
-        }
+                    pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));
+                }                         
+            }
            
         }
 
@@ -123,7 +127,7 @@ public class Spells : MonoBehaviour
     {
         GameObject spellObj = PhotonView.Find(spellObjID).gameObject;
         GameObject spellSpawnParent = PhotonView.Find(spellSpawnParentID).gameObject;
-        GameObject spellSpawn = spellSpawnParent.transform.GetChild(0).GetChild(2).GetChild(3).gameObject;
+        GameObject spellSpawn = spellSpawnParent.transform.GetChild(0).GetChild(3).GetChild(3).gameObject;
         spellObj.transform.SetParent(spellSpawn.transform);
     }
 }

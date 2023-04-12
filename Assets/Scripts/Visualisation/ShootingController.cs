@@ -1,5 +1,7 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -64,7 +66,8 @@ public class ShootingController : MonoBehaviour
             targetPoint = ray.GetPoint(75);
         }
         Vector3 direction = targetPoint - bulletSpawn.position;
-        GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+       // GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+        GameObject currentBullet = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Bullet"), bulletSpawn.position, Quaternion.identity);
         currentBullet.transform.forward = direction.normalized;
         currentBullet.GetComponent<Bullet>().element = sLogic.GetElement();
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
