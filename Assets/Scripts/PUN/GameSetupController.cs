@@ -10,6 +10,7 @@ public class GameSetupController : MonoBehaviour
     {
         locationIndex = PhotonNetwork.LocalPlayer.ActorNumber;
         CreatePlayer();
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Boss"), spawnLocation[0].transform.position, Quaternion.identity);
     }
 
     void CreatePlayer()

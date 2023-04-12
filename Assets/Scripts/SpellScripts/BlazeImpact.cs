@@ -61,13 +61,15 @@ public class BlazeImpact : MonoBehaviour
             StartCoroutine(DestroySpell());
             if(collision.gameObject.GetComponent<EnemyHealth>()!=null)
                  collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);
-           
-           
+            if (collision.gameObject.GetComponent<BossHealth>() != null)
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(spell.spellDamage);
+
+
         }
         //add force to explosion knockback after initial hit
         if (firstHit)
         {
-            if (collision.gameObject.GetComponent<Rigidbody>()!=null)
+            if (collision.gameObject.GetComponent<Rigidbody>() != null &&! collision.gameObject.CompareTag("Boss")) 
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(knockbackStrength, knockbackStrength, knockbackStrength);
         }
     }
@@ -89,7 +91,12 @@ public class BlazeImpact : MonoBehaviour
                
            
         }
-       
+        if (other.gameObject.CompareTag("Boss"))
+        {                         
+                Debug.Log("Explosion hit: " + other.name);
+                other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage);         
+        }
+
     }
 
     IEnumerator DestroySpell()
