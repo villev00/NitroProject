@@ -35,7 +35,12 @@ public class AethericLeap : MonoBehaviour
         //Delay is for the player to see the visual effect
         yield return new WaitForSeconds(0.2f);
         //Disable character controller or it prevents teleporting
-        transform.root.gameObject.GetComponent<CharacterController>().enabled = false; 
+        transform.root.gameObject.GetComponent<CharacterController>().enabled = false;
+        if (target.y > 3)
+        {
+            target = new Vector3(target.x, target.y - 0.8f, target.z);
+        }
+       
         transform.root.position = target;
         transform.root.gameObject.GetComponent<CharacterController>().enabled = true;
         pv.RPC("RPC_DestroySpell", RpcTarget.All);
