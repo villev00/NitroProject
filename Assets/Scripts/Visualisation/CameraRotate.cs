@@ -7,7 +7,7 @@ public class CameraRotate : MonoBehaviour
 {
     PhotonView pv;
     [SerializeField]
-    float sensitivity = 1000;
+    float sensitivity = 100;
 
     [SerializeField]
     Transform orientation;

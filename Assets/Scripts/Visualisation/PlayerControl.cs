@@ -48,7 +48,6 @@ public class PlayerControl : MonoBehaviour
         if (pv.IsMine)
         {
             Camera.main.GetComponent<CameraRotate>().FindPlayer(orientation, cameraHolder);
-
         }
     }
 
