@@ -16,17 +16,10 @@ namespace logic
 
         public Vector3 MovePlayer(float x, float z, Vector3 orientationForward, Vector3 orientationRight)
         {
-            //float verticalSpeed = 0;
-            //Vector3 direction = new Vector3(x, 0, z);
-            Vector3 moveDirection;// = ResetDirection();
-            moveDirection = orientationForward * z + orientationRight * x; //GetDirection(x, z);
+            Vector3 moveDirection;
+            moveDirection = orientationForward * z + orientationRight * x;
 
             return moveDirection;
-
-            //moveDirection.y = verticalSpeed;
-           
         }
-
     }
-
 }
