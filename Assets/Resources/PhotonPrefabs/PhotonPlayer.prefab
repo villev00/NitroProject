@@ -924,7 +924,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4027057859922289272}
   - component: {fileID: 3944673472739026760}
-  - component: {fileID: 3893751399065775620}
   - component: {fileID: 7528757755379566659}
   - component: {fileID: 1796124755830200548}
   - component: {fileID: 3544848078432220866}
@@ -978,20 +977,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!136 &3893751399065775620
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4028839158756178016}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3072609
-  m_Height: 1.882848
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.98, z: 0}
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7528757755379566659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,13 +1042,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.7
+  m_Height: 2
   m_Radius: 0.39
   m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!114 &3014099650140288849
 MonoBehaviour:
   m_ObjectHideFlags: 0
