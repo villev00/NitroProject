@@ -835,6 +835,7 @@ GameObject:
   - component: {fileID: 1121903502231841013}
   - component: {fileID: -8091996282518932126}
   - component: {fileID: -5394619225051058619}
+  - component: {fileID: 5433714302326269002}
   m_Layer: 3
   m_Name: PhotonPlayer
   m_TagString: Player
@@ -986,10 +987,6 @@ MonoBehaviour:
     jumpForce: 2
     mana: 50
     maxMana: 100
-    chargeRate: 5
-    chargeInterval: 2
-    timeSinceLastCharge: 0
-    healthPotionCharge: 0
   allPlayers: []
   otherPlayer: {fileID: 0}
 --- !u!114 &5600637907279743595
@@ -1060,6 +1057,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7966a8d73a6fcb34bbb8beb6d66310cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5433714302326269002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028839158756178016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89c2f9c392abb14783279b96173fb50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerUI: {fileID: 0}
 --- !u!1 &4028841888299286122
 GameObject:
   m_ObjectHideFlags: 0

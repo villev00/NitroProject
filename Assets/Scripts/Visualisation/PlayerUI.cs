@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField]
-    Slider healthSlider, manaSlider;
+    Slider healthSlider, manaSlider, healthPotionSlider;
 
     [SerializeField]
     GameObject lives, lifePrefab;
@@ -23,6 +23,10 @@ public class PlayerUI : MonoBehaviour
     {
         manaSlider.value += value;
       
+    }
+    public void ChangeHealthPotionValue(int value)
+    {
+        healthPotionSlider.value += value;
     }
 
     public void ChangeLives(int amount)
