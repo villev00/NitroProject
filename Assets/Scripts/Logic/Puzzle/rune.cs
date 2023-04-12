@@ -52,22 +52,25 @@ public class rune : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            Debug.Log("Bullet");
             if(shootingData.currentElement == Element.Fire && fireRune.activeSelf)
             {
                  puzzleData.isSolved1 = true;
+                 Debug.Log("SolvedFire");
             }
-            else if(shootingData.currentElement == Element.Lightning && lightningRune.activeSelf)
+            if(shootingData.currentElement == Element.Lightning && lightningRune.activeSelf)
             {
                 puzzleData.isSolved1 = true;
+                Debug.Log("SolvedLightning");
             }
-            else if(shootingData.currentElement == Element.Aether && aetherRune.activeSelf)
+            if(shootingData.currentElement == Element.Aether && aetherRune.activeSelf)
             {
                 puzzleData.isSolved1 = true;
+                Debug.Log("SolvedAether");
+                
+                
             }
-            else
-            {
-                puzzleData.isSolved1 = true;
-            }
+            
 
 
 
