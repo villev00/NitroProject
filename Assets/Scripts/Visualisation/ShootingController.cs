@@ -43,7 +43,7 @@ public class ShootingController : MonoBehaviour
 
     void Update()
     {
-        if (!pv.IsMine) return;
+       
         UserInput();
     }
 
