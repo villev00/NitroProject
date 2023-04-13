@@ -17,10 +17,14 @@ public class MeleeEnemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
+    Animator anim;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeEnemy = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        anim.SetBool("isRunning", true);
     }
 
     // Update is called once per frame
@@ -32,11 +36,11 @@ public class MeleeEnemy : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
-
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
     private void AttackPlayer()
     {
+       
         meleeEnemy.SetDestination(transform.position);
 
         transform.LookAt(player);
@@ -48,15 +52,20 @@ public class MeleeEnemy : MonoBehaviour
             {
                 // apply damage to the player
                 player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);
-                Debug.Log(" damage");
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isAttacking", true);
             }
 
             alreadyAttacked = true;
+         
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
+       anim.SetBool("isAttacking", false);
+        anim.SetBool("isRunning", true);
+       
     }
 }

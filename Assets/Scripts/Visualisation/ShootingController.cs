@@ -1,5 +1,7 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,17 +22,22 @@ public class ShootingController : MonoBehaviour
     public UnityAction statChange;
     
 
-
+    PhotonView pv;
     private void Awake()
     {
+        pv = GetComponent<PhotonView>();
+        if (!pv.IsMine) return;
         sLogic = GetComponent<ShootingLogic>();
-        playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
+        playerCamera = Camera.main.GetComponent<Camera>();
+        //playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
+       // playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
         bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
         statChange += FetchData;
     }
 
     private void Start()
     {
+        if (!pv.IsMine) return;
         FetchData();
         sLogic.SetElement(Element.Fire);
         readyToShoot = true;
@@ -38,6 +45,7 @@ public class ShootingController : MonoBehaviour
 
     void Update()
     {
+       
         UserInput();
     }
 
@@ -65,7 +73,8 @@ public class ShootingController : MonoBehaviour
             targetPoint = ray.GetPoint(75);
         }
         Vector3 direction = targetPoint - bulletSpawn.position;
-        GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+       // GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+        GameObject currentBullet = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Bullet"), bulletSpawn.position, Quaternion.identity);
         currentBullet.transform.forward = direction.normalized;
         currentBullet.GetComponent<Bullet>().element = sLogic.GetElement();
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);

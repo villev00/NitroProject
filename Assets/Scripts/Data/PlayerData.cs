@@ -17,10 +17,6 @@ namespace data
         public int mana;
         public int maxMana;
 
-        public int chargeRate = 5;
-        public float chargeInterval = 2f;
-        public float timeSinceLastCharge = 0f;
-        public int healthPotionCharge = 0;
     }
     
 }

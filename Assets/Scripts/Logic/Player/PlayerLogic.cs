@@ -12,8 +12,7 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField]
     PlayerData data = new PlayerData();
     PlayerUI playerUI;
-    HealtPotion healthPotion;
-
+   
 
     [SerializeField]
     GameObject[] allPlayers = new GameObject[2];
@@ -88,7 +87,14 @@ public class PlayerLogic : MonoBehaviour
     {
         return data.mana;
     }
-
+    public int GetHealth()
+    {
+        return data.health;
+    }
+    public int GetMaxHealth()
+    {
+        return data.maxHealth;
+    }
     public void LoseMana(int amount)
     {
         if (pv.IsMine)
@@ -161,24 +167,7 @@ public class PlayerLogic : MonoBehaviour
       LoseLife();
 
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-             Die();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            TakeDamage(10);
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Heal(10);
-        }
-      
-
-       
-    }
+   
     [PunRPC]
     public void KillFriend()
     {
@@ -209,12 +198,44 @@ public class PlayerLogic : MonoBehaviour
         }
     }
 
-  
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            TestDamage(10);
+        }
+    }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
     }
+
+    public void TestDamage(int damage)
+    {
+       
+        if (flameBarrier != null)
+        {
+            data.shield -= damage;
+            if (data.shield < 0)
+            {
+                data.health += data.shield;
+                data.shield = 0;
+                Destroy(flameBarrier);
+            }
+        }
+        else if (pv.IsMine)
+        {
+            data.health -= damage;
+            playerUI.ChangeHealthSliderValue(-damage);
+        }
+
+        if (data.health <= 0)
+        {
+            Die();
+        }
+    }
+
 }
