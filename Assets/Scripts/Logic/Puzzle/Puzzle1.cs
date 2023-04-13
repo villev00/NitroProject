@@ -17,7 +17,7 @@ public class Puzzle1 : MonoBehaviour
     private Animator anim;
     public float moveSpeed = 2f;
    
-    private bool isPlayed = false;
+  
 
     private void Start()
     {
@@ -44,8 +44,8 @@ public class Puzzle1 : MonoBehaviour
 
     private void DestroyWall()
     {
-        if (isPlayed == false)
-        {
+      
+        
 
             wall.SetActive(false);
             rubble.SetActive(true);
@@ -59,7 +59,7 @@ public class Puzzle1 : MonoBehaviour
 
 
 
-        }
+        
 
 
 
