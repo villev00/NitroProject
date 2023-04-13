@@ -11966,7 +11966,7 @@ MonoBehaviour:
     fireEnemyMelee: {fileID: 4985379779047268496, guid: 9fe4eafb8c1e8b347bc63fa59e23cbda, type: 3}
     lightningEnemyMelee: {fileID: 0}
     aetherEnemyMelee: {fileID: 0}
-    fireEnemyRanged: {fileID: 8689310065359600455, guid: d8b7ec6bec29329439c47c2a97b871d5, type: 3}
+    fireEnemyRanged: {fileID: 6941967148164857914, guid: 03369fecfdfb766499b4ee5d8f2ddd2c, type: 3}
     lightningEnemyRanged: {fileID: 0}
     aetherEnemyRanged: {fileID: 0}
     enemyList: []

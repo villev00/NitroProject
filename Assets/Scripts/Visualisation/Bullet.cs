@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         if(pv.IsMine)
             Invoke("DestroySpell",5);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (!pv.IsMine) return;
         if (collision.gameObject.CompareTag("Enemy"))
