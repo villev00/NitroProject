@@ -21,13 +21,13 @@ namespace Data
         public bool isSolved3;
 
 
-        public int runeIndex = 0;
+        //public int runeIndex = 0;
         public int puzzleStateIndex = 0;
-        public List<GameObject> runePositions;
-        public List<GameObject> cluePositions;
+        //public List<GameObject> runePositions;
+        //public List<GameObject> cluePositions;
         
-        public List<GameObject> runeElements;
-        public List<GameObject> clueElements;
+        //public List<GameObject> runeElements;
+        //public List<GameObject> clueElements;
         
         
 

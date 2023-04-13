@@ -6,13 +6,12 @@ using Data;
 
 public class Runes2 : MonoBehaviour
 {
+       
     PuzzleData puzzleData;
-    [SerializeField] private int thisRuneIndex;
+    
+    
 
-    private void Awake()
-    {
-       Activate();
-    }
+    
 
 
     private void Start()
@@ -21,12 +20,7 @@ public class Runes2 : MonoBehaviour
             
         }
           
-        public void Activate()
-        {
-            puzzleData.runeIndex = +1;
-            thisRuneIndex = puzzleData.runeIndex;
-        }
-    
+       
     
     
        public void OnTriggerEnter(Collider other)
@@ -37,17 +31,18 @@ public class Runes2 : MonoBehaviour
             switch (gameObject.tag)
             {
                 case "FireRune":
-                    if (bullet.element == Element.Fire && thisRuneIndex == 1)
+                    if (bullet.element == Element.Fire && puzzleData.puzzleStateIndex == 1 )
                     {
                         Debug.Log("SolvedFire");
                         puzzleData.puzzle2FireSloved = true;
                         puzzleData.puzzleStateIndex =+ 1;
+                        
                        
                        
                     }
                     break;
                 case "LightningRune":
-                    if (bullet.element == Element.Lightning &&  thisRuneIndex == 2)
+                    if (bullet.element == Element.Lightning && puzzleData.puzzleStateIndex == 2  )
                     {
                         Debug.Log("SolvedLightning");
                         puzzleData.puzzle2LightningSloved = true;
@@ -56,12 +51,12 @@ public class Runes2 : MonoBehaviour
                     }
                     break;
                 case "AetherRune":
-                    if (bullet.element == Element.Aether && thisRuneIndex == 3)
+                    if (bullet.element == Element.Aether && puzzleData.puzzleStateIndex == 3 )
                     {
                         Debug.Log("SolvedAether");
                         puzzleData.puzzle2AetherSloved = true;
-                        
-                        
+
+
                     }
                     break;
                 default:

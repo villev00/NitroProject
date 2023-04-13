@@ -1,3 +1,4 @@
+using System;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ public class PuzzleManager : MonoBehaviour
    // create singleton
     public static PuzzleManager instance;
    public PuzzleData pData = new PuzzleData();
+   
+  
+    //public event System.Action OnPuzzle3Solved;
 
    private void Awake()
     {
@@ -21,9 +25,18 @@ public class PuzzleManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public void CheckPuzzle1()
+
+   private void Update()
+   {
+         CheckPuzzle1();
+         CheckPuzzle2();
+         //CheckPuzzle3();
+         //CheckAllPuzzles();
+   }
+
+   public void CheckPuzzle1()
     {
+        
         if (pData.isSolved1)
         {
             Debug.Log("Puzzle 1 solved");
@@ -32,6 +45,10 @@ public class PuzzleManager : MonoBehaviour
     
     public void CheckPuzzle2()
     {
+        if(pData.puzzle2FireSloved && pData.puzzle2LightningSloved && pData.puzzle2AetherSloved)
+        {
+            pData.isSolved2 = true;
+        }
       
         if (pData.isSolved2)
         {

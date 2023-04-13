@@ -1,67 +1,79 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Data;
 using UnityEngine;
 
 public class Puzzle1 : MonoBehaviour
 {
-    private PuzzleData PuzzleData;
-   
+    // Private fields
+    private PuzzleData puzzleData;
+    private bool isMoving = false;
+    private BoxCollider boxCollider;
     
+    // Serialized fields
     [SerializeField] private GameObject brokenWall;
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject rubble;
     [SerializeField] private AudioClip wallBreakClip;
-    private AudioSource audioSource;
-  
-    private  Animation anim;
-    public float moveSpeed = 2f;
-   
-  
+    [SerializeField] private Vector3 stopPosition;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private float speed;
+
+    // Events
+    public event System.Action OnPuzzleSolved;
 
     private void Start()
     {
-        PuzzleData = PuzzleManager.instance.pData;
-        anim = GetComponent<Animation>();
+        // Get the PuzzleData from the PuzzleManager
+        puzzleData = PuzzleManager.instance.pData;
 
-        audioSource = brokenWall.GetComponent<AudioSource>();
-       
+        // Cache the reference to the BoxCollider component
+        boxCollider = GetComponent<BoxCollider>();
     }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered");
-
+            Debug.Log("Player entered the trigger");
             
+            // Start moving the platform towards the stop position
+            if (!isMoving)
+            {
+                StartCoroutine(MovePlatform());
+                isMoving = true;
+            }
         }
+    }
+
+    private IEnumerator MovePlatform()
+    {
+        // Move the platform towards the stop position over time
+        while (transform.position != stopPosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, stopPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Disable the BoxCollider and destroy the wall
+        boxCollider.enabled = false;
+        DestroyWall();
+
+        // Invoke the OnPuzzleSolved event
+        OnPuzzleSolved?.Invoke();
     }
 
     private void DestroyWall()
     {
-      
+        // Play the wall break sound effect
+        audioSource.PlayOneShot(wallBreakClip);
+
+        // Hide the intact wall and show the broken wall and rubble
+        wall.SetActive(false);
+        brokenWall.SetActive(true);
+        rubble.SetActive(true);
         
-
-            wall.SetActive(false);
-            rubble.SetActive(true);
-            brokenWall.SetActive(true);
-
-            audioSource.PlayOneShot(wallBreakClip);
-
-
-            
-
-
-
-
-        
-
-
-
+        puzzleData.isSolved1 = true;
     }
 }
+
 
