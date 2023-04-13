@@ -14,7 +14,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TMPro.TextMeshProUGUI PotionText;
 
-
+    [SerializeField] GameObject howToPlayPanel;
     public void ChangeHealthSliderValue(int value)
     {
         healthSlider.value += value;
@@ -48,8 +48,15 @@ public class PlayerUI : MonoBehaviour
     {
         PotionText.text = amount.ToString();
     }
-
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) ToggleHowToPlay();
+    }
+    void ToggleHowToPlay()
+    {
+        if (!howToPlayPanel.activeSelf) howToPlayPanel.SetActive(true);
+        else howToPlayPanel.SetActive(false);
+    }
 
     
 }
