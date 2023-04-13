@@ -15,7 +15,7 @@ public class Puzzle1 : MonoBehaviour
     [SerializeField] private AudioClip wallBreakClip;
     private AudioSource audioSource;
   
-    private Animator anim;
+    private  Animation anim;
     public float moveSpeed = 2f;
    
   
@@ -23,10 +23,10 @@ public class Puzzle1 : MonoBehaviour
     private void Start()
     {
         PuzzleData = PuzzleManager.instance.pData;
+        anim = GetComponent<Animation>();
 
         audioSource = brokenWall.GetComponent<AudioSource>();
-        anim = GetComponent<Animator>();
-        anim.SetBool("down", false);
+       
     }
 
 
@@ -35,12 +35,9 @@ public class Puzzle1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player entered");
 
-
-            anim.SetBool("down", true);
-
-
-
+            
         }
     }
 

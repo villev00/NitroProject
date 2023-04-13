@@ -1,6 +1,7 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using Logic.Enemy;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
@@ -8,8 +9,8 @@ public class PuzzleManager : MonoBehaviour
    // create singleton
     public static PuzzleManager instance;
    public PuzzleData pData = new PuzzleData();
-    
-    private void Awake()
+
+   private void Awake()
     {
         if (instance == null)
         {
@@ -31,6 +32,7 @@ public class PuzzleManager : MonoBehaviour
     
     public void CheckPuzzle2()
     {
+      
         if (pData.isSolved2)
         {
             Debug.Log("Puzzle 2 solved");

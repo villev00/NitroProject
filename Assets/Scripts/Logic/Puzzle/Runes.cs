@@ -6,9 +6,17 @@ public class Runes : MonoBehaviour
 {
     PuzzleData puzzleData;
     
+    [SerializeField] private int thisRuneIndex;
+    
     private void Start()
     {
         puzzleData = PuzzleManager.instance.pData;
+    }
+    
+    public void Activate()
+    {
+        puzzleData.runeIndex = +1;
+        thisRuneIndex = puzzleData.runeIndex;
     }
 
 
