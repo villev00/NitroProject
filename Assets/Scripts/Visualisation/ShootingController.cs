@@ -41,7 +41,7 @@ public class ShootingController : MonoBehaviour
         readyToShoot = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
        
         UserInput();

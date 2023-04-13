@@ -361,9 +361,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1452656253114387693}
+  - component: {fileID: 1351503665657782838}
+  - component: {fileID: 130805941367768067}
   m_Layer: 0
   m_Name: mixamorig:HeadTop_End
-  m_TagString: Untagged
+  m_TagString: EnemyHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,6 +385,33 @@ Transform:
   m_Father: {fileID: 4427478293611612163}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1351503665657782838
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949101052836153519}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 6.31
+  m_Height: 14.54
+  m_Direction: 1
+  m_Center: {x: 0, y: -6.61, z: 0}
+--- !u!114 &130805941367768067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949101052836153519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1621991812d984d84851b04aafb931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 6941967148164857914}
 --- !u!1 &5100945319907688299
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +681,7 @@ GameObject:
   - component: {fileID: 7352485733832144646}
   - component: {fileID: 7538536551872417382}
   - component: {fileID: 200900738070882466}
+  - component: {fileID: 695583113462837959}
   m_Layer: 0
   m_Name: RangedSkeleton
   m_TagString: Enemy
@@ -744,10 +774,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 7.88
-  m_Height: 54.68
+  m_Radius: 12.3
+  m_Height: 41.29
   m_Direction: 1
-  m_Center: {x: -0.0035666823, y: 28.89, z: 0}
+  m_Center: {x: -0.0035666823, y: 21.7, z: 0}
 --- !u!54 &7538536551872417382
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -788,6 +818,19 @@ MonoBehaviour:
   attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
+--- !u!114 &695583113462837959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941967148164857914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1621991812d984d84851b04aafb931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 6941967148164857914}
 --- !u!1 &7175002876843762529
 GameObject:
   m_ObjectHideFlags: 0

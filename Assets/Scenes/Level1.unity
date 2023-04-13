@@ -78629,7 +78629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496336a2f23be9d4da62355daeff27da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 100
+  sensitivity: 50
   orientation: {fileID: 0}
   cameraHolder: {fileID: 0}
 --- !u!1001 &1986399857

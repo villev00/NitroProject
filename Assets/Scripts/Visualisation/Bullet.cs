@@ -6,22 +6,36 @@ using Photon.Pun;
 public class Bullet : MonoBehaviour
 {
     public Element element;
+    public int damage;
+    private ShootingLogic sLogic;
     PhotonView pv;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        damage = 25;
         if(pv.IsMine)
             Invoke("DestroySpell",5);
     }
+    
     private void OnTriggerEnter(Collider collision)
     {
         if (!pv.IsMine) return;
-        if (collision.gameObject.CompareTag("Enemy"))
+
+        if (collision.gameObject.CompareTag("EnemyHead"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(25);
+            damage *= 2;
+            Debug.Log("Headshot");
+            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage);
         }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Bodyshot");
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+        }
+        
         DestroySpell();
     }
+
 
     void DestroySpell()
     {
