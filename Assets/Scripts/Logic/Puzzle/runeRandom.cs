@@ -4,17 +4,21 @@ using Data;
 using UnityEngine;
 
 
-public class rune : MonoBehaviour
+public class runeRandom : MonoBehaviour
 {
     [SerializeField] private GameObject runeHolder;
     [SerializeField] private GameObject fireRune;
     [SerializeField] private GameObject lightningRune;
     [SerializeField] private GameObject aetherRune;
     [SerializeField] private GameObject puzzle1PlattformRuneFire, puzzle1PlattformRuneLightning, puzzle1PlattformRuneAether;
+    
 
     
-    PuzzleData puzzleData;
-    ShootingData shootingData;
+    RuneData runeData;
+    
+    
+
+
 
     private void Start()
     {
@@ -47,36 +51,27 @@ public class rune : MonoBehaviour
         
         
     }
+  
+ 
+   
+ 
+   
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            Debug.Log("Bullet");
-            if(shootingData.currentElement == Element.Fire && fireRune.activeSelf)
-            {
-                 puzzleData.isSolved1 = true;
-                 Debug.Log("SolvedFire");
-            }
-            if(shootingData.currentElement == Element.Lightning && lightningRune.activeSelf)
-            {
-                puzzleData.isSolved1 = true;
-                Debug.Log("SolvedLightning");
-            }
-            if(shootingData.currentElement == Element.Aether && aetherRune.activeSelf)
-            {
-                puzzleData.isSolved1 = true;
-                Debug.Log("SolvedAether");
-                
-                
-            }
+           
+           
+        
+
+
+        }
+        
+
+
+        
+    
             
 
 
 
 
-        }
-    }
-}
     
     

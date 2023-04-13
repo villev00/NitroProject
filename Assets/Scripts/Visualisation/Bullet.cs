@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Element element;
+
+   
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -13,5 +17,7 @@ public class Bullet : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
-
+    
+    // when bullet is created, it is given an element
+  
 }

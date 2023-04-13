@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Puzzle1 : MonoBehaviour
 {
+    [SerializeField]
     PuzzleData puzzleData = new PuzzleData();
     
     [SerializeField] private GameObject brokenWall;

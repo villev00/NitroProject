@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Wall
   - Bullet
+  - FireRune
+  - LightningRune
+  - AetherRune
   layers:
   - Default
   - TransparentFX
