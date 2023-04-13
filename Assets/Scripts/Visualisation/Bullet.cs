@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
         if (!pv.IsMine) return;
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(25);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(25, 0);
         }
         DestroySpell();
     }

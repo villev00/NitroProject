@@ -52,7 +52,7 @@ public class ChainsOfLightning : MonoBehaviour
 
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
+                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, Element.Lightning);
                 //  other.GetComponent<EnemyHealth>().GetStunned(5);
             }
             else if (other.gameObject.CompareTag("Boss"))
