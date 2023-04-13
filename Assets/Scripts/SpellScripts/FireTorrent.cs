@@ -43,7 +43,7 @@ public class FireTorrent : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!pv.IsMine) return;
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
             if (!enemies.Contains(other.gameObject))
             {
@@ -55,7 +55,7 @@ public class FireTorrent : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (!pv.IsMine) return;
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy")|| other.CompareTag("Boss"))
         {
             if (enemies.Contains(other.gameObject))
             {
@@ -69,9 +69,11 @@ public class FireTorrent : MonoBehaviour
     {
         foreach(GameObject enemy in enemies)
         {
-            if (enemy != null)
-                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage);  //NULLCHECK 
-        }                                                                           //trap ei tuhoudu eikä chains     
+            if (enemy != null && enemy.GetComponent<EnemyHealth>()!=null)
+                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage); 
+            else if(enemy != null && enemy.GetComponent<BossHealth>() != null)
+                enemy.GetComponent<BossHealth>().TakeDamage(spell.spellDamage);
+        }                                                                          
     }
 
     void DestroySpell()

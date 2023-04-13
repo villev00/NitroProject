@@ -38,12 +38,20 @@ public class StaticField : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
             if(!firstHit) Invoke("DestroySpell", spell.spellDuration);
             firstHit = true;
-            other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
-          //  other.GetComponent<EnemyHealth>().GetStunned(5);
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
+                //  other.GetComponent<EnemyHealth>().GetStunned(5);
+            }else if (other.CompareTag("Boss"))
+                {
+                    other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage);
+                    //  other.GetComponent<EnemyHealth>().GetStunned(5);
+                }
+
             Debug.Log(other.name +" hit by trap");
         }
     }
