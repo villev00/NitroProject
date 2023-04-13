@@ -450,7 +450,7 @@ MonoBehaviour:
   health: 50
   maxHealth: 50
   moveSpeed: 8
-  damageResistance: {fileID: 0}
+  damageResistance: {fileID: 11400000, guid: 2d19469af29330042bbd6845af7ce264, type: 2}
 --- !u!195 &-5783516507978134912
 NavMeshAgent:
   m_ObjectHideFlags: 0
