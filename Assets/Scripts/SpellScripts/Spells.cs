@@ -127,7 +127,7 @@ public class Spells : MonoBehaviour
     {
         GameObject spellObj = PhotonView.Find(spellObjID).gameObject;
         GameObject spellSpawnParent = PhotonView.Find(spellSpawnParentID).gameObject;
-        GameObject spellSpawn = spellSpawnParent.transform.GetChild(0).GetChild(3).GetChild(3).gameObject;
+        GameObject spellSpawn = spellSpawnParent.transform.GetChild(0).GetChild(3).GetChild(0).gameObject;
         spellObj.transform.SetParent(spellSpawn.transform);
     }
 }

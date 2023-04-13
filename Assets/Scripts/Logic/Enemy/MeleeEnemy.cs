@@ -36,7 +36,17 @@ public class MeleeEnemy : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (playerInAttackRange && playerInSightRange) StartAttack();
+    }
+
+    void StartAttack()
+    {
+        if (!anim.GetBool("isAttacking"))
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isAttacking", true);
+        }
+
     }
     private void AttackPlayer()
     {

@@ -16,7 +16,7 @@ public class ChainsOfLightning : MonoBehaviour
     Vector3 target;
     [SerializeField] Spell spell;
     [SerializeField] float spellMovementSpeed;
-
+    [SerializeField] GameObject explosionEffect;
     bool hitTriggered, isDestroyed;
     private void Awake()
     {
@@ -43,16 +43,25 @@ public class ChainsOfLightning : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!pv.IsMine) return;
-        //damage enemies within explosion radius
-        hitTriggered = true;
-        Debug.Log("chains hit: " + other.name);
-        if (hitTriggered && !isDestroyed) StartCoroutine(DestroySpell());
-       
-        if (other.gameObject.CompareTag("Enemy"))
+        //damage enemies within explosion radius 
+        if (other.CompareTag("Wall")|| other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
-            //  other.GetComponent<EnemyHealth>().GetStunned(5);
+            hitTriggered = true;
+            Debug.Log("chains hit: " + other.name);
+            if (hitTriggered && !isDestroyed) StartCoroutine(DestroySpell());
+
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, Element.Lightning);
+                //  other.GetComponent<EnemyHealth>().GetStunned(5);
+            }
+            else if (other.gameObject.CompareTag("Boss"))
+            {
+                other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage);
+                //  other.GetComponent<EnemyHealth>().GetStunned(5);
+            }
         }
+       
 
 
     }
@@ -60,6 +69,7 @@ public class ChainsOfLightning : MonoBehaviour
     {
         Debug.Log("chains destroy inc");
         isDestroyed = true;
+        explosionEffect.SetActive(true);
         GetComponent<SphereCollider>().radius = 3;
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(0.8f);

@@ -7,18 +7,18 @@ using Photon.Pun;
 public class BossHealth : EnemyData
 {
     PhotonView pv;
-
+    [SerializeField] private DamageResistance damageResistance;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
     }
 
         [PunRPC]
-    void RPC_TakeDamage(int damage)
+    void RPC_TakeDamage(float damage, Element element)
     {
 
 
-        health -= damage;
+        health -= damageResistance.CalculateDamageWithResistance(damage, element);
         if (health <= 0)
         {
             Debug.Log("Enemy Died");
