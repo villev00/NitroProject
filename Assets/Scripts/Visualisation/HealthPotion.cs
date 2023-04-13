@@ -78,9 +78,10 @@ public class HealthPotion : MonoBehaviour
 
     void UseHealthPotion()
     {
-        int currentHealth = pLogic.GetHealth();
-        amountToHeal = 20 ;
+        amountToHeal = pLogic.GetMaxHealth()- pLogic.GetHealth();
+        if (amountToHeal > healthPotionCharge) amountToHeal = healthPotionCharge;
         healthPotionCharge -= amountToHeal;
+        
         pLogic.Heal(amountToHeal);
         playerUI.ChangeHealthPotionValue(-amountToHeal);
         

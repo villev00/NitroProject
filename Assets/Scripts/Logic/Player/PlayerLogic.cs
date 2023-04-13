@@ -91,6 +91,10 @@ public class PlayerLogic : MonoBehaviour
     {
         return data.health;
     }
+    public int GetMaxHealth()
+    {
+        return data.maxHealth;
+    }
     public void LoseMana(int amount)
     {
         if (pv.IsMine)
