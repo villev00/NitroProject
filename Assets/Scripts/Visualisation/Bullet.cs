@@ -1,23 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Bullet : MonoBehaviour
 {
     public Element element;
-    private void OnCollisionEnter(Collision collision)
+    PhotonView pv;
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("EnemyHead"))
+        pv = GetComponent<PhotonView>();
+        if(pv.IsMine)
+            Invoke("DestroySpell",5);
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (!pv.IsMine) return;
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Headshot");
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(50);
-        }
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Bodyshot");
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(25);
         }
-        Destroy(this.gameObject);
+        DestroySpell();
     }
 
+    void DestroySpell()
+    {
+        pv.RPC("RPC_DestroySpell", RpcTarget.All);
+    }
+    [PunRPC]
+    void RPC_DestroySpell()
+    {
+        Destroy(gameObject);
+    }
 }

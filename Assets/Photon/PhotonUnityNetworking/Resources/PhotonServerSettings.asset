@@ -46,6 +46,7 @@ MonoBehaviour:
   - SpawnSpell
   - RPC_SetSpellTransform
   - RPC_SetParent
+  - RPC_TakeDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

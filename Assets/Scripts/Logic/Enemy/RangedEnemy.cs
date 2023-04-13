@@ -20,7 +20,7 @@ public class RangedEnemy : MonoBehaviour
   
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-
+    Animator anim;
     private void Awake()
     {
         rangedEnemy = GetComponent<NavMeshAgent>();
@@ -29,6 +29,8 @@ public class RangedEnemy : MonoBehaviour
     {
         
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        anim = GetComponent<Animator>();
+        anim.SetBool("isRunning", true);
     }
 
     private void Update()
@@ -40,13 +42,22 @@ public class RangedEnemy : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
 
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (playerInAttackRange && playerInSightRange) StartAttack();
     }
     private void ChasePlayer()
     {
         rangedEnemy.SetDestination(player.position);
+        if(!anim.GetBool("isRunning")) anim.SetBool("isRunning", true);
     }
-
+    void StartAttack()
+    {
+        if (!anim.GetBool("isAttacking"))
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isAttacking", true);
+        }
+       
+    }
     private void AttackPlayer()
     {
        //stopp
@@ -59,17 +70,20 @@ public class RangedEnemy : MonoBehaviour
            
             Rigidbody rb = Instantiate(projectile, gun.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-           
 
+            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        anim.SetBool("isAttacking", false);
+       
     }
-
+  
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

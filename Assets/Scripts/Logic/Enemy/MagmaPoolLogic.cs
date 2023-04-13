@@ -20,7 +20,7 @@ public class MagmaPoolLogic : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {        
-        Debug.Log("Player is out of Magma Pool");
+     //   Debug.Log("Player is out of Magma Pool");
         if (other.gameObject.CompareTag("Player"))
         {
             CancelInvoke("DamagePlayer");
