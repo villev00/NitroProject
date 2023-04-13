@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Puzzle1 : MonoBehaviour
 {
-    [SerializeField]
-    PuzzleData puzzleData = new PuzzleData();
+    private PuzzleData PuzzleData;
+   
     
     [SerializeField] private GameObject brokenWall;
     [SerializeField] private GameObject wall;
@@ -22,6 +22,7 @@ public class Puzzle1 : MonoBehaviour
 
     private void Start()
     {
+        PuzzleData = PuzzleManager.instance.pData;
 
         audioSource = brokenWall.GetComponent<AudioSource>();
         anim = GetComponent<Animator>();

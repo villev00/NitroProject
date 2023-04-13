@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Runes : MonoBehaviour
 {
-    private PuzzleData puzzleData = new PuzzleData();
+    PuzzleData puzzleData;
+    
+    private void Start()
+    {
+        puzzleData = PuzzleManager.instance.pData;
+    }
 
 
 
