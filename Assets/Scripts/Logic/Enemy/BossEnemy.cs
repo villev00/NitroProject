@@ -68,10 +68,10 @@ public class BossEnemy : MonoBehaviour
             case 0:
                 if (!magmaPoolUsed)
                 {
-                   // MagmaPool();
-                   // magmaPoolUsed = true;
-                   // yield return new WaitForSeconds(delayBetweenAttacks);
-                   // magmaPoolUsed = false;
+                    MagmaPool();
+                    magmaPoolUsed = true;
+                    yield return new WaitForSeconds(delayBetweenAttacks);
+                    magmaPoolUsed = false;
                 }
                 break;
 
