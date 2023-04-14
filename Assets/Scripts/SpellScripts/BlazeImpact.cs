@@ -28,6 +28,8 @@ public class BlazeImpact : MonoBehaviour
     Vector3 target;
     bool firstHit;
     List<GameObject> enemies = new List<GameObject>();
+
+    [SerializeField] AudioClip blazeClip, impactClip;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -40,7 +42,7 @@ public class BlazeImpact : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1))
              target = hit.point;
-        GetComponent<AudioSource>().Play();
+        AudioManager.PlaySound(blazeClip, true);
     }
     void Update()
     {
@@ -106,7 +108,7 @@ public class BlazeImpact : MonoBehaviour
         transform.localScale = transform.localScale * 5;
         hitCollider.radius = explosionCollider.radius;
         explosionEffect.SetActive(true);
-        explosionEffect.GetComponent<AudioSource>().Play();
+        AudioManager.PlaySound(impactClip, true);
         yield return new WaitForSeconds(0.2f);
         transform.localScale = transform.localScale / 5;
         hitCollider.radius = 1;
