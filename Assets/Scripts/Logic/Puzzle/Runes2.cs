@@ -6,7 +6,7 @@ using Data;
 
 public class Runes2 : MonoBehaviour
 {
-       
+    [SerializeField]
     PuzzleData puzzleData;
     
     
@@ -26,6 +26,7 @@ public class Runes2 : MonoBehaviour
        public void OnTriggerEnter(Collider other)
         {
             Bullet bullet = other.GetComponent<Bullet>();
+            Debug.Log("Bullet hit");
             if (bullet == null) return;
     
             switch (gameObject.tag)
@@ -35,7 +36,7 @@ public class Runes2 : MonoBehaviour
                     {
                         Debug.Log("SolvedFire");
                         puzzleData.puzzle2FireSloved = true;
-                        puzzleData.puzzleStateIndex =+ 1;
+                        puzzleData.puzzleStateIndex += 1;
                         
                        
                        
@@ -46,7 +47,7 @@ public class Runes2 : MonoBehaviour
                     {
                         Debug.Log("SolvedLightning");
                         puzzleData.puzzle2LightningSloved = true;
-                        puzzleData.puzzleStateIndex =+ 1;
+                        puzzleData.puzzleStateIndex += 1;
                         
                     }
                     break;

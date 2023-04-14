@@ -11,10 +11,11 @@ namespace Data
     {
         public  GameObject puzzle1Plattform;
         public GameObject puzzle1Rune;
-        
-        
-        
-        
+
+
+        public bool player1SlovedPuzzles = false;
+        public bool player2SlovedPuzzles = false;
+
 
         public bool isSolved1;
         public bool isSolved2;
