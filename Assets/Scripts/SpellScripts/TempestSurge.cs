@@ -16,7 +16,7 @@ public class TempestSurge : MonoBehaviour
     [SerializeField] float speedModifier, attackSpeedModifier;
     float speed;
     float attackSpeed;
-    [SerializeField] AudioClip spellClip;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -32,7 +32,7 @@ public class TempestSurge : MonoBehaviour
         transform.root.GetComponent<PlayerLogic>().SetSpeed(speed * speedModifier);
         transform.root.GetComponent<ShootingController>().statChange();
         transform.root.GetComponent<PlayerControl>().statChange();
-        AudioManager.PlaySound(spellClip, true);
+        GetComponent<AudioSource>().Play();
         Invoke("DestroySpell", spell.spellDuration);
     }
 

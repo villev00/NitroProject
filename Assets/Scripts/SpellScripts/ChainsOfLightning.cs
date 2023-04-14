@@ -18,9 +18,6 @@ public class ChainsOfLightning : MonoBehaviour
     [SerializeField] float spellMovementSpeed;
     [SerializeField] GameObject explosionEffect;
     bool hitTriggered, isDestroyed;
-
-
-    [SerializeField] AudioClip spellClip;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -36,7 +33,7 @@ public class ChainsOfLightning : MonoBehaviour
         }
 
         Invoke("DestroySpell", spell.spellDuration);
-        AudioManager.PlaySound(spellClip, true);
+        GetComponent<AudioSource>().Play();
     }
 
     void Update()

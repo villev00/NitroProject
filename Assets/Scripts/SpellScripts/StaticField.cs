@@ -12,7 +12,6 @@ public class StaticField : MonoBehaviour
     PhotonView pv;
     [SerializeField] Spell spell;
     bool firstHit;
-    [SerializeField] AudioClip spellClip;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -28,7 +27,7 @@ public class StaticField : MonoBehaviour
         {
             transform.position = hit.point;
         }
-        AudioManager.PlaySound(spellClip, true);
+        GetComponent<AudioSource>().Play();
         Invoke("EnableTrap", 2);
         Invoke("DestroySpell", spell.spellCooldown);
         

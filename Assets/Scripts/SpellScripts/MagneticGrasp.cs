@@ -23,8 +23,8 @@ public class MagneticGrasp : MonoBehaviour
     Rigidbody parentRb;
     NavMeshAgent parentNav;
 
-    //feature: jos vihu kuolee graspin aikana niin kyseinen spelli j‰‰ n‰kyviin toiselle pelaajalle
-    [SerializeField] AudioClip spellClip;
+   //feature: jos vihu kuolee graspin aikana niin kyseinen spelli j‰‰ n‰kyviin toiselle pelaajalle
+  
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -47,7 +47,7 @@ public class MagneticGrasp : MonoBehaviour
             parentRb = transform.root.GetComponent<Rigidbody>();
         }
         Invoke("DestroySpell", 5);
-        AudioManager.PlaySound(spellClip, true);
+        GetComponent<AudioSource>().Play();
     }
     private void Update()
     {

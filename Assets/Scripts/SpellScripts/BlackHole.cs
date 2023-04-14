@@ -14,8 +14,6 @@ public class BlackHole : MonoBehaviour
 
     List<GameObject> enemies = new List<GameObject>();
     bool triggerEffect;
-
-    [SerializeField] AudioClip spellClip;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -32,7 +30,7 @@ public class BlackHole : MonoBehaviour
             transform.parent = null;
         }
         Invoke("DestroySpell", spell.spellDuration);
-        AudioManager.PlaySound(spellClip, true);
+        GetComponent<AudioSource>().Play();
     }
     private void Update()
     {
