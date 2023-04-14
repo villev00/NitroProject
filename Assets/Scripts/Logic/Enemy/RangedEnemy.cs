@@ -46,6 +46,8 @@ public class RangedEnemy : MonoBehaviour
 
         if (enemyHealth.isStunned == true)
         {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isAttacking", false);
             anim.SetBool("isIdle", true);
             rangedEnemy.SetDestination(transform.position);
            // anim.enabled = false;
@@ -60,13 +62,15 @@ public class RangedEnemy : MonoBehaviour
             if (playerInAttackRange)
             {
                 anim.SetBool("isRunning", false);
+                anim.SetBool("isIdle", false);
                 anim.SetBool("isAttacking", true);
                 StartAttack();
             }
             else
             {
-                anim.SetBool("isRunning", true);
+                anim.SetBool("isIdle", false);
                 anim.SetBool("isAttacking", false);
+                anim.SetBool("isRunning", true);
                 rangedEnemy.SetDestination(player.position);
             }
         }

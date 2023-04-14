@@ -23,10 +23,6 @@ public class ShootingLogic : MonoBehaviour
     {
         return data.bulletDamage;
     }
-    public int GetHeadshotDamage()
-    {
-        return data.headshotDamage;
-    }
     public float GetBulletSpeed()
     {
         return data.bulletSpeed;
