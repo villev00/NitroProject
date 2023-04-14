@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     public int damage;
     private ShootingLogic sLogic;
     PhotonView pv;
+    [SerializeField]
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -17,7 +19,11 @@ public class Bullet : MonoBehaviour
         if(pv.IsMine)
             Invoke("DestroySpell",5);
     }
-    
+    private void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (!pv.IsMine) return;
