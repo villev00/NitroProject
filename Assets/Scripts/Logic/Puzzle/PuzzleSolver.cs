@@ -22,6 +22,7 @@ public class PuzzleSolver : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!pv.IsMine) return;
         if (other.CompareTag("Puzzle1Cauldron"))
         {
             SolvePuzzle1();
@@ -34,7 +35,7 @@ public class PuzzleSolver : MonoBehaviour
         PuzzleManager.instance.CheckPuzzle1();
         PuzzleManager.instance.CheckAllPuzzles();
         if (PuzzleManager.instance.pData.allPuzzlesSolved && pv.IsMine)
-            pv.GetComponent<PhotonView>().RPC("RPC_AllSolved", RpcTarget.Others);
+            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_AllSolved", RpcTarget.Others);
 
 
     }
