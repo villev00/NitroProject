@@ -1,5 +1,6 @@
 using System.Collections;
 using Data;
+using Photon.Pun;
 using UnityEngine;
 
 public class Puzzle1 : MonoBehaviour
@@ -21,6 +22,9 @@ public class Puzzle1 : MonoBehaviour
     // Events
     public event System.Action OnPuzzleSolved;
 
+
+    GameObject player;
+
     private void Start()
     {
         // Get the PuzzleData from the PuzzleManager
@@ -28,6 +32,8 @@ public class Puzzle1 : MonoBehaviour
 
         // Cache the reference to the BoxCollider component
         boxCollider = GetComponent<BoxCollider>();
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,6 +47,9 @@ public class Puzzle1 : MonoBehaviour
             {
                 StartCoroutine(MovePlatform());
                 isMoving = true;
+                player = other.gameObject;
+               
+
             }
         }
     }
@@ -56,13 +65,13 @@ public class Puzzle1 : MonoBehaviour
 
         // Disable the BoxCollider and destroy the wall
         boxCollider.enabled = false;
-        DestroyWall();
 
+        player.GetComponent<PuzzleSolver>().SolvePuzzle1();
         // Invoke the OnPuzzleSolved event
-        OnPuzzleSolved?.Invoke();
+        //  OnPuzzleSolved?.Invoke();
     }
 
-    private void DestroyWall()
+    public void DestroyWall()
     {
         // Play the wall break sound effect
         audioSource.PlayOneShot(wallBreakClip);

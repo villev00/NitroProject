@@ -11,7 +11,7 @@ public class AethericLeap : MonoBehaviour
 {
     Vector3 target;
     PhotonView pv;
-
+    [SerializeField] AudioClip spellClip;
     //leap menee seinien läpi
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class AethericLeap : MonoBehaviour
             transform.position = target;
             StartCoroutine(Teleport());
         }
+        AudioManager.PlaySound(spellClip, true);
     }
  
     IEnumerator Teleport()

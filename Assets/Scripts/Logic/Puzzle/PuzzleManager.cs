@@ -26,14 +26,6 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-   private void Update()
-   {
-         CheckPuzzle1();
-         CheckPuzzle2();
-         //CheckPuzzle3();
-         //CheckAllPuzzles();
-   }
-
    public void CheckPuzzle1()
     {
         

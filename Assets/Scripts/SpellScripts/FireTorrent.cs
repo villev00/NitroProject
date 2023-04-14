@@ -19,7 +19,7 @@ public class FireTorrent : MonoBehaviour
     [SerializeField] Spell spell;
    
     List<GameObject> enemies = new List<GameObject>();
-   
+    [SerializeField] AudioClip spellClip;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -30,6 +30,7 @@ public class FireTorrent : MonoBehaviour
 
         InvokeRepeating("Damage", 0, 1);
         Invoke("DestroySpell", spell.spellDuration);
+        AudioManager.PlaySound(spellClip, true);
     }
     private void Update()
     {

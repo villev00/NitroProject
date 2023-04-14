@@ -11,7 +11,7 @@ public class FlameBarrier : MonoBehaviour
 
     [SerializeField] Spell spell;
     [SerializeField] int barrierHealth;
-
+    [SerializeField] AudioClip spellClip;    
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -28,6 +28,7 @@ public class FlameBarrier : MonoBehaviour
         //Move objects location to players location (from spawnpoint)
         transform.position = new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z);
         Invoke("DestroySpell", spell.spellDuration);
+        AudioManager.PlaySound(spellClip, true);
     }
     void DestroySpell()
     {
