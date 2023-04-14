@@ -12,6 +12,7 @@ public class PuzzleSolver : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        InvokeRepeating("CheckAll", 5, 5);
     }
     void Start()
     {
@@ -39,7 +40,7 @@ public class PuzzleSolver : MonoBehaviour
     }
     public void OtherSolvedPuzzles()
     {
-        if (pv.IsMine && PuzzleManager.instance.pData.allPuzzlesSolved)
+        if (PuzzleManager.instance.pData.allPuzzlesSolved)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_AllSolved", RpcTarget.Others);
     }
     public void DestroyWall()
@@ -61,7 +62,11 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_AllSolved()
     {
         PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles = true;
-        PuzzleManager.instance.CheckAllPuzzles();
+       
 
+    }
+    void CheckAll()
+    {
+        OtherSolvedPuzzles();
     }
 }
