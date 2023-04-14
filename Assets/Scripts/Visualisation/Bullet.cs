@@ -10,7 +10,9 @@ public class Bullet : MonoBehaviour
     private ShootingLogic sLogic;
     PhotonView pv;
     [SerializeField]
-
+    AudioClip projectileLaunch;
+    [SerializeField]
+    AudioClip headshotAudio;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -21,7 +23,10 @@ public class Bullet : MonoBehaviour
     }
     private void Start()
     {
-        
+        if (pv.IsMine)
+        {
+            AudioManager.PlaySound(projectileLaunch, false);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -33,6 +38,7 @@ public class Bullet : MonoBehaviour
             damage *= 2;
             Debug.Log("Headshot");
             collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, 0);
+            AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
