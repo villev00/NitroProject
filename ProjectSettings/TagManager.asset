@@ -11,6 +11,8 @@ TagManager:
   - FireRune
   - AetherRune
   - LightningRune
+  - EnemyHead
+  - Puzzle1Cauldron
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,10 @@ public class Puzzle1 : MonoBehaviour
     private PuzzleData puzzleData;
     private bool isMoving = false;
     private BoxCollider boxCollider;
-    
+
     // Serialized fields
+    [SerializeField] GameObject puzzleCauldron;
+
     [SerializeField] private GameObject brokenWall;
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject rubble;
@@ -66,7 +68,7 @@ public class Puzzle1 : MonoBehaviour
         // Disable the BoxCollider and destroy the wall
         boxCollider.enabled = false;
 
-        player.GetComponent<PuzzleSolver>().SolvePuzzle1();
+        player.GetComponent<PuzzleSolver>().DestroyWall();
         // Invoke the OnPuzzleSolved event
         //  OnPuzzleSolved?.Invoke();
     }
@@ -81,7 +83,6 @@ public class Puzzle1 : MonoBehaviour
         brokenWall.SetActive(true);
         rubble.SetActive(true);
         
-        puzzleData.isSolved1 = true;
     }
 }
 

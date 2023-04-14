@@ -1,3 +1,4 @@
+using Data;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,18 +20,17 @@ public class PuzzleSolver : MonoBehaviour
         puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
           
     }
-    public void SolvePuzzle1()
+    private void OnTriggerEnter(Collider other)
     {
-        if (pv.IsMine)
-            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_SolvePuzzle1", RpcTarget.Others);
-       
+        if (other.CompareTag("Puzzle1Cauldron"))
+        {
+            SolvePuzzle1();
+        }
     }
 
-
-    [PunRPC]
-    void RPC_SolvePuzzle1()
+    void SolvePuzzle1()
     {
-        puzzle1.GetComponent<Puzzle1>().DestroyWall();
+        PuzzleManager.instance.pData.isSolved1 = true;
         PuzzleManager.instance.CheckPuzzle1();
         PuzzleManager.instance.CheckAllPuzzles();
         if (PuzzleManager.instance.pData.allPuzzlesSolved && pv.IsMine)
@@ -38,6 +38,22 @@ public class PuzzleSolver : MonoBehaviour
 
 
     }
+
+    public void DestroyWall()
+    {
+       
+        if (pv.IsMine)
+            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_DestroyWall", RpcTarget.Others);
+       
+    }
+
+
+    [PunRPC]
+    void RPC_DestroyWall()
+    {
+        puzzle1.GetComponent<Puzzle1>().DestroyWall();
+    }
+   
     [PunRPC]
     void RPC_AllSolved()
     {
