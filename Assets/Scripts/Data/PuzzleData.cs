@@ -15,6 +15,8 @@ namespace Data
         
         
         
+        
+        
 
         public bool isSolved1;
         public bool isSolved2;
@@ -29,7 +31,7 @@ namespace Data
         //public List<GameObject> runeElements;
         //public List<GameObject> clueElements;
         
-        
+      
 
         public bool puzzle2FireSloved = false;
         public bool puzzle2LightningSloved = false;
@@ -37,6 +39,8 @@ namespace Data
 
         public bool allPuzzlesSolved;
         public bool hasOtherPlayerSolvedPuzzles;
+        
+        public bool fireSumon = false, lightningSumon = false, aetherSumon = false;
 
     }
 }
