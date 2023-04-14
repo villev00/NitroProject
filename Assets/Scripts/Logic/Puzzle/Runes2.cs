@@ -40,6 +40,10 @@ public class Runes2 : MonoBehaviour
                        
                        
                     }
+                    else
+                    {
+                        Reset();
+                    }
                     break;
                 case "LightningRune":
                     if (bullet.element == Element.Lightning && puzzleData.puzzleStateIndex == 2  )
@@ -48,6 +52,10 @@ public class Runes2 : MonoBehaviour
                         puzzleData.puzzle2LightningSloved = true;
                         puzzleData.puzzleStateIndex += 1;
                         
+                    }
+                    else
+                    {
+                        Reset();
                     }
                     break;
                 case "AetherRune":
@@ -58,6 +66,10 @@ public class Runes2 : MonoBehaviour
 
 
                     }
+                    else
+                    {
+                        Reset();
+                    }
                     break;
                 default:
                     break;
@@ -66,6 +78,14 @@ public class Runes2 : MonoBehaviour
         PuzzleManager.instance.CheckPuzzle2();
         PuzzleManager.instance.CheckAllPuzzles();
         }
-      
-    }
+
+
+       private void Reset()
+       {
+              puzzleData.puzzle2FireSloved = false;
+              puzzleData.puzzle2LightningSloved = false;
+              puzzleData.puzzle2AetherSloved = false;
+              puzzleData.puzzleStateIndex = 1;
+       }
+}
 
