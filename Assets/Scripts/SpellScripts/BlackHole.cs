@@ -30,6 +30,7 @@ public class BlackHole : MonoBehaviour
             transform.parent = null;
         }
         Invoke("DestroySpell", spell.spellDuration);
+        GetComponent<AudioSource>().Play();
     }
     private void Update()
     {

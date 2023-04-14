@@ -40,6 +40,7 @@ public class BlazeImpact : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, 1))
              target = hit.point;
+        GetComponent<AudioSource>().Play();
     }
     void Update()
     {
@@ -105,7 +106,7 @@ public class BlazeImpact : MonoBehaviour
         transform.localScale = transform.localScale * 5;
         hitCollider.radius = explosionCollider.radius;
         explosionEffect.SetActive(true);
-        
+        explosionEffect.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(0.2f);
         transform.localScale = transform.localScale / 5;
         hitCollider.radius = 1;

@@ -27,7 +27,7 @@ public class StaticField : MonoBehaviour
         {
             transform.position = hit.point;
         }
-
+        GetComponent<AudioSource>().Play();
         Invoke("EnableTrap", 2);
         Invoke("DestroySpell", spell.spellCooldown);
         

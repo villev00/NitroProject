@@ -30,6 +30,7 @@ public class FireTorrent : MonoBehaviour
 
         InvokeRepeating("Damage", 0, 1);
         Invoke("DestroySpell", spell.spellDuration);
+        GetComponent<AudioSource>().Play();
     }
     private void Update()
     {
