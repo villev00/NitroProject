@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyHealth : EnemyData
 {
-    public float stunDuration = 100f;
+    public float stunDuration;
 
     Animator anim;
     public bool isStunned = false;
@@ -14,6 +14,10 @@ public class EnemyHealth : EnemyData
     private void Awake()
     {
         anim = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+        stunDuration = 2f;
     }
 
     public void TakeDamage(float damage, Element element)
@@ -41,6 +45,8 @@ public class EnemyHealth : EnemyData
 
     IEnumerator Die()
     {
+        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        this.gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false;
         anim.SetBool("isDead", true);
         GetComponent<NavMeshAgent>().enabled = false;
         yield return new WaitForSeconds(4f);

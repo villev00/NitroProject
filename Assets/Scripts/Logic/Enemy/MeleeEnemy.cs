@@ -22,12 +22,7 @@ public class MeleeEnemy : MonoBehaviour
     EnemyHealth enemyHealth;
 
     private void Awake()
-    {
-        meleeRange = 2f;
-        meleeDamage = 10;
-        timeBetweenAttacks = 1f;
-        alreadyAttacked = false;      
-
+    {         
         player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeEnemy = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -36,80 +31,73 @@ public class MeleeEnemy : MonoBehaviour
 
     private void Start()
     {
-        anim.SetBool("isRunning", true);
+        meleeRange = 2f;
+        meleeDamage = 10;
+        timeBetweenAttacks = 1.2f;
+        alreadyAttacked = false;
     }
 
     void Update()
     {
         if (meleeEnemy.enabled == false) return;
 
-        if (enemyHealth.isStunned)
+        if (enemyHealth.isStunned == true)
         {
+            anim.SetBool("isIdle", true);
             meleeEnemy.SetDestination(transform.position);
-            anim.enabled = false;
+            //anim.enabled = false;
             lightningFX.gameObject.SetActive(true); // enable the Lightning FX component
         }
         else
-        {
-            meleeEnemy.SetDestination(player.position);
+        {          
             anim.enabled = true;          
             lightningFX.gameObject.SetActive(false); // disable the Lightning FX component
-        }
-
-        //Check for attack range        
-        playerInAttackRange = Physics.CheckSphere(transform.position, meleeRange, Player);
-        if (playerInAttackRange) StartAttack();
-    }
-
-    void StartAttack()
-    {       
-        if (anim.GetBool("isAttacking"))
-        {
-            anim.SetBool("isRunning", false);
-
-            if (!enemyHealth.isStunned)
+                                                     //Check for attack range        
+            playerInAttackRange = Physics.CheckSphere(transform.position, meleeRange, Player);
+            if (playerInAttackRange)
             {
-               // anim.SetBool("isAttacking", true);
-                AttackPlayer();
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isAttacking", true);
+                StartAttack();
             }
             else
             {
-                StartCoroutine(ResetAttack());
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isAttacking", false);
+                meleeEnemy.SetDestination(player.position);
             }
-        }
+        }       
+    }
 
+    void StartAttack()
+    {                                                    
+        AttackPlayer();                                                           
     }
 
     private void AttackPlayer()
     {
 
         meleeEnemy.SetDestination(transform.position);
-
         transform.LookAt(player);
         
         if (!alreadyAttacked)
         {
 
             // check if the player is within range for a melee attack
-            if (Vector3.Distance(transform.position, player.position) <= meleeRange)
-            {
-                
+            if (Vector3.Distance(transform.position, player.position) <= meleeRange +1)
+            {                
                 // apply damage to the player
-                player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isAttacking", true);
-            }
-            
+                Debug.Log("Attacking Player");
+                player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);              
+            }            
             alreadyAttacked = true;
-
             StartCoroutine(ResetAttack());
         }
     }
     private IEnumerator ResetAttack()
     {
-        
+        yield return new WaitForSeconds(timeBetweenAttacks);
         alreadyAttacked = false;
-        anim.SetBool("isAttacking", false);
         yield return new WaitForSeconds(timeBetweenAttacks);
 
     }

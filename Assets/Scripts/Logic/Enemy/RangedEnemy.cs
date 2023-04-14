@@ -17,98 +17,87 @@ public class RangedEnemy : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
 
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public int rangedDamage;
+    public float attackRange;
+    public bool playerInAttackRange;
     Animator anim;
     public ParticleSystem lightningFX;
     EnemyHealth enemyHealth;
-    bool isStunned;
 
     private void Awake()
     {
         rangedEnemy = GetComponent<NavMeshAgent>();
         enemyHealth = GetComponent<EnemyHealth>();
-    }
-    private void Start()
-    {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        rangedDamage = 15;
+        attackRange = 10f;
+        timeBetweenAttacks = 1.2f;
+        alreadyAttacked = false;
+    }
+
     private void Update()
-    {        
+    {
         if (rangedEnemy.enabled == false) return;
 
-        //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
-
-        if (!enemyHealth.isStunned)
+        if (enemyHealth.isStunned == true)
         {
-            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange) StartAttack();
-            anim.enabled = true;
-            anim.SetBool("isRunning", true);
-            lightningFX.gameObject.SetActive(false); // disable the Lightning FX component
+            anim.SetBool("isIdle", true);
+            rangedEnemy.SetDestination(transform.position);
+           // anim.enabled = false;
+            lightningFX.gameObject.SetActive(true); // enable the Lightning FX component
         }
         else
         {
-            rangedEnemy.SetDestination(transform.position);
-            anim.enabled = false;
-            lightningFX.gameObject.SetActive(true); // enable the Lightning FX component
-        }                
-    }
-
-    private void ChasePlayer()
-    {
-        if (rangedEnemy.enabled)
-        {
-            rangedEnemy.SetDestination(player.position);
+            anim.enabled = true;
+            lightningFX.gameObject.SetActive(false); // disable the Lightning FX component
+                                                     //Check for attack range        
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
+            if (playerInAttackRange)
+            {
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isAttacking", true);
+                StartAttack();
+            }
+            else
+            {
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isAttacking", false);
+                rangedEnemy.SetDestination(player.position);
+            }
         }
-        if (!anim.GetBool("isRunning")) anim.SetBool("isRunning", true);
     }
 
     void StartAttack()
     {
-        if (!anim.GetBool("isAttacking"))
-        {
-            anim.SetBool("isRunning", false);
-
-            if (!enemyHealth.isStunned)
-            {
-                anim.SetBool("isAttacking", true);
-            }
-            else
-            {
-                StartCoroutine(ResetAttack());
-            }
-        }
+        AttackPlayer();
     }
 
     private void AttackPlayer()
-    {
-        if (rangedEnemy.enabled)
-        {
-            rangedEnemy.SetDestination(transform.position);
-        }
-
+    {              
+        rangedEnemy.SetDestination(transform.position);
+        
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
             Rigidbody rb = Instantiate(projectile, gun.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-
+            player.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
             alreadyAttacked = true;
             StartCoroutine(ResetAttack());
         }
+
     }
 
     private IEnumerator ResetAttack()
-    {
+    {        
+        yield return new WaitForSeconds(timeBetweenAttacks);
         alreadyAttacked = false;
-        anim.SetBool("isAttacking", false);
-        anim.SetBool("isRunning", true);
         yield return new WaitForSeconds(timeBetweenAttacks);
     }
 }

@@ -107,7 +107,7 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
+    agentHeight: 1.6
     agentSlope: 60
     agentClimb: 1
     ledgeDropHeight: 2
@@ -7459,15 +7459,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 445238, guid: 6a6b1081f48150d4396ed522e4168e12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.06
+      value: 10.08
       objectReference: {fileID: 0}
     - target: {fileID: 445238, guid: 6a6b1081f48150d4396ed522e4168e12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 445238, guid: 6a6b1081f48150d4396ed522e4168e12, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.33
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 445238, guid: 6a6b1081f48150d4396ed522e4168e12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23725,7 +23725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 134650, guid: 91fc4f906213a9d49986bdadab48bba5, type: 3}
       propertyPath: m_NavMeshLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 134650, guid: 91fc4f906213a9d49986bdadab48bba5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27544,6 +27544,10 @@ PrefabInstance:
     - target: {fileID: 147182, guid: 38acd8f33333a454aa8e10b6297ab6c8, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 147182, guid: 38acd8f33333a454aa8e10b6297ab6c8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 147182, guid: 38acd8f33333a454aa8e10b6297ab6c8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -38321,6 +38325,7 @@ MonoBehaviour:
     puzzle2AetherSloved: 0
     allPuzzlesSolved: 0
     hasOtherPlayerSolvedPuzzles: 0
+  player: {fileID: 0}
 --- !u!1001 &929676259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64987,7 +64992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452022, guid: 376ef25dd291e3c4299072cb562f0cba, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.196
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 452022, guid: 376ef25dd291e3c4299072cb562f0cba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64995,7 +65000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452022, guid: 376ef25dd291e3c4299072cb562f0cba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.948
+      value: -9.73
       objectReference: {fileID: 0}
     - target: {fileID: 452022, guid: 376ef25dd291e3c4299072cb562f0cba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83785,7 +83790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 144082, guid: 6a6b1081f48150d4396ed522e4168e12, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 95
+      value: 127
       objectReference: {fileID: 0}
     - target: {fileID: 445238, guid: 6a6b1081f48150d4396ed522e4168e12, type: 3}
       propertyPath: m_RootOrder
