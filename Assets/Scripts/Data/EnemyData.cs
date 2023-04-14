@@ -8,7 +8,7 @@ namespace data
     [Serializable]
     public class EnemyData : MonoBehaviour
     {
-        public int health;
+        public float health;
         public int maxHealth; 
         public float moveSpeed = 8;
         

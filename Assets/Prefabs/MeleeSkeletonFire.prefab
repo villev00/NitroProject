@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 4859442239190489004}
   - component: {fileID: -3609862545341665588}
   m_Layer: 0
-  m_Name: MeleeSkeleton
+  m_Name: MeleeSkeletonFire
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,6 +450,7 @@ MonoBehaviour:
   health: 50
   maxHealth: 50
   moveSpeed: 8
+  damageResistance: {fileID: 11400000, guid: 2d19469af29330042bbd6845af7ce264, type: 2}
 --- !u!195 &-5783516507978134912
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -652,7 +653,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: f26ea746e561ecb41a67992290a14a53, type: 3}
+  - {fileID: 2100000, guid: 5253e5502b5537846a55d3a46457a181, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

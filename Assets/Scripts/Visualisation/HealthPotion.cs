@@ -10,7 +10,7 @@ public class HealthPotion : MonoBehaviour
 {
     PhotonView pv;
     PlayerLogic pLogic;
-    public PlayerUI playerUI;
+    PlayerUI playerUI;
 
 
     int chargeRate = 5;

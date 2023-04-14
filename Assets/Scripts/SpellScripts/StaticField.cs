@@ -44,7 +44,7 @@ public class StaticField : MonoBehaviour
             firstHit = true;
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage);
+                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, Element.Lightning);
                 //  other.GetComponent<EnemyHealth>().GetStunned(5);
             }else if (other.CompareTag("Boss"))
                 {

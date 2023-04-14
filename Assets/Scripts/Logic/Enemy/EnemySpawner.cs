@@ -14,8 +14,9 @@ namespace Logic.Enemy
 
         [SerializeField]
         private SpawnData spawnData = new SpawnData();
-        [SerializeField]
-        private PuzzleData puzzleData = new PuzzleData();
+
+        [SerializeField] private PuzzleData puzzleData;
+       
 
         private bool stopSpawning = false;
         
@@ -24,6 +25,9 @@ namespace Logic.Enemy
         void Start()
         {
             
+            // get puzzle data from puzzle manager
+            
+           puzzleData = PuzzleManager.instance.pData;
             spawnData.enemyList.Add(spawnData.fireEnemyMelee);
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
             

@@ -7,15 +7,14 @@ using UnityEngine.AI;
 public class EnemyHealth : EnemyData
 {
     Animator anim;
+    [SerializeField] private DamageResistance damageResistance;
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
-    public void TakeDamage(int damage)
-    {
-      
-        
-        health -= damage;
+    public void TakeDamage(float damage, Element element)
+    {            
+       health -= damageResistance.CalculateDamageWithResistance(damage, element);
         if (health <= 0)
         {
             Debug.Log("Enemy Died");

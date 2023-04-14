@@ -10,6 +10,7 @@ public class ShootingController : MonoBehaviour
     [SerializeField]
     Transform bulletSpawn;
     ShootingLogic sLogic;
+    ShootingData sData = new ShootingData();
     public float rateOfFire;
     public float bulletSpeed;
     bool readyToShoot;
@@ -19,6 +20,7 @@ public class ShootingController : MonoBehaviour
     GameObject bullet;
 
     public UnityAction statChange;
+    
 
     PhotonView pv;
     private void Awake()
@@ -57,6 +59,7 @@ public class ShootingController : MonoBehaviour
 
     void Shoot()
     {
+        
         readyToShoot = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -76,6 +79,7 @@ public class ShootingController : MonoBehaviour
         currentBullet.GetComponent<Bullet>().element = sLogic.GetElement();
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
         StartCoroutine(ResetShot());
+       
     }
 
     IEnumerator ResetShot()

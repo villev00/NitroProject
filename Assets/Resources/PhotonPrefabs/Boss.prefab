@@ -109,6 +109,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   moveSpeed: 8
+  damageResistance: {fileID: 0}
 --- !u!114 &1666924192973013761
 MonoBehaviour:
   m_ObjectHideFlags: 0
