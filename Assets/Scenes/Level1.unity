@@ -23507,7 +23507,6 @@ MonoBehaviour:
   stopPosition: {x: 13.23, y: 1.35, z: -10.07}
   audioSource: {fileID: 706962149}
   speed: 5
-  player: {fileID: 0}
 --- !u!95 &572395675
 Animator:
   serializedVersion: 5
@@ -54739,7 +54738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 284423654413779237, guid: 69dd099a88fa9584f9a9d987285949fa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.57922363
+      value: -0.57910156
       objectReference: {fileID: 0}
     - target: {fileID: 284423654413779237, guid: 69dd099a88fa9584f9a9d987285949fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -56225,7 +56224,6 @@ MonoBehaviour:
   stopPosition: {x: 13.23, y: 1.35, z: -10.07}
   audioSource: {fileID: 706962149}
   speed: 5
-  player: {fileID: 0}
 --- !u!95 &1398602983
 Animator:
   serializedVersion: 5

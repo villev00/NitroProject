@@ -14,6 +14,8 @@ public class SettingsMenu : MonoBehaviour
     const string MUSIC_VOL_KEY = "MusicVolume";
     const string SOUND_VOL_KEY = "SoundVolume";
 
+    [SerializeField] GameObject settingsPanel, howToPlayPanel;
+
     void Start()
     {
         musicSlider.value = PlayerPrefs.GetFloat(MUSIC_VOL_KEY, 0.15f);
@@ -39,5 +41,18 @@ public class SettingsMenu : MonoBehaviour
     public void PlayButtonSound()
     {
         AudioManager.PlaySound(buttonSoundClip, false);
+    }
+
+    public void ToggleSettings()
+    {
+        PlayButtonSound();
+        if (settingsPanel.activeSelf) settingsPanel.SetActive(false);
+        else settingsPanel.SetActive(true);
+    }
+    public void ToggleHowToPlay()
+    {
+        PlayButtonSound();
+        if (howToPlayPanel.activeSelf) howToPlayPanel.SetActive(false);
+        else howToPlayPanel.SetActive(true);
     }
 }
