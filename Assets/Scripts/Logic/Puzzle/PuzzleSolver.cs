@@ -13,14 +13,11 @@ public class PuzzleSolver : MonoBehaviour
         pv = GetComponent<PhotonView>();
     }
     void Start()
-    {
-        if (pv.IsMine)
-        {
-            puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
-            puzzle1.GetComponent<Puzzle1>().player = gameObject;
-        }
-           
-        
+    {   
+
+        if(pv.IsMine)
+        puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
+          
     }
     private void Update()
     {
@@ -32,7 +29,6 @@ public class PuzzleSolver : MonoBehaviour
     public void SolvePuzzle1()
     {
         if (pv.IsMine)
-         //   pv.RPC("RPC_SolvePuzzle1", RpcTarget.All);
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_SolvePuzzle1", RpcTarget.Others);
     }
 

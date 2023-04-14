@@ -23,7 +23,7 @@ public class Puzzle1 : MonoBehaviour
     public event System.Action OnPuzzleSolved;
 
 
-    public GameObject player;
+    GameObject player;
 
     private void Start()
     {
@@ -47,6 +47,9 @@ public class Puzzle1 : MonoBehaviour
             {
                 StartCoroutine(MovePlatform());
                 isMoving = true;
+                player = other.gameObject;
+               
+
             }
         }
     }
@@ -62,11 +65,10 @@ public class Puzzle1 : MonoBehaviour
 
         // Disable the BoxCollider and destroy the wall
         boxCollider.enabled = false;
-        if(player.GetComponent<PhotonView>().IsMine)
-            player.GetComponent<PuzzleSolver>().SolvePuzzle1();
 
+        player.GetComponent<PuzzleSolver>().SolvePuzzle1();
         // Invoke the OnPuzzleSolved event
-        OnPuzzleSolved?.Invoke();
+        //  OnPuzzleSolved?.Invoke();
     }
 
     public void DestroyWall()
