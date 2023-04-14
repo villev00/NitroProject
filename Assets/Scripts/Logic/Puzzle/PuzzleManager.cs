@@ -4,8 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Logic.Enemy;
 using UnityEngine;
-using Photon.Pun;
-using System.IO;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -42,12 +40,10 @@ public class PuzzleManager : MonoBehaviour
         if(pData.puzzle2FireSloved && pData.puzzle2LightningSloved && pData.puzzle2AetherSloved)
         {
             pData.isSolved2 = true;
-
         }
       
         if (pData.isSolved2)
         {
-            
             Debug.Log("Puzzle 2 solved");
         }
     }
@@ -67,11 +63,6 @@ public class PuzzleManager : MonoBehaviour
             Debug.Log("All puzzles solved");
         }
     }
-    
-    public void bothPlayersPuzzlesSolved()
-    {
-    }
-
     
 
    
