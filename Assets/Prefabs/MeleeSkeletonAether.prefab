@@ -781,9 +781,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3553811813393591367}
+  - component: {fileID: 5776572960025120697}
   m_Layer: 0
   m_Name: mixamorig:HeadTop_End
-  m_TagString: Untagged
+  m_TagString: EnemyHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -803,6 +804,20 @@ Transform:
   m_Father: {fileID: 1731882706762098857}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5776572960025120697
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7050331367011575813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 8.36
+  m_Height: 17.09
+  m_Direction: 1
+  m_Center: {x: 0, y: -6.29, z: 0}
 --- !u!1 &7091988882620291052
 GameObject:
   m_ObjectHideFlags: 0

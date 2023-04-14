@@ -362,7 +362,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1452656253114387693}
   - component: {fileID: 1351503665657782838}
-  - component: {fileID: 130805941367768067}
   m_Layer: 0
   m_Name: mixamorig:HeadTop_End
   m_TagString: EnemyHead
@@ -395,23 +394,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 6.31
-  m_Height: 14.54
+  m_Radius: 8.36
+  m_Height: 17.09
   m_Direction: 1
-  m_Center: {x: 0, y: -6.61, z: 0}
---- !u!114 &130805941367768067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4949101052836153519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1621991812d984d84851b04aafb931, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 6941967148164857914}
+  m_Center: {x: 0, y: -6.29, z: 0}
 --- !u!1 &5100945319907688299
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +667,6 @@ GameObject:
   - component: {fileID: 7352485733832144646}
   - component: {fileID: 7538536551872417382}
   - component: {fileID: 200900738070882466}
-  - component: {fileID: 695583113462837959}
   m_Layer: 0
   m_Name: RangedSkeletonFire
   m_TagString: Enemy
@@ -819,19 +804,6 @@ MonoBehaviour:
   attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
---- !u!114 &695583113462837959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6941967148164857914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1621991812d984d84851b04aafb931, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 6941967148164857914}
 --- !u!1 &7175002876843762529
 GameObject:
   m_ObjectHideFlags: 0
