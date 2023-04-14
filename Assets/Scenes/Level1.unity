@@ -23507,7 +23507,6 @@ MonoBehaviour:
   stopPosition: {x: 13.23, y: 1.35, z: -10.07}
   audioSource: {fileID: 706962149}
   speed: 5
-  player: {fileID: 0}
 --- !u!95 &572395675
 Animator:
   serializedVersion: 5
@@ -56222,10 +56221,9 @@ MonoBehaviour:
   wall: {fileID: 306041256}
   rubble: {fileID: 1458526469}
   wallBreakClip: {fileID: 8300000, guid: bc1bccbc462da0743a60e64f714c0809, type: 3}
-  stopPosition: {x: 13.23, y: 1.35, z: -10.07}
+  stopPosition: {x: 12.42, y: 0.14, z: -54.044}
   audioSource: {fileID: 706962149}
   speed: 5
-  player: {fileID: 0}
 --- !u!95 &1398602983
 Animator:
   serializedVersion: 5
