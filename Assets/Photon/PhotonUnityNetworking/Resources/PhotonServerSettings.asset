@@ -49,6 +49,7 @@ MonoBehaviour:
   - RPC_TakeDamage
   - DestroyPuzzleWall
   - RPC_SolvePuzzle1
+  - RPC_AllSolved
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

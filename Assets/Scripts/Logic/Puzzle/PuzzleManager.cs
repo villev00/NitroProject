@@ -55,13 +55,18 @@ public class PuzzleManager : MonoBehaviour
             Debug.Log("Puzzle 3 solved");
         }
     }
-    
+
     public void CheckAllPuzzles()
     {
-        if (pData.isSolved1 && pData.isSolved2 && pData.isSolved3)
+        if (pData.isSolved1 && pData.isSolved2) //&& pData.isSolved3)
         {
             Debug.Log("All puzzles solved");
+            pData.allPuzzlesSolved = true;
+
+          
         }
+        if (pData.hasOtherPlayerSolvedPuzzles)
+            Debug.Log("Other player solved all");
     }
     
 

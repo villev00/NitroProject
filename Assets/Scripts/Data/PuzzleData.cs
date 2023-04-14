@@ -35,8 +35,8 @@ namespace Data
         public bool puzzle2LightningSloved = false;
         public bool puzzle2AetherSloved = false;
 
-
-
+        public bool allPuzzlesSolved;
+        public bool hasOtherPlayerSolvedPuzzles;
 
     }
 }

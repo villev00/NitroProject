@@ -19,18 +19,11 @@ public class PuzzleSolver : MonoBehaviour
         puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
           
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SolvePuzzle1();
-        }
-    }
     public void SolvePuzzle1()
     {
         if (pv.IsMine)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_SolvePuzzle1", RpcTarget.Others);
-        PuzzleManager.instance.CheckPuzzle1();
+       
     }
 
 
@@ -38,6 +31,18 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_SolvePuzzle1()
     {
         puzzle1.GetComponent<Puzzle1>().DestroyWall();
+        PuzzleManager.instance.CheckPuzzle1();
+        PuzzleManager.instance.CheckAllPuzzles();
+        if (PuzzleManager.instance.pData.allPuzzlesSolved && pv.IsMine)
+            pv.GetComponent<PhotonView>().RPC("RPC_AllSolved", RpcTarget.Others);
+
+
+    }
+    [PunRPC]
+    void RPC_AllSolved()
+    {
+        PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles = true;
+        PuzzleManager.instance.CheckAllPuzzles();
 
     }
 }

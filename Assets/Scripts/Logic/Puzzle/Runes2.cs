@@ -62,6 +62,9 @@ public class Runes2 : MonoBehaviour
                 default:
                     break;
             }
+
+        PuzzleManager.instance.CheckPuzzle2();
+        PuzzleManager.instance.CheckAllPuzzles();
         }
       
     }
