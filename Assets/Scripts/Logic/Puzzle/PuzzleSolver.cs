@@ -12,6 +12,7 @@ public class PuzzleSolver : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        InvokeRepeating("CheckAll", 5, 5);
     }
     void Start()
     {
@@ -61,7 +62,11 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_AllSolved()
     {
         PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles = true;
-        PuzzleManager.instance.CheckAllPuzzles();
+       
 
+    }
+    void CheckAll()
+    {
+        OtherSolvedPuzzles();
     }
 }
