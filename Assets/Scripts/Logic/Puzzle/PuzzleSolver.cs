@@ -61,7 +61,12 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_AllSolved()
     {
         PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles = true;
-        PuzzleManager.instance.CheckAllPuzzles();
+        StartCoroutine(CheckAll());
 
+    }
+    IEnumerator CheckAll()
+    {
+        yield return new WaitForSeconds(2);
+        PuzzleManager.instance.CheckAllPuzzles();
     }
 }
