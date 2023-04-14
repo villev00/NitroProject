@@ -6,25 +6,27 @@ using UnityEngine.AI;
 
 public class MeleeEnemy : MonoBehaviour
 {
-    public float meleeRange = 2f; // adjust this value to set the range of the melee attack
-    public int meleeDamage = 10; // adjust this value to set the damage done by the melee attack
-    public float timeBetweenAttacks = 1f; // adjust this value to set the time between melee attacks
+    public float meleeRange = 2f; 
+    public int meleeDamage = 10; 
+    public float timeBetweenAttacks = 1f; 
     public LayerMask Player;
     bool alreadyAttacked;
     private NavMeshAgent meleeEnemy;
     public Transform player;
+    public ParticleSystem lightningFX;
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
 
     Animator anim;
+    EnemyHealth enemyHealth;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeEnemy = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        anim.SetBool("isRunning", true);
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -32,7 +34,20 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (meleeEnemy.enabled == false) return;
 
-        meleeEnemy.SetDestination(player.position);
+        if (!enemyHealth.isStunned)
+        {
+            meleeEnemy.SetDestination(player.position);
+            anim.enabled = true;
+            anim.SetBool("isRunning", true);
+            lightningFX.gameObject.SetActive(false); // disable the Lightning FX component
+        }
+        else
+        {
+            meleeEnemy.SetDestination(transform.position);
+            anim.enabled = false;
+            lightningFX.gameObject.SetActive(true); // enable the Lightning FX component
+        }
+       
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
@@ -44,7 +59,15 @@ public class MeleeEnemy : MonoBehaviour
         if (!anim.GetBool("isAttacking"))
         {
             anim.SetBool("isRunning", false);
-            anim.SetBool("isAttacking", true);
+
+            if (!enemyHealth.isStunned)
+            {
+                anim.SetBool("isAttacking", true);
+            }
+            else
+            {
+                StartCoroutine(ResetAttack());
+            }
         }
 
     }
@@ -67,15 +90,16 @@ public class MeleeEnemy : MonoBehaviour
             }
 
             alreadyAttacked = true;
-         
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+            StartCoroutine(ResetAttack());
         }
     }
-    private void ResetAttack()
+    private IEnumerator ResetAttack()
     {
         alreadyAttacked = false;
-       anim.SetBool("isAttacking", false);
+        anim.SetBool("isAttacking", false);
         anim.SetBool("isRunning", true);
-       
+        yield return new WaitForSeconds(timeBetweenAttacks);
+
     }
 }
