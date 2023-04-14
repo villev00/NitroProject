@@ -19,18 +19,20 @@ public class PlayerLogic : MonoBehaviour
 
     
     public GameObject otherPlayer;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            playerUI = GameObject.Find("UIManager").GetComponent<PlayerUI>();
+            playerUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<PlayerUI>();
             playerUI.ChangeLives(5);
         }
     }
     private void Start()
     {
         Invoke("FindPlayers", 1);
+      
     }
     void FindPlayers()
     {
@@ -206,7 +208,9 @@ public class PlayerLogic : MonoBehaviour
         {
             TestDamage(10);
         }
+      
     }
+
 
     public void GameOver()
     {
