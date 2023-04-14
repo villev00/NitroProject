@@ -12,7 +12,7 @@ public class PuzzleSolver : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        Invoke(CheckAll, 5, 5);
+        InvokeRepeating("CheckAll", 5, 5);
     }
     void Start()
     {
