@@ -30,6 +30,7 @@ public class PuzzleSolver : MonoBehaviour
     {
         if (pv.IsMine)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_SolvePuzzle1", RpcTarget.Others);
+        PuzzleManager.instance.CheckPuzzle1();
     }
 
 

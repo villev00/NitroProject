@@ -47,7 +47,7 @@ public class MagneticGrasp : MonoBehaviour
             parentRb = transform.root.GetComponent<Rigidbody>();
         }
         Invoke("DestroySpell", 5);
-       
+        GetComponent<AudioSource>().Play();
     }
     private void Update()
     {

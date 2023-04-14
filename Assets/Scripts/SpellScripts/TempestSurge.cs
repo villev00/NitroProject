@@ -20,7 +20,7 @@ public class TempestSurge : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-     
+       
     }
     void Start()
     {
@@ -32,6 +32,7 @@ public class TempestSurge : MonoBehaviour
         transform.root.GetComponent<PlayerLogic>().SetSpeed(speed * speedModifier);
         transform.root.GetComponent<ShootingController>().statChange();
         transform.root.GetComponent<PlayerControl>().statChange();
+        GetComponent<AudioSource>().Play();
         Invoke("DestroySpell", spell.spellDuration);
     }
 

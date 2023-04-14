@@ -27,6 +27,7 @@ public class AethericLeap : MonoBehaviour
             transform.position = target;
             StartCoroutine(Teleport());
         }
+        GetComponent<AudioSource>().Play();
     }
  
     IEnumerator Teleport()

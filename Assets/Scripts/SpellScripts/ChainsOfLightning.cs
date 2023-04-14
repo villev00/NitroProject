@@ -33,6 +33,7 @@ public class ChainsOfLightning : MonoBehaviour
         }
 
         Invoke("DestroySpell", spell.spellDuration);
+        GetComponent<AudioSource>().Play();
     }
 
     void Update()
