@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     {
         pv = GetComponent<PhotonView>();
         damage = 25;
+        //damage = sLogic.GetDamage();
         if(pv.IsMine)
             Invoke("DestroySpell",5);
     }
@@ -25,12 +26,12 @@ public class Bullet : MonoBehaviour
         {
             damage *= 2;
             Debug.Log("Headshot");
-            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage);
+            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, 0);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Bodyshot");
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, 0);
         }
         
         DestroySpell();
