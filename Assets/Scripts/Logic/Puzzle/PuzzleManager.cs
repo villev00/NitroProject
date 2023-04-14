@@ -58,13 +58,11 @@ public class PuzzleManager : MonoBehaviour
 
     public void CheckAllPuzzles()
     {
-        player.GetComponent<PuzzleSolver>().CheckOtherSolves();
+        player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
         if (pData.isSolved1 && pData.isSolved2) //&& pData.isSolved3)
         {
             Debug.Log("All puzzles solved");
             pData.allPuzzlesSolved = true;
-
-          
         }
         if (pData.hasOtherPlayerSolvedPuzzles)
             Debug.Log("Other player solved all");

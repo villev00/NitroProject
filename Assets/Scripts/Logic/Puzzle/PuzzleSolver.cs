@@ -37,9 +37,9 @@ public class PuzzleSolver : MonoBehaviour
         PuzzleManager.instance.CheckAllPuzzles();
 
     }
-    public void CheckOtherSolves()
+    public void OtherSolvedPuzzles()
     {
-        if (pv.IsMine)
+        if (pv.IsMine && PuzzleManager.instance.pData.allPuzzlesSolved)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_AllSolved", RpcTarget.Others);
     }
     public void DestroyWall()
