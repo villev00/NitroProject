@@ -39,7 +39,7 @@ public class PuzzleSolver : MonoBehaviour
     }
     public void OtherSolvedPuzzles()
     {
-        if (pv.IsMine && PuzzleManager.instance.pData.allPuzzlesSolved)
+        if (PuzzleManager.instance.pData.allPuzzlesSolved)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_AllSolved", RpcTarget.Others);
     }
     public void DestroyWall()
