@@ -16,6 +16,7 @@ public class BossSpawner : MonoBehaviour
         {
             SpawnBoss();
             hasSpawnedBoss = true;
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
     public void SpawnBoss()
