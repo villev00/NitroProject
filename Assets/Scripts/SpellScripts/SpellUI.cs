@@ -88,7 +88,6 @@ public class SpellUI : MonoBehaviour
         }                                                  
         else
         {
-            Debug.Log("Spell not on cd" +spell.spellName);
             //Spell is not on cooldown, remove slider
             cooldownSliders[sliderId].value = 0;
         }

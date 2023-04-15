@@ -64,6 +64,7 @@ public class PlayerUI : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         gameOverPanel.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(ReturnToMenu);
+        Debug.Log(gameOverPanel.transform.GetChild(0).GetComponent<Button>());
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -71,6 +72,8 @@ public class PlayerUI : MonoBehaviour
     {
         gameCompletePanel.SetActive(true);
         gameCompletePanel.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(ReturnToMenu);
+        Debug.Log(gameOverPanel.transform.GetChild(0).GetComponent<Button>());
+        Debug.Log(gameCompletePanel.transform.GetChild(0).GetComponent<Button>());
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
