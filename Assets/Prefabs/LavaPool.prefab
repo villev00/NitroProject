@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3094086717153277664}
   - component: {fileID: 1989603223956645399}
   - component: {fileID: 4107677002982369548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973d8ca2ccf62c7408e38f0a33ae8d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magmaPoolSound: {fileID: 8300000, guid: 7143268172057c144bb596799d50ab38, type: 3}
   magmaPoolDamage: 10
 --- !u!135 &4107677002982369548
 SphereCollider:
@@ -122,7 +123,7 @@ SphereCollider:
   m_GameObject: {fileID: 5023890554412589675}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -135,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115701340734645549}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LavaPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,9 +166,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 257305915552207340}
     m_Modifications:
+    - target: {fileID: 134360, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 136326, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 146530, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 168262, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Name
       value: RingOfFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 168262, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 195822, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 197666, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 462742, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 486202, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_RootOrder

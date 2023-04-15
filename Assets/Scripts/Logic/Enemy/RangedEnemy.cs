@@ -33,9 +33,8 @@ public class RangedEnemy : MonoBehaviour
 
     private void Start()
     {
-        rangedDamage = 15;
         attackRange = 10f;
-        timeBetweenAttacks = 1.2f;
+        timeBetweenAttacks = 3f;
         alreadyAttacked = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -92,8 +91,7 @@ public class RangedEnemy : MonoBehaviour
         {
             GameObject projectileObj = Instantiate(projectile, gun.position, Quaternion.identity);
             Rigidbody rb = projectileObj.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            player.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
+            rb.AddForce(transform.forward * 16f, ForceMode.Impulse);
             alreadyAttacked = true;
             StartCoroutine(ResetAttack());
             Destroy(projectileObj, 5f);

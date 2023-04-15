@@ -32,7 +32,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeRange = 2f;
-        meleeDamage = 10;
+        meleeDamage = 5;
         timeBetweenAttacks = 1.2f;
         alreadyAttacked = false;
     }
@@ -89,7 +89,7 @@ public class MeleeEnemy : MonoBehaviour
         {
 
             // check if the player is within range for a melee attack
-            if (Vector3.Distance(transform.position, player.position) <= meleeRange)
+            if (Vector3.Distance(transform.position, player.position) <= meleeRange + 1)
             {                
                 // apply damage to the player
              //   Debug.Log("Attacking Player");

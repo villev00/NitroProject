@@ -4,12 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Logic.Enemy;
 using UnityEngine;
+using Photon.Pun;
 
 public class PuzzleManager : MonoBehaviour
 {
    // create singleton
     public static PuzzleManager instance;
-   public PuzzleData pData = new PuzzleData();
+    public PuzzleData pData = new PuzzleData();
 
     public GameObject player;
     //public event System.Action OnPuzzle3Solved;
@@ -25,10 +26,9 @@ public class PuzzleManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-   public void CheckPuzzle1()
-    {
-        
+   
+    public void CheckPuzzle1()
+    {      
         if (pData.isSolved1)
         {
             Debug.Log("Puzzle 1 solved");
@@ -58,6 +58,7 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
+  
     public void CheckAllPuzzles()
     {
        
@@ -67,14 +68,15 @@ public class PuzzleManager : MonoBehaviour
             pData.allPuzzlesSolved = true;
 
             if (pData.hasOtherPlayerSolvedPuzzles)
-                Debug.Log("Other player solved all");
-            GameObject.FindGameObjectsWithTag("Fence")[0].GetComponent<FenceClose>().OpenFence();
-            GameObject.FindGameObjectsWithTag("Fence")[1].GetComponent<FenceClose>().OpenFence();
-        }
-       
+            {
+                Debug.Log("Other player solved all");               
+            }               
+        }       
     }
     
-
-   
-  
+    public void OpenFences()
+    {                                
+                GameObject.FindGameObjectWithTag("Fence").GetComponent<FenceClose>().OpenFence();
+                GameObject.FindGameObjectWithTag("Fence2").GetComponent<FenceClose>().OpenFence();                    
+    }
 }

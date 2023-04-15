@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 050a01ecdcafff0479adc970f236b377, type: 2}
+  - {fileID: 2100000, guid: 3b43236ca1f91184bb6b2eb3c2481a21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,11 +107,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 193704, guid: 2da838c9213cecc48a512514d0b309e5, type: 3}
       propertyPath: m_Name
-      value: AthreaRune Variant
+      value: ClueAether
       objectReference: {fileID: 0}
     - target: {fileID: 193704, guid: 2da838c9213cecc48a512514d0b309e5, type: 3}
       propertyPath: m_TagString
-      value: AetherRune
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 404720, guid: 2da838c9213cecc48a512514d0b309e5, type: 3}
       propertyPath: m_RootOrder

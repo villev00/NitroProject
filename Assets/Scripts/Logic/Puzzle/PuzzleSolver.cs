@@ -62,7 +62,10 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_AllSolved()
     {
         PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles = true;
-       
+        if (PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles && PuzzleManager.instance.pData.allPuzzlesSolved)
+        {
+            PuzzleManager.instance.OpenFences();
+        }
 
     }
     void CheckAll()
