@@ -48,7 +48,7 @@ public class SpellUI : MonoBehaviour
         }
     }
 
-
+    //jos samassa spellslotissa on kaksi spelliä cd, niin timer visuaali kusee
     public void ChangeSpellSet(Spell[] spells)
     {
         if (!spellManager.GetComponent<PhotonView>().IsMine) return;
@@ -83,11 +83,12 @@ public class SpellUI : MonoBehaviour
         // If a coroutine is already running for this spell slot, don't start another one
         else if (allCooldowns[cdId] > 0 && cooldownId.Contains(cdId))
         {
-            Debug.Log("Coroutine already running for spell slot " + sliderId);
+            Debug.Log("Coroutine already running for spell " + spell.spellName);
             cooldownSliders[sliderId].value = allCooldowns[cdId] / spell.spellCooldown;
         }                                                  
         else
         {
+            Debug.Log("Spell not on cd" +spell.spellName);
             //Spell is not on cooldown, remove slider
             cooldownSliders[sliderId].value = 0;
         }

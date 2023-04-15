@@ -31,7 +31,7 @@ public class PlayerLogic : MonoBehaviour
     }
     private void Start()
     {
-        Invoke("FindPlayers", 1);
+        Invoke("FindPlayers", 2);
       
     }
     void FindPlayers()
