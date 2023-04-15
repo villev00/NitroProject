@@ -3,7 +3,9 @@ guid: 211bfefcced664040a8af240d1c25ee9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - runeSolvedClip: {fileID: 8300000, guid: 623c6e85a13ffc042a998a53dabe7157, type: 3}
+  - runeFailedClip: {fileID: 8300000, guid: c10524da3d1f93e40932b2ea6f3ca4b9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

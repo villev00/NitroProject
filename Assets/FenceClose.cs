@@ -5,6 +5,8 @@ using UnityEngine;
 public class FenceClose : MonoBehaviour
 {
     public Animator animator;
+    [SerializeField]
+    AudioClip openGate;
 
     void Start()
     {
@@ -14,5 +16,10 @@ public class FenceClose : MonoBehaviour
     public void OpenFence()
     {
         animator.SetBool("OpenFence", true);
+        AudioManager.PlaySound(openGate, false);
     } 
+
+   
+
+    
 }
