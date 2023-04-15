@@ -30,8 +30,9 @@ public class ShootingController : MonoBehaviour
         sLogic = GetComponent<ShootingLogic>();
         playerCamera = Camera.main.GetComponent<Camera>();
         //playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
-       // playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
-        bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
+        //playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
+        //bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
+        bulletSpawn = Camera.main.transform.GetChild(0).GetChild(0).transform;
         statChange += FetchData;
     }
 

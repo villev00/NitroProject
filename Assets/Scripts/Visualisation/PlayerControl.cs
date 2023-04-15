@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Events;
 
+
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour
     Transform orientation;
     Transform cameraHolder;
     public UnityAction statChange;
+    float time;
 
     [SerializeField]
     float moveSpeed;
@@ -49,6 +51,7 @@ public class PlayerControl : MonoBehaviour
         {
             Camera.main.GetComponent<CameraRotate>().FindPlayer(orientation, cameraHolder);
         }
+        time = 0;
     }
 
 
@@ -57,18 +60,25 @@ public class PlayerControl : MonoBehaviour
         if (!pv.IsMine) return;
         PlayerInput();
         GetDirection();
+        time += Time.deltaTime;
         //HandleJump();
         if (controller.isGrounded)
         {
+            time = 0;
             moveDirection.y = -1;
             if (Input.GetKeyDown("space"))
             {
-                moveDirection.y += 10; // jumpForcee is not updated correctly
+                moveDirection.y += 12; // jumpForcee is not updated correctly
             }
         }
         else
         {
-            moveDirection.y -= 4 * gravity * Time.deltaTime;
+            // Gravity
+            // moveDirection.y -= 4 * gravity * Time.deltaTime;
+            //moveDirection.y -= 2 + gravity * Mathf.Pow(time,2);
+            // V0 + at
+            moveDirection.y += 0.3f - gravity * time;
+            Debug.Log(-gravity * time);
         }
         MoveCharacter();
     }
