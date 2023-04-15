@@ -10,7 +10,9 @@ namespace Logic.Enemy
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField]
-        private Transform[] spawnPoint;      
+        private Transform[] spawnPoint1;
+        [SerializeField]
+        private  Transform[] spawnPoint2;
 
         [SerializeField]
         private SpawnData spawnData = new SpawnData();
@@ -28,6 +30,8 @@ namespace Logic.Enemy
             puzzleData = PuzzleManager.instance.pData;
             spawnData.enemyList.Add(spawnData.fireEnemyMelee);
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
+            spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
+            spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
 
             // add deylay to start spawning enemies 
             StartCoroutine(SpawnEnemyCoroutine());
@@ -45,8 +49,7 @@ namespace Logic.Enemy
 
             if (puzzleData.isSolved2 == true)
             {
-                spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
-                spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
+                
             }
 
             if (puzzleData.isSolved3 == true)
@@ -58,8 +61,10 @@ namespace Logic.Enemy
         public void SpawnEnemy()
         {
             int randomEnemy = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
-            int randomSpawnPoint = UnityEngine.Random.Range(0, spawnPoint.Length);
-            Instantiate(spawnData.enemyList[randomEnemy], spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+            int randomSpawnPoint = UnityEngine.Random.Range(0, spawnPoint1.Length);
+            int randomSpawnPoint2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
+            Instantiate(spawnData.enemyList[randomEnemy], spawnPoint1[randomSpawnPoint].position, Quaternion.identity);
+            Instantiate(spawnData.enemyList[randomEnemy], spawnPoint2[randomSpawnPoint2].position, Quaternion.identity);
         }       
 
        private IEnumerator SpawnEnemyCoroutine()
@@ -67,33 +72,22 @@ namespace Logic.Enemy
         while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
         {
             int randomEnemyIndex = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
-            int randomSpawnPointIndex = UnityEngine.Random.Range(0, spawnPoint.Length);
-            Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint[randomSpawnPointIndex].position, Quaternion.identity);
+            int randomSpawnPointIndex1 = UnityEngine.Random.Range(0, spawnPoint1.Length);
+            int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
+            
+            Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint1[randomSpawnPointIndex1].position, Quaternion.identity);
+            Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
             spawnData.spawnCount++;
             yield return new WaitForSeconds(spawnData.spawnRate);
         }
     }
+       
+       
+       public void minusEnemyCount()
+       {
+           spawnData.spawnCount--;
+       }
 
-        private void Update()
-        {
-
-            //if (Input.GetKeyDown(KeyCode.J))
-            //{
-            //    puzzleData.isSolved1 = true;
-            //    addEnemyToList();
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.H))
-            //{
-            //    puzzleData.isSolved2 = true;
-            //    addEnemyToList();
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.K))
-            //{
-            //    puzzleData.isSolved3 = true;
-            //}
-
-        }
+      
     }
 }
