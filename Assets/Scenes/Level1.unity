@@ -13031,11 +13031,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 478960, guid: 23fcbe63e1a3afc45ac8f42a5198761e, type: 3}
   m_PrefabInstance: {fileID: 304469059}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &306041256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 189982, guid: a475e72db2f78ba41b557ca01e7ed990, type: 3}
-  m_PrefabInstance: {fileID: 1941700036}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &307108896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57885,9 +57880,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleCauldron: {fileID: 0}
-  brokenWall: {fileID: 1414699747}
-  wall: {fileID: 306041256}
-  rubble: {fileID: 1458526469}
+  brokenWall: {fileID: 1473685860}
+  wall: {fileID: 178532220}
+  rubble: {fileID: 53256701}
   wallBreakClip: {fileID: 8300000, guid: bc1bccbc462da0743a60e64f714c0809, type: 3}
   stopPosition: {x: 12.42, y: 0.14, z: -54.044}
   audioSource: {fileID: 706962149}
@@ -58797,11 +58792,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 413600, guid: 2b3934645704be845b6860aa592b82eb, type: 3}
   m_PrefabInstance: {fileID: 1414613613}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1414699747 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 162626, guid: c78cd7eb80565634c9127229d650a564, type: 3}
-  m_PrefabInstance: {fileID: 1186432111}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1417907142
 PrefabInstance:
@@ -60162,11 +60152,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 491964, guid: ab36741255716d949845f790041d721f, type: 3}
   m_PrefabInstance: {fileID: 1457254691}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1458526469 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 195378, guid: 7f3e28fd8f7ec044aa81238b1b58a5da, type: 3}
-  m_PrefabInstance: {fileID: 1410487022}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1459538222
 PrefabInstance:
