@@ -21,9 +21,14 @@ public class SpellUI : MonoBehaviour
     [SerializeField] public PhotonView pv;
 
     Spell[] currentSpells= new Spell[3];
-
+    private void Start()
+    {
+        activeSlots = fireSlots;
+    }
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         if (!pv.IsMine) return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

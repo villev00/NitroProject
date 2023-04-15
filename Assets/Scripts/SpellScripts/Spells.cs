@@ -30,7 +30,6 @@ public class Spells : MonoBehaviour
     void SetupSpells()
     {
         spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
-        spellUI.activeSlots = spellUI.fireSlots;
         for (int i = 0; i < fireSpells.Length; i++)
         {
             fireSpells[i].isSpellOnCooldown = false;
