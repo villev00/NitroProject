@@ -2,6 +2,7 @@
 using System.Collections;
 using Data;
 using UnityEngine;
+using Photon.Pun;
 
 
 
@@ -19,13 +20,12 @@ namespace Logic.Enemy
 
         [SerializeField] private PuzzleData puzzleData;
        
-
         private bool stopSpawning = false;
-        
-        
-        
+        int playerIndex;
+              
         void Start()
         {
+            playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
             // get puzzle data from puzzle manager
             puzzleData = PuzzleManager.instance.pData;
             spawnData.enemyList.Add(spawnData.fireEnemyMelee);
@@ -68,19 +68,25 @@ namespace Logic.Enemy
         }       
 
        private IEnumerator SpawnEnemyCoroutine()
-    {
-        while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
-        {
-            int randomEnemyIndex = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
-            int randomSpawnPointIndex1 = UnityEngine.Random.Range(0, spawnPoint1.Length);
-            int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
-            
-            Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint1[randomSpawnPointIndex1].position, Quaternion.identity);
-            Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
-            spawnData.spawnCount++;
-            yield return new WaitForSeconds(spawnData.spawnRate);
-        }
-    }
+       {
+           
+            while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
+            {
+                int randomEnemyIndex = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
+                if (playerIndex == 1)
+                {
+                    int randomSpawnPointIndex1 = UnityEngine.Random.Range(0, spawnPoint1.Length);
+                    Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint1[randomSpawnPointIndex1].position, Quaternion.identity);
+                }
+                else if (playerIndex == 2)
+                {
+                    int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
+                    Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
+                }                                     
+                spawnData.spawnCount++;
+                yield return new WaitForSeconds(spawnData.spawnRate);
+            }
+       }
        
        
        public void minusEnemyCount()

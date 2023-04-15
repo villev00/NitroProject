@@ -27,8 +27,7 @@ public class RangedEnemy : MonoBehaviour
     private void Awake()
     {
         rangedEnemy = GetComponent<NavMeshAgent>();
-        enemyHealth = GetComponent<EnemyHealth>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemyHealth = GetComponent<EnemyHealth>();      
         anim = GetComponent<Animator>();
     }
 
@@ -38,6 +37,7 @@ public class RangedEnemy : MonoBehaviour
         attackRange = 10f;
         timeBetweenAttacks = 1.2f;
         alreadyAttacked = false;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
