@@ -155,11 +155,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 40102689496708850}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.6859705
-  m_Height: 3.26
+  m_Height: 2.92
   m_Direction: 1
-  m_Center: {x: -0.032149494, y: 1.6012173, z: 0}
+  m_Center: {x: -0.032149494, y: 1.56, z: 0}
 --- !u!54 &3615701416976388332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -217,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 1397897947513670, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
       propertyPath: m_Name
       value: SM_Chr_ZombieBoss_Brute_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834365163992442, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
+      propertyPath: m_TagString
+      value: BossHead
       objectReference: {fileID: 0}
     - target: {fileID: 4741179329814978, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
       propertyPath: m_RootOrder
@@ -285,7 +289,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.27
+  m_Radius: 1.49
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6782714603949037394
 PrefabInstance:

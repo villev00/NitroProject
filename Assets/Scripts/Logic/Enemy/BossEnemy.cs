@@ -133,7 +133,7 @@ public class BossEnemy : MonoBehaviour
             {
                 // apply damage to the player
                 player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
-                Debug.Log("HeavySwing");
+                //Debug.Log("HeavySwing");
             }
 
             heavySwingUsed = true;
@@ -143,13 +143,13 @@ public class BossEnemy : MonoBehaviour
     }
     private void MagmaPool()
     {
-        Debug.Log("Magma Pool");
+        //Debug.Log("Magma Pool");
         GameObject magmaPool = Instantiate(magmaPoolPrefab, player.position, Quaternion.identity);
         Destroy(magmaPool, magmaPoolDuration);
     }
     private void HomingDeath()
     {
-        Debug.Log("Homing Death");
+        //Debug.Log("Homing Death");
  
         // Create a homing death projectile at the boss's position
         GameObject homingDeath = Instantiate(homingDeathPrefab, staff.position, Quaternion.identity);
