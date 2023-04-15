@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,39 +29,44 @@ public class BossEnemy : MonoBehaviour
     public float homingDeathLifetime;
     public float homingDeathSeekRadius;
 
+    public float SwitchPlayerTime;
+
     bool heavySwingUsed;
     bool magmaPoolUsed;
     bool homingDeathUsed;
    
     public bool playerInAttackRange;
-    
+    int playerIndex;
     private void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+    {      
         bossEnemy = GetComponent<NavMeshAgent>();
     }
 
     private void Start()
     {
-     heavySwingRange = 2f;
-     heavySwingDmg = 30;
-     timeBetweenAttacks = 2f;
+        playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
+        SwitchPlayerTime = Random.Range(5f, 12f);
+        InvokeRepeating("SwitchPlayer", 0f, SwitchPlayerTime);
 
-     magmaPoolDuration = 10f;
-     magmaPoolDamage = 10;
+        heavySwingRange = 2f;
+        heavySwingDmg = 30;
+        timeBetweenAttacks = 2f;
 
-     homingDeathSpeed = 5f;
-     homingDeathDmg = 20;
-     homingDeathLifetime = 5f;
-     homingDeathSeekRadius = 5f;
+        magmaPoolDuration = 10f;
+        magmaPoolDamage = 10;
+            
+        homingDeathSpeed = 5f;
+        homingDeathDmg = 20;
+        homingDeathLifetime = 5f;
+        homingDeathSeekRadius = 5f;
 
-     heavySwingUsed = false;
-     magmaPoolUsed = false;
-     homingDeathUsed = false;
-}
+        heavySwingUsed = false;
+        magmaPoolUsed = false;
+        homingDeathUsed = false;
+    }
 
     private void Update()
-    {
+    {        
         if (bossEnemy.enabled == false) return;            
         StartCoroutine(AttackPlayer());
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
@@ -174,4 +180,16 @@ public class BossEnemy : MonoBehaviour
         homingDeathUsed = false;
     }
 
+    private void SwitchPlayer()
+    {
+        SwitchPlayerTime = Random.Range(5f, 12f);
+        if (player == GameObject.FindGameObjectsWithTag("Player")[0].transform)
+        {
+            player = GameObject.FindGameObjectsWithTag("Player")[1].transform;
+        }
+        else
+        {
+            player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        }              
+    }
 }
