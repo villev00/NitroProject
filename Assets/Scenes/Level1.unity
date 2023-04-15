@@ -25136,6 +25136,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 0}
+  runeFailedClip: {fileID: 0}
 --- !u!1001 &609429727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25688,6 +25690,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 0}
+  runeFailedClip: {fileID: 0}
 --- !u!1001 &617072122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33753,6 +33757,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 0}
+  runeFailedClip: {fileID: 0}
 --- !u!4 &810668302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 476094, guid: 323c68ad1928c8847a6bd6ea4a553bc9, type: 3}
@@ -54171,6 +54177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1304336955}
+  openGate: {fileID: 8300000, guid: 5dd23395682f2e64cb3f0c031d76888f, type: 3}
 --- !u!95 &1304336955
 Animator:
   serializedVersion: 5
@@ -56397,6 +56404,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 0}
+  runeFailedClip: {fileID: 0}
 --- !u!1001 &1363134020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59256,6 +59265,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 8300000, guid: 623c6e85a13ffc042a998a53dabe7157, type: 3}
+  runeFailedClip: {fileID: 8300000, guid: c10524da3d1f93e40932b2ea6f3ca4b9, type: 3}
 --- !u!4 &1437292817
 Transform:
   m_ObjectHideFlags: 0
@@ -61567,6 +61578,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 0}
+  runeFailedClip: {fileID: 0}
 --- !u!1001 &1504852967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73438,6 +73451,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 0}
+  runeFailedClip: {fileID: 0}
 --- !u!1 &1784658357
 GameObject:
   m_ObjectHideFlags: 0
@@ -80159,6 +80174,8 @@ MonoBehaviour:
     fireSumon: 0
     lightningSumon: 0
     aetherSumon: 0
+  runeSolvedClip: {fileID: 8300000, guid: 623c6e85a13ffc042a998a53dabe7157, type: 3}
+  runeFailedClip: {fileID: 8300000, guid: c10524da3d1f93e40932b2ea6f3ca4b9, type: 3}
 --- !u!4 &1831636950
 Transform:
   m_ObjectHideFlags: 0
@@ -99021,6 +99038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2043243016}
+  openGate: {fileID: 8300000, guid: 5dd23395682f2e64cb3f0c031d76888f, type: 3}
 --- !u!1001 &2045213912
 PrefabInstance:
   m_ObjectHideFlags: 0
