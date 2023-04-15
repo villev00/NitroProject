@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyShootingLogic : MonoBehaviour
 {
  
-    public int rangedDamage = 15;
+    public int rangedDamage = 5;
 
    
     private void OnTriggerEnter(Collider other)

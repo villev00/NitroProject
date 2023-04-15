@@ -32,7 +32,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeRange = 2f;
-        meleeDamage = 10;
+        meleeDamage = 5;
         timeBetweenAttacks = 1.2f;
         alreadyAttacked = false;
     }
