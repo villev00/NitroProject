@@ -36,16 +36,17 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyHead"))
         {
             damage *= 2;
-            Debug.Log("Headshot");
             collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, 0);
             AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Bodyshot");
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, 0);
         }
-        
+        else if (collision.gameObject.CompareTag("Boss"))
+        {
+            collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage, 0);
+        }
         DestroySpell();
     }
 
