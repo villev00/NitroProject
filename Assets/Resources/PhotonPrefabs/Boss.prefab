@@ -155,11 +155,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 40102689496708850}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.6859705
-  m_Height: 2.92
+  m_Enabled: 1
+  m_Radius: 0.71
+  m_Height: 3.22
   m_Direction: 1
-  m_Center: {x: -0.032149494, y: 1.56, z: 0}
+  m_Center: {x: -0.032149494, y: 1.73, z: 0}
 --- !u!54 &3615701416976388332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,9 +218,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1291258421288334, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 1397897947513670, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
       propertyPath: m_Name
       value: SM_Chr_ZombieBoss_Brute_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791394313736374, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 1834365163992442, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
       propertyPath: m_TagString
@@ -277,6 +285,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4741179329814978, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
   m_PrefabInstance: {fileID: 4276724868934561000}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4277695065447461222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1291258421288334, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
+  m_PrefabInstance: {fileID: 4276724868934561000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &866760776775058031
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4277695065447461222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18
+  m_Height: 1.25
+  m_Direction: 0
+  m_Center: {x: -0.57, y: 0, z: 0}
 --- !u!1 &4278277549644093842 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1834365163992442, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
@@ -295,6 +322,25 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.23
   m_Center: {x: -0.04, y: 0.03, z: 0}
+--- !u!1 &4278322719517670494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1791394313736374, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
+  m_PrefabInstance: {fileID: 4276724868934561000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &3512434796142440174
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278322719517670494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18
+  m_Height: 1.25
+  m_Direction: 0
+  m_Center: {x: 0.57, y: 0, z: 0}
 --- !u!1001 &6782714603949037394
 PrefabInstance:
   m_ObjectHideFlags: 0
