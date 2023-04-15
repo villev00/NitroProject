@@ -63,9 +63,9 @@ public class BlazeImpact : MonoBehaviour
             firstHit = true;
             StartCoroutine(DestroySpell());
             if(collision.gameObject.GetComponent<EnemyHealth>()!=null)
-                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, Element.Fire);
+                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, spell.spellElement);
             if (collision.gameObject.GetComponent<BossHealth>() != null)
-                collision.gameObject.GetComponent<BossHealth>().TakeDamage(spell.spellDamage);
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(spell.spellDamage, spell.spellElement);
 
 
         }
@@ -89,7 +89,7 @@ public class BlazeImpact : MonoBehaviour
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                 Debug.Log("Explosion hit: " + other.name);
-                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, Element.Fire);
+                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, spell.spellElement);
             }
                
            
@@ -97,7 +97,7 @@ public class BlazeImpact : MonoBehaviour
         if (other.gameObject.CompareTag("Boss"))
         {                         
                 Debug.Log("Explosion hit: " + other.name);
-                other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage);         
+                other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage, spell.spellElement);         
         }
 
     }

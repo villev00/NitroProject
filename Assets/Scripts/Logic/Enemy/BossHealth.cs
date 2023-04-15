@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using data;
 using Photon.Pun;
+using static RuneData;
 
 public class BossHealth : EnemyData
 {
@@ -14,27 +15,28 @@ public class BossHealth : EnemyData
     }
 
         [PunRPC]
-    void RPC_TakeDamage(float damage, Element element)
+    void RPC_TakeDamage(float damage)
     {
 
 
-        health -= damageResistance.CalculateDamageWithResistance(damage, element);
+        health -= damage;
         if (health <= 0)
         {
             Debug.Log("Enemy Died");
-            Die();
+            if (pv.IsMine) pv.RPC("RPC_Die", RpcTarget.All);
         }
 
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage, Element element)
     {
-        if(pv.IsMine) pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+      //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
+        pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
     }
 
-
-    public void Die()
+    [PunRPC]
+    void RPC_Die()
     {
         Destroy(gameObject);
     }

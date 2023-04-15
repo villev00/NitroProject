@@ -42,7 +42,7 @@ public class MagneticGrasp : MonoBehaviour
         if (transform.parent.GetComponent<EnemyHealth>() != null)
         {
             isEnemy = true;
-            transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, Element.Aether);
+            transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, spell.spellElement);
             parentNav = transform.root.GetComponent<NavMeshAgent>();
             parentRb = transform.root.GetComponent<Rigidbody>();
         }
@@ -70,7 +70,7 @@ public class MagneticGrasp : MonoBehaviour
                 parentNav.enabled = false;
                 parentRb.isKinematic = false;
                 parentRb.useGravity = false;
-                transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, Element.Aether);
+                transform.parent.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, spell.spellElement);
 
             }
            

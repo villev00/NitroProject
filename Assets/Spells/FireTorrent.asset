@@ -19,6 +19,6 @@ MonoBehaviour:
   spellManaCost: 15
   spellDamage: 10
   spellAreaDamage: 0
-  spellCooldown: 1
+  spellCooldown: 20
   isSpellOnCooldown: 0
-  spellDuration: 10
+  spellDuration: 5

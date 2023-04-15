@@ -25,6 +25,7 @@ public class Spell : ScriptableObject
         isSpellOnCooldown = false;
         Debug.Log(spellName+" ready");
     }
+ 
 }
 
 
