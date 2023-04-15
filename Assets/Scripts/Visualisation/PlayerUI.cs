@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -63,11 +64,15 @@ public class PlayerUI : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         gameOverPanel.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(ReturnToMenu);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void GameCompletePanel()
     {
         gameCompletePanel.SetActive(true);
         gameCompletePanel.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(ReturnToMenu);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     void ReturnToMenu()
     {
