@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c68b4fdceed5746aa1b60edf794992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 1000
+  maxHealth: 1000
   moveSpeed: 8
   damageResistance: {fileID: 0}
 --- !u!114 &1666924192973013761
@@ -214,6 +214,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5785193313596478855}
     m_Modifications:
+    - target: {fileID: 1041092485402164, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1397897947513670, guid: 602e2bafea94085478f3eb9b58f4f7b6, type: 3}
       propertyPath: m_Name
       value: SM_Chr_ZombieBoss_Brute_01
@@ -289,7 +293,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.49
+  m_Radius: 0.23
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6782714603949037394
 PrefabInstance:
