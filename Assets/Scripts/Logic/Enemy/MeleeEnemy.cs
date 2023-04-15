@@ -22,8 +22,7 @@ public class MeleeEnemy : MonoBehaviour
     EnemyHealth enemyHealth;
 
     private void Awake()
-    {         
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+    {                
         meleeEnemy = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyHealth = GetComponent<EnemyHealth>();
@@ -31,6 +30,7 @@ public class MeleeEnemy : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeRange = 2f;
         meleeDamage = 10;
         timeBetweenAttacks = 1.2f;

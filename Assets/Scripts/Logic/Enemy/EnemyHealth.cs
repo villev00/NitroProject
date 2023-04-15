@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using data;
+using Data;
+using Logic.Enemy;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyHealth : EnemyData
 {
     public float stunDuration;
+
+   
+    
+    
+    
+    
+    
 
     Animator anim;
     public bool isStunned = false;
@@ -17,7 +26,9 @@ public class EnemyHealth : EnemyData
     }
     private void Start()
     {
+        
         stunDuration = 2f;
+       
     }
 
     public void TakeDamage(float damage, Element element)
@@ -49,6 +60,10 @@ public class EnemyHealth : EnemyData
         this.gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false;
         anim.SetBool("isDead", true);
         GetComponent<NavMeshAgent>().enabled = false;
+        // get nearst enemySpawner and remove this enemy from the list
+        
+
+
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }

@@ -65,9 +65,13 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log("All puzzles solved");
             pData.allPuzzlesSolved = true;
+
+            if (pData.hasOtherPlayerSolvedPuzzles)
+                Debug.Log("Other player solved all");
+                GameObject.FindGameObjectsWithTag("Fence")[0].GetComponent<FenceClose>().OpenFence();
+                GameObject.FindGameObjectsWithTag("Fence")[1].GetComponent<FenceClose>().OpenFence();
         }
-        if (pData.hasOtherPlayerSolvedPuzzles)
-            Debug.Log("Other player solved all");
+       
     }
     
 
