@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3094086717153277664}
   - component: {fileID: 1989603223956645399}
   - component: {fileID: 4107677002982369548}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115701340734645549}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: LavaPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,15 +168,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 134360, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 136326, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 146530, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 168262, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Name
@@ -184,15 +184,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 168262, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 195822, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 197666, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 462742, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_LocalPosition.y

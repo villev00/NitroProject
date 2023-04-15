@@ -71,13 +71,7 @@ public class PuzzleManager : MonoBehaviour
                 Debug.Log("Other player solved all");
                 GameObject.FindGameObjectsWithTag("Fence")[0].GetComponent<FenceClose>().OpenFence();
                 GameObject.FindGameObjectsWithTag("Fence")[1].GetComponent<FenceClose>().OpenFence();
-            }
-                
-        }
-       
-    }
-    
-
-   
-  
+            }               
+        }       
+    }   
 }
