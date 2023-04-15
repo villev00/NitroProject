@@ -57881,10 +57881,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzleCauldron: {fileID: 0}
   brokenWall: {fileID: 1473685860}
-  wall: {fileID: 178532220}
+  wall: {fileID: 1530546045}
   rubble: {fileID: 53256701}
   wallBreakClip: {fileID: 8300000, guid: bc1bccbc462da0743a60e64f714c0809, type: 3}
-  stopPosition: {x: 12.42, y: 0.14, z: -54.044}
+  stopPosition: {x: 10.40192, y: 0.14, z: -5.777141}
   audioSource: {fileID: 706962149}
   speed: 5
 --- !u!95 &1398602983
