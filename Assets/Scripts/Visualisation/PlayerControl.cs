@@ -78,7 +78,7 @@ public class PlayerControl : MonoBehaviour
             //moveDirection.y -= 2 + gravity * Mathf.Pow(time,2);
             // V0 + at
             moveDirection.y += 0.3f - gravity * time;
-            Debug.Log(-gravity * time);
+          //  Debug.Log(-gravity * time);
         }
         MoveCharacter();
     }

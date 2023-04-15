@@ -81,7 +81,7 @@ public class MeleeEnemy : MonoBehaviour
 
     private void StartAttack()
     {
-        Debug.Log("attacking");
+      //  Debug.Log("attacking");
        
         transform.LookAt(player);
         
@@ -92,7 +92,7 @@ public class MeleeEnemy : MonoBehaviour
             if (Vector3.Distance(transform.position, player.position) <= meleeRange)
             {                
                 // apply damage to the player
-                Debug.Log("Attacking Player");
+             //   Debug.Log("Attacking Player");
                 player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);              
             }            
             alreadyAttacked = true;

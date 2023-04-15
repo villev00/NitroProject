@@ -83,7 +83,7 @@ public class RangedEnemy : MonoBehaviour
 
     private void AttackPlayer()
     {
-        Debug.Log("Start attack");
+       // Debug.Log("Start attack");
         rangedEnemy.SetDestination(transform.position);
         
         transform.LookAt(player);
