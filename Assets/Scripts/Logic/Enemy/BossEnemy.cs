@@ -16,42 +16,55 @@ public class BossEnemy : MonoBehaviour
     public LayerMask Player;
 
  
-    public float heavySwingRange = 2f;
-    public int heavySwingDmg = 30;
-    public float timeBetweenAttacks = 2f; 
+    public float heavySwingRange;
+    public int heavySwingDmg;
+    public float timeBetweenAttacks; 
 
-    public float magmaPoolDuration = 10f;
-    public int magmaPoolDamage = 10;
+    public float magmaPoolDuration;
+    public int magmaPoolDamage;
 
-    public float homingDeathSpeed = 5f;
-    public int homingDeathDmg = 20;
-    public float homingDeathLifetime = 5f;
-    public float homingDeathSeekRadius = 5f;
+    public float homingDeathSpeed;
+    public int homingDeathDmg;
+    public float homingDeathLifetime;
+    public float homingDeathSeekRadius;
 
     bool heavySwingUsed;
     bool magmaPoolUsed;
     bool homingDeathUsed;
    
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
-
+    public bool playerInAttackRange;
+    
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         bossEnemy = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+     heavySwingRange = 2f;
+     heavySwingDmg = 30;
+     timeBetweenAttacks = 2f;
+
+     magmaPoolDuration = 10f;
+     magmaPoolDamage = 10;
+
+     homingDeathSpeed = 5f;
+     homingDeathDmg = 20;
+     homingDeathLifetime = 5f;
+     homingDeathSeekRadius = 5f;
+
+     heavySwingUsed = false;
+     magmaPoolUsed = false;
+     homingDeathUsed = false;
+}
+
     private void Update()
     {
-        if (bossEnemy.enabled == false) return;
-
-        //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
-
-        if (playerInSightRange) StartCoroutine(AttackPlayer());
-
-        if (playerInAttackRange && playerInSightRange) HeavySwing();
+        if (bossEnemy.enabled == false) return;            
+        StartCoroutine(AttackPlayer());
+        playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
+        if (playerInAttackRange == true) HeavySwing();
     }
     
 
