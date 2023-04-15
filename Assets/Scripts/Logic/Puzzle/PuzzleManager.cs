@@ -26,7 +26,17 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-   public void CheckPuzzle1()
+    private void Update()
+    {
+        if (Input.GetKeyDown("g"))
+        {
+            Debug.Log("vittumage");
+            GameObject.FindGameObjectsWithTag("Fence")[0].GetComponent<FenceClose>().OpenFence();
+            GameObject.FindGameObjectsWithTag("Fence")[1].GetComponent<FenceClose>().OpenFence();
+        }
+    }
+
+    public void CheckPuzzle1()
     {
         
         if (pData.isSolved1)
