@@ -9,9 +9,7 @@ public class GameSetupController : MonoBehaviour
     void Start()
     {
         playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
-        CreatePlayer();
-        if(PhotonNetwork.IsMasterClient)
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Boss"), spawnLocation[0].transform.position, Quaternion.identity);
+        CreatePlayer();      
     }
 
     void CreatePlayer()

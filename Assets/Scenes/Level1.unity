@@ -5266,6 +5266,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 409580, guid: fd479d726efdf3d4da9cb024a97137e4, type: 3}
   m_PrefabInstance: {fileID: 100168351}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &100440539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100440540}
+  m_Layer: 0
+  m_Name: BossSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100440540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100440539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.1, y: -0.81, z: 0.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086653763}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &104046451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6357,6 +6388,7 @@ Transform:
   - {fileID: 1223638652}
   - {fileID: 1597678119}
   - {fileID: 97159504}
+  - {fileID: 1086653763}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -12397,7 +12429,6 @@ MonoBehaviour:
   - {fileID: 708807716}
   - {fileID: 1956132717}
   - {fileID: 1328858084}
-  bossSpawnPoint: {fileID: 782628376}
   spawnData:
     isSpwaning: 0
     fireEnemyMelee: {fileID: 4985379779047268496, guid: 738b58436f6fa8e48926b8169d5c9bb3, type: 3}
@@ -12412,7 +12443,6 @@ MonoBehaviour:
     spawnRate: 3
     spawnCount: 0
     maxSpawnCount: 20
-  boss: {fileID: 40102689496708850, guid: eacbb9864d9165f45873c17c991399ae, type: 3}
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
@@ -43480,7 +43510,6 @@ MonoBehaviour:
   - {fileID: 1596102404}
   - {fileID: 1731119437}
   - {fileID: 7395499}
-  bossSpawnPoint: {fileID: 977997810}
   spawnData:
     isSpwaning: 0
     fireEnemyMelee: {fileID: 4985379779047268496, guid: 738b58436f6fa8e48926b8169d5c9bb3, type: 3}
@@ -43495,7 +43524,6 @@ MonoBehaviour:
     spawnRate: 3
     spawnCount: 0
     maxSpawnCount: 20
-  boss: {fileID: 40102689496708850, guid: eacbb9864d9165f45873c17c991399ae, type: 3}
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
@@ -45668,6 +45696,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 432674, guid: a682a4344b779a74c8d52b7ec297a700, type: 3}
   m_PrefabInstance: {fileID: 386165663}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1086653762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086653763}
+  - component: {fileID: 1086653765}
+  - component: {fileID: 1086653764}
+  m_Layer: 0
+  m_Name: BossSpawnCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1086653763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086653762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.38, y: -3.39, z: -2.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 100440540}
+  m_Father: {fileID: 124697430}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086653764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086653762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabecf551b6e8a42857b43a784e43eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossSpawnPoint: {fileID: 100440540}
+--- !u!65 &1086653765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086653762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 7.326726, z: 31.661095}
+  m_Center: {x: 0, y: -0.074801326, z: -0.15454674}
 --- !u!1001 &1087854732
 PrefabInstance:
   m_ObjectHideFlags: 0

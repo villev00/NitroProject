@@ -61,10 +61,8 @@ public class RangedEnemy : MonoBehaviour
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
             if (playerInAttackRange)
             {
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isAttacking", true);
-                StartAttack();
+               
+               StartAttack();
             }
             else
             {
@@ -78,22 +76,27 @@ public class RangedEnemy : MonoBehaviour
 
     void StartAttack()
     {
-        AttackPlayer();
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isAttacking", true);
     }
 
     private void AttackPlayer()
-    {              
+    {
+        Debug.Log("Start attack");
         rangedEnemy.SetDestination(transform.position);
         
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-            Rigidbody rb = Instantiate(projectile, gun.position, Quaternion.identity).GetComponent<Rigidbody>();
+            GameObject projectileObj = Instantiate(projectile, gun.position, Quaternion.identity);
+            Rigidbody rb = projectileObj.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             player.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
             alreadyAttacked = true;
             StartCoroutine(ResetAttack());
+            Destroy(projectileObj, 5f);
         }
 
     }
@@ -101,8 +104,7 @@ public class RangedEnemy : MonoBehaviour
     private IEnumerator ResetAttack()
     {        
         yield return new WaitForSeconds(timeBetweenAttacks);
-        alreadyAttacked = false;
-        yield return new WaitForSeconds(timeBetweenAttacks);
+        alreadyAttacked = false;      
     }
 }
 
