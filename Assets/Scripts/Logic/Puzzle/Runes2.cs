@@ -8,7 +8,7 @@ public class Runes2 : MonoBehaviour
 {
     [SerializeField]
     PuzzleData puzzleData;
-    
+    [SerializeField] AudioClip correctAnswer, wrongAnswer;
     private void Start()
         {
             puzzleData = PuzzleManager.instance.pData;
@@ -31,13 +31,14 @@ public class Runes2 : MonoBehaviour
                         Debug.Log("SolvedFire");
                         puzzleData.puzzle2FireSloved = true;
                         puzzleData.puzzleStateIndex += 1;
-                        
+                        AudioManager.PlaySound(correctAnswer, false);
                        
                        
                     }
                     else
                     {
                         Reset();
+                      
                     }
                     break;
                 case "LightningRune":
@@ -46,7 +47,7 @@ public class Runes2 : MonoBehaviour
                         Debug.Log("SolvedLightning");
                         puzzleData.puzzle2LightningSloved = true;
                         puzzleData.puzzleStateIndex += 1;
-                        
+                        AudioManager.PlaySound(correctAnswer, false);
                     }
                     else
                     {
@@ -58,9 +59,9 @@ public class Runes2 : MonoBehaviour
                     {
                         Debug.Log("SolvedAether");
                         puzzleData.puzzle2AetherSloved = true;
+                        AudioManager.PlaySound(correctAnswer, false);
 
-
-                    }
+                }
                     else
                     {
                         Reset();
@@ -77,7 +78,8 @@ public class Runes2 : MonoBehaviour
 
        private void Reset()
        {
-              puzzleData.puzzle2FireSloved = false;
+            AudioManager.PlaySound(wrongAnswer, false);
+            puzzleData.puzzle2FireSloved = false;
               puzzleData.puzzle2LightningSloved = false;
               puzzleData.puzzle2AetherSloved = false;
               puzzleData.puzzleStateIndex = 1;

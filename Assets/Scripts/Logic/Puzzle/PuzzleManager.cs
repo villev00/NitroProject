@@ -14,7 +14,7 @@ public class PuzzleManager : MonoBehaviour
 
     public GameObject player;
     //public event System.Action OnPuzzle3Solved;
-
+    
    private void Awake()
     {
         if (instance == null)
