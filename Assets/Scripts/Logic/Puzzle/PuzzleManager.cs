@@ -25,17 +25,6 @@ public class PuzzleManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown("g"))
-        {
-            Debug.Log("vittumage");
-            GameObject.FindGameObjectsWithTag("Fence")[0].GetComponent<FenceClose>().OpenFence();
-            GameObject.FindGameObjectsWithTag("Fence")[1].GetComponent<FenceClose>().OpenFence();
-        }
-    }
-
     public void CheckPuzzle1()
     {
         
@@ -79,8 +68,8 @@ public class PuzzleManager : MonoBehaviour
             if (pData.hasOtherPlayerSolvedPuzzles)
             {
                 Debug.Log("Other player solved all");
-                GameObject.FindGameObjectsWithTag("Fence")[0].GetComponent<FenceClose>().OpenFence();
-                GameObject.FindGameObjectsWithTag("Fence")[1].GetComponent<FenceClose>().OpenFence();
+                GameObject.FindGameObjectWithTag("Fence").GetComponent<FenceClose>().OpenFence();
+                GameObject.FindGameObjectWithTag("Fence2").GetComponent<FenceClose>().OpenFence();
             }               
         }       
     }   

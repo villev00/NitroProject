@@ -54758,7 +54758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 118258, guid: aca4ccbc35f59c14ba44dd41bf29f94d, type: 3}
       propertyPath: m_TagString
-      value: Fence
+      value: Fence2
       objectReference: {fileID: 0}
     - target: {fileID: 118258, guid: aca4ccbc35f59c14ba44dd41bf29f94d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -54851,7 +54851,7 @@ Animator:
   m_GameObject: {fileID: 1304336953}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 706c65a23857a5d4f838e5919550a180, type: 2}
+  m_Controller: {fileID: 9100000, guid: dad86a8b5b9ae9c44a21846d80862e3d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
