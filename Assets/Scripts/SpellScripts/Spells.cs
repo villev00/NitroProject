@@ -23,18 +23,21 @@ public class Spells : MonoBehaviour
     }
     void Start()
     {
-        spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
+        if (!pv.IsMine) return;
         SetupSpells();
     }
     //Reset spell cooldowns when game starts
     void SetupSpells()
     {
+        spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
+        spellUI.activeSlots = spellUI.fireSlots;
         for (int i = 0; i < fireSpells.Length; i++)
         {
             fireSpells[i].isSpellOnCooldown = false;
             lightningSpells[i].isSpellOnCooldown = false;
             aetherSpells[i].isSpellOnCooldown = false;
         }
+       
     }
     private void Update()
     {
@@ -49,11 +52,13 @@ public class Spells : MonoBehaviour
         {
             spellUI.ChangeSpellSet(aetherSpells);
             slogic.SetElement(Element.Aether);
+           
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             spellUI.ChangeSpellSet(lightningSpells);
             slogic.SetElement(Element.Lightning);
+           
         }
        
     }
@@ -77,6 +82,8 @@ public class Spells : MonoBehaviour
                     pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));
                     spell.isSpellOnCooldown = true;
                     StartCoroutine(spell.SpellCooldown());
+                    spell.cooldownRemaining = spell.spellCooldown;
+                    StartCoroutine(spell.CountSpellCooldown());
                     GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
                 }
                 else if(spell.spellName == "Magnetic Grasp") //Cast magnetic grasp
