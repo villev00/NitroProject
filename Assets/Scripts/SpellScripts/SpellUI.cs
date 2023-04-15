@@ -27,8 +27,6 @@ public class SpellUI : MonoBehaviour
     }
     private void Update()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         if (!pv.IsMine) return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
