@@ -214,7 +214,8 @@ public class PlayerLogic : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        Time.timeScale = 0;
+        playerUI.GameOverPanel();
     }
 
     public void TestDamage(int damage)

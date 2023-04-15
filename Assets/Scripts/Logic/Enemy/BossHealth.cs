@@ -39,6 +39,8 @@ public class BossHealth : EnemyData
     void RPC_Die()
     {
         Destroy(gameObject);
+        GameObject.Find("UIManager").GetComponent<PlayerUI>().GameCompletePanel();
+        Time.timeScale = 0;
     }
 
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
@@ -14,7 +15,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TMPro.TextMeshProUGUI PotionText;
 
-    [SerializeField] GameObject howToPlayPanel;
+    [SerializeField] GameObject howToPlayPanel, gameOverPanel, gameCompletePanel;
     public void ChangeHealthSliderValue(int value)
     {
         healthSlider.value += value;
@@ -58,5 +59,18 @@ public class PlayerUI : MonoBehaviour
         else howToPlayPanel.SetActive(false);
     }
 
-    
+    public void GameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+        gameOverPanel.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(ReturnToMenu);
+    }
+    public void GameCompletePanel()
+    {
+        gameCompletePanel.SetActive(true);
+        gameCompletePanel.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(ReturnToMenu);
+    }
+    void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
