@@ -58,10 +58,8 @@ public class MeleeEnemy : MonoBehaviour
             playerInAttackRange = Physics.CheckSphere(transform.position, meleeRange, Player);
             if (playerInAttackRange)
             {
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isAttacking", true);
-                StartAttack();
+                
+                AttackPlayer();
             }
             else
             {
@@ -73,22 +71,25 @@ public class MeleeEnemy : MonoBehaviour
         }       
     }
 
-    void StartAttack()
-    {                                                    
-        AttackPlayer();                                                           
+    void AttackPlayer()
+    {
+        meleeEnemy.SetDestination(transform.position);
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isAttacking", true);
     }
 
-    private void AttackPlayer()
+    private void StartAttack()
     {
-
-        meleeEnemy.SetDestination(transform.position);
+        Debug.Log("attacking");
+       
         transform.LookAt(player);
         
         if (!alreadyAttacked)
         {
 
             // check if the player is within range for a melee attack
-            if (Vector3.Distance(transform.position, player.position) <= meleeRange +1)
+            if (Vector3.Distance(transform.position, player.position) <= meleeRange)
             {                
                 // apply damage to the player
                 Debug.Log("Attacking Player");

@@ -10,16 +10,10 @@ namespace Logic.Enemy
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField]
-        private Transform[] spawnPoint;
-
-        [SerializeField]
-        private Transform bossSpawnPoint;
+        private Transform[] spawnPoint;      
 
         [SerializeField]
         private SpawnData spawnData = new SpawnData();
-
-        [SerializeField]
-        private GameObject boss;
 
         [SerializeField] private PuzzleData puzzleData;
        
@@ -35,7 +29,6 @@ namespace Logic.Enemy
             spawnData.enemyList.Add(spawnData.fireEnemyMelee);
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
 
-            //SpawnBoss();
             // add deylay to start spawning enemies 
             StartCoroutine(SpawnEnemyCoroutine());
         }
@@ -67,12 +60,7 @@ namespace Logic.Enemy
             int randomEnemy = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
             int randomSpawnPoint = UnityEngine.Random.Range(0, spawnPoint.Length);
             Instantiate(spawnData.enemyList[randomEnemy], spawnPoint[randomSpawnPoint].position, Quaternion.identity);
-        }
-
-        public void SpawnBoss()
-        {
-            Instantiate(boss, bossSpawnPoint);
-        }
+        }       
 
        private IEnumerator SpawnEnemyCoroutine()
     {

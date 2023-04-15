@@ -6229,6 +6229,7 @@ Transform:
   - {fileID: 1223638652}
   - {fileID: 1597678119}
   - {fileID: 97159504}
+  - {fileID: 1719161766}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -12264,7 +12265,6 @@ MonoBehaviour:
   - {fileID: 708807716}
   - {fileID: 1956132717}
   - {fileID: 1328858084}
-  bossSpawnPoint: {fileID: 782628376}
   spawnData:
     isSpwaning: 0
     fireEnemyMelee: {fileID: 4985379779047268496, guid: 9fe4eafb8c1e8b347bc63fa59e23cbda, type: 3}
@@ -12279,7 +12279,6 @@ MonoBehaviour:
     spawnRate: 3
     spawnCount: 0
     maxSpawnCount: 20
-  boss: {fileID: 40102689496708850, guid: eacbb9864d9165f45873c17c991399ae, type: 3}
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
@@ -32161,12 +32160,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782628375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.077723, y: 4.1833005, z: 33.285816}
+  m_LocalPosition: {x: 13.09, y: 0.49330044, z: 1.6058159}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 865148203}
-  m_RootOrder: 3
+  m_Father: {fileID: 1719161766}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &784084306
 PrefabInstance:
@@ -35431,7 +35430,6 @@ Transform:
   - {fileID: 293383172}
   - {fileID: 708807716}
   - {fileID: 1328858084}
-  - {fileID: 782628376}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70073,6 +70071,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 428220, guid: 2c52fc029ee6e764aaddc5e8930caf9d, type: 3}
   m_PrefabInstance: {fileID: 1718808667}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1719161765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719161766}
+  - component: {fileID: 1719161767}
+  - component: {fileID: 1719161768}
+  m_Layer: 0
+  m_Name: BossSpawnCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719161766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719161765}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 13.55772, y: -4.333087, z: -0.9941826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 782628376}
+  m_Father: {fileID: 124697430}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1719161767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719161765}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3272018, y: 3.9615774, z: 4.192444}
+  m_Center: {x: -0.6636009, y: 1.4807887, z: 1.5962219}
+--- !u!114 &1719161768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719161765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabecf551b6e8a42857b43a784e43eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossSpawnPoint: {fileID: 782628376}
 --- !u!1001 &1719599786
 PrefabInstance:
   m_ObjectHideFlags: 0
