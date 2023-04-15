@@ -46,6 +46,7 @@ public class PuzzleManager : MonoBehaviour
         if (pData.isSolved2)
         {
             Debug.Log("Puzzle 2 solved");
+            CheckAllPuzzles();
             player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
         }
     }
