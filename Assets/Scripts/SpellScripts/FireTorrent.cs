@@ -71,9 +71,9 @@ public class FireTorrent : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             if (enemy != null && enemy.GetComponent<EnemyHealth>()!=null)
-                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, Element.Fire); 
+                enemy.GetComponent<EnemyHealth>().TakeDamage(spell.spellDamage, spell.spellElement); 
             else if(enemy != null && enemy.GetComponent<BossHealth>() != null)
-                enemy.GetComponent<BossHealth>().TakeDamage(spell.spellDamage);
+                enemy.GetComponent<BossHealth>().TakeDamage(spell.spellDamage, spell.spellElement);
         }                                                                          
     }
 

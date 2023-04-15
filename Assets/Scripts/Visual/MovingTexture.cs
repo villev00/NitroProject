@@ -18,6 +18,5 @@ public class MovingTexture : MonoBehaviour
         float moveThis = Time.time * scrollSpeed;
         rend.material.SetTextureOffset("_MainTex", new Vector2
             (0, moveThis));
-
     }
 }

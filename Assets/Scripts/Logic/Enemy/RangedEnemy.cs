@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class RangedEnemy : MonoBehaviour
 {
     public NavMeshAgent rangedEnemy;
-    
+
     public Transform player;
 
     public LayerMask Player;
@@ -17,79 +17,92 @@ public class RangedEnemy : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
 
-  
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public int rangedDamage;
+    public float attackRange;
+    public bool playerInAttackRange;
     Animator anim;
+    public ParticleSystem lightningFX;
+    EnemyHealth enemyHealth;
+
     private void Awake()
     {
         rangedEnemy = GetComponent<NavMeshAgent>();
-    }
-    private void Start()
-    {
-        
+        enemyHealth = GetComponent<EnemyHealth>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
-        anim.SetBool("isRunning", true);
+    }
+
+    private void Start()
+    {
+        rangedDamage = 15;
+        attackRange = 10f;
+        timeBetweenAttacks = 1.2f;
+        alreadyAttacked = false;
     }
 
     private void Update()
     {
         if (rangedEnemy.enabled == false) return;
 
-        //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
-
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) StartAttack();
-    }
-    private void ChasePlayer()
-    {
-        rangedEnemy.SetDestination(player.position);
-        if(!anim.GetBool("isRunning")) anim.SetBool("isRunning", true);
-    }
-    void StartAttack()
-    {
-        if (!anim.GetBool("isAttacking"))
+        if (enemyHealth.isStunned == true)
         {
             anim.SetBool("isRunning", false);
-            anim.SetBool("isAttacking", true);
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isIdle", true);
+            rangedEnemy.SetDestination(transform.position);
+           // anim.enabled = false;
+            lightningFX.gameObject.SetActive(true); // enable the Lightning FX component
         }
-       
+        else
+        {
+            anim.enabled = true;
+            lightningFX.gameObject.SetActive(false); // disable the Lightning FX component
+                                                     //Check for attack range        
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
+            if (playerInAttackRange)
+            {
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isAttacking", true);
+                StartAttack();
+            }
+            else
+            {
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isAttacking", false);
+                anim.SetBool("isRunning", true);
+                rangedEnemy.SetDestination(player.position);
+            }
+        }
     }
-    private void AttackPlayer()
-    {
-       //stopp
-        rangedEnemy.SetDestination(transform.position);
 
+    void StartAttack()
+    {
+        AttackPlayer();
+    }
+
+    private void AttackPlayer()
+    {              
+        rangedEnemy.SetDestination(transform.position);
+        
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-           
             Rigidbody rb = Instantiate(projectile, gun.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-
-            
+            player.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            
+            StartCoroutine(ResetAttack());
         }
+
     }
-    private void ResetAttack()
-    {
+
+    private IEnumerator ResetAttack()
+    {        
+        yield return new WaitForSeconds(timeBetweenAttacks);
         alreadyAttacked = false;
-        anim.SetBool("isAttacking", false);
-       
-    }
-  
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        yield return new WaitForSeconds(timeBetweenAttacks);
     }
 }
 

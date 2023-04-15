@@ -9,11 +9,6 @@ public class Runes2 : MonoBehaviour
     [SerializeField]
     PuzzleData puzzleData;
     
-    
-
-    
-
-
     private void Start()
         {
             puzzleData = PuzzleManager.instance.pData;

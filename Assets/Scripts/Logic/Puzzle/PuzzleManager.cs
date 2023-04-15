@@ -10,8 +10,8 @@ public class PuzzleManager : MonoBehaviour
    // create singleton
     public static PuzzleManager instance;
    public PuzzleData pData = new PuzzleData();
-   
-  
+
+    public GameObject player;
     //public event System.Action OnPuzzle3Solved;
 
    private void Awake()
@@ -32,6 +32,7 @@ public class PuzzleManager : MonoBehaviour
         if (pData.isSolved1)
         {
             Debug.Log("Puzzle 1 solved");
+            player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
         }
     }
     
@@ -45,6 +46,7 @@ public class PuzzleManager : MonoBehaviour
         if (pData.isSolved2)
         {
             Debug.Log("Puzzle 2 solved");
+            player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
         }
     }
     
@@ -58,12 +60,11 @@ public class PuzzleManager : MonoBehaviour
 
     public void CheckAllPuzzles()
     {
+       
         if (pData.isSolved1 && pData.isSolved2) //&& pData.isSolved3)
         {
             Debug.Log("All puzzles solved");
             pData.allPuzzlesSolved = true;
-
-          
         }
         if (pData.hasOtherPlayerSolvedPuzzles)
             Debug.Log("Other player solved all");

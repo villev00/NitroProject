@@ -44,12 +44,12 @@ public class StaticField : MonoBehaviour
             firstHit = true;
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, Element.Lightning);
-                //  other.GetComponent<EnemyHealth>().GetStunned(5);
+                other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, spell.spellElement);
+              
             }else if (other.CompareTag("Boss"))
                 {
-                    other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage);
-                    //  other.GetComponent<EnemyHealth>().GetStunned(5);
+                    other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage, spell.spellElement);
+                  
                 }
 
             Debug.Log(other.name +" hit by trap");
