@@ -39,7 +39,7 @@ public class MeleeEnemy : MonoBehaviour
 
     void Update()
     {
-        if (meleeEnemy.enabled == false) return;
+        if (meleeEnemy.enabled == false || enemyHealth.health<=0) return;
 
         if (enemyHealth.isStunned == true)
         {
