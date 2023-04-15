@@ -18,7 +18,7 @@ public class Puzzle1 : MonoBehaviour
     [SerializeField] private GameObject rubble;
     [SerializeField] private AudioClip wallBreakClip;
     [SerializeField] private Vector3 stopPosition;
-    [SerializeField] private AudioSource audioSource;
+  
     [SerializeField] private float speed;
 
     // Events
@@ -76,8 +76,7 @@ public class Puzzle1 : MonoBehaviour
     public void DestroyWall()
     {
         // Play the wall break sound effect
-        audioSource.PlayOneShot(wallBreakClip);
-
+        AudioManager.PlaySound(wallBreakClip,false);
         // Hide the intact wall and show the broken wall and rubble
         wall.SetActive(false);
         brokenWall.SetActive(true);
