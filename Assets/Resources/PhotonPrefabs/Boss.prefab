@@ -90,9 +90,6 @@ MonoBehaviour:
   homingDeathDmg: 20
   homingDeathLifetime: 5
   homingDeathSeekRadius: 5
-  sightRange: 100
-  attackRange: 100
-  playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!114 &5877594252016701822
 MonoBehaviour:
