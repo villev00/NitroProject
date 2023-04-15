@@ -731,6 +731,8 @@ MonoBehaviour:
   stunDuration: 100
   isStunned: 0
   damageResistance: {fileID: 11400000, guid: 3c933bb155cb56442acdcb3e7b914945, type: 2}
+  headCollider: {fileID: 2510716957630312332}
+  bodyCollider: {fileID: 7352485733832144646}
 --- !u!195 &776202747678583338
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -803,9 +805,8 @@ MonoBehaviour:
   gun: {fileID: 8440334271019385507}
   timeBetweenAttacks: 2.04
   projectile: {fileID: 2946036604775177817, guid: 0e8247f13a74e94458358b885406c93a, type: 3}
-  sightRange: 100
+  rangedDamage: 0
   attackRange: 10
-  playerInSightRange: 0
   playerInAttackRange: 0
   lightningFX: {fileID: 557915878451054194}
 --- !u!1 &7175002876843762529
