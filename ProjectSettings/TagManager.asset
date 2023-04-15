@@ -13,6 +13,7 @@ TagManager:
   - LightningRune
   - EnemyHead
   - Puzzle1Cauldron
+  - FireTTorrent
   layers:
   - Default
   - TransparentFX
