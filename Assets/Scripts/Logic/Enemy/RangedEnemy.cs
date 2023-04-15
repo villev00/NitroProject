@@ -42,7 +42,7 @@ public class RangedEnemy : MonoBehaviour
 
     private void Update()
     {
-        if (rangedEnemy.enabled == false) return;
+        if (rangedEnemy.enabled == false || enemyHealth.health <= 0) return;
 
         if (enemyHealth.isStunned == true)
         {
