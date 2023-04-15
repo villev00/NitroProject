@@ -433,9 +433,6 @@ MonoBehaviour:
     m_Bits: 8
   player: {fileID: 2177138990328041411, guid: 676aa45ff34838e44beedfd9cc0aed5d, type: 3}
   lightningFX: {fileID: 8257845904140093855}
-  sightRange: 20
-  attackRange: 1
-  playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!114 &-6363361966062352375
 MonoBehaviour:
@@ -455,6 +452,8 @@ MonoBehaviour:
   stunDuration: 100
   isStunned: 0
   damageResistance: {fileID: 11400000, guid: c3ed0e05936618c4bbeaa3c3828a2335, type: 2}
+  headCollider: {fileID: 5776572960025120697}
+  bodyCollider: {fileID: 4859442239190489004}
 --- !u!195 &-5783516507978134912
 NavMeshAgent:
   m_ObjectHideFlags: 0
