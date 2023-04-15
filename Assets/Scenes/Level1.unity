@@ -27912,6 +27912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 671221453}
+  - component: {fileID: 671221454}
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
@@ -27939,6 +27940,32 @@ Transform:
   m_Father: {fileID: 1804514769}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671221454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671221452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c16c1915d838a49b4e17ec318f4d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnData:
+    isSpwaning: 0
+    fireEnemyMelee: {fileID: 0}
+    lightningEnemyMelee: {fileID: 0}
+    aetherEnemyMelee: {fileID: 0}
+    fireEnemyRanged: {fileID: 0}
+    lightningEnemyRanged: {fileID: 0}
+    aetherEnemyRanged: {fileID: 0}
+    enemyList: []
+    spawnTime: 3
+    spawnDelay: 3
+    spawnRate: 3
+    spawnCount: 0
+    maxSpawnCount: 20
 --- !u!1001 &673379680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35596,6 +35623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 865148203}
+  - component: {fileID: 865148204}
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
@@ -35622,6 +35650,32 @@ Transform:
   m_Father: {fileID: 2112252532}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &865148204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865148202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c16c1915d838a49b4e17ec318f4d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnData:
+    isSpwaning: 0
+    fireEnemyMelee: {fileID: 0}
+    lightningEnemyMelee: {fileID: 0}
+    aetherEnemyMelee: {fileID: 0}
+    fireEnemyRanged: {fileID: 0}
+    lightningEnemyRanged: {fileID: 0}
+    aetherEnemyRanged: {fileID: 0}
+    enemyList: []
+    spawnTime: 3
+    spawnDelay: 3
+    spawnRate: 3
+    spawnCount: 0
+    maxSpawnCount: 20
 --- !u!1 &866128784
 GameObject:
   m_ObjectHideFlags: 0

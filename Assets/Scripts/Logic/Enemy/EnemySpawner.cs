@@ -34,6 +34,8 @@ namespace Logic.Enemy
             puzzleData = PuzzleManager.instance.pData;
             spawnData.enemyList.Add(spawnData.fireEnemyMelee);
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
+            spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
+            spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
 
             //SpawnBoss();
             // add deylay to start spawning enemies 
@@ -52,8 +54,7 @@ namespace Logic.Enemy
 
             if (puzzleData.isSolved2 == true)
             {
-                spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
-                spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
+                
             }
 
             if (puzzleData.isSolved3 == true)
@@ -85,8 +86,8 @@ namespace Logic.Enemy
             yield return new WaitForSeconds(spawnData.spawnRate);
         }
     }
-
-        private void Update()
+       
+       private void Update()
         {
 
             //if (Input.GetKeyDown(KeyCode.J))

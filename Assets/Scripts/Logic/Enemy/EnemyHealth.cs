@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using data;
+using Data;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyHealth : EnemyData
 {
     public float stunDuration;
+    
+    SpawnData spawnData;
+    
+    
+    
 
     Animator anim;
     public bool isStunned = false;
@@ -18,6 +24,7 @@ public class EnemyHealth : EnemyData
     private void Start()
     {
         stunDuration = 2f;
+        spawnData = SpawnManager.instance.spawnData;
     }
 
     public void TakeDamage(float damage, Element element)
@@ -50,6 +57,7 @@ public class EnemyHealth : EnemyData
         anim.SetBool("isDead", true);
         GetComponent<NavMeshAgent>().enabled = false;
         yield return new WaitForSeconds(4f);
+        spawnData.spawnCount--;
         Destroy(gameObject);
     }
 }
