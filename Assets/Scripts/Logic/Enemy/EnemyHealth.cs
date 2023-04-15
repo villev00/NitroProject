@@ -10,25 +10,21 @@ public class EnemyHealth : EnemyData
 {
     public float stunDuration;
 
-   
-    
-    
-    
-    
-    
-
     Animator anim;
     public bool isStunned = false;
-    [SerializeField] private DamageResistance damageResistance;
+    [SerializeField] 
+    private DamageResistance damageResistance;
+    [SerializeField]
+    Collider headCollider;
+    [SerializeField] 
+    Collider bodyCollider;
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
     private void Start()
     {
-        
         stunDuration = 2f;
-       
     }
 
     public void TakeDamage(float damage, Element element)
@@ -41,7 +37,8 @@ public class EnemyHealth : EnemyData
         health -= damageResistance.CalculateDamageWithResistance(damage, element);
         if (health <= 0)
         {
-            Debug.Log("Enemy Died");
+            headCollider.enabled = false;
+            bodyCollider.enabled = false;
             StartCoroutine(Die());
         }
     }
@@ -56,13 +53,9 @@ public class EnemyHealth : EnemyData
 
     IEnumerator Die()
     {
-        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        this.gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false;
         anim.SetBool("isDead", true);
         GetComponent<NavMeshAgent>().enabled = false;
         // get nearst enemySpawner and remove this enemy from the list
-        
-
 
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
