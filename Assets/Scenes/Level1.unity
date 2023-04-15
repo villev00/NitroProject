@@ -57729,6 +57729,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65369093230577714, guid: 41ec293d7ae663c418439466f0d7c93e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 65369093230577714, guid: 41ec293d7ae663c418439466f0d7c93e, type: 3}
+      propertyPath: m_Center.y
+      value: 0.18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ec293d7ae663c418439466f0d7c93e, type: 3}
 --- !u!4 &1393947342 stripped
@@ -57827,7 +57835,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1398602984}
-  - component: {fileID: 1398602983}
   - component: {fileID: 1398602982}
   - component: {fileID: 1398602981}
   - component: {fileID: 1398602980}
@@ -57884,30 +57891,9 @@ MonoBehaviour:
   wall: {fileID: 1530546045}
   rubble: {fileID: 53256701}
   wallBreakClip: {fileID: 8300000, guid: bc1bccbc462da0743a60e64f714c0809, type: 3}
-  stopPosition: {x: 10.40192, y: 0.14, z: -5.777141}
+  stopPosition: {x: 13.3619995, y: 0.29, z: -152.344}
   audioSource: {fileID: 706962149}
   speed: 5
---- !u!95 &1398602983
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398602979}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7f5489dc950af842bd73a8e2be9f002, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1398602984
 Transform:
   m_ObjectHideFlags: 0
@@ -57916,7 +57902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398602979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.40192, y: 1.8, z: -5.777141}
+  m_LocalPosition: {x: 12.18, y: 0.43, z: -5.777141}
   m_LocalScale: {x: 1.4285715, y: 2, z: 1.4285715}
   m_ConstrainProportionsScale: 0
   m_Children:
