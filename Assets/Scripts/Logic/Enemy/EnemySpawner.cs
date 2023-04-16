@@ -32,6 +32,8 @@ namespace Logic.Enemy
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
             spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
             spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
+            
+            InvokeRepeating("minuSpawnCount",5,5);
 
             // add deylay to start spawning enemies 
             StartCoroutine(SpawnEnemyCoroutine());
@@ -49,6 +51,7 @@ namespace Logic.Enemy
 
             if (puzzleData.isSolved2 == true)
             {
+                stopSpawning = true;
                 
             }
 
@@ -82,16 +85,22 @@ namespace Logic.Enemy
                 {
                     int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
                     Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
-                }                                     
+                }
+                
+                
+                
                 spawnData.spawnCount++;
                 yield return new WaitForSeconds(spawnData.spawnRate);
             }
        }
        
        
-       public void minusEnemyCount()
+       public void minuSpawnCount()
        {
-           spawnData.spawnCount--;
+          
+              spawnData.spawnCount--;
+              
+              
        }
 
       

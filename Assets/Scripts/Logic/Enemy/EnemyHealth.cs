@@ -55,7 +55,7 @@ public class EnemyHealth : EnemyData
     {
         anim.SetBool("isDead", true);
         GetComponent<NavMeshAgent>().enabled = false;
-        // get nearst enemySpawner and remove this enemy from the list
+        
 
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
