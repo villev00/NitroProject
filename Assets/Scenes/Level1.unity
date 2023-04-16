@@ -2737,7 +2737,7 @@ Transform:
   - {fileID: 1113944399}
   - {fileID: 810668302}
   m_Father: {fileID: 2112252532}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &54132745
 PrefabInstance:
@@ -12668,9 +12668,6 @@ MonoBehaviour:
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 0
-    lightningIndex: 0
-    aetherIndex: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -24784,12 +24781,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 1
+  lightningIndex: 2
+  aetherIndex: 3
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 1
-    lightningIndex: 2
-    aetherIndex: 3
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -25341,12 +25338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 2
+  lightningIndex: 1
+  aetherIndex: 3
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 2
-    lightningIndex: 1
-    aetherIndex: 3
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -33057,12 +33054,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 2
+  lightningIndex: 1
+  aetherIndex: 3
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 2
-    lightningIndex: 1
-    aetherIndex: 3
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -38175,9 +38172,6 @@ MonoBehaviour:
   pData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 0
-    lightningIndex: 0
-    aetherIndex: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -55396,12 +55390,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 1
+  lightningIndex: 2
+  aetherIndex: 3
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 1
-    lightningIndex: 2
-    aetherIndex: 3
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -58153,12 +58147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 0
+  lightningIndex: 0
+  aetherIndex: 0
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 0
-    lightningIndex: 0
-    aetherIndex: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -60453,12 +60447,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 2
+  lightningIndex: 1
+  aetherIndex: 3
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 2
-    lightningIndex: 1
-    aetherIndex: 3
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -72167,12 +72161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 1
+  lightningIndex: 2
+  aetherIndex: 3
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 1
-    lightningIndex: 2
-    aetherIndex: 3
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -78897,12 +78891,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bfefcced664040a8af240d1c25ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireIndex: 0
+  lightningIndex: 0
+  aetherIndex: 0
   puzzleData:
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
-    fireIndex: 0
-    lightningIndex: 0
-    aetherIndex: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -100347,8 +100341,8 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.5, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 986827519}
   - {fileID: 53577367}
+  - {fileID: 986827519}
   - {fileID: 1193268415}
   - {fileID: 738774033}
   - {fileID: 220495881}

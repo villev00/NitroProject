@@ -7,6 +7,12 @@ using Data;
 public class Runes2 : MonoBehaviour
 {
     [SerializeField]
+    private int fireIndex;
+    [SerializeField]
+    private int lightningIndex;
+    [SerializeField]
+    private int aetherIndex;
+    [SerializeField]
     PuzzleData puzzleData;
     [SerializeField] AudioClip correctAnswer, wrongAnswer;
     private void Start()
@@ -23,7 +29,7 @@ public class Runes2 : MonoBehaviour
             switch (gameObject.tag)
             {
                 case "FireRune":
-                    if (bullet.element == Element.Fire && puzzleData.puzzleStateIndex == puzzleData.fireIndex )
+                    if (bullet.element == Element.Fire && puzzleData.puzzleStateIndex == fireIndex )
                     {
                         Debug.Log("SolvedFire");
                         puzzleData.puzzle2FireSloved = true;
@@ -39,7 +45,7 @@ public class Runes2 : MonoBehaviour
                     }
                     break;
                 case "LightningRune":
-                    if (bullet.element == Element.Lightning && puzzleData.puzzleStateIndex == puzzleData.lightningIndex  )
+                    if (bullet.element == Element.Lightning && puzzleData.puzzleStateIndex == lightningIndex  )
                     {
                         Debug.Log("SolvedLightning");
                         puzzleData.puzzle2LightningSloved = true;
@@ -52,7 +58,7 @@ public class Runes2 : MonoBehaviour
                     }
                     break;
                 case "AetherRune":
-                    if (bullet.element == Element.Aether && puzzleData.puzzleStateIndex == puzzleData.aetherIndex )
+                    if (bullet.element == Element.Aether && puzzleData.puzzleStateIndex == aetherIndex )
                     {
                         Debug.Log("SolvedAether");
                         puzzleData.puzzle2AetherSloved = true;
