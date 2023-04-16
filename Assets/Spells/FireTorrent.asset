@@ -17,8 +17,13 @@ MonoBehaviour:
   spellPrefab: {fileID: 8541870830189678333, guid: c78d685013946ca42ab253d1eccd151d, type: 3}
   spellSprite: {fileID: 21300000, guid: 54d1c481663aff94c94277763e016b26, type: 3}
   spellManaCost: 15
-  spellDamage: 10
+  spellDamage: 25
   spellAreaDamage: 0
   spellCooldown: 20
   isSpellOnCooldown: 0
   spellDuration: 5
+<<<<<<< Updated upstream
+=======
+  spellUIPrefab: {fileID: 264251916764759051, guid: 52de8630ba22790429763a2f1b82b5f8, type: 3}
+  cooldownRemaining: 0
+>>>>>>> Stashed changes
