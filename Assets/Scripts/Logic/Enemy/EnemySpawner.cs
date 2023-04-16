@@ -25,6 +25,7 @@ namespace Logic.Enemy
               
         void Start()
         {
+            InvokeRepeating("minusEnemyCount", 5, 5);
             playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
             // get puzzle data from puzzle manager
             puzzleData = PuzzleManager.instance.pData;

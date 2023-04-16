@@ -15,4 +15,4 @@ MonoBehaviour:
   resistanceData:
   - fireResistance: 0
     lightningResistance: 0
-    aetherResistance: 0.5
+    aetherResistance: 0.4

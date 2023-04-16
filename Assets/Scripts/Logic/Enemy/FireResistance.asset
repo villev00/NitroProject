@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FireResistance
   m_EditorClassIdentifier: 
   resistanceData:
-  - fireResistance: 0.5
+  - fireResistance: 0.4
     lightningResistance: 0
     aetherResistance: 0
