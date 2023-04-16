@@ -11251,51 +11251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &245892738 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143634318147, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892739 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143822702890, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143844648856, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892741 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143773682404, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143509335831, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892743 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703142853081403, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143625399871, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892745 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143185920711, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &245892746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9109703143733451275, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
-  m_PrefabInstance: {fileID: 245892730}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &249685406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38164,6 +38119,7 @@ MonoBehaviour:
     lightningSumon: 0
     aetherSumon: 0
   player: {fileID: 0}
+  puzzleCompleteSound: {fileID: 8300000, guid: fbc5dba4788c6e44987efa00de44a9c5, type: 3}
 --- !u!1001 &929676259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54678,22 +54634,6 @@ MonoBehaviour:
   - {fileID: 1656792639}
   - {fileID: 1656792638}
   - {fileID: 1656792637}
-  fireSlots:
-  - {fileID: 245892746}
-  - {fileID: 245892745}
-  - {fileID: 245892744}
-  aetherSlots:
-  - {fileID: 245892743}
-  - {fileID: 245892742}
-  - {fileID: 245892741}
-  lightningSlots:
-  - {fileID: 245892740}
-  - {fileID: 245892739}
-  - {fileID: 245892738}
-  activeSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   spellManager: {fileID: 0}
   pv: {fileID: 0}
 --- !u!4 &1330705508

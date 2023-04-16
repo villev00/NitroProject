@@ -21,7 +21,7 @@ public class Runes2 : MonoBehaviour
        public void OnTriggerEnter(Collider other)
         {
             Bullet bullet = other.GetComponent<Bullet>();
-            if (bullet == null) return;
+            if (bullet == null || puzzleData.isSolved2) return;
     
             switch (gameObject.tag)
             {
@@ -59,7 +59,7 @@ public class Runes2 : MonoBehaviour
                     {
                         Debug.Log("SolvedAether");
                         puzzleData.puzzle2AetherSloved = true;
-                        AudioManager.PlaySound(correctAnswer, false);
+                      //  AudioManager.PlaySound(correctAnswer, false);
 
                 }
                     else

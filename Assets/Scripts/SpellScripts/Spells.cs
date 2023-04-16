@@ -30,12 +30,12 @@ public class Spells : MonoBehaviour
     void SetupSpells()
     {
         spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
-        for (int i = 0; i < fireSpells.Length; i++)
-        {
-            fireSpells[i].isSpellOnCooldown = false;
-            lightningSpells[i].isSpellOnCooldown = false;
-            aetherSpells[i].isSpellOnCooldown = false;
-        }
+        //for (int i = 0; i < fireSpells.Length; i++)
+        //{
+        //    fireSpells[i].isSpellOnCooldown = false;
+        //    lightningSpells[i].isSpellOnCooldown = false;
+        //    aetherSpells[i].isSpellOnCooldown = false;
+        //}
        
     }
     private void Update()
@@ -79,9 +79,6 @@ public class Spells : MonoBehaviour
                     spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
 
                     pv.RPC("RPC_SetParent", RpcTarget.Others, spellObj.GetPhotonView().ViewID, GetParentViewID(spellSpawn));
-                    spell.isSpellOnCooldown = true;
-                    StartCoroutine(spell.SpellCooldown());
-                    spell.cooldownRemaining = spell.spellCooldown;
                     StartCoroutine(spell.CountSpellCooldown());
                     GetComponent<PlayerLogic>().LoseMana(spell.spellManaCost);
                 }
@@ -99,10 +96,8 @@ public class Spells : MonoBehaviour
                     {
                         magnetCounter = 0;
                         spell.isSpellOnCooldown = true;
-                        StartCoroutine(spell.SpellCooldown());
+                        StartCoroutine(spell.CountSpellCooldown());
                     }
-                    Debug.Log(spell.spellName + " used");
-
                     GameObject spellObj = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/SpellPrefabs", spell.spellPrefab.name), spellSpawn.transform.position, Quaternion.identity);
                     spellObj.transform.SetParent(spellSpawn.transform); // set the parent immediately after instantiating the spell object
 
