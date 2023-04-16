@@ -12,11 +12,9 @@ namespace Data
         public  GameObject puzzle1Plattform;
         public GameObject puzzle1Rune;
         
-        
-        
-        
-        
-        
+        public int fireIndex;
+        public int lightningIndex;
+        public int aetherIndex;
 
         public bool isSolved1;
         public bool isSolved2;
