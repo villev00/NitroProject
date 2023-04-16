@@ -16,6 +16,7 @@ TagManager:
   - FireTTorrent
   - Fence
   - BossHead
+  - Fence2
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - WhatIsGround
   - WhatIsPlayer
   - FXdistortion
-  - 
+  - BossSpells
   - 
   - 
   - 

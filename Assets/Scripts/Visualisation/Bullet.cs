@@ -54,7 +54,14 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boss"))
         {
-            collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage, element);
+            try
+            {
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage, element);
+            }
+            catch
+            {
+                collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
+            }
         }
         DestroySpell();
     }

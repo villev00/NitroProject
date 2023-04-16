@@ -5,18 +5,16 @@ using UnityEngine.AI;
 
 public class EnemyShootingLogic : MonoBehaviour
 {
- 
-    public int rangedDamage = 15;
-
+    public int rangedDamage = 5;
    
     private void OnTriggerEnter(Collider other)
     {
         //damage player
         if (other.gameObject.CompareTag("Player"))
-        {                          
+        {
+            Debug.Log("Range hit");
             other.gameObject.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
             Destroy(gameObject);
         }
-
     }
 }

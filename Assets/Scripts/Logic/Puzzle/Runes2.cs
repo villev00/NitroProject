@@ -8,10 +8,7 @@ public class Runes2 : MonoBehaviour
 {
     [SerializeField]
     PuzzleData puzzleData;
-
-    [SerializeField] AudioClip runeSolvedClip;
-    [SerializeField] AudioClip runeFailedClip;
-    
+    [SerializeField] AudioClip correctAnswer, wrongAnswer;
     private void Start()
         {
             puzzleData = PuzzleManager.instance.pData;
@@ -34,15 +31,14 @@ public class Runes2 : MonoBehaviour
                         Debug.Log("SolvedFire");
                         puzzleData.puzzle2FireSloved = true;
                         puzzleData.puzzleStateIndex += 1;
-                        AudioManager.PlaySound(runeSolvedClip, false);
-                        
+                        AudioManager.PlaySound(correctAnswer, false);
                        
                        
                     }
                     else
                     {
                         Reset();
-                        AudioManager.PlaySound(runeFailedClip, false);
+                      
                     }
                     break;
                 case "LightningRune":
@@ -51,13 +47,11 @@ public class Runes2 : MonoBehaviour
                         Debug.Log("SolvedLightning");
                         puzzleData.puzzle2LightningSloved = true;
                         puzzleData.puzzleStateIndex += 1;
-                        AudioManager.PlaySound(runeSolvedClip, false);
-                        
+                        AudioManager.PlaySound(correctAnswer, false);
                     }
                     else
                     {
                         Reset();
-                        AudioManager.PlaySound(runeFailedClip, false);
                     }
                     break;
                 case "AetherRune":
@@ -65,14 +59,12 @@ public class Runes2 : MonoBehaviour
                     {
                         Debug.Log("SolvedAether");
                         puzzleData.puzzle2AetherSloved = true;
-                        AudioManager.PlaySound(runeSolvedClip, false);
+                        AudioManager.PlaySound(correctAnswer, false);
 
-
-                    }
+                }
                     else
                     {
                         Reset();
-                        AudioManager.PlaySound(runeFailedClip, false);
                     }
                     break;
                 default:
@@ -86,7 +78,8 @@ public class Runes2 : MonoBehaviour
 
        private void Reset()
        {
-              puzzleData.puzzle2FireSloved = false;
+            AudioManager.PlaySound(wrongAnswer, false);
+            puzzleData.puzzle2FireSloved = false;
               puzzleData.puzzle2LightningSloved = false;
               puzzleData.puzzle2AetherSloved = false;
               puzzleData.puzzleStateIndex = 1;
