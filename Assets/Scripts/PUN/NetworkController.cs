@@ -33,6 +33,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
         if (currentName == "Replaced" && next.name == "Menu")
         {
             PhotonNetwork.Disconnect();
+            PhotonNetwork.ConnectUsingSettings(); //connects to photon master server
         }
         Debug.Log("Scenes: " + currentName + ", " + next.name);
     }
