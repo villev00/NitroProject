@@ -15,6 +15,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject player;
     //public event System.Action OnPuzzle3Solved;
 
+    [SerializeField] AudioClip puzzleCompleteSound;
    private void Awake()
     {
         if (instance == null)
@@ -33,6 +34,7 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log("Puzzle 1 solved");
             player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
+            AudioManager.PlaySound(puzzleCompleteSound, false);
         }
     }
     
@@ -45,7 +47,9 @@ public class PuzzleManager : MonoBehaviour
       
         if (pData.isSolved2)
         {
+            AudioManager.PlaySound(puzzleCompleteSound, false);
             Debug.Log("Puzzle 2 solved");
+            CheckAllPuzzles();
             player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
         }
     }
@@ -54,6 +58,7 @@ public class PuzzleManager : MonoBehaviour
     {
         if (pData.isSolved3)
         {
+            AudioManager.PlaySound(puzzleCompleteSound, false);
             Debug.Log("Puzzle 3 solved");
         }
     }

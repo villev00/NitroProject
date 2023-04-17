@@ -22,3 +22,4 @@ MonoBehaviour:
   spellCooldown: 45
   isSpellOnCooldown: 0
   spellDuration: 5
+  spellUIPrefab: {fileID: 264251916764759051, guid: f1db6cd3858965c44add5962f6ce4c4a, type: 3}

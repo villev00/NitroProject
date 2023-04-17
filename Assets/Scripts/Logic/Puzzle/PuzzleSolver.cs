@@ -22,22 +22,7 @@ public class PuzzleSolver : MonoBehaviour
         PuzzleManager.instance.player = gameObject;
           
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!pv.IsMine) return;
-        if (other.CompareTag("Puzzle1Cauldron"))
-        {
-            SolvePuzzle1();
-        }
-    }
 
-    void SolvePuzzle1()
-    {
-        PuzzleManager.instance.pData.isSolved1 = true;
-        PuzzleManager.instance.CheckPuzzle1();
-        PuzzleManager.instance.CheckAllPuzzles();
-
-    }
     public void OtherSolvedPuzzles()
     {
         if (PuzzleManager.instance.pData.allPuzzlesSolved)

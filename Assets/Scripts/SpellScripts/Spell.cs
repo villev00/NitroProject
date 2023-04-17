@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "SpellData", menuName = "ScriptableObjects/SpellData", order = 1)]
 public class Spell : ScriptableObject
@@ -18,14 +20,27 @@ public class Spell : ScriptableObject
     public bool isSpellOnCooldown;
     public float spellDuration;
 
-  
-    public IEnumerator SpellCooldown()
+    public GameObject spellUIPrefab;
+    public float cooldownRemaining;
+
+
+    private void Awake()
     {
-        yield return new WaitForSeconds(spellCooldown);
         isSpellOnCooldown = false;
-        Debug.Log(spellName+" ready");
+        cooldownRemaining = 0;
     }
- 
+    public IEnumerator CountSpellCooldown()
+    {
+        isSpellOnCooldown = true;
+        cooldownRemaining = spellCooldown;
+        while (isSpellOnCooldown)
+        {
+            yield return new WaitForSeconds(1f);
+            cooldownRemaining -= 1f;
+            if(cooldownRemaining <= 0)
+                isSpellOnCooldown = false;
+        }
+    }
 }
 
 
