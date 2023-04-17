@@ -30,6 +30,8 @@ public class BossEnemy : MonoBehaviour
     public float homingDeathSeekRadius;
 
     public float SwitchPlayerTime;
+    int attackChoice;
+    float delayBetweenAttacks;
 
     bool heavySwingUsed;
     bool magmaPoolUsed;
@@ -45,7 +47,9 @@ public class BossEnemy : MonoBehaviour
     private void Start()
     {
         playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
+        attackChoice = Random.Range(0, 3);
         SwitchPlayerTime = Random.Range(5f, 12f);
+        delayBetweenAttacks = Random.Range(4f, 8f);
         InvokeRepeating("SwitchPlayer", 0f, SwitchPlayerTime);
 
         heavySwingRange = 2f;
@@ -75,12 +79,7 @@ public class BossEnemy : MonoBehaviour
     
 
     private IEnumerator AttackPlayer()
-    {
-        // Generate a random number between 0 and 2
-        int attackChoice = Random.Range(0, 3);
-
-        // Set the delay between attacks to a random value between 4 and 8 seconds
-        float delayBetweenAttacks = Random.Range(8f, 12f);
+    {             
 
         switch (attackChoice)
         {
@@ -182,6 +181,8 @@ public class BossEnemy : MonoBehaviour
 
     private void SwitchPlayer()
     {
+        delayBetweenAttacks = Random.Range(4f, 8f);
+        attackChoice = Random.Range(0, 3);
         SwitchPlayerTime = Random.Range(5f, 12f);
         if (player == GameObject.FindGameObjectsWithTag("Player")[0].transform)
         {

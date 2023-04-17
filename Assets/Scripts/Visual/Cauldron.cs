@@ -29,7 +29,11 @@ public class Cauldron : MonoBehaviour
 
    public void PlayParticle()
     {
+        if (puzzleData.isSolved1) return;
         fire.Play();
         puzzleData.isSolved1 = true;
+        PuzzleManager.instance.CheckPuzzle1();
+        PuzzleManager.instance.CheckAllPuzzles();
+
     }
 }

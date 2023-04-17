@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviourPunCallbacks
 {
@@ -24,15 +25,17 @@ public class LobbyController : MonoBehaviourPunCallbacks
     {
         startButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Loading...";
         startButton.GetComponent<Button>().interactable = false;
-        PhotonNetwork.JoinRandomRoom();
-
-
+        if (PhotonNetwork.IsConnectedAndReady) // check if the player is currently connected to the PhotonNetwork and ready to perform operations
+            PhotonNetwork.JoinRandomRoom(); // attempt to join a random room
+        
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.CurrentRoom.MaxPlayers);
+        SceneManager.LoadScene("Lobby");
     }
+  
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("Failed to join a room");

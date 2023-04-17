@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,21 +22,24 @@ public class Spell : ScriptableObject
 
     public GameObject spellUIPrefab;
     public float cooldownRemaining;
-    public IEnumerator SpellCooldown()
+
+
+    private void Awake()
     {
-        yield return new WaitForSeconds(spellCooldown);
         isSpellOnCooldown = false;
-        Debug.Log(spellName+" ready");
+        cooldownRemaining = 0;
     }
     public IEnumerator CountSpellCooldown()
     {
+        isSpellOnCooldown = true;
+        cooldownRemaining = spellCooldown;
         while (isSpellOnCooldown)
         {
             yield return new WaitForSeconds(1f);
             cooldownRemaining -= 1f;
-
+            if(cooldownRemaining <= 0)
+                isSpellOnCooldown = false;
         }
-      
     }
 }
 
