@@ -20,11 +20,11 @@ public class PlayerControl : MonoBehaviour
     Transform cameraHolder;
     public UnityAction statChange;
     float time;
+    bool isJumping;
 
-    [SerializeField]
+
     float moveSpeed;
-    float jumpForce;
-    float verticalSpeed;    // Spagettia
+    float jumpForce;    // Spagettia
     float horizontal;
     float vertical;
     Vector3 moveDirection = new Vector3();
@@ -60,50 +60,31 @@ public class PlayerControl : MonoBehaviour
         if (!pv.IsMine) return;
         PlayerInput();
         GetDirection();
+        HandleJump();
+        MoveCharacter();
+    }
+    void HandleJump()
+    {
         time += Time.deltaTime;
-        //HandleJump();
         if (controller.isGrounded)
         {
+            isJumping = false;
             time = 0;
             moveDirection.y = -1;
             if (Input.GetKeyDown("space"))
             {
-                moveDirection.y += 12; // jumpForcee is not updated correctly
+                isJumping = true;
+                moveDirection.y += 1.1f; 
             }
         }
         else
         {
             // Gravity
-            // moveDirection.y -= 4 * gravity * Time.deltaTime;
-            //moveDirection.y -= 2 + gravity * Mathf.Pow(time,2);
-            // V0 + at
-            moveDirection.y += 0.3f - gravity * time;
-          //  Debug.Log(-gravity * time);
-        }
-        MoveCharacter();
-    }
-    void HandleJump()
-    {
-        moveDirection.y -= gravity * Time.deltaTime;
+            float gravityMultiplier = 0.8f;
+            if (isJumping) moveDirection.y += jumpForce - gravity * gravityMultiplier * time; // speed was 0.4
+            else moveDirection.y -= gravity * gravityMultiplier * time;
 
-        if (controller.isGrounded && Input.GetKeyDown("space"))
-        {
-            moveDirection.y = 20; // jumpForcee is not updated correctly
         }
-        /*
-        if (controller.isGrounded)
-        {
-            moveDirection.y = -1;
-            if (Input.GetKeyDown("space"))
-            {
-                moveDirection.y += 20; // jumpForcee is not updated correctly
-            }
-        }
-        else
-        {
-            moveDirection.y -= 7 * gravity * Time.deltaTime;
-        }
-         */
     }
 
     void GetDirection()
@@ -113,7 +94,8 @@ public class PlayerControl : MonoBehaviour
 
     void MoveCharacter()
     {
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+        Vector3 finalDirection = mLogic.NormalizeHorizontalMovement(moveDirection); // Final direction is a normalized vector with original jump height
+        controller.Move(finalDirection * moveSpeed * Time.deltaTime);
     }
     void PlayerInput()
     {
@@ -123,7 +105,9 @@ public class PlayerControl : MonoBehaviour
 
     public void FetchData()
     {
-        moveSpeed = pLogic.GetSpeed();
-        jumpForce = pLogic.GetJumpForce();
+        moveSpeed = pLogic.GetSpeed(); // movespeed is not updated correctly
+        moveSpeed *= 1.5f;
+        //jumpForce = pLogic.GetJumpForce();
+        jumpForce = 1.9f; // jumpForcee is not updated correctly
     }
 }

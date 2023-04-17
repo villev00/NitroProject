@@ -850,7 +850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 0}
   controller: {fileID: 0}
-  moveSpeed: 8
 --- !u!114 &3544848078432220866
 MonoBehaviour:
   m_ObjectHideFlags: 0
