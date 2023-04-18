@@ -4890,7 +4890,7 @@ GameObject:
   - component: {fileID: 6174400617009920929}
   - component: {fileID: 6293990235779432562}
   - component: {fileID: 1578922830397201885}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14648,7 +14648,7 @@ GameObject:
   - component: {fileID: 5515290142233141855}
   - component: {fileID: 5437968334881732291}
   - component: {fileID: 656575650796371125}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExplosionEffect (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19522,7 +19522,7 @@ GameObject:
   - component: {fileID: 3001515445201551536}
   - component: {fileID: 25312392040231487}
   - component: {fileID: 241007852973631084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49033,7 +49033,7 @@ GameObject:
   - component: {fileID: 6406449910113862979}
   - component: {fileID: 7347914694646392294}
   - component: {fileID: 4969049453097097318}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExplosionEffect (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73472,7 +73472,7 @@ GameObject:
   - component: {fileID: 6497918808518617751}
   - component: {fileID: 2972804084739185094}
   - component: {fileID: 3665577858033560378}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
