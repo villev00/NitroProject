@@ -118,7 +118,7 @@ public class Bullet : MonoBehaviour
                 break;
         }
         
-        sparkle.transform.position = spellSpawn.transform.position;
+        //sparkle.transform.position = spellSpawn.transform.position;
     }
 
     void StaffVisualGlow()
