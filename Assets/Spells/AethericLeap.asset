@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AethericLeap
   m_EditorClassIdentifier: 
   spellName: Aetheric Leap
+  spellInfo: Pull yourself into a desired location.
   spellElement: 3
   spellPrefab: {fileID: 5771177508185951880, guid: a16122c80682e6547885451d387d52df, type: 3}
   spellSprite: {fileID: 21300000, guid: 8bec14e3d4d5496448912602fa93de68, type: 3}
@@ -23,3 +24,4 @@ MonoBehaviour:
   isSpellOnCooldown: 0
   spellDuration: 0
   spellUIPrefab: {fileID: 264251916764759051, guid: 371a1d626ad4e76488de226f83072511, type: 3}
+  cooldownRemaining: 0
