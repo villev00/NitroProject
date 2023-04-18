@@ -30,6 +30,7 @@ public class Bullet : MonoBehaviour
         {
             Invoke("DestroySpell",5);
             //spellSpawn = GetComponent<ShootingController>().GetSpellSpawn();
+           // spellSpawn = Camera.main.transform.GetChild(0).GetChild(0).transform;
         }
     }
     private void Start()
@@ -59,7 +60,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        //StaffVisualGlow();
+       // StaffVisualGlow();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -117,10 +118,9 @@ public class Bullet : MonoBehaviour
             default:
                 break;
         }
-        
-        //sparkle.transform.position = spellSpawn.transform.position;
     }
 
+    // Does not work
     void StaffVisualGlow()
     {
         switch (element)
@@ -137,7 +137,10 @@ public class Bullet : MonoBehaviour
             default:
                 break;
         }
-        sparkle.transform.position = spellSpawn.position;
+        if (pv.IsMine)
+        {
+            sparkle.transform.position = Camera.main.transform.GetChild(0).GetChild(0).transform.position; //spellSpawn.transform.position;
+        }
     }
 
     void DestroySpell()
