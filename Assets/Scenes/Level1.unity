@@ -12749,7 +12749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293383172
 Transform:
   m_ObjectHideFlags: 0
@@ -12800,6 +12800,8 @@ MonoBehaviour:
     spawnCount: 0
     maxSpawnCount: 40
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -12816,6 +12818,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -24994,6 +24998,8 @@ MonoBehaviour:
   lightningIndex: 2
   aetherIndex: 3
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -25010,6 +25016,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -25563,6 +25571,8 @@ MonoBehaviour:
   lightningIndex: 1
   aetherIndex: 3
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -25579,6 +25589,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -33322,6 +33334,8 @@ MonoBehaviour:
   lightningIndex: 1
   aetherIndex: 3
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -33338,6 +33352,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -35225,6 +35241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 865148203}
+  - component: {fileID: 865148204}
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
@@ -35255,6 +35272,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &865148204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865148202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a860dc556afb1438578b000d3a61b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 293383171}
 --- !u!1001 &867612081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38514,6 +38544,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -38530,6 +38562,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -55885,6 +55919,8 @@ MonoBehaviour:
   lightningIndex: 2
   aetherIndex: 3
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -55901,6 +55937,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -58655,6 +58693,8 @@ MonoBehaviour:
   lightningIndex: 0
   aetherIndex: 0
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -58671,6 +58711,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -60967,6 +61009,8 @@ MonoBehaviour:
   lightningIndex: 1
   aetherIndex: 3
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -60983,6 +61027,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -72735,6 +72781,8 @@ MonoBehaviour:
   lightningIndex: 2
   aetherIndex: 3
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -72751,6 +72799,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}
@@ -79477,6 +79527,8 @@ MonoBehaviour:
   lightningIndex: 0
   aetherIndex: 0
   puzzleData:
+    wallIsOpenPlayer1: 0
+    wallIsOpenPlayer2: 0
     puzzle1Plattform: {fileID: 0}
     puzzle1Rune: {fileID: 0}
     isSolved1: 0
@@ -79493,6 +79545,8 @@ MonoBehaviour:
     aetherSumon: 0
     player1PlacedItem1: 0
     player2PlacedItem1: 0
+    player1IsHoldingItem1: 0
+    player2IsHoldingItem1: 0
     dropItem1: {fileID: 0}
     dropItem2: {fileID: 0}
     dropPoint1: {fileID: 0}

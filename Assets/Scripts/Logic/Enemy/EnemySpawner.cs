@@ -36,7 +36,7 @@ namespace Logic.Enemy
             
             InvokeRepeating("minuSpawnCount",5,5);
 
-            // add deylay to start spawning enemies 
+            StartCoroutine(SpawnEnemyCoroutinePlayer1());
           
         }
 
@@ -82,6 +82,11 @@ namespace Logic.Enemy
                     int randomSpawnPointIndex1 = UnityEngine.Random.Range(0, spawnPoint1.Length);
                     Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint1[randomSpawnPointIndex1].position, Quaternion.identity);
                 }
+                else if (playerIndex == 2)
+                {
+                    int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
+                    Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
+                }
              
                 
                 
@@ -90,24 +95,7 @@ namespace Logic.Enemy
             }
        }
        
-       private IEnumerator SpawnEnemyCoroutinePlayer2()
-       {
-           
-           while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
-           {
-               int randomEnemyIndex = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
-               if (playerIndex == 2)
-               {
-                   int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
-                   Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
-               }
-               
-               
-               
-               spawnData.spawnCount++;
-               yield return new WaitForSeconds(spawnData.spawnRate);
-           }
-       }
+     
        
        
        public void minuSpawnCount()

@@ -7,6 +7,7 @@ using UnityEngine;
 public class PuzzleSolver : MonoBehaviour
 {
     PhotonView pv;
+    int playerIndex;
     public GameObject puzzle1;
 
     private void Awake()
@@ -20,6 +21,7 @@ public class PuzzleSolver : MonoBehaviour
         if (!pv.IsMine) return;
         puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
         PuzzleManager.instance.player = gameObject;
+        playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
           
     }
 
@@ -41,6 +43,16 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_DestroyWall()
     {
         puzzle1.GetComponent<Puzzle1>().DestroyWall();
+        if (PuzzleManager.instance.pData.wallIsOpenPlayer1)
+        {
+            // set the bool to true in the other players puzzleData
+            PuzzleManager.instance.pData.wallIsOpenPlayer2 = true;
+        }
+        else if (PuzzleManager.instance.pData.wallIsOpenPlayer2)
+        {
+            // set the bool to true in the other players puzzleData
+            PuzzleManager.instance.pData.wallIsOpenPlayer1 = true;
+        }
     }
    
     [PunRPC]

@@ -9,7 +9,9 @@ public class Puzzle1 : MonoBehaviour
     private PuzzleData puzzleData;
     private bool isMoving = false;
     private BoxCollider boxCollider;
-
+    int playerIndex;
+   
+    
     // Serialized fields
     [SerializeField] GameObject puzzleCauldron;
 
@@ -34,6 +36,8 @@ public class Puzzle1 : MonoBehaviour
 
         // Cache the reference to the BoxCollider component
         boxCollider = GetComponent<BoxCollider>();
+        
+        playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
 
 
     }
@@ -81,6 +85,15 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
+        if(playerIndex == 1)
+        {
+           puzzleData.wallIsOpenPlayer1 = true;
+        }
+        else if(playerIndex == 2)
+        {
+            puzzleData.wallIsOpenPlayer2 = true;
+        }
+        
     }
 
     public void DisableVisualEffect()
