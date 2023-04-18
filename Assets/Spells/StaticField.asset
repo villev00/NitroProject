@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StaticField
   m_EditorClassIdentifier: 
   spellName: Static Field
+  spellInfo: Place a trap on the ground. After a delay deal damage and stun enemies.
   spellElement: 2
   spellPrefab: {fileID: 4497472470251595392, guid: 02af3ab40a03a52419f871deec3e9a14, type: 3}
   spellSprite: {fileID: 21300000, guid: 1c640c1929839f84b999d994a9a46dab, type: 3}
@@ -23,3 +24,4 @@ MonoBehaviour:
   isSpellOnCooldown: 0
   spellDuration: 5
   spellUIPrefab: {fileID: 264251916764759051, guid: 8fa362683ac133542b222dc86e20e763, type: 3}
+  cooldownRemaining: 0

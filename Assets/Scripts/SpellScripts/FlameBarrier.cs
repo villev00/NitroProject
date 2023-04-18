@@ -11,7 +11,7 @@ public class FlameBarrier : MonoBehaviour
 
     [SerializeField] Spell spell;
     [SerializeField] int barrierHealth;
-
+    [SerializeField] AudioClip spellClip;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -20,7 +20,7 @@ public class FlameBarrier : MonoBehaviour
     void Start()
     {
         if (!pv.IsMine) return;
-        
+        AudioManager.PlaySound(spellClip, false);
         //Let player know flamebarrier is up and set shield amount
         transform.root.GetComponent<PlayerLogic>().flameBarrier = gameObject;
         transform.root.GetComponent<PlayerLogic>().SetShieldValue(barrierHealth);

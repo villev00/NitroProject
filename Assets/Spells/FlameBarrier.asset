@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FlameBarrier
   m_EditorClassIdentifier: 
   spellName: Flame Barrier
+  spellInfo: A protective spell that absorbs damage.
   spellElement: 1
   spellPrefab: {fileID: 8783713133556971685, guid: 52665883cfdf3ed47bb9940a16302d83, type: 3}
   spellSprite: {fileID: 21300000, guid: 3ca8e410032a39946947b6162b30f4e3, type: 3}
@@ -23,3 +24,4 @@ MonoBehaviour:
   isSpellOnCooldown: 0
   spellDuration: 5
   spellUIPrefab: {fileID: 264251916764759051, guid: f1db6cd3858965c44add5962f6ce4c4a, type: 3}
+  cooldownRemaining: 0
