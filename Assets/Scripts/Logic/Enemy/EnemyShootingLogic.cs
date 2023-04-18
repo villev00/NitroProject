@@ -12,7 +12,6 @@ public class EnemyShootingLogic : MonoBehaviour
         //damage player
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Range hit");
             other.gameObject.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
             Destroy(gameObject);
         }

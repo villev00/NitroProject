@@ -12,12 +12,10 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField]
     PlayerData data = new PlayerData();
     PlayerUI playerUI;
-   
 
     [SerializeField]
     GameObject[] allPlayers = new GameObject[2];
 
-    
     public GameObject otherPlayer;
 
     private void Awake()
@@ -47,7 +45,7 @@ public class PlayerLogic : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-       
+        return;  
         if (flameBarrier != null)
             {
                 data.shield -= damage;

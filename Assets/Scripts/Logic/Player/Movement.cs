@@ -21,5 +21,13 @@ namespace logic
 
             return moveDirection;
         }
+
+        public Vector3 NormalizeHorizontalMovement(Vector3 speed)
+        {
+            Vector3 newSpeed;
+            newSpeed = speed.normalized;
+            newSpeed.y = speed.y;
+            return newSpeed;
+        }
     }
 }
