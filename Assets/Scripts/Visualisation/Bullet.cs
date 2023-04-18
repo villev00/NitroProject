@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
     AudioClip projectileLaunch;
     [SerializeField]
     AudioClip headshotAudio;
+    [SerializeField]
+    GameObject[] visualElement;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -25,6 +27,20 @@ public class Bullet : MonoBehaviour
     {
         if (pv.IsMine)
         {
+            switch (element)
+            {
+                case Element.Fire:
+                    visualElement[0].SetActive(true);
+                    break;
+                case Element.Aether:
+                    visualElement[1].SetActive(true);
+                    break;
+                case Element.Lightning:
+                    visualElement[2].SetActive(true);
+                    break;
+                default:
+                    break;
+            }
             AudioManager.PlaySound(projectileLaunch, false);
         }
     }
