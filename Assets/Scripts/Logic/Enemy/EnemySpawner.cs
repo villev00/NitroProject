@@ -37,7 +37,7 @@ namespace Logic.Enemy
             InvokeRepeating("minuSpawnCount",5,5);
 
             // add deylay to start spawning enemies 
-            StartCoroutine(SpawnEnemyCoroutine());
+          
         }
 
 
@@ -71,7 +71,7 @@ namespace Logic.Enemy
             Instantiate(spawnData.enemyList[randomEnemy], spawnPoint2[randomSpawnPoint2].position, Quaternion.identity);
         }       
 
-       private IEnumerator SpawnEnemyCoroutine()
+       private IEnumerator SpawnEnemyCoroutinePlayer1()
        {
            
             while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
@@ -82,17 +82,31 @@ namespace Logic.Enemy
                     int randomSpawnPointIndex1 = UnityEngine.Random.Range(0, spawnPoint1.Length);
                     Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint1[randomSpawnPointIndex1].position, Quaternion.identity);
                 }
-                else if (playerIndex == 2)
-                {
-                    int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
-                    Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
-                }
-                
+             
                 
                 
                 spawnData.spawnCount++;
                 yield return new WaitForSeconds(spawnData.spawnRate);
             }
+       }
+       
+       private IEnumerator SpawnEnemyCoroutinePlayer2()
+       {
+           
+           while (spawnData.spawnCount < spawnData.maxSpawnCount && !stopSpawning)
+           {
+               int randomEnemyIndex = UnityEngine.Random.Range(0, spawnData.enemyList.Count);
+               if (playerIndex == 2)
+               {
+                   int randomSpawnPointIndex2 = UnityEngine.Random.Range(0, spawnPoint2.Length);
+                   Instantiate(spawnData.enemyList[randomEnemyIndex], spawnPoint2[randomSpawnPointIndex2].position, Quaternion.identity);
+               }
+               
+               
+               
+               spawnData.spawnCount++;
+               yield return new WaitForSeconds(spawnData.spawnRate);
+           }
        }
        
        

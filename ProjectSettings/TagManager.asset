@@ -17,6 +17,8 @@ TagManager:
   - Fence
   - BossHead
   - Fence2
+  - DropItem
+  - DropItem2
   layers:
   - Default
   - TransparentFX

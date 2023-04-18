@@ -9,6 +9,9 @@ namespace Data
     public class PuzzleData 
     
     {
+        public bool wallIsOpenPlayer1;
+        public bool wallIsOpenPlayer2;
+        
         public  GameObject puzzle1Plattform;
         public GameObject puzzle1Rune;
         
@@ -37,6 +40,16 @@ namespace Data
         public bool hasOtherPlayerSolvedPuzzles;
         
         public bool fireSumon = false, lightningSumon = false, aetherSumon = false;
+        
+        public  bool player1PlacedItem1, player2PlacedItem1;
+        public  bool player1IsHoldingItem1, player2IsHoldingItem1;
+        
+        public GameObject dropItem1, dropItem2;
+        public Transform dropPoint1, dropPoint2;
+        public GameObject spawnObject1, spawnObject2;
+        public GameObject itemPlacment1, itemPlacment2;
+        public GameObject placedItem1, placedItem2;
+        
 
     }
 }

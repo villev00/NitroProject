@@ -1,5 +1,6 @@
 using System.Collections;
 using Data;
+using Logic.Enemy;
 using Photon.Pun;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class Puzzle1 : MonoBehaviour
     private PuzzleData puzzleData;
     private bool isMoving = false;
     private BoxCollider boxCollider;
+    int playerIndex;
+    PhotonView pv;
 
     // Serialized fields
     [SerializeField] GameObject puzzleCauldron;
@@ -34,6 +37,8 @@ public class Puzzle1 : MonoBehaviour
 
         // Cache the reference to the BoxCollider component
         boxCollider = GetComponent<BoxCollider>();
+        playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
+        pv = GetComponent<PhotonView>();
 
 
     }
@@ -81,6 +86,25 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
+        if(playerIndex == 1)
+        {
+            // set wallIsopen to true
+            puzzleData.wallIsOpenPlayer1 = true;
+            
+           // start coroutine from enemySpawner
+           GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().StartCoroutine("SpawnEnemyCoroutinePlayer1");
+           
+        }else if (playerIndex == 2)
+        {
+            puzzleData.wallIsOpenPlayer2 = true;
+            
+            // start coroutine from enemySpawner
+            GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().StartCoroutine("SpawnEnemyCoroutinePlayer2");
+        }
+
+        
+      
+        
         
     }
 }
