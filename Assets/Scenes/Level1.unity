@@ -54893,6 +54893,11 @@ MonoBehaviour:
   - {fileID: 1656792637}
   spellManager: {fileID: 0}
   pv: {fileID: 0}
+  spellInfoPanel: {fileID: 1641073491}
+  spellInfos:
+  - {fileID: 1641073490}
+  - {fileID: 1641073489}
+  - {fileID: 1641073488}
 --- !u!4 &1330705508
 Transform:
   m_ObjectHideFlags: 0
@@ -66380,6 +66385,26 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 494450, guid: 7779d84bca4e95b43a2e3232298a0aa5, type: 3}
   m_PrefabInstance: {fileID: 1640573469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1641073488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1237759614916257044, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
+  m_PrefabInstance: {fileID: 245892730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1641073489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1093619585531299541, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
+  m_PrefabInstance: {fileID: 245892730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1641073490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7075038867033675016, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
+  m_PrefabInstance: {fileID: 245892730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1641073491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5058952565338944614, guid: b5021c4d56339e84db8fe8d72d991ef2, type: 3}
+  m_PrefabInstance: {fileID: 245892730}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1645910511
 PrefabInstance:

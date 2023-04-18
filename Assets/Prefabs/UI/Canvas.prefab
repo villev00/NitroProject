@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5139405880946689594}
   - component: {fileID: 5976591451191233771}
   m_Layer: 5
-  m_Name: Spell2Icon
+  m_Name: SpellInfo2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4469337080519054452}
   - component: {fileID: 1905444486082789454}
   m_Layer: 5
-  m_Name: Spell3Icon
+  m_Name: SpellInfo3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8401243508900989760
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1150,7 +1150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6636028919987798820}
   m_Layer: 5
-  m_Name: SpellIcons
+  m_Name: SpellInfos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1327,7 +1327,7 @@ GameObject:
   - component: {fileID: 9049918600585373739}
   - component: {fileID: 7955569310408345000}
   m_Layer: 5
-  m_Name: Spell1Icon
+  m_Name: SpellInfo1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4371,6 +4371,10 @@ PrefabInstance:
     - target: {fileID: 284423654413779237, guid: 69dd099a88fa9584f9a9d987285949fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 664075342030525375, guid: 69dd099a88fa9584f9a9d987285949fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2306179258277512294, guid: 69dd099a88fa9584f9a9d987285949fa, type: 3}
       propertyPath: m_Name
