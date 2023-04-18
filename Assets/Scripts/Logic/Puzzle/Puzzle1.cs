@@ -43,7 +43,7 @@ public class Puzzle1 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered the trigger");
-            
+            DisableVisualEffect();
             // Start moving the platform towards the stop position
             if (!isMoving)
             {
@@ -81,7 +81,11 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
-        
+    }
+
+    public void DisableVisualEffect()
+    {
+        this.gameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
 }
 
