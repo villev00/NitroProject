@@ -45,7 +45,7 @@ public class PlayerLogic : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        return;  
+        return;
         if (flameBarrier != null)
             {
                 data.shield -= damage;
@@ -110,7 +110,6 @@ public class PlayerLogic : MonoBehaviour
                 data.mana = 0;
             } 
         }
-
         otherPlayer.GetComponent<PhotonView>().RPC("RPC_GainMana", RpcTarget.All, amount);    
     }
 
@@ -165,7 +164,6 @@ public class PlayerLogic : MonoBehaviour
       Debug.Log("Player died");
       otherPlayer.GetComponent<PhotonView>().RPC("KillFriend", RpcTarget.All);
       LoseLife();
-
     }
    
     [PunRPC]
