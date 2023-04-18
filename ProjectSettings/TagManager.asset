@@ -17,6 +17,7 @@ TagManager:
   - Fence
   - BossHead
   - Fence2
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - WhatIsPlayer
   - FXdistortion
   - BossSpells
-  - 
+  - EnemyBullet
   - 
   - 
   - 
