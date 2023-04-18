@@ -21,7 +21,7 @@ MonoBehaviour:
   spellDamage: 0
   spellAreaDamage: 20
   spellCooldown: 20
-  isSpellOnCooldown: 0
-  spellDuration: 5
+  isSpellOnCooldown: 1
+  spellDuration: 2
   spellUIPrefab: {fileID: 264251916764759051, guid: 32a1b5848cd5bd248a5372717d09791a, type: 3}
-  cooldownRemaining: 0
+  cooldownRemaining: 13
