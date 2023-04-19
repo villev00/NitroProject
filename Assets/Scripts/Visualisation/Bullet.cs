@@ -35,8 +35,8 @@ public class Bullet : MonoBehaviour
     }
     private void Start()
     {
-        if (pv.IsMine)
-        {
+       // if (pv.IsMine)
+       // {
             switch (element)
             {
                 case Element.Fire:
@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
                     break;
             }
             //AudioManager.PlaySound(projectileLaunch, false);
-        }
+       // }
     }
 
     private void Update()
