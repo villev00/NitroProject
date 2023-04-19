@@ -116,7 +116,6 @@ public class PlayerLogic : MonoBehaviour
                 data.mana = 0;
             } 
         }
-
         otherPlayer.GetComponent<PhotonView>().RPC("RPC_GainMana", RpcTarget.All, amount);    
     }
 
@@ -171,7 +170,6 @@ public class PlayerLogic : MonoBehaviour
       Debug.Log("Player died");
       otherPlayer.GetComponent<PhotonView>().RPC("KillFriend", RpcTarget.All);
       LoseLife();
-
     }
    
     [PunRPC]

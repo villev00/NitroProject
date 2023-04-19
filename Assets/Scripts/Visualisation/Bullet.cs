@@ -10,23 +10,28 @@ public class Bullet : MonoBehaviour
     private ShootingLogic sLogic;
     PhotonView pv;
     [SerializeField]
-    AudioClip projectileLaunch; // temporary
-    [SerializeField]
-    AudioClip headshotAudio;    // temporary
-    [SerializeField]
     AudioClip[] elementLaunch;
     [SerializeField]
     AudioClip[] elementHit;
-
     [SerializeField]
     GameObject[] visualElement;
+    Transform spellSpawn;
+    GameObject sparkle;
+    //[SerializeField]
+    //AudioClip projectileLaunch; // temporary
+    //[SerializeField]
+    //AudioClip headshotAudio;    // temporary
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         damage = 25;
         //damage = sLogic.GetDamage();
-        if(pv.IsMine)
+        if (pv.IsMine)
+        {
             Invoke("DestroySpell",5);
+            //spellSpawn = GetComponent<ShootingController>().GetSpellSpawn();
+           // spellSpawn = Camera.main.transform.GetChild(0).GetChild(0).transform;
+        }
     }
     private void Start()
     {
@@ -51,6 +56,11 @@ public class Bullet : MonoBehaviour
             }
             //AudioManager.PlaySound(projectileLaunch, false);
         }
+    }
+
+    private void Update()
+    {
+       // StaffVisualGlow();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -109,6 +119,30 @@ public class Bullet : MonoBehaviour
                 break;
         }
     }
+
+    // Does not work
+    void StaffVisualGlow()
+    {
+        switch (element)
+        {
+            case Element.Fire:
+                sparkle = visualElement[0].transform.GetChild(2).gameObject;
+                break;
+            case Element.Aether:
+                sparkle = visualElement[1].transform.GetChild(3).gameObject;
+                break;
+            case Element.Lightning:
+                sparkle = visualElement[2].transform.GetChild(5).gameObject;
+                break;
+            default:
+                break;
+        }
+        if (pv.IsMine)
+        {
+            sparkle.transform.position = Camera.main.transform.GetChild(0).GetChild(0).transform.position; //spellSpawn.transform.position;
+        }
+    }
+
     void DestroySpell()
     {
         pv.RPC("RPC_DestroySpell", RpcTarget.All);

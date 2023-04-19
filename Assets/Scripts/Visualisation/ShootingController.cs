@@ -44,6 +44,10 @@ public class ShootingController : MonoBehaviour
         readyToShoot = true;
     }
 
+    public Transform GetSpellSpawn()
+    {
+        return bulletSpawn;
+    }
     void FixedUpdate()
     {
        
