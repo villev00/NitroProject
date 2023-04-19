@@ -18,6 +18,8 @@ public class ShootingController : MonoBehaviour
     Camera playerCamera;
     [SerializeField]
     GameObject bullet;
+    GameObject currentBullet;
+
 
     public UnityAction statChange;
     
@@ -78,8 +80,26 @@ public class ShootingController : MonoBehaviour
             targetPoint = ray.GetPoint(75);
         }
         Vector3 direction = targetPoint - bulletSpawn.position;
-       // GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
-        GameObject currentBullet = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Bullet"), bulletSpawn.position, Quaternion.identity);
+        // GameObject currentBullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+
+        switch (sLogic.GetElement())
+        {
+            case Element.Fire:
+                currentBullet = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Fire Bullet"), bulletSpawn.position, Quaternion.identity);
+                break;
+
+            case Element.Aether:
+                currentBullet = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Aether Bullet"), bulletSpawn.position, Quaternion.identity);
+                break;
+
+            case Element.Lightning:
+                currentBullet = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Lightning Bullet"), bulletSpawn.position, Quaternion.identity);
+                break;
+
+            default:
+                break;
+        }
+
         currentBullet.transform.forward = direction.normalized;
         currentBullet.GetComponent<Bullet>().element = sLogic.GetElement();
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
