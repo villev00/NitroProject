@@ -10,10 +10,10 @@ public class Traps : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>(); 
+       // animator = GetComponent<Animator>(); 
         InvokeRepeating("WallSpikeTrap", 0f, 4f);
-        //InvokeRepeating("FloorSpikeTrap", 0f, 5f);
-        
+        InvokeRepeating("FloorSpikeTrap", 0f, 4f);
+       // InvokeRepeating("SawBladeTrap", 0f, 4f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,13 +26,14 @@ public class Traps : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
+            Debug.Log("Enemy hit by trap");
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(trapDamage, 0);
         }
     }
 
     public void WallSpikeTrap()
     {
-        if(!animator.GetBool("WallSpikeTrap"))
+        if (!animator.GetBool("WallSpikeTrap"))
         {
             animator.SetBool("WallSpikeTrap", true);
         }
@@ -40,10 +41,29 @@ public class Traps : MonoBehaviour
         {
             animator.SetBool("WallSpikeTrap", false);
         }
-       
+
     }
     public void FloorSpikeTrap()
     {
-       // animator.SetBool("FloorSpikeTrap", true);
+        if (!animator.GetBool("FloorSpikeTrap"))
+        {
+            animator.SetBool("FloorSpikeTrap", true);
+        }
+        else
+        {
+            animator.SetBool("FloorSpikeTrap", false);
+        }
     }
+   /* public void SawBladeTrap()
+    {
+        if (!animator.GetBool("SawBladeTrap"))
+        {
+            animator.SetBool("SawBladeTrap", true);
+        }
+        else
+        {
+            animator.SetBool("SawBladeTrap", false);
+        }
+    }
+   */
 }
