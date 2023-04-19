@@ -17,6 +17,7 @@ public class PlayerLogic : MonoBehaviour
     GameObject[] allPlayers = new GameObject[2];
 
     public GameObject otherPlayer;
+    Animator anime;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class PlayerLogic : MonoBehaviour
     private void Start()
     {
         Invoke("FindPlayers", 2);
-      
+        anime = GetComponent<Animator>();
     }
     void FindPlayers()
     {
@@ -45,7 +46,7 @@ public class PlayerLogic : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        return;
+        
         if (flameBarrier != null)
             {
                 data.shield -= damage;
@@ -58,31 +59,36 @@ public class PlayerLogic : MonoBehaviour
             }
             else if (pv.IsMine) 
             {
+                anime.SetTrigger("takeDamage");
                 data.health -= damage;
-                playerUI.ChangeHealthSliderValue(-damage);
-            }
+                playerUI.ChangeHealthSliderValue(-damage);               
+        }
         
         if (data.health <= 0)
         {
+            anime.SetBool("isDed", true);
             Die();
         }
-    }
- 
-   
+    }  
+
     public void SetShieldValue(int value)
     {
         data.shield = value;
     }
     public void Heal(int heal)
-    {
+    {       
         data.health += heal;
         if (pv.IsMine)
-            playerUI.ChangeHealthSliderValue(heal);
+        {
+            anime.SetTrigger("isHealing");
+            playerUI.ChangeHealthSliderValue(heal);           
+        }
+            
         if (data.health > data.maxHealth)
         {
             data.health = data.maxHealth;
         }
-    }
+    }   
     public int GetMana()
     {
         return data.mana;
