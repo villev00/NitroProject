@@ -46,7 +46,7 @@ public class PlayerLogic : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        return;
+      
         if (flameBarrier != null)
             {
                 data.shield -= damage;
@@ -62,8 +62,8 @@ public class PlayerLogic : MonoBehaviour
                 anime.SetTrigger("takeDamage");
                 data.health -= damage;
                 playerUI.ChangeHealthSliderValue(-damage);               
-        }
-        
+            }
+        return;
         if (data.health <= 0)
         {
             anime.SetBool("isDed", true);
