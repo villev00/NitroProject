@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ChainsOfLightning
   m_EditorClassIdentifier: 
   spellName: Chains of Lightning
+  spellInfo: A projectile spell that stuns nearby enemies on impact.
   spellElement: 2
   spellPrefab: {fileID: 4351747321639488839, guid: 381fb68a8cf692246b9d6ab2c520a593, type: 3}
   spellSprite: {fileID: 21300000, guid: fca1d6f2f0c03064e88cc77eb8db3335, type: 3}
@@ -20,6 +21,7 @@ MonoBehaviour:
   spellDamage: 0
   spellAreaDamage: 20
   spellCooldown: 20
-  isSpellOnCooldown: 0
-  spellDuration: 5
+  isSpellOnCooldown: 1
+  spellDuration: 2
   spellUIPrefab: {fileID: 264251916764759051, guid: 32a1b5848cd5bd248a5372717d09791a, type: 3}
+  cooldownRemaining: 13

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Spell : ScriptableObject
 {
     public string spellName;
+    [TextArea(5,5)]
+    public string spellInfo;
     public Element spellElement;
     public GameObject spellPrefab;
     public Sprite spellSprite;

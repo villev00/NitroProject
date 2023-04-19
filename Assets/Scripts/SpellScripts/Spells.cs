@@ -14,7 +14,8 @@ public class Spells : MonoBehaviour
 
     [SerializeField] GameObject spellSpawn;
     public int magnetCounter;
-    
+
+    int spellElementIndex=0;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -30,40 +31,52 @@ public class Spells : MonoBehaviour
     void SetupSpells()
     {
         spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
-        //for (int i = 0; i < fireSpells.Length; i++)
-        //{
-        //    fireSpells[i].isSpellOnCooldown = false;
-        //    lightningSpells[i].isSpellOnCooldown = false;
-        //    aetherSpells[i].isSpellOnCooldown = false;
-        //}
+       
        
     }
     private void Update()
     {
         if (!pv.IsMine) return;
         //Keybinds for different spell sets
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetAxisRaw("Mouse ScrollWheel") < 0)
         {
-            spellUI.ChangeSpellSet(fireSpells);
-            slogic.SetElement(Element.Fire);
+            ChangeSpellElement(-1);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetAxisRaw("Mouse ScrollWheel") > 0)
         {
-            spellUI.ChangeSpellSet(aetherSpells);
-            slogic.SetElement(Element.Aether);
-           
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            spellUI.ChangeSpellSet(lightningSpells);
-            slogic.SetElement(Element.Lightning);
-           
+            ChangeSpellElement(1);
         }
        
     }
   
 
+    void ChangeSpellElement(int indexChange)
+    {
+        spellElementIndex += indexChange;
+        if (spellElementIndex > 2) spellElementIndex = 0;
+        else if (spellElementIndex < 0) spellElementIndex = 2;
 
+        switch (spellElementIndex)
+        {
+            case 0:
+                spellUI.ChangeSpellSet(fireSpells);
+                slogic.SetElement(Element.Fire);
+                break;
+            case 1:
+                spellUI.ChangeSpellSet(aetherSpells);
+                slogic.SetElement(Element.Aether);
+                break;
+            case 2:
+                spellUI.ChangeSpellSet(lightningSpells);
+                slogic.SetElement(Element.Lightning);
+                break;
+            default:
+                Debug.Log("Invalid index: " + spellElementIndex);
+                break;
+
+
+        }
+    }
     public void UseSpell(Spell spell)
     {
         if (pv.IsMine)

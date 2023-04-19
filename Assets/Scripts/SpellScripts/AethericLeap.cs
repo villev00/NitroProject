@@ -11,8 +11,9 @@ public class AethericLeap : MonoBehaviour
 {
     Vector3 target;
     PhotonView pv;
-
+    [SerializeField] AudioClip spellClip;
     //leap menee seinien läpi
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -27,9 +28,20 @@ public class AethericLeap : MonoBehaviour
             transform.position = target;
             StartCoroutine(Teleport());
         }
-        GetComponent<AudioSource>().Play();
+        AudioManager.PlaySound(spellClip, false);
     }
  
+    void SmoothenLocation(float endY)
+    {
+        //teleport upwards, set new location bit lower to prevent going through ceiling
+        if(endY - transform.root.position.y > 3)
+        {
+            target = new Vector3(target.x, target.y - 0.8f, target.z);
+        }else if(endY - transform.root.position.y < -1)
+        {
+            target = new Vector3(target.x, target.y + 0.8f, target.z);
+        }
+    }
     IEnumerator Teleport()
     {
         //After a short while teleport to target location,
@@ -37,11 +49,7 @@ public class AethericLeap : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         //Disable character controller or it prevents teleporting
         transform.root.gameObject.GetComponent<CharacterController>().enabled = false;
-        if (target.y > 3)
-        {
-            target = new Vector3(target.x, target.y - 0.8f, target.z);
-        }
-       
+        SmoothenLocation(target.y);
         transform.root.position = target;
         transform.root.gameObject.GetComponent<CharacterController>().enabled = true;
         pv.RPC("RPC_DestroySpell", RpcTarget.All);

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +15,11 @@ public class SpellUI : MonoBehaviour
     [SerializeField] public GameObject spellManager;
     [SerializeField] public PhotonView pv;
     Spell[] currentSpells= new Spell[3];
-   
+
+    [SerializeField] GameObject spellInfoPanel;
+    [SerializeField] GameObject[] spellInfos; 
+
+
     private void Update()
     {
         if (!pv.IsMine) return;
@@ -34,8 +38,15 @@ public class SpellUI : MonoBehaviour
             spellSlots[2].GetComponent<Button>().onClick.Invoke();
             ShowSpellCooldown(currentSpells[2],2);
         }
-    }
 
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            if (!spellInfoPanel.activeInHierarchy)
+                spellInfoPanel.SetActive(true);
+            else spellInfoPanel.SetActive(false);
+        }
+    }
+ 
     //jos samassa spellslotissa on kaksi spelliä cd, niin timer visuaali kusee
     public void ChangeSpellSet(Spell[] spells)
     {
@@ -51,6 +62,7 @@ public class SpellUI : MonoBehaviour
             ShowSpellCooldown(currentSpells[i], i);
 
         }
+        ChangeInfoPanel(spells);
     }
     void ShowSpellCooldown(Spell spell, int index)
     {
@@ -68,5 +80,34 @@ public class SpellUI : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         spellSlots[index].transform.GetChild(0).GetComponent<Slider>().value = 0;
+    }
+    void ChangeInfoPanel(Spell[] spells)
+    {
+        if (spells[0].spellElement == Element.Fire)
+        {
+            spellInfoPanel.transform.GetChild(0).gameObject.SetActive(true);
+            spellInfoPanel.transform.GetChild(1).gameObject.SetActive(false);
+            spellInfoPanel.transform.GetChild(2).gameObject.SetActive(false);
+        }
+        else if (spells[0].spellElement == Element.Aether)
+        {
+            spellInfoPanel.transform.GetChild(0).gameObject.SetActive(false);
+            spellInfoPanel.transform.GetChild(1).gameObject.SetActive(true);
+            spellInfoPanel.transform.GetChild(2).gameObject.SetActive(false);
+        }
+        else if (spells[0].spellElement == Element.Lightning)
+        {
+            spellInfoPanel.transform.GetChild(0).gameObject.SetActive(false);
+            spellInfoPanel.transform.GetChild(1).gameObject.SetActive(false);
+            spellInfoPanel.transform.GetChild(2).gameObject.SetActive(true);
+        }
+        for (int i = 0; i < spells.Length; i++)
+        {
+            spellInfos[i].GetComponent<Image>().sprite = spells[i].spellSprite;
+            spellInfos[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = spells[i].spellName;
+            spellInfos[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = spells[i].spellInfo;
+
+        }
+
     }
 }

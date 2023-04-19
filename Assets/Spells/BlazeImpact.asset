@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlazeImpact
   m_EditorClassIdentifier: 
   spellName: Blaze Impact
+  spellInfo: A spell that travels in a straight line and knocks back enemies on impact.
   spellElement: 1
   spellPrefab: {fileID: 1027669318461816044, guid: 3157736597947564e98739310b11ec70, type: 3}
   spellSprite: {fileID: 21300000, guid: 6330cf7bc6681074f958bd679df7664e, type: 3}
@@ -23,3 +24,4 @@ MonoBehaviour:
   isSpellOnCooldown: 0
   spellDuration: 0
   spellUIPrefab: {fileID: 264251916764759051, guid: 82d62940ded945946ba45d5d09bdf8ec, type: 3}
+  cooldownRemaining: 0

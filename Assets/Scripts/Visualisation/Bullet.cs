@@ -10,9 +10,16 @@ public class Bullet : MonoBehaviour
     private ShootingLogic sLogic;
     PhotonView pv;
     [SerializeField]
-    AudioClip projectileLaunch;
+    AudioClip projectileLaunch; // temporary
     [SerializeField]
-    AudioClip headshotAudio;
+    AudioClip headshotAudio;    // temporary
+    [SerializeField]
+    AudioClip[] elementLaunch;
+    [SerializeField]
+    AudioClip[] elementHit;
+
+    [SerializeField]
+    GameObject[] visualElement;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -25,7 +32,24 @@ public class Bullet : MonoBehaviour
     {
         if (pv.IsMine)
         {
-            AudioManager.PlaySound(projectileLaunch, false);
+            switch (element)
+            {
+                case Element.Fire:
+                    visualElement[0].SetActive(true);
+                    AudioManager.PlaySound(elementLaunch[0], false);
+                    break;
+                case Element.Aether:
+                    visualElement[1].SetActive(true);
+                    AudioManager.PlaySound(elementLaunch[1], false);
+                    break;
+                case Element.Lightning:
+                    visualElement[2].SetActive(true);
+                    AudioManager.PlaySound(elementLaunch[2], false);
+                    break;
+                default:
+                    break;
+            }
+            //AudioManager.PlaySound(projectileLaunch, false);
         }
     }
 
@@ -38,7 +62,8 @@ public class Bullet : MonoBehaviour
         {
             damage *= 2;
             collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, element);
-            AudioManager.PlaySound(headshotAudio, false);
+            //AudioManager.PlaySound(headshotAudio, false);
+            HeadshotSound();
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -50,7 +75,8 @@ public class Bullet : MonoBehaviour
         {
             damage *= 2;
             collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
-            AudioManager.PlaySound(headshotAudio, false);
+            //AudioManager.PlaySound(headshotAudio, false);
+            HeadshotSound();
         }
         else if (collision.gameObject.CompareTag("Boss"))
         {
@@ -66,7 +92,23 @@ public class Bullet : MonoBehaviour
         DestroySpell();
     }
 
-
+    void HeadshotSound()
+    {
+        switch (element)
+        {
+            case Element.Fire:
+                AudioManager.PlaySound(elementHit[0], false);
+                break;
+            case Element.Aether:
+                AudioManager.PlaySound(elementHit[1], false);
+                break;
+            case Element.Lightning:
+                AudioManager.PlaySound(elementHit[2], false);
+                break;
+            default:
+                break;
+        }
+    }
     void DestroySpell()
     {
         pv.RPC("RPC_DestroySpell", RpcTarget.All);
