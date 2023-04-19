@@ -11,8 +11,8 @@ public class Traps : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>(); 
-        InvokeRepeating("WallSpikeTrap", 0f, 5f);
-        InvokeRepeating("FloorSpikeTrap", 0f, 5f);
+        InvokeRepeating("WallSpikeTrap", 0f, 4f);
+        //InvokeRepeating("FloorSpikeTrap", 0f, 5f);
         
     }
 
@@ -32,10 +32,18 @@ public class Traps : MonoBehaviour
 
     public void WallSpikeTrap()
     {
-        animator.SetBool("WallSpikeTrap", true);
+        if(!animator.GetBool("WallSpikeTrap"))
+        {
+            animator.SetBool("WallSpikeTrap", true);
+        }
+        else
+        {
+            animator.SetBool("WallSpikeTrap", false);
+        }
+       
     }
     public void FloorSpikeTrap()
     {
-        animator.SetBool("FloorSpikeTrap", true);
+       // animator.SetBool("FloorSpikeTrap", true);
     }
 }
