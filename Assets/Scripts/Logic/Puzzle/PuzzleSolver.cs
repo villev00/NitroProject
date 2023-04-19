@@ -35,7 +35,12 @@ public class PuzzleSolver : MonoBehaviour
        
         if (pv.IsMine)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_DestroyWall", RpcTarget.Others);
-       
+            
+    }
+
+    public void OtherDestroyedWall()
+    {
+
     }
 
 
@@ -43,16 +48,7 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_DestroyWall()
     {
         puzzle1.GetComponent<Puzzle1>().DestroyWall();
-        if (PuzzleManager.instance.pData.wallIsOpenPlayer1)
-        {
-            // set the bool to true in the other players puzzleData
-            PuzzleManager.instance.pData.wallIsOpenPlayer2 = true;
-        }
-        else if (PuzzleManager.instance.pData.wallIsOpenPlayer2)
-        {
-            // set the bool to true in the other players puzzleData
-            PuzzleManager.instance.pData.wallIsOpenPlayer1 = true;
-        }
+
     }
    
     [PunRPC]
@@ -64,6 +60,16 @@ public class PuzzleSolver : MonoBehaviour
             PuzzleManager.instance.OpenFences();
         }
 
+    }
+    
+    [PunRPC]
+    void RPC_WallAreDestroyed()
+    {
+        PuzzleManager.instance.pData.bothPlayersSolvedWall = true;
+        if (PuzzleManager.instance.pData.bothPlayersSolvedWall)
+        {
+            PuzzleManager.instance.SetSpawnPoint();
+        }
     }
     void CheckAll()
     {

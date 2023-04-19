@@ -14,9 +14,9 @@ public class wallSolved : MonoBehaviour
         InvokeRepeating("checkWalls", 5, 5);
     }
 
-    private void checkWalls()
+    public void checkWalls()
     {
-        if (puzzleData.wallIsOpenPlayer1 && puzzleData.wallIsOpenPlayer2)
+        if (puzzleData.bothPlayersSolvedWall)
         {
             spawnPoint.SetActive(true);
         }

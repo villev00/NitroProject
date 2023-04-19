@@ -9,8 +9,9 @@ namespace Data
     public class PuzzleData 
     
     {
-        public bool wallIsOpenPlayer1;
-        public bool wallIsOpenPlayer2;
+       public bool wall1Solved = false;
+       public bool wallOhterPlayerSolved = false;
+       public  bool bothPlayersSolvedWall = false;
         
         public  GameObject puzzle1Plattform;
         public GameObject puzzle1Rune;

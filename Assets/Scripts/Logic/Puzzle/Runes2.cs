@@ -21,7 +21,7 @@ public class Runes2 : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (puzzleData.wallIsOpenPlayer1 || puzzleData.wallIsOpenPlayer2)
+        if (puzzleData.bothPlayersSolvedWall)
         {
             bullet = other.GetComponent<Bullet>();
             if (bullet == null || puzzleData.isSolved2) return;

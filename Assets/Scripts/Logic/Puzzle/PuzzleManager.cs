@@ -13,6 +13,7 @@ public class PuzzleManager : MonoBehaviour
     public PuzzleData pData = new PuzzleData();
 
     public GameObject player;
+    public GameObject spawnPoint;
     //public event System.Action OnPuzzle3Solved;
 
     [SerializeField] AudioClip puzzleCompleteSound;
@@ -83,5 +84,10 @@ public class PuzzleManager : MonoBehaviour
     {                                
                 GameObject.FindGameObjectWithTag("Fence").GetComponent<FenceClose>().OpenFence();
                 GameObject.FindGameObjectWithTag("Fence2").GetComponent<FenceClose>().OpenFence();                    
+    }
+    public void SetSpawnPoint()
+    {
+        spawnPoint.SetActive(true);
+        
     }
 }

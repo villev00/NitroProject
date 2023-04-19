@@ -85,14 +85,7 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
-        if(playerIndex == 1)
-        {
-           puzzleData.wallIsOpenPlayer1 = true;
-        }
-        else if(playerIndex == 2)
-        {
-            puzzleData.wallIsOpenPlayer2 = true;
-        }
+        
         
     }
 
