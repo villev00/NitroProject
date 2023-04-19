@@ -35,13 +35,12 @@ public class PuzzleSolver : MonoBehaviour
        
         if (pv.IsMine)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_DestroyWall", RpcTarget.Others);
-            
+        else
+            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>().RPC("RPC_WallAreDestroyed", RpcTarget.Others);
+                        
     }
 
-    public void OtherDestroyedWall()
-    {
-
-    }
+  
 
 
     [PunRPC]

@@ -9,48 +9,34 @@ public class Bullet : MonoBehaviour
     public int damage;
     private ShootingLogic sLogic;
     PhotonView pv;
-    [SerializeField]
-    AudioClip projectileLaunch; // temporary
-    [SerializeField]
-    AudioClip headshotAudio;    // temporary
-    [SerializeField]
-    AudioClip[] elementLaunch;
-    [SerializeField]
-    AudioClip[] elementHit;
 
+    Transform spellSpawn;
+    GameObject sparkle;
     [SerializeField]
-    GameObject[] visualElement;
+    AudioClip projectileLaunch; 
+    [SerializeField]
+    AudioClip headshotAudio;    
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         damage = 25;
         //damage = sLogic.GetDamage();
-        if(pv.IsMine)
+        if (pv.IsMine)
+        {
             Invoke("DestroySpell",5);
+            //spellSpawn = GetComponent<ShootingController>().GetSpellSpawn();
+           // spellSpawn = Camera.main.transform.GetChild(0).GetChild(0).transform;
+        }
     }
     private void Start()
     {
-        if (pv.IsMine)
-        {
-            switch (element)
-            {
-                case Element.Fire:
-                    visualElement[0].SetActive(true);
-                    AudioManager.PlaySound(elementLaunch[0], false);
-                    break;
-                case Element.Aether:
-                    visualElement[1].SetActive(true);
-                    AudioManager.PlaySound(elementLaunch[1], false);
-                    break;
-                case Element.Lightning:
-                    visualElement[2].SetActive(true);
-                    AudioManager.PlaySound(elementLaunch[2], false);
-                    break;
-                default:
-                    break;
-            }
-            //AudioManager.PlaySound(projectileLaunch, false);
-        }
+        if (pv.IsMine) AudioManager.PlaySound(projectileLaunch,false);
+
+    }
+
+    private void Update()
+    {
+       // StaffVisualGlow();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -62,8 +48,7 @@ public class Bullet : MonoBehaviour
         {
             damage *= 2;
             collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, element);
-            //AudioManager.PlaySound(headshotAudio, false);
-            HeadshotSound();
+            AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -75,8 +60,7 @@ public class Bullet : MonoBehaviour
         {
             damage *= 2;
             collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
-            //AudioManager.PlaySound(headshotAudio, false);
-            HeadshotSound();
+            AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Boss"))
         {
@@ -92,23 +76,30 @@ public class Bullet : MonoBehaviour
         DestroySpell();
     }
 
-    void HeadshotSound()
+
+    // Does not work
+    void StaffVisualGlow()
     {
         switch (element)
         {
             case Element.Fire:
-                AudioManager.PlaySound(elementHit[0], false);
+                //sparkle = visualElement[0].transform.GetChild(2).gameObject;
                 break;
             case Element.Aether:
-                AudioManager.PlaySound(elementHit[1], false);
+                //sparkle = visualElement[1].transform.GetChild(3).gameObject;
                 break;
             case Element.Lightning:
-                AudioManager.PlaySound(elementHit[2], false);
+                //sparkle = visualElement[2].transform.GetChild(5).gameObject;
                 break;
             default:
                 break;
         }
+        if (pv.IsMine)
+        {
+            sparkle.transform.position = Camera.main.transform.GetChild(0).GetChild(0).transform.position; //spellSpawn.transform.position;
+        }
     }
+
     void DestroySpell()
     {
         pv.RPC("RPC_DestroySpell", RpcTarget.All);
