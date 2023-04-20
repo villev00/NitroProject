@@ -13,6 +13,7 @@ public class PuzzleManager : MonoBehaviour
     public PuzzleData pData = new PuzzleData();
 
     public GameObject player;
+    public GameObject SpawnPoint;
     //public event System.Action OnPuzzle3Solved;
 
     [SerializeField] AudioClip puzzleCompleteSound;
@@ -26,9 +27,15 @@ public class PuzzleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
-   
-    public void CheckPuzzle1()
+
+   private void Start()
+   {
+       InvokeRepeating("ActivateSpanwer", 5, 5);
+   }
+
+   public void CheckPuzzle1()
     {      
         if (pData.isSolved1)
         {
@@ -83,5 +90,14 @@ public class PuzzleManager : MonoBehaviour
     {                                
                 GameObject.FindGameObjectWithTag("Fence").GetComponent<FenceClose>().OpenFence();
                 GameObject.FindGameObjectWithTag("Fence2").GetComponent<FenceClose>().OpenFence();                    
+    }
+    
+    public  void ActivateSpanwer()
+    {
+        if (pData.bothPlayersWallWasDestroyed)
+        {
+              SpawnPoint.SetActive(true);
+        }
+      
     }
 }
