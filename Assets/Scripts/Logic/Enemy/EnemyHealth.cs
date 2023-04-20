@@ -27,7 +27,6 @@ public class EnemyHealth : EnemyData
         stunDuration = 2f;
     }
 
-    // TakeDamage from a spell
     public void TakeDamage(float damage, Element element)
     {
         
@@ -36,37 +35,14 @@ public class EnemyHealth : EnemyData
             StartCoroutine(Stun());
         }
 
-        health -= DamageTaken(damage, element); //damageResistance.CalculateDamageWithResistance(damage, element);
-        FloatingCombatText.Create(transform.position, DamageTaken(damage, element));
+        health -= damageResistance.CalculateDamageWithResistance(damage, element);
+        FloatingCombatText.Create(transform.position, damageResistance.CalculateDamageWithResistance(damage, element));
         if (health <= 0)
         {
             headCollider.enabled = false;
             bodyCollider.enabled = false;
             StartCoroutine(Die());
         }
-    }
-    // TakeDamage from a basic attack
-    public void TakeDamage(float damage, Element element, Vector3 position)
-    {
-
-        if (element == Element.Lightning)
-        {
-            StartCoroutine(Stun());
-        }
-
-        health -= DamageTaken(damage, element); //damageResistance.CalculateDamageWithResistance(damage, element);
-        FloatingCombatText.Create(position, DamageTaken(damage, element));
-        if (health <= 0)
-        {
-            headCollider.enabled = false;
-            bodyCollider.enabled = false;
-            StartCoroutine(Die());
-        }
-    }
-
-    public float DamageTaken(float damage, Element element)
-    {
-        return damageResistance.CalculateDamageWithResistance(damage, element);
     }
 
     IEnumerator Stun()

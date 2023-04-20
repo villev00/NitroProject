@@ -31,7 +31,7 @@ TagManager:
   - FXdistortion
   - BossSpells
   - EnemyBullet
-  - DamagePopUp
+  - 
   - 
   - 
   - 
@@ -54,7 +54,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Top
-    uniqueID: 3994544093
     locked: 0
