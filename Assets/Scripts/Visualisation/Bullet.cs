@@ -47,18 +47,30 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyHead"))
         {
             damage *= 2;
-            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, element);
+            // Create visual text for damage
+            //float damagePopUpValue = collision.gameObject.GetComponentInParent<EnemyHealth>().DamageTaken(damage, element);
+            //EnemyDamagePopUp(damagePopUpValue);
+
+            // Enemy damage taken
+            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, element, transform.position);
             AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, element);
+            // Create visual text for damage
+           //float damagePopUpValue = collision.gameObject.GetComponent<EnemyHealth>().DamageTaken(damage, element);
+           //EnemyDamagePopUp(damagePopUpValue);
+
+            // Enemy damage taken
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, element, transform.position);
         }
 
         // Boss hit
         else if (collision.gameObject.CompareTag("BossHead"))
         {
             damage *= 2;
+            EnemyDamagePopUp(damage);
+
             collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
             AudioManager.PlaySound(headshotAudio, false);
         }
@@ -66,10 +78,12 @@ public class Bullet : MonoBehaviour
         {
             try
             {
+                EnemyDamagePopUp(damage);
                 collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage, element);
             }
             catch
             {
+                EnemyDamagePopUp(damage);
                 collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
             }
         }
@@ -108,5 +122,11 @@ public class Bullet : MonoBehaviour
     void RPC_DestroySpell()
     {
         Destroy(gameObject);
+    }
+
+    void EnemyDamagePopUp(float damageText)
+    {
+        //Vector3 textPosition = new Vector3(0, textHeight, 0) + transform.position;
+        FloatingCombatText.Create(transform.position, damageText);
     }
 }

@@ -29,7 +29,7 @@ public class FloatingCombatText : MonoBehaviour
 
     public static FloatingCombatText Create(Vector3 position, float damageAmount)
     {
-        position += new Vector3(0, 1.2f, 0);
+        //position += new Vector3(0, 1.2f, 0);
         GameObject damagePopUpTransform = Instantiate(DamagePopUpAsset.i.pfDamagePopUp, position, Quaternion.identity);
         FloatingCombatText damagePopUp = damagePopUpTransform.GetComponent<FloatingCombatText>();
         damagePopUp.SetUp(damageAmount);
