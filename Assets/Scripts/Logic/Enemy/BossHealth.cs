@@ -17,22 +17,28 @@ public class BossHealth : EnemyData
         [PunRPC]
     void RPC_TakeDamage(float damage)
     {
-
-
         health -= damage;
         if (health <= 0)
         {
             Debug.Log("Enemy Died");
             if (pv.IsMine) pv.RPC("RPC_Die", RpcTarget.All);
         }
-
-
     }
 
+    // Damage taken from spells
     public void TakeDamage(float damage, Element element)
     {
-      //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
+        //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
         pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+        FloatingCombatText.Create(transform.position, damage);
+    }
+
+    // Damage taken from basic attack
+    public void TakeDamage(float damage, Element element, Vector3 position)
+    {
+        //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
+        pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+        FloatingCombatText.Create(position, damage);
     }
 
     [PunRPC]

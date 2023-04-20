@@ -47,30 +47,30 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyHead"))
         {
             damage *= 2;
-            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, element);
+            collision.gameObject.GetComponentInParent<EnemyHealth>().TakeDamage(damage, element, transform.position);
             AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, element);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, element, transform.position);
         }
 
         // Boss hit
         else if (collision.gameObject.CompareTag("BossHead"))
         {
             damage *= 2;
-            collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
+            collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element, transform.position);
             AudioManager.PlaySound(headshotAudio, false);
         }
         else if (collision.gameObject.CompareTag("Boss"))
         {
             try
             {
-                collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage, element);
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage, element, transform.position);
             }
             catch
             {
-                collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element);
+                collision.gameObject.GetComponentInParent<BossHealth>().TakeDamage(damage, element,transform.position);
             }
         }
         DestroySpell();
