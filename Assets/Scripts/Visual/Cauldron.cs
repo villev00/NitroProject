@@ -10,6 +10,8 @@ public class Cauldron : MonoBehaviour
     [SerializeField]
     private ParticleSystem fire;
     PuzzleData puzzleData;
+    [SerializeField] private GameObject puzzle1StateOn2;
+    [SerializeField] private GameObject puzzle1StateOff2;
 
 
     private void Awake()
@@ -29,11 +31,15 @@ public class Cauldron : MonoBehaviour
 
    public void PlayParticle()
     {
+        puzzle1StateOff2.SetActive(false);
+        puzzle1StateOn2.SetActive(true);
+
         if (puzzleData.isSolved1) return;
         fire.Play();
         puzzleData.isSolved1 = true;
         PuzzleManager.instance.CheckPuzzle1();
         PuzzleManager.instance.CheckAllPuzzles();
+       
 
     }
 }

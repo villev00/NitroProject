@@ -18,6 +18,9 @@ public class Puzzle1 : MonoBehaviour
     [SerializeField] private GameObject rubble;
     [SerializeField] private AudioClip wallBreakClip;
     [SerializeField] private Vector3 stopPosition;
+    [SerializeField] private GameObject puzzle1StateOn1;
+    [SerializeField] private GameObject puzzle1StateOff1;
+    
   
     [SerializeField] private float speed;
 
@@ -62,6 +65,8 @@ public class Puzzle1 : MonoBehaviour
         while (transform.position != stopPosition)
         {
             transform.position = Vector3.MoveTowards(transform.position, stopPosition, speed * Time.deltaTime);
+            puzzle1StateOff1.SetActive(false); 
+            puzzle1StateOn1.SetActive(true);
             yield return null;
         }
 
@@ -81,6 +86,9 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
+        puzzleData.otherPlayerWallWasDestroyed = true;
+        
+        
     }
 
     public void DisableVisualEffect()

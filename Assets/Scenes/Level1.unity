@@ -1716,7 +1716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 2f18c32efccdebe42b56f6de27c8c92e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 2f18c32efccdebe42b56f6de27c8c92e, type: 3}
       propertyPath: m_LocalScale.x
@@ -6194,7 +6194,7 @@ GameObject:
   - component: {fileID: 116196923}
   - component: {fileID: 116196922}
   m_Layer: 0
-  m_Name: RedBall
+  m_Name: RedBall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6211,7 +6211,8 @@ Transform:
   m_LocalPosition: {x: -0.01, y: 0, z: 0.1}
   m_LocalScale: {x: 0.10000001, y: 0.099999994, z: 0.10000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1828486438}
   m_Father: {fileID: 1810811551}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8948,7 +8949,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1398602984}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &188488157
 MeshCollider:
@@ -12970,8 +12971,9 @@ MonoBehaviour:
     spawnCount: 0
     maxSpawnCount: 40
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -18995,7 +18997,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1960730757}
   m_Father: {fileID: 1373074832}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23976,6 +23979,8 @@ MonoBehaviour:
   rubble: {fileID: 1410487024}
   wallBreakClip: {fileID: 8300000, guid: bc1bccbc462da0743a60e64f714c0809, type: 3}
   stopPosition: {x: 13.23, y: 1.35, z: -10.07}
+  puzzle1StateOn1: {fileID: 2068070300}
+  puzzle1StateOff1: {fileID: 443315425}
   speed: 5
 --- !u!65 &572395676
 BoxCollider:
@@ -25133,8 +25138,9 @@ MonoBehaviour:
   lightningIndex: 2
   aetherIndex: 3
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -25690,8 +25696,9 @@ MonoBehaviour:
   lightningIndex: 1
   aetherIndex: 3
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -28005,7 +28012,7 @@ GameObject:
   - component: {fileID: 664788814}
   - component: {fileID: 664788813}
   m_Layer: 0
-  m_Name: RedBall
+  m_Name: RedBall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28022,9 +28029,10 @@ Transform:
   m_LocalPosition: {x: -0.01, y: 0, z: 0.1}
   m_LocalScale: {x: 0.10000001, y: 0.099999994, z: 0.10000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1686785913}
   m_Father: {fileID: 1117293549}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &664788813
 SphereCollider:
@@ -30491,13 +30499,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746022812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.205}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0500063}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1822861149}
-  m_RootOrder: 3
+  m_Father: {fileID: 1732951153}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &746022814
 Light:
@@ -33926,8 +33934,9 @@ MonoBehaviour:
   lightningIndex: 1
   aetherIndex: 3
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -35792,7 +35801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &865148203
 Transform:
   m_ObjectHideFlags: 0
@@ -37176,6 +37185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 417273225}
+  puzzle1StateOn2: {fileID: 1519341546}
+  puzzle1StateOff2: {fileID: 664788811}
 --- !u!54 &893566581
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39041,8 +39052,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -39056,6 +39068,7 @@ MonoBehaviour:
     lightningSumon: 0
     aetherSumon: 0
   player: {fileID: 0}
+  SpawnPoint: {fileID: 865148202}
   puzzleCompleteSound: {fileID: 8300000, guid: fbc5dba4788c6e44987efa00de44a9c5, type: 3}
 --- !u!1001 &929676259
 PrefabInstance:
@@ -44560,13 +44573,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054898341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.205}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0500063}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1822861149}
-  m_RootOrder: 1
+  m_Father: {fileID: 1970822798}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1054898343
 Light:
@@ -46601,7 +46614,7 @@ GameObject:
   - component: {fileID: 1106398228}
   - component: {fileID: 1106398227}
   m_Layer: 0
-  m_Name: GreenBall
+  m_Name: GreenBall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46618,9 +46631,10 @@ Transform:
   m_LocalPosition: {x: -0.01, y: 0, z: 0.1}
   m_LocalScale: {x: 0.10000001, y: 0.099999994, z: 0.10000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1901851563}
   m_Father: {fileID: 1810811551}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1106398227
 SphereCollider:
@@ -46964,7 +46978,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1398602984}
+    m_TransformParent: {fileID: 1804514769}
     m_Modifications:
     - target: {fileID: 163688, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_Name
@@ -46972,31 +46986,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2.142858
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 2.142858
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.4552083
+      value: 21.401722
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0996686
+      value: 2.6293373
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.66
+      value: -6.7199926
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53456,7 +53470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3591244832980245165, guid: c324a89ca64f01444bd113b9a8daab8c, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3591244832980245165, guid: c324a89ca64f01444bd113b9a8daab8c, type: 3}
       propertyPath: m_LocalScale.x
@@ -53556,6 +53570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 154846856}
+  puzzle1StateOn2: {fileID: 1106398225}
+  puzzle1StateOff2: {fileID: 116196920}
 --- !u!54 &1276075453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -56527,8 +56543,9 @@ MonoBehaviour:
   lightningIndex: 2
   aetherIndex: 3
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -57727,6 +57744,8 @@ MonoBehaviour:
   rubble: {fileID: 53256701}
   wallBreakClip: {fileID: 8300000, guid: bc1bccbc462da0743a60e64f714c0809, type: 3}
   stopPosition: {x: 13.3619995, y: 0.29, z: -152.344}
+  puzzle1StateOn1: {fileID: 1732951152}
+  puzzle1StateOff1: {fileID: 1970822797}
   speed: 5
 --- !u!4 &1398602984
 Transform:
@@ -57740,13 +57759,11 @@ Transform:
   m_LocalScale: {x: 1.4285715, y: 2, z: 1.4285715}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1822861149}
-  - {fileID: 1117293549}
   - {fileID: 188488156}
   - {fileID: 1508202422}
   - {fileID: 40019535}
   m_Father: {fileID: 1804514769}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1400721305
 PrefabInstance:
@@ -59052,7 +59069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1428967473
 Transform:
   m_ObjectHideFlags: 0
@@ -59060,13 +59077,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428967472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.205}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0500212}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1373074832}
-  m_RootOrder: 3
+  m_Father: {fileID: 2068070301}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1428967474
 Light:
@@ -59455,8 +59472,9 @@ MonoBehaviour:
   lightningIndex: 0
   aetherIndex: 0
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -59872,12 +59890,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446662112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009996872, y: 0, z: 0.1760003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7599992}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1117293549}
-  m_RootOrder: 2
+  m_Father: {fileID: 1519341547}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1446662114
 Light:
@@ -62013,8 +62031,9 @@ MonoBehaviour:
   lightningIndex: 1
   aetherIndex: 3
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -62430,7 +62449,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1398602984}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1508202423
 MeshRenderer:
@@ -63006,7 +63025,7 @@ GameObject:
   - component: {fileID: 1519341549}
   - component: {fileID: 1519341548}
   m_Layer: 0
-  m_Name: GreenBall
+  m_Name: GreenBall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63020,12 +63039,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519341546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0, z: 0.1}
-  m_LocalScale: {x: 0.10000001, y: 0.099999994, z: 0.10000001}
+  m_LocalPosition: {x: -0.009999543, y: 0, z: 0.100001365}
+  m_LocalScale: {x: 0.100000024, y: 0.09999999, z: 0.100000024}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1446662113}
   m_Father: {fileID: 1117293549}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1519341548
 SphereCollider:
@@ -69821,12 +69841,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686785912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009996872, y: 0, z: 0.1760003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.76001304}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1117293549}
-  m_RootOrder: 1
+  m_Father: {fileID: 664788812}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1686785914
 Light:
@@ -71608,9 +71628,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 746022813}
   m_Father: {fileID: 1822861149}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1732951154
 SphereCollider:
@@ -74068,8 +74089,9 @@ MonoBehaviour:
   lightningIndex: 2
   aetherIndex: 3
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -79581,6 +79603,8 @@ Transform:
   - {fileID: 503945626}
   - {fileID: 1003952947}
   - {fileID: 1831636950}
+  - {fileID: 1822861149}
+  - {fileID: 1117293549}
   - {fileID: 1398602984}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -80289,7 +80313,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1398602984}
+    m_TransformParent: {fileID: 1804514769}
     m_Modifications:
     - target: {fileID: 163688, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_Name
@@ -80297,31 +80321,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2.142858
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 2.142858
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.4552083
+      value: 21.401722
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0996686
+      value: 2.6293373
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21
+      value: -5.4771423
       objectReference: {fileID: 0}
     - target: {fileID: 496610, guid: f645b3c5c79cbc648a3c7908f6f5a894, type: 3}
       propertyPath: m_LocalRotation.w
@@ -80679,12 +80703,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828486437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009996872, y: 0, z: 0.1760003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.000029681247, y: 0, z: 0.75999975}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1810811551}
-  m_RootOrder: 1
+  m_Father: {fileID: 116196921}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1828486439
 Light:
@@ -80921,8 +80945,9 @@ MonoBehaviour:
   lightningIndex: 0
   aetherIndex: 0
   puzzleData:
-    puzzle1Plattform: {fileID: 0}
-    puzzle1Rune: {fileID: 0}
+    wallWasDestroyed: 0
+    otherPlayerWallWasDestroyed: 0
+    bothPlayersWallWasDestroyed: 0
     isSolved1: 0
     isSolved2: 0
     isSolved3: 0
@@ -89296,12 +89321,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901851562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009996872, y: 0, z: 0.1760003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.000029681247, y: 0, z: 0.75999975}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1810811551}
-  m_RootOrder: 2
+  m_Father: {fileID: 1106398226}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1901851564
 Light:
@@ -90957,7 +90982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1864294351693451312, guid: afe13e6c8fab03548b52aa47fc93d7aa, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1864294351693451312, guid: afe13e6c8fab03548b52aa47fc93d7aa, type: 3}
       propertyPath: m_LocalScale.x
@@ -91357,13 +91382,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960730756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.205}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0500185}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1373074832}
-  m_RootOrder: 1
+  m_Father: {fileID: 443315426}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1960730758
 Light:
@@ -91831,7 +91856,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1054898342}
   m_Father: {fileID: 1822861149}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -100829,13 +100855,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068070300}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.1}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0000003278256, y: 0.00000031789145, z: 0.099999756}
+  m_LocalScale: {x: 0.099999994, y: 0.10000001, z: 0.099999994}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1428967473}
   m_Father: {fileID: 1373074832}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2068070302
 SphereCollider:
@@ -102341,8 +102368,8 @@ Transform:
   - {fileID: 151575749}
   - {fileID: 572395673}
   - {fileID: 1437292817}
-  - {fileID: 1945770172}
   - {fileID: 1276075449}
+  - {fileID: 1945770172}
   - {fileID: 1373074832}
   - {fileID: 1810811551}
   m_Father: {fileID: 0}

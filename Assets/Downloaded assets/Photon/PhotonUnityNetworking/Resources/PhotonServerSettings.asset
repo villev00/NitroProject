@@ -52,6 +52,10 @@ MonoBehaviour:
   - RPC_AllSolved
   - RPC_DestroyWall
   - RPC_Die
+  - <RPC_DestroyWall>g__RPC_AllSolved|6_0
+  - <RPC_DestroyWall>g__RPC_WallAreDown|6_1
+  - <RPC_DestroyWall>g__RPC_AllSolved|7_0
+  - <RPC_DestroyWall>g__RPC_WallAreDown|7_1
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
