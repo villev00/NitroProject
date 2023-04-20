@@ -81,7 +81,6 @@ public class Runes2 : MonoBehaviour
             PuzzleManager.instance.CheckAllPuzzles();
        }
      
-        
     }
 
 
