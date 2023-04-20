@@ -38,7 +38,6 @@ public class Puzzle1 : MonoBehaviour
         // Cache the reference to the BoxCollider component
         boxCollider = GetComponent<BoxCollider>();
 
-
     }
 
     private void OnTriggerEnter(Collider other)

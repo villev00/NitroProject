@@ -36,7 +36,7 @@ public class EnemyHealth : EnemyData
         }
 
         health -= damageResistance.CalculateDamageWithResistance(damage, element);
-        //FloatingCombatText.Create(transform.position, damageResistance.CalculateDamageWithResistance(damage, element));
+        FloatingCombatText.Create(transform.position, damageResistance.CalculateDamageWithResistance(damage, element));
         if (health <= 0)
         {
             headCollider.enabled = false;

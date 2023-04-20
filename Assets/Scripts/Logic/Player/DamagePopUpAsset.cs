@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatingCombatTextManager : MonoBehaviour
+public class DamagePopUpAsset : MonoBehaviour
 {
     private static DamagePopUpAsset _i;
 
