@@ -13,7 +13,7 @@ public class Cauldron : MonoBehaviour
     [SerializeField] private GameObject puzzle1StateOn2;
     [SerializeField] private GameObject puzzle1StateOff2;
 
-
+    public Spell spellToTrigger;
     private void Awake()
     {
         

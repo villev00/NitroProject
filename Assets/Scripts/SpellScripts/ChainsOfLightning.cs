@@ -61,8 +61,12 @@ public class ChainsOfLightning : MonoBehaviour
                 other.GetComponent<BossHealth>().TakeDamage(spell.spellAreaDamage, spell.spellElement);
             }
         }
-       
 
+        if (other.CompareTag("Puzzle1Cauldron") && other.GetComponent<Cauldron>().spellToTrigger == spell)
+        {
+            other.GetComponent<Cauldron>().PlayParticle();
+            StartCoroutine(DestroySpell());
+        }
 
     }
     IEnumerator DestroySpell()

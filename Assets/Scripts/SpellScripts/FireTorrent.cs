@@ -51,7 +51,7 @@ public class FireTorrent : MonoBehaviour
                 enemies.Add(other.gameObject);
                 Debug.Log("In damage zone: "+other.name); }
         }
-        if (other.CompareTag("Puzzle1Cauldron")){
+        if (other.CompareTag("Puzzle1Cauldron") && other.GetComponent<Cauldron>().spellToTrigger==spell){
             other.GetComponent<Cauldron>().PlayParticle();
         }
          
