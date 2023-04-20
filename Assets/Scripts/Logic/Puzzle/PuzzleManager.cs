@@ -17,7 +17,10 @@ public class PuzzleManager : MonoBehaviour
     //public event System.Action OnPuzzle3Solved;
 
     [SerializeField] AudioClip puzzleCompleteSound;
-   private void Awake()
+    [SerializeField] GameObject[] gateTorchWorld1;
+    [SerializeField] GameObject[] gateTorchWorld2;
+
+    private void Awake()
     {
         if (instance == null)
         {
@@ -42,6 +45,8 @@ public class PuzzleManager : MonoBehaviour
             Debug.Log("Puzzle 1 solved");
             player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
             AudioManager.PlaySound(puzzleCompleteSound, false);
+            gateTorchWorld1[0].SetActive(true);
+            gateTorchWorld2[0].SetActive(true);
         }
     }
     
@@ -55,6 +60,8 @@ public class PuzzleManager : MonoBehaviour
         if (pData.isSolved2)
         {
             AudioManager.PlaySound(puzzleCompleteSound, false);
+            gateTorchWorld1[1].SetActive(true);
+            gateTorchWorld2[1].SetActive(true);
             Debug.Log("Puzzle 2 solved");
             CheckAllPuzzles();
             player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
@@ -65,6 +72,8 @@ public class PuzzleManager : MonoBehaviour
     {
         if (pData.isSolved3)
         {
+            gateTorchWorld1[2].SetActive(true);
+            gateTorchWorld2[2].SetActive(true);
             AudioManager.PlaySound(puzzleCompleteSound, false);
             Debug.Log("Puzzle 3 solved");
         }
