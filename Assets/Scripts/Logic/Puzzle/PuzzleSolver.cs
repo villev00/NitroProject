@@ -12,8 +12,8 @@ public class PuzzleSolver : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        InvokeRepeating("WallCheck", 5, 5);
-        InvokeRepeating("BothPlayersOnPlatform", 5, 5);
+     //   InvokeRepeating("WallCheck", 5, 5);
+     //   InvokeRepeating("BothPlayersOnPlatform", 5, 5);
     }
 
     void Start()
