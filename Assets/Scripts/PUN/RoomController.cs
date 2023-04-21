@@ -40,6 +40,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         {
             startGame.SetActive(false);
         }
+        Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
     }
     public void LeaveRoom()
     {
