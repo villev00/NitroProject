@@ -14,6 +14,7 @@ public class PuzzleSolver : MonoBehaviour
         pv = GetComponent<PhotonView>();
         InvokeRepeating("CheckAll", 5, 5);
         InvokeRepeating("WallCheck", 5, 5);
+        InvokeRepeating("BothPlayersOnPlatform", 5, 5);
     }
 
     void Start()
@@ -22,7 +23,21 @@ public class PuzzleSolver : MonoBehaviour
         puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
         PuzzleManager.instance.player = gameObject;
     }
-
+    void BothPlayersOnPlatform()
+    {
+        if (PuzzleManager.instance.pData.playerStanding &&
+            PuzzleManager.instance.pData.otherPlayerStanding)
+        {
+            PuzzleManager.instance.pData.bothPlayersStanding = true;
+        }
+    }
+    public void otherPlayerStanding()
+    {
+        if (pv.IsMine)
+        {
+            PuzzleManager.instance.pData.otherPlayerStanding = true;
+        }
+    }
     void WallCheck()
     {
         if (PuzzleManager.instance.pData.otherPlayerWallWasDestroyed &&
@@ -38,7 +53,7 @@ public class PuzzleSolver : MonoBehaviour
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
                 .RPC("RPC_AllSolved", RpcTarget.Others);
     }
-
+    
     public void DestroyWall()
     {
         if (pv.IsMine)

@@ -44,11 +44,15 @@ public class Puzzle1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered the trigger");
-            DisableVisualEffect();
+            puzzleData.playerStanding = true;
+            puzzle1StateOff1.SetActive(false);
+            puzzle1StateOn1.SetActive(true);
+
+            Debug.Log("Player entered the trigger");          
             // Start moving the platform towards the stop position
-            if (!isMoving)
+            if (!isMoving && puzzleData.bothPlayersStanding)
             {
+                DisableVisualEffect();
                 StartCoroutine(MovePlatform());
                 isMoving = true;
                 player = other.gameObject;
@@ -58,14 +62,22 @@ public class Puzzle1 : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            puzzleData.playerStanding = false;
+            puzzle1StateOff1.SetActive(true);
+            puzzle1StateOn1.SetActive(false);
+        }
+    }
+
     private IEnumerator MovePlatform()
     {
         // Move the platform towards the stop position over time
         while (transform.position != stopPosition)
         {
-            transform.position = Vector3.MoveTowards(transform.position, stopPosition, speed * Time.deltaTime);
-            puzzle1StateOff1.SetActive(false); 
-            puzzle1StateOn1.SetActive(true);
+            transform.position = Vector3.MoveTowards(transform.position, stopPosition, speed * Time.deltaTime);          
             yield return null;
         }
 

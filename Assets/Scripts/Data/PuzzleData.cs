@@ -18,6 +18,9 @@ namespace Data
         public bool isSolved2;
         public bool isSolved3;
 
+        public bool playerStanding;
+        public bool otherPlayerStanding;
+        public bool bothPlayersStanding;
 
         //public int runeIndex = 0;
         public int puzzleStateIndex = 0;
