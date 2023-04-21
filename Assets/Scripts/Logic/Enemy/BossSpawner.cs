@@ -8,7 +8,8 @@ public class BossSpawner : MonoBehaviour
 {
     [SerializeField]
     private Transform bossSpawnPoint;
-
+    [SerializeField]
+    private GameObject bossHealthSlider;
     private bool hasSpawnedBoss = false;
     private void OnTriggerEnter(Collider collision)
     {
@@ -17,6 +18,7 @@ public class BossSpawner : MonoBehaviour
             SpawnBoss();
             hasSpawnedBoss = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            bossHealthSlider.SetActive(true);
         }
     }
     public void SpawnBoss()

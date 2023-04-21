@@ -7,55 +7,87 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LobbyController : MonoBehaviourPunCallbacks
+public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
-    [SerializeField]
-    GameObject startButton;
+    public static LobbyController lobby;
 
-    [SerializeField]
-    int roomSize;
 
+    public string roomName;
+    [SerializeField] int roomSize;
+
+    public GameObject roomListingPrefab;
+    public Transform roomsPanel;
+
+    private void Awake()
+    {
+        lobby = this;
+    }
     public override void OnConnectedToMaster() //when first connection is established
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        startButton.GetComponent<Button>().onClick.AddListener(StartGame);
+      
+    }
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        RemoveRoomListings();
+        foreach(RoomInfo room in roomList)
+        {
+            ListRoom(room);
+        }
+    }
+    void ListRoom(RoomInfo room)
+    {
+        if(room.IsOpen && room.IsVisible)
+        {
+            GameObject tempListing = Instantiate(roomListingPrefab, roomsPanel);
+            RoomButton tempButton = tempListing.GetComponent<RoomButton>();
+
+            tempButton.roomName = room.Name;
+            tempButton.roomSize = room.MaxPlayers;
+            tempButton.SetRoom();
+        }
+    }
+    void RemoveRoomListings()
+    {
+        while (roomsPanel.childCount != 0)
+        {
+            Destroy(roomsPanel.GetChild(0));
+        }
     }
 
-    void StartGame()
+    public void StartGame()
     {
-        startButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Loading...";
-        startButton.GetComponent<Button>().interactable = false;
-        if (PhotonNetwork.IsConnectedAndReady) // check if the player is currently connected to the PhotonNetwork and ready to perform operations
-            PhotonNetwork.JoinRandomRoom(); // attempt to join a random room
-        
+        SceneManager.LoadScene("Level1");
     }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log(PhotonNetwork.CurrentRoom.MaxPlayers);
-        SceneManager.LoadScene("Lobby");
-    }
-  
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        Debug.Log("Failed to join a room");
-        CreateRoom();
-    }
-
-    void CreateRoom() //trying to create a new room
+    public void CreateRoom() //trying to create a new room
     {
         Debug.Log("Creating room");
-        int randomRoomNumber = Random.Range(0, 10000); //random name for room
+ 
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)roomSize };
-        PhotonNetwork.CreateRoom("Room" + randomRoomNumber, roomOps); //attempting to create a new room with these settings
-        Debug.Log(randomRoomNumber);
-
+        PhotonNetwork.CreateRoom(roomName, roomOps); //attempting to create a new room with these settings
+        
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log("Failed to create room.. trying again");
-        CreateRoom(); //retrying to create room with different name
+        //name already chosen, choose another room name
+    }
+
+    public void OnRoomNameChanged(string nameIn)
+    {
+        roomName = nameIn;
+    }
+
+    public void JoinLobbyOnClick()
+    {
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
+        if (roomsPanel.gameObject.activeSelf) roomsPanel.gameObject.SetActive(false);
+        else roomsPanel.gameObject.SetActive(true);
     }
 
 }
