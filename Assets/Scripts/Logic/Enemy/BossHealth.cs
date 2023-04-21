@@ -7,17 +7,20 @@ using static RuneData;
 
 public class BossHealth : EnemyData
 {
+    BossUI bossUI;
     PhotonView pv;
     [SerializeField] private DamageResistance damageResistance;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        bossUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<BossUI>();
     }
 
         [PunRPC]
     void RPC_TakeDamage(float damage)
     {
         health -= damage;
+        bossUI.ChangeHealthSliderValue(-damage);
         if (health <= 0)
         {
             Debug.Log("Enemy Died");
