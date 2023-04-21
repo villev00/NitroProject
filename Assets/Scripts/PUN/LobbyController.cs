@@ -31,15 +31,7 @@ public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         base.OnRoomListUpdate(roomList);
         RemoveRoomListings();
-        if (!PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.JoinLobby();
-        }
-        else
-        {
-            PhotonNetwork.LeaveLobby();
-            PhotonNetwork.JoinLobby();
-        }
+
         foreach (RoomInfo room in roomList)
         {
             ListRoom(room);
