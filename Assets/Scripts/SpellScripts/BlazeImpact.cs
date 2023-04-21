@@ -114,7 +114,8 @@ public class BlazeImpact : MonoBehaviour
         hitCollider.radius = 1;
         explosionCollider.enabled = false;
         yield return new WaitForSeconds(1f);
-    
+
+        gameObject.SetActive(false);
         foreach (GameObject enemy in enemies)
         {
             if (enemy != null)

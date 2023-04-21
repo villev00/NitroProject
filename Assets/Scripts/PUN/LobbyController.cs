@@ -50,15 +50,16 @@ public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
     }
     void RemoveRoomListings()
     {
-        while (roomsPanel.childCount != 0)
+        for(int i=0; i<roomsPanel.childCount; i++)
         {
-            Destroy(roomsPanel.GetChild(0));
+            Destroy(roomsPanel.GetChild(i).gameObject);
         }
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1");
+      //  roomsPanel.
+      SceneManager.LoadScene("Level1");
     }
     public void CreateRoom() //trying to create a new room
     {
@@ -84,6 +85,11 @@ public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         if (!PhotonNetwork.InLobby)
         {
+            PhotonNetwork.JoinLobby();
+        }
+        else
+        {
+            PhotonNetwork.LeaveLobby();
             PhotonNetwork.JoinLobby();
         }
         if (roomsPanel.gameObject.activeSelf) roomsPanel.gameObject.SetActive(false);
