@@ -24,6 +24,8 @@ public class PuzzleSolver : MonoBehaviour
         puzzle1 = GameObject.Find("Puzzle1_World" + index);
         PuzzleManager.instance.player = gameObject;
     }
+
+    [PunRPC]
     void BothPlayersOnPlatform()
     {
         if (PuzzleManager.instance.pData.playerStanding &&
@@ -36,8 +38,15 @@ public class PuzzleSolver : MonoBehaviour
     {
         if (pv.IsMine)
         {
-            PuzzleManager.instance.pData.otherPlayerStanding = true;
+            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
+                 .RPC("RPC_OtherStanding", RpcTarget.Others);
+            pv.RPC("BothPlayersOnPlatform", RpcTarget.All);
         }
+    }
+    [PunRPC]
+    void RPC_OtherStanding()
+    {
+        PuzzleManager.instance.pData.otherPlayerStanding = true;
     }
     void WallCheck()
     {
