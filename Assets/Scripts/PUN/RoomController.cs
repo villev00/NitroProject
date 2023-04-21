@@ -36,6 +36,10 @@ public class RoomController : MonoBehaviourPunCallbacks
     {
         base.OnPlayerLeftRoom(otherPlayer);
         playerCount.text = "Players in Room: \n" + PhotonNetwork.CurrentRoom.PlayerCount;
+        if (PhotonNetwork.CurrentRoom.PlayerCount != 2)
+        {
+            startGame.SetActive(false);
+        }
     }
     public void LeaveRoom()
     {

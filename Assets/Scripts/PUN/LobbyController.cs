@@ -31,7 +31,16 @@ public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         base.OnRoomListUpdate(roomList);
         RemoveRoomListings();
-        foreach(RoomInfo room in roomList)
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
+        else
+        {
+            PhotonNetwork.LeaveLobby();
+            PhotonNetwork.JoinLobby();
+        }
+        foreach (RoomInfo room in roomList)
         {
             ListRoom(room);
         }
@@ -78,7 +87,10 @@ public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void OnRoomNameChanged(string nameIn)
     {
-        roomName = nameIn;
+        if (nameIn.Length > 10)
+            roomName = nameIn.Substring(0, Mathf.Min(name.Length, 10));
+        else
+            roomName = nameIn;
     }
 
     public void JoinLobbyOnClick()
