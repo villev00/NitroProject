@@ -14,7 +14,7 @@ public class SettingsMenu : MonoBehaviour
     const string MUSIC_VOL_KEY = "MusicVolume";
     const string SOUND_VOL_KEY = "SoundVolume";
 
-    [SerializeField] GameObject settingsPanel, howToPlayPanel;
+    [SerializeField] GameObject settingsPanel, howToPlayPanel, createRoomPanel;
 
     void Start()
     {
@@ -54,5 +54,12 @@ public class SettingsMenu : MonoBehaviour
         PlayButtonSound();
         if (howToPlayPanel.activeSelf) howToPlayPanel.SetActive(false);
         else howToPlayPanel.SetActive(true);
+    }
+
+    public void ToggleCreateRoomPanel() {
+
+        PlayButtonSound();
+        if (createRoomPanel.activeSelf) createRoomPanel.SetActive(false);
+        else createRoomPanel.SetActive(true);
     }
 }
