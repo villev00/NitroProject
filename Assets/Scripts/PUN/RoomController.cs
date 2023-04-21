@@ -31,6 +31,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         {
             startGame.SetActive(true);
         }
+        Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
