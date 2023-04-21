@@ -14507,7 +14507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 8ad806ccb0bce4a41a5a0d6f71288b75, type: 2}
   barrierHealth: 100
-  spellClip: {fileID: 8300000, guid: b421470cd558efa48b54c60debd59321, type: 3}
+  spellClip: {fileID: 8300000, guid: d65ab785356795a4796e3ae33c8290b5, type: 3}
 --- !u!65 &566058888736523178
 BoxCollider:
   m_ObjectHideFlags: 0
