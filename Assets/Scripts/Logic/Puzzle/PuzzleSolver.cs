@@ -38,9 +38,14 @@ public class PuzzleSolver : MonoBehaviour
     {
         if (pv.IsMine)
         {
+            if (PuzzleManager.instance.pData.playerStanding &&
+            PuzzleManager.instance.pData.otherPlayerStanding)
+            {
+                PuzzleManager.instance.pData.bothPlayersStanding = true;
+            }
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
                  .RPC("RPC_OtherStanding", RpcTarget.Others);
-            pv.RPC("BothPlayersOnPlatform", RpcTarget.All);
+            pv.RPC("BothPlayersOnPlatform", RpcTarget.Others);
         }
     }
     [PunRPC]

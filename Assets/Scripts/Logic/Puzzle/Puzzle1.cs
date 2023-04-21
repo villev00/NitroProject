@@ -52,19 +52,22 @@ public class Puzzle1 : MonoBehaviour
 
             other.GetComponent<PuzzleSolver>().otherPlayerStanding();
 
-            // Start moving the platform towards the stop position
-            if (!isMoving && puzzleData.bothPlayersStanding)
-            {
-                DisableVisualEffect();
-                StartCoroutine(MovePlatform());
-                isMoving = true;
-                player = other.gameObject;
-                
-
-            }
+          
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        // Start moving the platform towards the stop position
+        if (other.CompareTag("Player") &&!isMoving && puzzleData.bothPlayersStanding)
+        {
+            DisableVisualEffect();
+            StartCoroutine(MovePlatform());
+            isMoving = true;
+            player = other.gameObject;
 
+
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
