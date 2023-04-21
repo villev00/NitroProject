@@ -53,15 +53,7 @@ public class PuzzleSolver : MonoBehaviour
     {
         PuzzleManager.instance.pData.otherPlayerStanding = true;
     }
-    void WallCheck()
-    {
-        if (PuzzleManager.instance.pData.otherPlayerWallWasDestroyed &&
-            PuzzleManager.instance.pData.wallWasDestroyed)
-        {
-            PuzzleManager.instance.pData.bothPlayersWallWasDestroyed = true;
-        }
-    }
-
+   
     public void OtherSolvedPuzzles()
     {
         if (PuzzleManager.instance.pData.allPuzzlesSolved)

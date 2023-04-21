@@ -42,7 +42,7 @@ public class Puzzle1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetComponent<PhotonView>().IsMine)
         {
             puzzleData.playerStanding = true;
             puzzle1StateOff1.SetActive(false);

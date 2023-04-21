@@ -104,7 +104,7 @@ public class PuzzleManager : MonoBehaviour
     
     public  void ActivateSpanwer()
     {
-        if (pData.bothPlayersWallWasDestroyed)
+        if (pData.wallWasDestroyed)
         {
               SpawnPoint.SetActive(true);
         }
