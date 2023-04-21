@@ -50,7 +50,7 @@ public class Puzzle1 : MonoBehaviour
 
             Debug.Log("Player entered the trigger");          
             // Start moving the platform towards the stop position
-            if (!isMoving && puzzleData.bothPlayersStanding)
+            if (!isMoving)// && puzzleData.bothPlayersStanding)
             {
                 DisableVisualEffect();
                 StartCoroutine(MovePlatform());

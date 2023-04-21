@@ -9,6 +9,7 @@ public class GameSetupController : MonoBehaviour
     void Start()
     {
         playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (playerIndex > 2) playerIndex = 2;
         CreatePlayer();      
     }
 
