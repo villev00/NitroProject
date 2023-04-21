@@ -26,13 +26,7 @@ public class PlayerUI : MonoBehaviour
     public void ChangeManaSliderValue(int value)
     {
         manaSlider.value += value;
-        StopAllCoroutines();
-        gainMana.SetActive(false);
-        loseMana.SetActive(false);
-        if (value > 0)
-            EnableManaIndicator(gainMana);
-        else
-            EnableManaIndicator(loseMana);
+     
     }
     public void ChangeHealthPotionValue(int value)
     {
@@ -53,12 +47,7 @@ public class PlayerUI : MonoBehaviour
         }
         
     }
-    IEnumerator EnableManaIndicator(GameObject mana)
-    {
-        mana.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        mana.SetActive(false);
-    }
+  
     public void ChangePotionText(int amount)
     {
         PotionText.text = amount.ToString();
