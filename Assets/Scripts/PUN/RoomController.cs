@@ -48,6 +48,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
+        PhotonNetwork.LeaveLobby();
         roomPanel.SetActive(false);
         lobbyPanel.SetActive(true);
       
