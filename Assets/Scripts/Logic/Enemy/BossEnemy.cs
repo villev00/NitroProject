@@ -43,7 +43,7 @@ public class BossEnemy : MonoBehaviour
     private void Awake()
     {      
         bossEnemy = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()

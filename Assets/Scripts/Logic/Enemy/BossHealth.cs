@@ -16,7 +16,7 @@ public class BossHealth : EnemyData
     {
         pv = GetComponent<PhotonView>();
         bossUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<BossUI>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
         [PunRPC]
