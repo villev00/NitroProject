@@ -1,11 +1,13 @@
 using Photon.Pun;
+using Photon.Realtime;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RoomController : MonoBehaviourPunCallbacks
 {
-    [SerializeField]
-    int waitingRoomSceneIndex;
+    [SerializeField] GameObject roomPanel, lobbyPanel, startGame;
+
+    [SerializeField] TextMeshProUGUI playerCount;
 
     public override void OnEnable()
     {
@@ -17,7 +19,17 @@ public class RoomController : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        SceneManager.LoadScene(waitingRoomSceneIndex);
+        roomPanel.SetActive(true);
+        lobbyPanel.SetActive(false);
+        playerCount.text = "Players in Room: \n" + PhotonNetwork.CurrentRoom.PlayerCount;
     }
-
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        playerCount.text = "Players in Room: \n" + PhotonNetwork.CurrentRoom.PlayerCount;
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            startGame.SetActive(true);
+        }
+    }
 }
