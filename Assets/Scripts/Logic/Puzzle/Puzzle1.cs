@@ -20,9 +20,14 @@ public class Puzzle1 : MonoBehaviour
     [SerializeField] private Vector3 stopPosition;
     [SerializeField] private GameObject puzzle1StateOn1;
     [SerializeField] private GameObject puzzle1StateOff1;
+    [SerializeField] private GameObject puzzle1StateOn2;
+    [SerializeField] private GameObject puzzle1StateOff2;
+
     
   
     [SerializeField] private float speed;
+    
+    PhotonView pv;
 
     // Events
     public event System.Action OnPuzzleSolved;
@@ -45,6 +50,7 @@ public class Puzzle1 : MonoBehaviour
         if (other.CompareTag("Player") && other.GetComponent<PhotonView>().IsMine)
         {
             puzzleData.playerStanding = true;
+            
             puzzle1StateOff1.SetActive(false);
             puzzle1StateOn1.SetActive(true);
 
@@ -64,6 +70,7 @@ public class Puzzle1 : MonoBehaviour
             StartCoroutine(MovePlatform());
             isMoving = true;
             player = other.gameObject;
+            
 
 
         }
@@ -75,6 +82,10 @@ public class Puzzle1 : MonoBehaviour
             puzzleData.playerStanding = false;
             puzzle1StateOff1.SetActive(true);
             puzzle1StateOn1.SetActive(false);
+            other.GetComponent<PhotonView>().RPC("RPC_otherPlayerLightsOff", RpcTarget.Others);
+
+
+
         }
     }
 
@@ -107,6 +118,22 @@ public class Puzzle1 : MonoBehaviour
         
         
     }
+    
+    public void otherPlayerLights()
+    {
+        puzzle1StateOff2.SetActive(false);
+        puzzle1StateOn2.SetActive(true);
+    }
+    [PunRPC]
+    public void RPC_otherPlayerLightsOff()
+    {
+        Debug.Log("RPC_otherPlayerLightsOff");
+        puzzle1StateOff2.SetActive(true);
+        puzzle1StateOn2.SetActive(false);
+    }
+    
+    
+   
 
     public void DisableVisualEffect()
     {

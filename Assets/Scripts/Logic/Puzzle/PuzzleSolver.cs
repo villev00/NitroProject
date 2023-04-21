@@ -52,6 +52,9 @@ public class PuzzleSolver : MonoBehaviour
     void RPC_OtherStanding()
     {
         PuzzleManager.instance.pData.otherPlayerStanding = true;
+        puzzle1.gameObject.GetComponent<Puzzle1>().otherPlayerLights();
+       
+       
     }
    
     public void OtherSolvedPuzzles()
