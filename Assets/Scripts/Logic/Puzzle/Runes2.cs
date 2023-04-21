@@ -17,12 +17,15 @@ public class Runes2 : MonoBehaviour
     [SerializeField]
     PuzzleData puzzleData;
     [SerializeField] Light[] puzzleLights = new Light[3];
+    [SerializeField]
+    GameObject[] players;
 
     public string tag;
     private void Start()
-        {
-            puzzleData = PuzzleManager.instance.pData;
-        }
+    {
+        puzzleData = PuzzleManager.instance.pData;
+        
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -79,26 +82,23 @@ public class Runes2 : MonoBehaviour
 
             PuzzleManager.instance.CheckPuzzle2();
             PuzzleManager.instance.CheckAllPuzzles();
-       }
-     
+        }
+
     }
 
 
     private void Reset()
-       {
-            for(int i=0; i < puzzleLights.Length; i++)
-            {
+    {
+        for (int i = 0; i < puzzleLights.Length; i++)
+        {
             puzzleLights[i].intensity = 1;
-            }
-            puzzleData.puzzle2FireSloved = false;
-              puzzleData.puzzle2LightningSloved = false;
-              puzzleData.puzzle2AetherSloved = false;
-              puzzleData.puzzleStateIndex = 1;
-       }
-   }
-
-
-            
-    
-
-
+        }
+        puzzleData.puzzle2FireSloved = false;
+        puzzleData.puzzle2LightningSloved = false;
+        puzzleData.puzzle2AetherSloved = false;
+        puzzleData.puzzleStateIndex = 1;
+        players = GameObject.FindGameObjectsWithTag("Player");
+        players[0].GetComponent<PlayerLogic>().TakeDamage(20);
+        players[1].GetComponent<PlayerLogic>().TakeDamage(20);
+    }
+}

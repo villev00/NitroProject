@@ -60,7 +60,7 @@ public class FloatingCombatText : MonoBehaviour
         {
             textColor.a -= fadeSpeed * Time.deltaTime;
             textMesh.color = textColor;
-            if(textMesh.color.a == 0)
+            if(textColor.a <= 0)
             {
                 Destroy(gameObject);
             }
