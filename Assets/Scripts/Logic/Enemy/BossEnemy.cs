@@ -39,9 +39,11 @@ public class BossEnemy : MonoBehaviour
    
     public bool playerInAttackRange;
     int playerIndex;
+    Animator anim;
     private void Awake()
     {      
         bossEnemy = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -74,7 +76,11 @@ public class BossEnemy : MonoBehaviour
         if (bossEnemy.enabled == false) return;            
         StartCoroutine(AttackPlayer());
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
-        if (playerInAttackRange == true) HeavySwing();
+        if (playerInAttackRange == true)
+        {
+            anim.SetBool("isRunning", false);
+            HeavySwing();
+        }
     }
     
 
@@ -123,6 +129,7 @@ public class BossEnemy : MonoBehaviour
     private void ChasePlayer()
     {       
         bossEnemy.SetDestination(player.position);
+        anim.SetBool("isRunning", true);
     }
 
     private void HeavySwing()
@@ -135,7 +142,8 @@ public class BossEnemy : MonoBehaviour
         {
             // check if the player is within range for a melee attack
             if (Vector3.Distance(transform.position, player.position) <= heavySwingRange)
-            {
+            {              
+                anim.SetTrigger("meleeAttack");
                 // apply damage to the player
                 player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
                 //Debug.Log("HeavySwing");
@@ -148,6 +156,7 @@ public class BossEnemy : MonoBehaviour
     }
     private void MagmaPool()
     {
+        anim.SetTrigger("spellAttack");
         //Debug.Log("Magma Pool");
         GameObject magmaPool = Instantiate(magmaPoolPrefab, player.position, Quaternion.identity);
         Destroy(magmaPool, magmaPoolDuration);
@@ -155,7 +164,7 @@ public class BossEnemy : MonoBehaviour
     private void HomingDeath()
     {
         //Debug.Log("Homing Death");
- 
+        anim.SetTrigger("spellAttack");
         // Create a homing death projectile at the boss's position
         GameObject homingDeath = Instantiate(homingDeathPrefab, staff.position, Quaternion.identity);
 

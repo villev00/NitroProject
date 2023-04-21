@@ -10,10 +10,13 @@ public class BossHealth : EnemyData
     BossUI bossUI;
     PhotonView pv;
     [SerializeField] private DamageResistance damageResistance;
+    Animator anim;
+    private int wait = 10;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         bossUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<BossUI>();
+        anim = GetComponent<Animator>();
     }
 
         [PunRPC]
@@ -22,9 +25,9 @@ public class BossHealth : EnemyData
         health -= damage;
         bossUI.ChangeHealthSliderValue(-damage);
         if (health <= 0)
-        {
+        {          
             Debug.Log("Enemy Died");
-            if (pv.IsMine) pv.RPC("RPC_Die", RpcTarget.All);
+            StartCoroutine(DieAnimation());
         }
     }
 
@@ -42,6 +45,13 @@ public class BossHealth : EnemyData
         //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
         pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
         FloatingCombatText.Create(position, damage);
+    }
+
+    private IEnumerator DieAnimation()
+    {
+        anim.SetTrigger("die");
+        yield return new WaitForSeconds(wait);
+        if (pv.IsMine) pv.RPC("RPC_Die", RpcTarget.All);
     }
 
     [PunRPC]
