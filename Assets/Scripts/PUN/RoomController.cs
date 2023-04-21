@@ -19,6 +19,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
         roomPanel.SetActive(true);
         lobbyPanel.SetActive(false);
         playerCount.text = "Players in Room: \n" + PhotonNetwork.CurrentRoom.PlayerCount;
@@ -31,6 +32,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         {
             startGame.SetActive(true);
         }
+       
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -40,14 +42,17 @@ public class RoomController : MonoBehaviourPunCallbacks
         {
             startGame.SetActive(false);
         }
+        Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
     }
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+        Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
     }
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
+        PhotonNetwork.LeaveLobby();
         roomPanel.SetActive(false);
         lobbyPanel.SetActive(true);
       
