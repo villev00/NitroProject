@@ -5,13 +5,17 @@ using data;
 using Photon.Pun;
 using static RuneData;
 
-public class BossHealth : EnemyData
+public class BossHealth : BossData
 {
+    [SerializeField]
+    GameObject flameBarrier;
     BossUI bossUI;
     PhotonView pv;
     [SerializeField] private DamageResistance damageResistance;
     Animator anim;
     private int wait = 10;
+    private bool isEnraged = false;
+    public bool isDead = false;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -19,10 +23,18 @@ public class BossHealth : EnemyData
         anim = GetComponentInChildren<Animator>();
     }
 
-        [PunRPC]
-    void RPC_TakeDamage(float damage)
+    private void Update()
     {
-        health -= damage;
+        if (health < 1000)
+        {
+            Enrage();
+        }
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage, Element element)
+    {
+        health -= DamageTaken(damage, element);
         bossUI.ChangeHealthSliderValue(-damage);
         if (health <= 0)
         {          
@@ -34,24 +46,46 @@ public class BossHealth : EnemyData
     // Damage taken from spells
     public void TakeDamage(float damage, Element element)
     {
-        //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
-        pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+        //damage = damageResistance.CalculateDamageWithResistance(damage, element);
+        pv.RPC("RPC_TakeDamage", RpcTarget.All, damage, element);
         FloatingCombatText.Create(transform.position, damage);
     }
 
     // Damage taken from basic attack
     public void TakeDamage(float damage, Element element, Vector3 position)
     {
-        //  damage = damageResistance.CalculateDamageWithResistance(damage, element);
-        pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+        // damage = damageResistance.CalculateDamageWithResistance(damage, element);
+        pv.RPC("RPC_TakeDamage", RpcTarget.All, damage, element);
         FloatingCombatText.Create(position, damage);
     }
-
+    float DamageTaken(float incomingDamange, Element currentElement)
+    {
+        float newDamageTaken;
+        if (isEnraged)
+        {
+            newDamageTaken = damageResistance.CalculateDamageWithResistance(incomingDamange, currentElement);
+        }
+        else
+        {
+            newDamageTaken = incomingDamange;
+        }
+        
+        return newDamageTaken;
+    }
     private IEnumerator DieAnimation()
     {
+        isDead = true;
         anim.SetTrigger("die");
         yield return new WaitForSeconds(wait);
         if (pv.IsMine) pv.RPC("RPC_Die", RpcTarget.All);
+    }
+
+    public void Enrage()
+    {
+
+        isEnraged = true;
+        flameBarrier.SetActive(true);
+        GetComponent<UnityEngine.AI.NavMeshAgent>().speed *= 1.5f; // Increase the boss's speed by 50%
     }
 
     [PunRPC]
