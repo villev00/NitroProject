@@ -28,7 +28,7 @@ public class Runes2 : MonoBehaviour
     {
         Bullet bullet = other.GetComponent<Bullet>();
         if (bullet == null || puzzleData.isSolved2) return;
-        if (puzzleData.bothPlayersWallWasDestroyed)
+        if (puzzleData.wallWasDestroyed)
         {
             switch (tag)
             {

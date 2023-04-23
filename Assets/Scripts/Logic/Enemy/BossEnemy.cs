@@ -53,8 +53,7 @@ public class BossEnemy : MonoBehaviour
     private void Start()
     {
         playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
-        SwitchPlayerTime = Random.Range(5f, 12f);
-        delayBetweenAttacks = Random.Range(4f, 8f);
+        SwitchPlayerTime = Random.Range(5f, 12f);        
         InvokeRepeating("SwitchPlayer", 0f, SwitchPlayerTime);
 
         heavySwingRange = 2f;
@@ -69,7 +68,7 @@ public class BossEnemy : MonoBehaviour
         homingDeathLifetime = 5f;
         homingDeathSeekRadius = 5f;
 
-        delayBetweenAttacks = attackPattern[0].delayBetweenAttacks;
+        delayBetweenAttacks = attackPattern[0].delayBetweenAttacks;      
     }
 
     private void Update()
@@ -78,7 +77,7 @@ public class BossEnemy : MonoBehaviour
         if (bossHealth.isDead) bossEnemy.SetDestination(transform.position);
         if (Time.time > attackPattern[currentAttackIndex].delayBetweenAttacks)
         {
-            StartCoroutine(PerformAttack(attackPattern[currentAttackIndex].attackType));
+            StartCoroutine(PerformAttack(attackPattern[currentAttackIndex].attackType));           
         }
 
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
@@ -99,20 +98,20 @@ public class BossEnemy : MonoBehaviour
 
 
     private IEnumerator PerformAttack(AttackType attackType)
-    {
+    {      
         bossEnemy.isStopped = true;
         switch (attackType)
         {
             case AttackType.HeavySwing:
-                HeavySwing();
+                StartCoroutine(HeavySwing());
                 break;
 
             case AttackType.MagmaPool:
-                MagmaPool();
+                StartCoroutine(MagmaPool());
                 break;
 
-            case AttackType.HomingDeath:
-                HomingDeath();
+            case AttackType.HomingDeath:                
+                StartCoroutine(HomingDeath());
                 break;
         }
         yield return new WaitForSeconds(delayBetweenAttacks);
@@ -128,6 +127,7 @@ public class BossEnemy : MonoBehaviour
     {
         if (!playerInAttackRange)
         {
+            bossEnemy.SetDestination(player.position);
             anim.SetBool("isRunning", true);
         }
         else
@@ -143,18 +143,13 @@ public class BossEnemy : MonoBehaviour
                 player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
                 Debug.Log("HeavySwing");
             }
-            else
-            {
-                bossEnemy.SetDestination(player.position);
-                anim.SetBool("isRunning", true);
-            }
-
             yield return new WaitForSeconds(delayBetweenAttacks);
         }
     }
 
     private IEnumerator MagmaPool()
     {
+        yield return new WaitForSeconds(delayBetweenAttacks);
         anim.SetTrigger("spellAttack");
         Debug.Log("Magma Pool");
         GameObject magmaPool = Instantiate(magmaPoolPrefab, player.position, Quaternion.identity);
@@ -163,6 +158,7 @@ public class BossEnemy : MonoBehaviour
     }
     private IEnumerator HomingDeath()
     {
+        yield return new WaitForSeconds(delayBetweenAttacks);
         Debug.Log("Homing Death");
         anim.SetTrigger("spellAttack");
         // Create a homing death projectile at the boss's position
@@ -178,8 +174,7 @@ public class BossEnemy : MonoBehaviour
     }
 
     private void SwitchPlayer()
-    {
-        delayBetweenAttacks = Random.Range(4f, 8f);
+    {       
         SwitchPlayerTime = Random.Range(5f, 12f);
         Debug.Log("Changing target");
         if (player == GameObject.FindGameObjectsWithTag("Player")[0].transform)

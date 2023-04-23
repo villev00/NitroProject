@@ -18,10 +18,10 @@ public class Puzzle1 : MonoBehaviour
     [SerializeField] private GameObject rubble;
     [SerializeField] private AudioClip wallBreakClip;
     [SerializeField] private Vector3 stopPosition;
-    [SerializeField] private GameObject puzzle1StateOn1;
-    [SerializeField] private GameObject puzzle1StateOff1;
-    [SerializeField] private GameObject puzzle1StateOn2;
-    [SerializeField] private GameObject puzzle1StateOff2;
+    [SerializeField] private GameObject [] puzzle1StateOn1;
+    [SerializeField] private GameObject [] puzzle1StateOff1;
+    [SerializeField] private GameObject [] puzzle1StateOn2;
+    [SerializeField] private GameObject [] puzzle1StateOff2;
 
     
   
@@ -47,16 +47,27 @@ public class Puzzle1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.GetComponent<PhotonView>().IsMine)
+        if (other.CompareTag("Player"))
         {
-            puzzleData.playerStanding = true;
-            
-            puzzle1StateOff1.SetActive(false);
-            puzzle1StateOn1.SetActive(true);
-
+           // puzzleData.playerStanding = true;
+            if(puzzleData.playersOnPlatform == 0)
+            {
+                puzzle1StateOff1[0].SetActive(false);
+                puzzle1StateOn1[0].SetActive(true);
+                puzzle1StateOff1[1].SetActive(false);
+                puzzle1StateOn1[1].SetActive(true);
+            }
+            if (puzzleData.playersOnPlatform == 2)
+            {
+                puzzle1StateOff2[0].SetActive(false);
+                puzzle1StateOn2[0].SetActive(true);
+                puzzle1StateOff2[1].SetActive(false);
+                puzzle1StateOn2[1].SetActive(true);
+            }
+            puzzleData.playersOnPlatform++;
             Debug.Log("Player entered the trigger");
 
-            other.GetComponent<PuzzleSolver>().otherPlayerStanding();
+           // other.GetComponent<PuzzleSolver>().otherPlayerStanding();
 
           
         }
@@ -64,25 +75,35 @@ public class Puzzle1 : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Start moving the platform towards the stop position
-        if (other.CompareTag("Player") &&!isMoving && puzzleData.bothPlayersStanding)
+        if (other.CompareTag("Player") &&!isMoving && puzzleData.playersOnPlatform == 4)
         {
             DisableVisualEffect();
             StartCoroutine(MovePlatform());
             isMoving = true;
-            player = other.gameObject;
-            
-
-
+            player = other.gameObject;           
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isMoving)
         {
-            puzzleData.playerStanding = false;
-            puzzle1StateOff1.SetActive(true);
-            puzzle1StateOn1.SetActive(false);
-            other.GetComponent<PhotonView>().RPC("RPC_otherPlayerLightsOff", RpcTarget.Others);
+            // puzzleData.playerStanding = false;
+            puzzleData.playersOnPlatform--;
+            if (puzzleData.playersOnPlatform == 0)
+            {
+                puzzle1StateOff1[0].SetActive(true);
+                puzzle1StateOn1[0].SetActive(false);
+                puzzle1StateOff1[1].SetActive(true);
+                puzzle1StateOn1[1].SetActive(false);
+            }
+            if (puzzleData.playersOnPlatform == 2)
+            {
+                puzzle1StateOff2[0].SetActive(true);
+                puzzle1StateOn2[0].SetActive(false);
+                puzzle1StateOff2[1].SetActive(true);
+                puzzle1StateOn2[1].SetActive(false);
+            }
+            // other.GetComponent<PhotonView>().RPC("RPC_otherPlayerLightsOff", RpcTarget.Others);
 
 
 
@@ -114,22 +135,19 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
-        puzzleData.otherPlayerWallWasDestroyed = true;
-        
-        
     }
     
     public void otherPlayerLights()
     {
-        puzzle1StateOff2.SetActive(false);
-        puzzle1StateOn2.SetActive(true);
+       // puzzle1StateOff2.SetActive(false);
+       // puzzle1StateOn2.SetActive(true);
     }
     [PunRPC]
     public void RPC_otherPlayerLightsOff()
     {
         Debug.Log("RPC_otherPlayerLightsOff");
-        puzzle1StateOff2.SetActive(true);
-        puzzle1StateOn2.SetActive(false);
+       // puzzle1StateOff2.SetActive(true);
+       // puzzle1StateOn2.SetActive(false);
     }
     
     
