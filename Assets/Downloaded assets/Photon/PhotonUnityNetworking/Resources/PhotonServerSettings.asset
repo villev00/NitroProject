@@ -56,6 +56,13 @@ MonoBehaviour:
   - <RPC_DestroyWall>g__RPC_WallAreDown|6_1
   - <RPC_DestroyWall>g__RPC_AllSolved|7_0
   - <RPC_DestroyWall>g__RPC_WallAreDown|7_1
+  - FindPlayers
+  - RPC_OpenFence
+  - BothPlayersOnPlatform
+  - RPC_OtherStanding
+  - RPC_otherPlayersLights
+  - RPC_otherPlayersLightsOff
+  - RPC_otherPlayerLightsOff
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

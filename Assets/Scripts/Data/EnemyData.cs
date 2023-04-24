@@ -10,8 +10,6 @@ namespace data
     {
         public float health;
         public int maxHealth; 
-        public float moveSpeed = 8;
-        
-
+        public float moveSpeed = 8;       
     }
 }

@@ -43,10 +43,10 @@ public class PuzzleManager : MonoBehaviour
         if (pData.isSolved1)
         {
             Debug.Log("Puzzle 1 solved");
-            player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
             AudioManager.PlaySound(puzzleCompleteSound, false);
             gateTorchWorld1[0].SetActive(true);
             gateTorchWorld2[0].SetActive(true);
+            CheckAllPuzzles();
         }
     }
     
@@ -64,7 +64,7 @@ public class PuzzleManager : MonoBehaviour
             gateTorchWorld2[1].SetActive(true);
             Debug.Log("Puzzle 2 solved");
             CheckAllPuzzles();
-            player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
+            
         }
     }
     
@@ -76,6 +76,7 @@ public class PuzzleManager : MonoBehaviour
             gateTorchWorld2[2].SetActive(true);
             AudioManager.PlaySound(puzzleCompleteSound, false);
             Debug.Log("Puzzle 3 solved");
+            CheckAllPuzzles();
         }
     }
 
@@ -87,12 +88,13 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log("All puzzles solved");
             pData.allPuzzlesSolved = true;
-
-            if (pData.hasOtherPlayerSolvedPuzzles)
-            {
-                Debug.Log("Other player solved all");               
-            }               
-        }       
+        }
+        player.GetComponent<PuzzleSolver>().OtherSolvedPuzzles();
+        if (pData.hasOtherPlayerSolvedPuzzles)
+        {
+            Debug.Log("Other player solved all");               
+        }               
+               
     }
     
     public void OpenFences()
@@ -103,7 +105,7 @@ public class PuzzleManager : MonoBehaviour
     
     public  void ActivateSpanwer()
     {
-        if (pData.bothPlayersWallWasDestroyed)
+        if (pData.wallWasDestroyed)
         {
               SpawnPoint.SetActive(true);
         }

@@ -12,33 +12,58 @@ public class PuzzleSolver : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        InvokeRepeating("CheckAll", 5, 5);
-        InvokeRepeating("WallCheck", 5, 5);
+     //   InvokeRepeating("WallCheck", 5, 5);
+     //   InvokeRepeating("BothPlayersOnPlatform", 5, 5);
     }
 
     void Start()
     {
         if (!pv.IsMine) return;
-        puzzle1 = GameObject.Find("Puzzle1_World" + PhotonNetwork.LocalPlayer.ActorNumber);
+        int index = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (index > 2) index = 2;
+        puzzle1 = GameObject.Find("Puzzle1_World" + index);
         PuzzleManager.instance.player = gameObject;
     }
 
-    void WallCheck()
+    [PunRPC]
+    void BothPlayersOnPlatform()
     {
-        if (PuzzleManager.instance.pData.otherPlayerWallWasDestroyed &&
-            PuzzleManager.instance.pData.wallWasDestroyed)
+        if (PuzzleManager.instance.pData.playerStanding &&
+            PuzzleManager.instance.pData.otherPlayerStanding)
         {
-            PuzzleManager.instance.pData.bothPlayersWallWasDestroyed = true;
+            PuzzleManager.instance.pData.bothPlayersStanding = true;
         }
     }
-
+    public void otherPlayerStanding()
+    {
+        if (pv.IsMine)
+        {
+            if (PuzzleManager.instance.pData.playerStanding &&
+            PuzzleManager.instance.pData.otherPlayerStanding)
+            {
+                PuzzleManager.instance.pData.bothPlayersStanding = true;
+            }
+            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
+                 .RPC("RPC_OtherStanding", RpcTarget.Others);
+            pv.RPC("BothPlayersOnPlatform", RpcTarget.Others);
+        }
+    }
+    [PunRPC]
+    void RPC_OtherStanding()
+    {
+        PuzzleManager.instance.pData.otherPlayerStanding = true;
+        puzzle1.gameObject.GetComponent<Puzzle1>().otherPlayerLights();
+       
+       
+    }
+   
     public void OtherSolvedPuzzles()
     {
         if (PuzzleManager.instance.pData.allPuzzlesSolved)
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
                 .RPC("RPC_AllSolved", RpcTarget.Others);
     }
-
+    
     public void DestroyWall()
     {
         if (pv.IsMine)
@@ -63,11 +88,14 @@ public class PuzzleSolver : MonoBehaviour
         if (PuzzleManager.instance.pData.hasOtherPlayerSolvedPuzzles &&
             PuzzleManager.instance.pData.allPuzzlesSolved)
         {
-            PuzzleManager.instance.OpenFences();
+            if (pv.IsMine)
+                pv.RPC("RPC_OpenFence", RpcTarget.All);
         }
     }
-    void CheckAll()
+
+    [PunRPC]
+    void RPC_OpenFence()
     {
-        OtherSolvedPuzzles();
+        PuzzleManager.instance.OpenFences();
     }
 }

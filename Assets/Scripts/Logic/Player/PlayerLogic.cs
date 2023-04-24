@@ -26,27 +26,30 @@ public class PlayerLogic : MonoBehaviour
         {
             playerUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<PlayerUI>();
             playerUI.ChangeLives(5);
+            anime = GetComponent<Animator>();
         }
     }
     private void Start()
     {
-        Invoke("FindPlayers", 2);
-        anime = GetComponent<Animator>();
+       
+        pv.RPC("FindPlayers", RpcTarget.AllBuffered);
+        
     }
+
+    [PunRPC]
     void FindPlayers()
     {
         allPlayers = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in allPlayers)
         {
-            if (!player.GetComponent<PhotonView>().IsMine)
+            if (player.gameObject.name!=gameObject.name)
             {
                 otherPlayer = player;
             }
         }
     }
     public void TakeDamage(int damage)
-    {
-        return;
+    {       
         if (flameBarrier != null)
             {
                 data.shield -= damage;
