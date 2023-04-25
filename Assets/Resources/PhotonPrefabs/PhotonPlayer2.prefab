@@ -998,7 +998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbc856dabebe724a9da7d7096744d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzle1: {fileID: 0}
 --- !u!114 &-8299871994832823405
 MonoBehaviour:
   m_ObjectHideFlags: 0

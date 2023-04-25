@@ -7,13 +7,11 @@ using UnityEngine;
 public class PuzzleSolver : MonoBehaviour
 {
     PhotonView pv;
-    public GameObject puzzle1;
+    GameObject puzzle1;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-     //   InvokeRepeating("WallCheck", 5, 5);
-     //   InvokeRepeating("BothPlayersOnPlatform", 5, 5);
     }
 
     void Start()
@@ -25,38 +23,6 @@ public class PuzzleSolver : MonoBehaviour
         PuzzleManager.instance.player = gameObject;
     }
 
-    [PunRPC]
-    void BothPlayersOnPlatform()
-    {
-        if (PuzzleManager.instance.pData.playerStanding &&
-            PuzzleManager.instance.pData.otherPlayerStanding)
-        {
-            PuzzleManager.instance.pData.bothPlayersStanding = true;
-        }
-    }
-    public void otherPlayerStanding()
-    {
-        if (pv.IsMine)
-        {
-            if (PuzzleManager.instance.pData.playerStanding &&
-            PuzzleManager.instance.pData.otherPlayerStanding)
-            {
-                PuzzleManager.instance.pData.bothPlayersStanding = true;
-            }
-            gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
-                 .RPC("RPC_OtherStanding", RpcTarget.Others);
-            pv.RPC("BothPlayersOnPlatform", RpcTarget.Others);
-        }
-    }
-    [PunRPC]
-    void RPC_OtherStanding()
-    {
-        PuzzleManager.instance.pData.otherPlayerStanding = true;
-        puzzle1.gameObject.GetComponent<Puzzle1>().otherPlayerLights();
-       
-       
-    }
-   
     public void OtherSolvedPuzzles()
     {
         if (PuzzleManager.instance.pData.allPuzzlesSolved)

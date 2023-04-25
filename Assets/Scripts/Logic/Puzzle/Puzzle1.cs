@@ -135,23 +135,9 @@ public class Puzzle1 : MonoBehaviour
         wall.SetActive(false);
         brokenWall.SetActive(true);
         rubble.SetActive(true);
+        PuzzleManager.instance.CheckPlatform();
     }
     
-    public void otherPlayerLights()
-    {
-       // puzzle1StateOff2.SetActive(false);
-       // puzzle1StateOn2.SetActive(true);
-    }
-    [PunRPC]
-    public void RPC_otherPlayerLightsOff()
-    {
-        Debug.Log("RPC_otherPlayerLightsOff");
-       // puzzle1StateOff2.SetActive(true);
-       // puzzle1StateOn2.SetActive(false);
-    }
-    
-    
-   
 
     public void DisableVisualEffect()
     {
