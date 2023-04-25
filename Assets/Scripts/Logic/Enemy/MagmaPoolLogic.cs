@@ -44,6 +44,7 @@ public class MagmaPoolLogic : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient) pv.RPC("RPC_DestroyMagmaPool", RpcTarget.All);
     }
+    [PunRPC]
     void RPC_DestroyMagmaPool()
     {
         Destroy(gameObject);
