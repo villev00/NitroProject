@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,13 @@ public class HomingDeath : MonoBehaviour
     public float rotateSpeed = 200f;
     public float lifeTime = 3f;
     public int damage = 20;
-    PlayerLogic pLogic;
+    PhotonView pv;
+    public Transform player;
     private Vector3 target;
-    void Awake()
+    private void Start()
     {
-        pLogic = GetComponent<PlayerLogic>();
+        pv = GetComponent<PhotonView>();
+        Invoke("DestroyHomingDeath", lifeTime);
     }
     private void Update()
     {
@@ -28,6 +31,7 @@ public class HomingDeath : MonoBehaviour
     public void SetTarget(Vector3 target)
     {
         this.target = target;
+        target = new Vector3(player.position.x, player.position.y + 1, player.position.z);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -41,13 +45,16 @@ public class HomingDeath : MonoBehaviour
         } 
         else
         {
-            Destroy(gameObject);
+            DestroyHomingDeath();
         }      
     }
 
-    private IEnumerator DestroyAfterLifetime()
+    void DestroyHomingDeath()
     {
-        yield return new WaitForSeconds(lifeTime);
+        if (pv.IsMine) pv.RPC("RPC_DestroyMagmaPool", RpcTarget.All);
+    }
+    void RPC_DestroyHomingDeath()
+    {
         Destroy(gameObject);
     }
 }

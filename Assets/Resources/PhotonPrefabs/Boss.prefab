@@ -85,8 +85,6 @@ MonoBehaviour:
   heavySwingRange: 2
   heavySwingDmg: 30
   timeBetweenAttacks: 2
-  magmaPoolDuration: 5
-  magmaPoolDamage: 10
   homingDeathSpeed: 5
   homingDeathDmg: 30
   homingDeathLifetime: 5
@@ -97,6 +95,7 @@ MonoBehaviour:
   heavySwingInUse: 0
   magmaPoolInUse: 0
   homingDeathInUse: 0
+  isAttacking: 0
 --- !u!114 &5877594252016701822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10024,7 +10023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3253148286708217120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.405, z: -0.099}
+  m_LocalPosition: {x: -0, y: 1.553, z: -0.301}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

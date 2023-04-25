@@ -1,53 +1,50 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BossEnemy : MonoBehaviour
 {
     public NavMeshAgent bossEnemy;
-    public GameObject magmaPoolPrefab;
-    public GameObject homingDeathPrefab;
     BossHealth bossHealth;
     public Transform player;
     public Transform staff;
     public LayerMask Player;
     public float heavySwingRange;
     public int heavySwingDmg;
-    public float timeBetweenAttacks;
-    public float magmaPoolDuration;
-    public int magmaPoolDamage;
-    public float homingDeathSpeed;
-    public int homingDeathDmg;
-    public float homingDeathLifetime;
-    public float homingDeathSeekRadius;
+    public float timeBetweenAttacks;   
     public float SwitchPlayerTime;
     public float delayBetweenAttacks;
     public bool playerInAttackRange;
     public bool heavySwingInUse;
     public bool magmaPoolInUse;
     public bool homingDeathInUse;
+    public bool isAttacking;
+    private float lastAttackedAt;
     int playerIndex;
     Animator anim;
-
+   
     // Attack pattern variables
     int currentAttackIndex = 0;
     List<Attack> attackPattern = new List<Attack>()
     {
-        new Attack(AttackType.HeavySwing, 5f),
-        new Attack(AttackType.MagmaPool, 8f),
-        new Attack(AttackType.HomingDeath, 11f),
+        new Attack(AttackType.HeavySwing, 2f),
+        new Attack(AttackType.MagmaPool, 4f),
+        new Attack(AttackType.HeavySwing, 6f),
+        new Attack(AttackType.HomingDeath, 8f),
+        new Attack(AttackType.HeavySwing, 11f),
+        new Attack(AttackType.MagmaPool, 13f),
         new Attack(AttackType.HeavySwing, 14f),
-        new Attack(AttackType.MagmaPool, 17f),
-        new Attack(AttackType.HomingDeath, 20f),
+        new Attack(AttackType.HomingDeath, 15f),
     };
 
     private void Awake()
     {
         bossEnemy = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        bossHealth = GetComponent<BossHealth>();
+        bossHealth = GetComponent<BossHealth>();      
     }
 
     private void Start()
@@ -56,37 +53,42 @@ public class BossEnemy : MonoBehaviour
         SwitchPlayerTime = Random.Range(5f, 12f);        
         InvokeRepeating("SwitchPlayer", 0f, SwitchPlayerTime);
 
-        heavySwingRange = 2f;
+        heavySwingRange = 4f;
         heavySwingDmg = 30;
         timeBetweenAttacks = 2f;
-
-        magmaPoolDuration = 10f;
-        magmaPoolDamage = 10;
-
-        homingDeathSpeed = 5f;
-        homingDeathDmg = 20;
-        homingDeathLifetime = 5f;
-        homingDeathSeekRadius = 5f;
-
-        delayBetweenAttacks = attackPattern[0].delayBetweenAttacks;      
+      
+        lastAttackedAt = -9999f;
+        isAttacking = false;
+        delayBetweenAttacks = attackPattern[0].delayBetweenAttacks;        
     }
 
     private void Update()
     {
         if (bossEnemy.enabled == false) return;
         if (bossHealth.isDead) bossEnemy.SetDestination(transform.position);
-        if (Time.time > attackPattern[currentAttackIndex].delayBetweenAttacks)
-        {
-            StartCoroutine(PerformAttack(attackPattern[currentAttackIndex].attackType));           
-        }
 
+        if (!isAttacking)
+        {
+            if(Time.time>lastAttackedAt + delayBetweenAttacks)
+            {
+                PerformAttack(attackPattern[currentAttackIndex].attackType);
+                lastAttackedAt = Time.time;
+            }
+        }
+   
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
         if (playerInAttackRange)
         {
-            anim.SetBool("isRunning", false);
-            bossEnemy.SetDestination(transform.position);
-            HeavySwing();
+            if (!isAttacking)
+            {
+                if (Time.time > lastAttackedAt + timeBetweenAttacks)
+                {                                      
+                    HeavySwing();
+                    lastAttackedAt = Time.time;
+                }                              
+            }
         }
+        
 
         if (attackPattern[currentAttackIndex].attackType == AttackType.HeavySwing) heavySwingInUse = true; else heavySwingInUse = false;
 
@@ -97,24 +99,23 @@ public class BossEnemy : MonoBehaviour
     }
 
 
-    private IEnumerator PerformAttack(AttackType attackType)
+    private void PerformAttack(AttackType attackType)
     {      
         bossEnemy.isStopped = true;
         switch (attackType)
         {
             case AttackType.HeavySwing:
-                StartCoroutine(HeavySwing());
+                HeavySwing();
                 break;
 
             case AttackType.MagmaPool:
-                StartCoroutine(MagmaPool());
+                MagmaPool();
                 break;
 
-            case AttackType.HomingDeath:                
-                StartCoroutine(HomingDeath());
+            case AttackType.HomingDeath:
+                HomingDeath();
                 break;
-        }
-        yield return new WaitForSeconds(delayBetweenAttacks);
+        }       
         bossEnemy.isStopped = false;
         currentAttackIndex++;
         if (currentAttackIndex >= attackPattern.Count)
@@ -123,54 +124,54 @@ public class BossEnemy : MonoBehaviour
         }
         delayBetweenAttacks = attackPattern[currentAttackIndex].delayBetweenAttacks;
     }
-    private IEnumerator HeavySwing()
+    private void HeavySwing()
     {
+        isAttacking = true;
         if (!playerInAttackRange)
         {
+            Debug.Log("Chasing");
             bossEnemy.SetDestination(player.position);
             anim.SetBool("isRunning", true);
         }
-        else
+        
+        // check if the player is within range for a melee attack
+        if (Vector3.Distance(transform.position, player.position) <= heavySwingRange)
         {
             bossEnemy.isStopped = true;
             transform.LookAt(player);
-
-            // check if the player is within range for a melee attack
-            if (Vector3.Distance(transform.position, player.position) <= heavySwingRange)
-            {
-                anim.SetTrigger("meleeAttack");
-                // apply damage to the player
-                player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
-                Debug.Log("HeavySwing");
-            }
-            yield return new WaitForSeconds(delayBetweenAttacks);
-        }
+            anim.SetTrigger("meleeAttack");
+            // apply damage to the player
+            player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
+            Debug.Log("HeavySwing");
+        }          
+        
+        isAttacking = false;
     }
 
-    private IEnumerator MagmaPool()
+    private void MagmaPool()
     {
-        yield return new WaitForSeconds(delayBetweenAttacks);
+        isAttacking = true;
         anim.SetTrigger("spellAttack");
         Debug.Log("Magma Pool");
-        GameObject magmaPool = Instantiate(magmaPoolPrefab, player.position, Quaternion.identity);
-        Destroy(magmaPool, magmaPoolDuration);
-        yield return new WaitForSeconds(delayBetweenAttacks);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "LavaPool"), player.position, Quaternion.identity);
+        }
+        isAttacking = false;
     }
-    private IEnumerator HomingDeath()
+
+    private void HomingDeath()
     {
-        yield return new WaitForSeconds(delayBetweenAttacks);
+        isAttacking = true;
         Debug.Log("Homing Death");
         anim.SetTrigger("spellAttack");
         // Create a homing death projectile at the boss's position
-        GameObject homingDeath = Instantiate(homingDeathPrefab, staff.position, Quaternion.identity);
-
-        // Set the homing target to the player's position
-        homingDeath.GetComponent<HomingDeath>().SetTarget(new Vector3(player.position.x, player.position.y + 1, player.position.z));
-
-        // Destroy the homing death projectile after 10 seconds
-        Destroy(homingDeath, 10f);
-        yield return new WaitForSeconds(delayBetweenAttacks);
-
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject homingDeath = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "HomingDeath"), staff.position, Quaternion.identity);
+            homingDeath.GetComponent<HomingDeath>().player = player;
+        }                  
+        isAttacking = false;
     }
 
     private void SwitchPlayer()
@@ -185,7 +186,7 @@ public class BossEnemy : MonoBehaviour
         {
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
         }
-    }
+    } 
 }
 
 public enum AttackType
