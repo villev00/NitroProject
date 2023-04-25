@@ -53,6 +53,7 @@ MonoBehaviour:
   rotateSpeed: 200
   lifeTime: 10
   damage: 20
+  player: {fileID: 0}
 --- !u!136 &-1944522233140886712
 CapsuleCollider:
   m_ObjectHideFlags: 0

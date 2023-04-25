@@ -42,7 +42,7 @@ public class MagmaPoolLogic : MonoBehaviour
     }
     void DestroyMagmaPool()
     {
-        if (pv.IsMine) pv.RPC("RPC_DestroyMagmaPool", RpcTarget.All);
+        if (PhotonNetwork.IsMasterClient) pv.RPC("RPC_DestroyMagmaPool", RpcTarget.All);
     }
     void RPC_DestroyMagmaPool()
     {

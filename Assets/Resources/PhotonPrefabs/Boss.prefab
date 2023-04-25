@@ -75,8 +75,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossEnemy: {fileID: 5529044841484020965}
-  magmaPoolPrefab: {fileID: 7552862850180081767, guid: ce64a5871226115418e8aca988d973dc, type: 3}
-  homingDeathPrefab: {fileID: 7698235062396501670, guid: f865f120e84953b43b35de4d933c01ed, type: 3}
   player: {fileID: 0}
   staff: {fileID: 7095757467085849928}
   Player:
@@ -85,10 +83,6 @@ MonoBehaviour:
   heavySwingRange: 2
   heavySwingDmg: 30
   timeBetweenAttacks: 2
-  homingDeathSpeed: 5
-  homingDeathDmg: 30
-  homingDeathLifetime: 5
-  homingDeathSeekRadius: 20
   SwitchPlayerTime: 0
   delayBetweenAttacks: 0
   playerInAttackRange: 0
