@@ -26,7 +26,7 @@ public class Spell : ScriptableObject
     public float cooldownRemaining;
 
 
-    private void Awake()
+    public void ResetSpell()
     {
         isSpellOnCooldown = false;
         cooldownRemaining = 0;
