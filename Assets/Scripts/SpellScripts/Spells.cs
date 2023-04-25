@@ -30,6 +30,12 @@ public class Spells : MonoBehaviour
     //Reset spell cooldowns when game starts
     void SetupSpells()
     {
+        for(int i=0; i < fireSpells.Length; i++)
+        {
+            fireSpells[i].ResetSpell();
+            lightningSpells[i].ResetSpell();
+            aetherSpells[i].ResetSpell();
+        }
         spellUI.ChangeSpellSet(fireSpells); //Show fire spells first in the UI
        
        

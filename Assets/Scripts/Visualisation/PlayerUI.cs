@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,7 +19,19 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] GameObject howToPlayPanel, gameOverPanel, gameCompletePanel;
 
-    [SerializeField] GameObject gainMana, loseMana;
+ 
+    [SerializeField] GameObject escButton, f1Button;
+
+    bool isEscPressed, isF1Pressed;
+    void ChangeAlpha()
+    {
+        ColorFade(escButton.GetComponent<Image>());
+        ColorFade(f1Button.GetComponent<Image>());
+    }
+   void ColorFade(Image image)
+    {
+        image.color = new Color(image.color.r, image.color.g, 0, Mathf.PingPong(Time.time, 1));
+    }
     public void ChangeHealthSliderValue(int value)
     {
         healthSlider.value += value;
@@ -55,9 +68,23 @@ public class PlayerUI : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ToggleHowToPlay();
+
+        if (!isF1Pressed &&Input.GetKeyDown(KeyCode.F1))
+        {
+            isF1Pressed = true;
+            f1Button.gameObject.SetActive(false);
+        }
+       
+        if(!isF1Pressed || !isEscPressed)
+        ChangeAlpha();
     }
     void ToggleHowToPlay()
     {
+        if (!isEscPressed)
+        {
+            isEscPressed = true;
+            escButton.gameObject.SetActive(false);
+        }
         if (!howToPlayPanel.activeSelf) howToPlayPanel.SetActive(true);
         else howToPlayPanel.SetActive(false);
     }
