@@ -44,8 +44,8 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log("Puzzle 1 solved");
             AudioManager.PlaySound(puzzleCompleteSound, false);
-            gateTorchWorld1[0].SetActive(true);
-            gateTorchWorld2[0].SetActive(true);
+            gateTorchWorld1[1].SetActive(true);
+            gateTorchWorld2[1].SetActive(true);
             CheckAllPuzzles();
         }
     }
@@ -60,23 +60,20 @@ public class PuzzleManager : MonoBehaviour
         if (pData.isSolved2)
         {
             AudioManager.PlaySound(puzzleCompleteSound, false);
-            gateTorchWorld1[1].SetActive(true);
-            gateTorchWorld2[1].SetActive(true);
+            gateTorchWorld1[2].SetActive(true);
+            gateTorchWorld2[2].SetActive(true);
             Debug.Log("Puzzle 2 solved");
             CheckAllPuzzles();
             
         }
     }
     
-    public void CheckPuzzle3()
+    public void CheckPlatform()
     {
-        if (pData.isSolved3)
+        if (pData.wallWasDestroyed)
         {
-            gateTorchWorld1[2].SetActive(true);
-            gateTorchWorld2[2].SetActive(true);
-            AudioManager.PlaySound(puzzleCompleteSound, false);
-            Debug.Log("Puzzle 3 solved");
-            CheckAllPuzzles();
+            gateTorchWorld1[0].SetActive(true);
+            gateTorchWorld2[0].SetActive(true);
         }
     }
 

@@ -48,15 +48,11 @@ namespace Logic.Enemy
                 spawnData.enemyList.Add(spawnData.lightningEnemyRanged);
             }
 
-            if (puzzleData.isSolved2 == true)
-            {
-                
-            }
-
-            if (puzzleData.isSolved3 == true)
+            if (puzzleData.allPuzzlesSolved)
             {
                 stopSpawning = true;
             }
+
         }
         
         public void SpawnEnemy()

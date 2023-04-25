@@ -10,26 +10,12 @@ namespace Data
     
     {
         public bool wallWasDestroyed;
-        public  bool otherPlayerWallWasDestroyed;
-        public  bool bothPlayersWallWasDestroyed;
-      
+     
 
         public bool isSolved1;
         public bool isSolved2;
-        public bool isSolved3;
-
-        public bool playerStanding;
-        public bool otherPlayerStanding;
-        public bool bothPlayersStanding;
-
-        //public int runeIndex = 0;
+      
         public int puzzleStateIndex = 0;
-        //public List<GameObject> runePositions;
-        //public List<GameObject> cluePositions;
-
-        //public List<GameObject> runeElements;
-        //public List<GameObject> clueElements;
-
         public int playersOnPlatform;
 
         public bool puzzle2FireSloved = false;
