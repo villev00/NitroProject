@@ -51,7 +51,7 @@ public class HomingDeath : MonoBehaviour
 
     void DestroyHomingDeath()
     {
-        if (pv.IsMine) pv.RPC("RPC_DestroyMagmaPool", RpcTarget.All);
+        if (pv.IsMine) pv.RPC("RPC_DestroyHomingDeath", RpcTarget.All);
     }
     void RPC_DestroyHomingDeath()
     {
