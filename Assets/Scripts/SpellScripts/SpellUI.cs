@@ -15,7 +15,7 @@ public class SpellUI : MonoBehaviour
     [SerializeField] public GameObject spellManager;
     [SerializeField] public PhotonView pv;
     Spell[] currentSpells= new Spell[3];
-
+   
     [SerializeField] GameObject spellInfoPanel;
     [SerializeField] GameObject[] spellInfos; 
 
@@ -47,7 +47,7 @@ public class SpellUI : MonoBehaviour
         }
     }
  
-    //jos samassa spellslotissa on kaksi spelliä cd, niin timer visuaali kusee
+
     public void ChangeSpellSet(Spell[] spells)
     {
         if (!pv.IsMine) return;
@@ -64,22 +64,31 @@ public class SpellUI : MonoBehaviour
         }
         ChangeInfoPanel(spells);
     }
+
+    
     void ShowSpellCooldown(Spell spell, int index)
     {
         // Start the coroutine for this spell if its on cd
         if (spell.isSpellOnCooldown)
             StartCoroutine(Cooldown(spell, index));
-        else spellSlots[index].transform.GetChild(0).GetComponent<Slider>().value = 0;
+        else { 
+            spellSlots[index].transform.GetChild(0).GetComponent<Slider>().value = 0;
+            spellSlots[index].transform.GetChild(1).gameObject.SetActive(false);
+
+        }
 
     }
     IEnumerator Cooldown(Spell spell, int index)
     {
+        spellSlots[index].transform.GetChild(1).gameObject.SetActive(true);
         while (spell.isSpellOnCooldown)
         {
             spellSlots[index].transform.GetChild(0).GetComponent<Slider>().value = spell.cooldownRemaining / spell.spellCooldown;
+            spellSlots[index].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = spell.cooldownRemaining.ToString();
             yield return new WaitForSeconds(1f);
         }
         spellSlots[index].transform.GetChild(0).GetComponent<Slider>().value = 0;
+        spellSlots[index].transform.GetChild(1).gameObject.SetActive(false);
     }
     void ChangeInfoPanel(Spell[] spells)
     {
@@ -110,4 +119,5 @@ public class SpellUI : MonoBehaviour
         }
 
     }
+ 
 }
