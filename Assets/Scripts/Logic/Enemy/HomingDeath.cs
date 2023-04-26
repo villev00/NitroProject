@@ -53,6 +53,8 @@ public class HomingDeath : MonoBehaviour
     {
         if (pv.IsMine) pv.RPC("RPC_DestroyHomingDeath", RpcTarget.All);
     }
+
+    [PunRPC]
     void RPC_DestroyHomingDeath()
     {
         Destroy(gameObject);
