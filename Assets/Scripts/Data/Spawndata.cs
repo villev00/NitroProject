@@ -20,8 +20,7 @@ namespace Data
         
         public List<GameObject> enemyList;
 
-        public float spawnTime = 3f;
-        public float spawnDelay = 3f;
+       
         public float spawnRate = 3f;
 
         public int spawnCount = 0;
