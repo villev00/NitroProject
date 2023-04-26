@@ -18,6 +18,8 @@ public class PlayerLogic : MonoBehaviour
 
     public GameObject otherPlayer;
     Animator anime;
+    [SerializeField]
+    AudioClip hurtSound;
 
     private void Awake()
     {
@@ -27,7 +29,10 @@ public class PlayerLogic : MonoBehaviour
             playerUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<PlayerUI>();
             playerUI.ChangeLives(5);
             anime = GetComponent<Animator>();
+           
+            
         }
+        
     }
     private void Start()
     {
@@ -53,9 +58,11 @@ public class PlayerLogic : MonoBehaviour
         if (flameBarrier != null)
             {
                 data.shield -= damage;
+                AudioManager.PlaySound(hurtSound, false);
                 if (data.shield < 0)
                 {
                     data.health += data.shield;
+                    AudioManager.PlaySound(hurtSound, false);
                     data.shield = 0;
                     Destroy(flameBarrier);
                 }
@@ -64,6 +71,7 @@ public class PlayerLogic : MonoBehaviour
             {
                 anime.SetTrigger("takeDamage");
                 data.health -= damage;
+                AudioManager.PlaySound(hurtSound, false);
                 playerUI.ChangeHealthSliderValue(-damage);               
         }
         
