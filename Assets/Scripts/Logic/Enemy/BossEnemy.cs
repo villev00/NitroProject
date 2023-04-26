@@ -31,13 +31,13 @@ public class BossEnemy : MonoBehaviour
     List<Attack> attackPattern = new List<Attack>()
     {
         new Attack(AttackType.HeavySwing, 2f),
-        new Attack(AttackType.MagmaPool, 4f),
-        new Attack(AttackType.HeavySwing, 6f),
-        new Attack(AttackType.HomingDeath, 8f),
-        new Attack(AttackType.HeavySwing, 11f),
-        new Attack(AttackType.MagmaPool, 13f),
-        new Attack(AttackType.HeavySwing, 14f),
-        new Attack(AttackType.HomingDeath, 15f),
+        new Attack(AttackType.MagmaPool, 2f),
+        new Attack(AttackType.HeavySwing, 2f),
+        new Attack(AttackType.HomingDeath, 2f),
+        new Attack(AttackType.HeavySwing, 2f),
+        new Attack(AttackType.MagmaPool, 2f),
+        new Attack(AttackType.HeavySwing, 2f),
+        new Attack(AttackType.HomingDeath, 2f),
     };
 
     private void Awake()
