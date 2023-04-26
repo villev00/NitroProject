@@ -905,6 +905,7 @@ MonoBehaviour:
     maxMana: 100
   allPlayers: []
   otherPlayer: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 49d922ace7cb43f4d9a44e8cd332af10, type: 3}
 --- !u!114 &5600637907279743595
 MonoBehaviour:
   m_ObjectHideFlags: 0
