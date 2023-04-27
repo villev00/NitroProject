@@ -11,7 +11,7 @@ public class HomingDeath : MonoBehaviour
     public int damage = 20;
     PhotonView pv;
     public Transform player;
-    private Vector3 target;
+    private GameObject target;
     private void Start()
     {
         pv = GetComponent<PhotonView>();
@@ -21,14 +21,14 @@ public class HomingDeath : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 direction = (target - transform.position).normalized;
+            Vector3 direction = (target.transform.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotateSpeed * Time.deltaTime);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
     }
 
-    public void SetTarget(Vector3 target)
+    public void SetTarget(GameObject target)
     {
         this.target = target;
         //target = new Vector3(player.position.x, player.position.y + 1, player.position.z);

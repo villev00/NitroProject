@@ -183,7 +183,7 @@ public class BossEnemy : MonoBehaviour
         {
             GameObject homingDeath = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "HomingDeath"), staff.position, Quaternion.identity);
             homingDeath.GetComponent<HomingDeath>().player = player;
-            homingDeath.GetComponent<HomingDeath>().SetTarget(player.transform.position);
+            homingDeath.GetComponent<HomingDeath>().SetTarget(player.gameObject);
         }
         yield return new WaitForSeconds(1f);
         isAttacking = false;
