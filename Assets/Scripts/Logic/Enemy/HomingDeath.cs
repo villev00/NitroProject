@@ -43,7 +43,7 @@ public class HomingDeath : MonoBehaviour
             collision.gameObject.GetComponent<PlayerLogic>().TakeDamage(damage);
             DestroyHomingDeath();
         } 
-        else if (!collision.gameObject.CompareTag("Boss") || !collision.gameObject.CompareTag("LavaPool"))
+        else if (!collision.gameObject.CompareTag("Boss") && !collision.gameObject.CompareTag("LavaPool"))
         {
             Debug.Log(collision.gameObject);
             DestroyHomingDeath();
