@@ -54,7 +54,8 @@ public class PlayerLogic : MonoBehaviour
         }
     }
     public void TakeDamage(int damage)
-    {       
+    {
+        return;
         if (flameBarrier != null)
             {
                 data.shield -= damage;

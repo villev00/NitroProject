@@ -36,17 +36,22 @@ public class EnemyHealth : EnemyData
         }
 
         health -= DamageTaken(damage, element); //damageResistance.CalculateDamageWithResistance(damage, element);
-        FloatingCombatText.Create(transform.position, DamageTaken(damage, element));
+        
         if (health <= 0)
         {
+            FloatingCombatText.Create(transform.position, DamageTaken(damage, element),true);
             headCollider.enabled = false;
             bodyCollider.enabled = false;
             StartCoroutine(Die());
         }
+        else
+        {
+            FloatingCombatText.Create(transform.position, DamageTaken(damage, element),false);
+        }
     }
 
     // Damage taken from basic attack
-    public void TakeDamage(float damage, Element element, Vector3 position)
+    public void TakeDamage(float damage, Element element, Vector3 position, bool headshot)
     {
 
         if (element == Element.Lightning)
@@ -55,12 +60,17 @@ public class EnemyHealth : EnemyData
         }
 
         health -= DamageTaken(damage, element); //damageResistance.CalculateDamageWithResistance(damage, element);
-        FloatingCombatText.Create(position, DamageTaken(damage, element));
+        
         if (health <= 0)
         {
+            FloatingCombatText.Create(position, DamageTaken(damage, element), headshot);
             headCollider.enabled = false;
             bodyCollider.enabled = false;
             StartCoroutine(Die());
+        }
+        else
+        {
+            FloatingCombatText.Create(position, DamageTaken(damage, element), headshot);
         }
     }
     float DamageTaken(float incomingDamange, Element currentElement)

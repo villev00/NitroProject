@@ -27,16 +27,23 @@ public class FloatingCombatText : MonoBehaviour
         fadeSpeed = 2f;
     }
 
-    public static FloatingCombatText Create(Vector3 position, float damageAmount)
+    public static FloatingCombatText Create(Vector3 position, float damageAmount, bool headshot)
     {
         GameObject damagePopUpTransform = Instantiate(DamagePopUpAsset.i.pfDamagePopUp, position, Quaternion.identity);
         FloatingCombatText damagePopUp = damagePopUpTransform.GetComponent<FloatingCombatText>();
-        damagePopUp.SetUp(damageAmount);
+        damagePopUp.SetUp(damageAmount, headshot);
         return damagePopUp;
     }
     
-    void SetUp(float damage)
+    void SetUp(float damage, bool headshot)
     {
+        if (headshot)
+        {
+            textMesh.color = Color.red;
+            textMesh.fontStyle = FontStyles.Underline;
+            textMesh.fontSize = 3f;
+        }
+
         textMesh.SetText(damage.ToString());
         textColor = textMesh.color;
     }
