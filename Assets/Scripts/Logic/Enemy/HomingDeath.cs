@@ -7,7 +7,7 @@ public class HomingDeath : MonoBehaviour
 {
     public float speed = 10f;
     public float rotateSpeed = 200f;
-    public float lifeTime = 3f;
+    public float lifeTime = 10f;
     public int damage = 20;
     PhotonView pv;
     public Transform player;
@@ -31,7 +31,7 @@ public class HomingDeath : MonoBehaviour
     public void SetTarget(Vector3 target)
     {
         this.target = target;
-        target = new Vector3(player.position.x, player.position.y + 1, player.position.z);
+        //target = new Vector3(player.position.x, player.position.y + 1, player.position.z);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -41,10 +41,11 @@ public class HomingDeath : MonoBehaviour
         {
             Debug.Log(collision.gameObject.name + " was hit by " + gameObject.name);
             collision.gameObject.GetComponent<PlayerLogic>().TakeDamage(damage);
-            Destroy(gameObject);
+            DestroyHomingDeath();
         } 
-        else
+        else if (!collision.gameObject.CompareTag("Boss") || !collision.gameObject.CompareTag("LavaPool"))
         {
+            Debug.Log(collision.gameObject);
             DestroyHomingDeath();
         }      
     }
