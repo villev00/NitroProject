@@ -19,6 +19,7 @@ TagManager:
   - Fence2
   - EnemyBullet
   - BossSlider
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -80,12 +80,26 @@ public class EnemyHealth : EnemyData
         return newDamageTaken;
     }
 
+    public void TankBlazeImpact()
+    {
+        int duration = 3;
+        StartCoroutine(NavMeshAgentTurnOff(duration));
+    }
+
     IEnumerator Stun()
     {
         isStunned = true;
         yield return new WaitForSeconds(stunDuration);
         // end of stun
         isStunned = false;
+    }
+    IEnumerator NavMeshAgentTurnOff(int sec)
+    {
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = false;
+        yield return new WaitForSeconds(sec);
+        GetComponent<NavMeshAgent>().enabled = true;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     IEnumerator Die()
@@ -96,5 +110,14 @@ public class EnemyHealth : EnemyData
 
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground") && GetComponent<NavMeshAgent>().enabled == false)
+        {
+            GetComponent<NavMeshAgent>().enabled = true;
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 }

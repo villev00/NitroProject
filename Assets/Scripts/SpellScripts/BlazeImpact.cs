@@ -86,8 +86,9 @@ public class BlazeImpact : MonoBehaviour
             if (!enemies.Contains(other.gameObject))
             {
                 enemies.Add(other.gameObject);
-                other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                //other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                //other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                other.gameObject.GetComponent<EnemyHealth>().TankBlazeImpact();
                 Debug.Log("Explosion hit: " + other.name);
                 other.GetComponent<EnemyHealth>().TakeDamage(spell.spellAreaDamage, spell.spellElement);
             }
@@ -116,15 +117,15 @@ public class BlazeImpact : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         gameObject.SetActive(false);
-        foreach (GameObject enemy in enemies)
-        {
-            if (enemy != null)
-            {
-                enemy.GetComponent<Rigidbody>().isKinematic = true;
-                enemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
-            }
+        //foreach (GameObject enemy in enemies)
+        //{
+        //    if (enemy != null)
+        //    {
+        //        enemy.GetComponent<Rigidbody>().isKinematic = true;
+        //        enemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        //    }
               
-        }
+        //}
          pv.RPC("RPC_DestroySpell", RpcTarget.All);
         
     }
