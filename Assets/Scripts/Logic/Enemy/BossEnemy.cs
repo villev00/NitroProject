@@ -7,6 +7,12 @@ using UnityEngine.AI;
 
 public class BossEnemy : MonoBehaviour
 {
+    [SerializeField]
+    GameObject slashAttack;
+    [SerializeField]
+    GameObject magmaPool;
+    [SerializeField]
+    GameObject homingDeath;
     public NavMeshAgent bossEnemy;
     BossHealth bossHealth;
     public Transform player;
@@ -148,11 +154,13 @@ public class BossEnemy : MonoBehaviour
             bossEnemy.isStopped = true;
             transform.LookAt(player);
             anim.SetTrigger("meleeAttack");
+            slashAttack.SetActive(true);
             // apply damage to the player
             player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
             Debug.Log("HeavySwing");
         }
         yield return new WaitForSeconds(1f);
+        slashAttack.SetActive(false);
         isAttacking = false;
     }
 
@@ -162,12 +170,14 @@ public class BossEnemy : MonoBehaviour
         bossEnemy.isStopped = true;
         anim.SetBool("isRunning", false);
         anim.SetTrigger("spellAttack");
+        magmaPool.SetActive(true);
         Debug.Log("Magma Pool");
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "LavaPool"), player.position, Quaternion.identity);
         }
         yield return new WaitForSeconds(1f);
+        magmaPool.SetActive(false);
         isAttacking = false;
     }
 
@@ -176,6 +186,7 @@ public class BossEnemy : MonoBehaviour
         isAttacking = true;
         bossEnemy.isStopped = true;
         anim.SetBool("isRunning", false);
+        homingDeath.SetActive(true);
         Debug.Log("Homing Death");
         anim.SetTrigger("spellAttack");
         // Create a homing death projectile at the boss's position
@@ -186,6 +197,7 @@ public class BossEnemy : MonoBehaviour
             homingDeath.GetComponent<HomingDeath>().SetTarget(player.gameObject);
         }
         yield return new WaitForSeconds(1f);
+        homingDeath.SetActive(false);
         isAttacking = false;
     }
 

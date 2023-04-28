@@ -16,7 +16,8 @@ public class MeleeEnemy : MonoBehaviour
     public ParticleSystem lightningFX;
 
     public bool playerInAttackRange;
-
+    [SerializeField]
+    GameObject slashAttack;
 
     Animator anim;
     EnemyHealth enemyHealth;
@@ -33,7 +34,7 @@ public class MeleeEnemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         meleeRange = 2f;
         meleeDamage = 5;
-        timeBetweenAttacks = 1.2f;
+        timeBetweenAttacks = 1f;
         alreadyAttacked = false;
     }
 
@@ -93,7 +94,8 @@ public class MeleeEnemy : MonoBehaviour
             {                
                 // apply damage to the player
              //   Debug.Log("Attacking Player");
-                player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);              
+                player.GetComponent<PlayerLogic>().TakeDamage(meleeDamage);
+                slashAttack.SetActive(true);
             }            
             alreadyAttacked = true;
             StartCoroutine(ResetAttack());
@@ -101,7 +103,9 @@ public class MeleeEnemy : MonoBehaviour
     }
     private IEnumerator ResetAttack()
     {
+        
         yield return new WaitForSeconds(timeBetweenAttacks);
+        slashAttack.SetActive(false);
         alreadyAttacked = false;
         yield return new WaitForSeconds(timeBetweenAttacks);
 
