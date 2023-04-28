@@ -30,6 +30,7 @@ public class LobbyController : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         base.OnRoomListUpdate(roomList);
+        if(roomsPanel.gameObject.activeInHierarchy) return;
         RemoveRoomListings();
 
         foreach (RoomInfo room in roomList)
