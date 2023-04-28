@@ -19,7 +19,8 @@ TagManager:
   - Fence2
   - EnemyBullet
   - BossSlider
-  - Ground
+  - Fire
+  - LavaPool
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - FXdistortion
   - BossSpells
   - EnemyBullet
-  - 
+  - HomingDeath
   - 
   - 
   - 

@@ -35,7 +35,7 @@ public class BossHealth : BossData
     void RPC_TakeDamage(float damage, Element element)
     {
         health -= DamageTaken(damage, element);
-        bossUI.ChangeHealthSliderValue(-damage);
+        bossUI.ChangeHealthSliderValue(health);
         if (health <= 0)
         {          
             Debug.Log("Enemy Died");

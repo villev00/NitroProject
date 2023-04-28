@@ -10,6 +10,6 @@ public class BossUI : MonoBehaviour
     Slider BossHealth;
     public void ChangeHealthSliderValue(float value)
     {
-        BossHealth.value += value;
+        BossHealth.value = value;
     }
 }

@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public Slider musicSlider, soundSlider;
+    public Slider musicSlider, soundSlider, sensitivitySlider;
 
     public AudioClip buttonSoundClip;
     public AudioClip menuMusicClip;
 
     const string MUSIC_VOL_KEY = "MusicVolume";
     const string SOUND_VOL_KEY = "SoundVolume";
+    
+    const string SENSITIVITY_KEY = "Sensitivity";
 
     [SerializeField] GameObject settingsPanel, howToPlayPanel, createRoomPanel;
 
@@ -20,6 +22,9 @@ public class SettingsMenu : MonoBehaviour
     {
         musicSlider.value = PlayerPrefs.GetFloat(MUSIC_VOL_KEY, 0.15f);
         soundSlider.value = PlayerPrefs.GetFloat(SOUND_VOL_KEY, 0.08f);
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 1000f);
+       
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 1f);
         AudioManager.Mixer.SetFloat(MUSIC_VOL_KEY, Mathf.Log10(musicSlider.value) * 20);
         AudioManager.Mixer.SetFloat(SOUND_VOL_KEY, Mathf.Log10(soundSlider.value) * 20);
 
@@ -36,6 +41,12 @@ public class SettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(SOUND_VOL_KEY, soundSlider.value);
         AudioManager.Mixer.SetFloat(SOUND_VOL_KEY, Mathf.Log10(soundSlider.value) * 20);
+    }
+
+    public void SetSensitivity(float value)
+    {
+
+        PlayerPrefs.SetFloat(SENSITIVITY_KEY, value);
     }
 
     public void PlayButtonSound()
