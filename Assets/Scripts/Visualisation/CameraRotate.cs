@@ -31,13 +31,17 @@ public class CameraRotate : MonoBehaviour
         //if (!pv.IsMine) Destroy(gameObject);
         //orientation = transform.parent.GetChild(1).transform;
         //player = transform.root;
-        sensitivity = PlayerPrefs.GetFloat("sensitivity");
+       
        
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        
+        Debug.Log("Sensitivity: " + sensitivity);
     }
 
     void LateUpdate()

@@ -207,9 +207,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0.0001
-  m_MaxValue: 1
+  m_MaxValue: 1000
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 1000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -394,7 +394,6 @@ MonoBehaviour:
   sensitivitySlider: {fileID: 20886212}
   buttonSoundClip: {fileID: 8300000, guid: cdce22d580ea0834a8195196f7c0b410, type: 3}
   menuMusicClip: {fileID: 8300000, guid: 9167d71e718eca34fb7732e21d1a19c9, type: 3}
-  sensitivity: 1
   settingsPanel: {fileID: 8467057348385812088}
   howToPlayPanel: {fileID: 1265547579}
   createRoomPanel: {fileID: 1389032004}
@@ -3958,6 +3957,7 @@ Transform:
   - {fileID: 508038524}
   - {fileID: 1389032007}
   - {fileID: 6229129005860760379}
+  - {fileID: 2144580024}
   m_Father: {fileID: 1569642270}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4882,8 +4882,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2144580024}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6402,16 +6401,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144580023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.44523808, y: 0.44523808, z: 0.44523808}
+  m_LocalPosition: {x: 0, y: 0, z: -12.330963}
+  m_LocalScale: {x: 0.26549384, y: 0.26549384, z: 0.26549384}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1752358374}
-  m_RootOrder: 0
+  m_Father: {fileID: 1231651113}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 167.99762, y: 173.06082}
+  m_AnchoredPosition: {x: -307.1747, y: -53.422775}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144580025
