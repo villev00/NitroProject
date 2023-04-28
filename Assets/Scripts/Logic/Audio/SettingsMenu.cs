@@ -43,7 +43,7 @@ public class SettingsMenu : MonoBehaviour
     
     public void SetSensitivity(float value)
     {
-        PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
+        PlayerPrefs.SetFloat("Sensitivity", value); 
         sensitivity = sensitivitySlider.value;
         
         
