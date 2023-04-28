@@ -14,6 +14,9 @@ public class EnemyShootingLogic : MonoBehaviour
         {
             other.gameObject.GetComponent<PlayerLogic>().TakeDamage(rangedDamage);
             Destroy(gameObject);
-        }
+        } else if (!other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }      
     }
 }
