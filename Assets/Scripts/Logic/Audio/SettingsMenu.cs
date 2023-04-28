@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -13,8 +14,15 @@ public class SettingsMenu : MonoBehaviour
 
     const string MUSIC_VOL_KEY = "MusicVolume";
     const string SOUND_VOL_KEY = "SoundVolume";
-    
     const string SENSITIVITY_KEY = "Sensitivity";
+    
+    public int difuculty1 = 3;
+    public int difuculty2 = 5;
+    public int difuculty3 = 7;
+
+    private const int DEFAULT_SPAWN_AMOUNT = 4;
+
+     
 
     [SerializeField] GameObject settingsPanel, howToPlayPanel, createRoomPanel;
 
@@ -72,5 +80,23 @@ public class SettingsMenu : MonoBehaviour
         PlayButtonSound();
         if (createRoomPanel.activeSelf) createRoomPanel.SetActive(false);
         else createRoomPanel.SetActive(true);
+    }
+    
+    public void SetDifuclty1()
+    {
+       
+    }
+    
+    public void SetDifuclty2()
+    {
+        PlayerPrefs.SetInt("spanwAmount", difuculty2);
+        
+    }
+    
+    public void SetDifuclty3()
+    {
+        PlayerPrefs.SetInt("spanwAmount", difuculty3);
+        
+
     }
 }
