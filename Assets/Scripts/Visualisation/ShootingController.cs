@@ -58,7 +58,7 @@ public class ShootingController : MonoBehaviour
 
     void UserInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToShoot)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToShoot && Cursor.lockState == CursorLockMode.Locked)
         {
             Shoot();
         }

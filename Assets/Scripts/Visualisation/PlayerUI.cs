@@ -17,7 +17,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     TMPro.TextMeshProUGUI PotionText;
 
-    [SerializeField] GameObject howToPlayPanel, gameOverPanel, gameCompletePanel;
+    [SerializeField] GameObject howToPlayPanel, gameOverPanel, gameCompletePanel, inGameMenuPanel, settingsPanel;
 
  
     [SerializeField] GameObject escButton, f1Button;
@@ -67,7 +67,20 @@ public class PlayerUI : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) ToggleHowToPlay();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (howToPlayPanel.activeSelf)
+            {
+                ToggleCursor();
+                ToggleHowToPlay();
+            }
+            else if (settingsPanel.activeSelf)
+            {
+                ToggleCursor();
+                ToggleSettings();
+            }
+            else TogglePauseMenu();   
+        }
 
         if (!isF1Pressed &&Input.GetKeyDown(KeyCode.F1))
         {
@@ -78,15 +91,44 @@ public class PlayerUI : MonoBehaviour
         if(!isF1Pressed || !isEscPressed)
         ChangeAlpha();
     }
-    void ToggleHowToPlay()
+
+    void ToggleCursor()
+    {
+        if (inGameMenuPanel.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+    void TogglePauseMenu()
     {
         if (!isEscPressed)
         {
             isEscPressed = true;
             escButton.gameObject.SetActive(false);
         }
+        howToPlayPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        if (!inGameMenuPanel.activeSelf) inGameMenuPanel.SetActive(true);
+        else inGameMenuPanel.SetActive(false);
+        ToggleCursor();
+    }
+
+    public void ToggleHowToPlay()
+    {
         if (!howToPlayPanel.activeSelf) howToPlayPanel.SetActive(true);
         else howToPlayPanel.SetActive(false);
+    }
+
+    public void ToggleSettings()
+    {
+        if (!settingsPanel.activeSelf) settingsPanel.SetActive(true);
+        else settingsPanel.SetActive(false);
     }
 
     public void GameOverPanel()
@@ -106,8 +148,10 @@ public class PlayerUI : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-    void ReturnToMenu()
+    public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
     }
+
+    
 }

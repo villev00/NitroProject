@@ -39,29 +39,33 @@ public class CameraRotate : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        sensitivity = PlayerPrefs.GetFloat("Sensitivity");
         
         Debug.Log("Sensitivity: " + sensitivity);
     }
 
     void LateUpdate()
     {
-        mouseX = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
-        mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
-
-        if(cameraHolder != null && orientation != null)
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        if(Cursor.lockState == CursorLockMode.Locked)
         {
-            // Camera rotation
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            // Player model rotation
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            mouseX = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
+            mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90, 90);
 
-            // Camera position
-            transform.position = cameraHolder.position;
-            //transform.position = player.transform.position + orientation.forward / 2 + offset;
+            if(cameraHolder != null && orientation != null)
+            {
+                // Camera rotation
+                transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+                // Player model rotation
+                orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+                // Camera position
+                transform.position = cameraHolder.position;
+                //transform.position = player.transform.position + orientation.forward / 2 + offset;
+            }
+
         }
     }
 

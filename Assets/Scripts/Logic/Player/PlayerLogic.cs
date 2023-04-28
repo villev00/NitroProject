@@ -218,10 +218,10 @@ public class PlayerLogic : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            TestDamage(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    TestDamage(10);
+        //}
       
     }
 
