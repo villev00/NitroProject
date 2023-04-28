@@ -7,7 +7,7 @@ public class CameraRotate : MonoBehaviour
 {
     PhotonView pv;
     [SerializeField]
-    float sensitivity = 100;
+    float sensitivity;
 
     [SerializeField]
     Transform orientation;
@@ -31,6 +31,7 @@ public class CameraRotate : MonoBehaviour
         //if (!pv.IsMine) Destroy(gameObject);
         //orientation = transform.parent.GetChild(1).transform;
         //player = transform.root;
+        sensitivity = PlayerPrefs.GetFloat("sensitivity");
        
     }
     void Start()
