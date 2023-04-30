@@ -24,6 +24,6 @@ public class BossSpawner : MonoBehaviour
     public void SpawnBoss()
     {
         if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Boss"), bossSpawnPoint.transform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "FinalBoss"), bossSpawnPoint.transform.position, Quaternion.identity);
     }
 }

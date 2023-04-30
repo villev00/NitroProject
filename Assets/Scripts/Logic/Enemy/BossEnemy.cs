@@ -36,14 +36,10 @@ public class BossEnemy : MonoBehaviour
     // Attack pattern variables
     int currentAttackIndex = 0;
     List<Attack> attackPattern = new List<Attack>()
-    {
-        new Attack(AttackType.HeavySwing, 2f),
-        new Attack(AttackType.MagmaPool, 2f),
-        new Attack(AttackType.HeavySwing, 2f),
-        new Attack(AttackType.HomingDeath, 2f),
-        new Attack(AttackType.HeavySwing, 2f),
-        new Attack(AttackType.MagmaPool, 2f),
-        new Attack(AttackType.HeavySwing, 2f),
+    {        
+        new Attack(AttackType.MagmaPool, 2f),       
+        new Attack(AttackType.HomingDeath, 2f),       
+        new Attack(AttackType.MagmaPool, 2f),        
         new Attack(AttackType.HomingDeath, 2f),
     };
 
@@ -88,28 +84,25 @@ public class BossEnemy : MonoBehaviour
 
         if (!isAttacking)
         {
-            if(Time.time>lastAttackedAt + delayBetweenAttacks)
+            if (Time.time > lastAttackedAt + delayBetweenAttacks)
             {
                 PerformAttack(attackPattern[currentAttackIndex].attackType);
                 lastAttackedAt = Time.time;
             }
         }
-   
+
         if (playerInAttackRange)
         {
             if (!isAttacking)
             {
                 if (Time.time > lastAttackedAt + timeBetweenAttacks)
-                {                                      
-                    HeavySwing();
+                {
+                    StartHeavySwing();
                     lastAttackedAt = Time.time;
                 }                              
             }
         }
-        
-
-        if (attackPattern[currentAttackIndex].attackType == AttackType.HeavySwing) heavySwingInUse = true; else heavySwingInUse = false;
-
+             
         if (attackPattern[currentAttackIndex].attackType == AttackType.MagmaPool) magmaPoolInUse = true; else magmaPoolInUse = false;
 
         if (attackPattern[currentAttackIndex].attackType == AttackType.HomingDeath) homingDeathInUse = true; else homingDeathInUse = false;
@@ -122,17 +115,13 @@ public class BossEnemy : MonoBehaviour
         bossEnemy.isStopped = true;
         isChasing = false;
         switch (attackType)
-        {
-            case AttackType.HeavySwing:
-                StartCoroutine(HeavySwing());
-                break;
-
+        {           
             case AttackType.MagmaPool:
-                StartCoroutine(MagmaPool());
+                StartMagmaPool();
                 break;
 
             case AttackType.HomingDeath:
-                StartCoroutine(HomingDeath());
+                StartHomingDeath();
                 break;
         }       
         bossEnemy.isStopped = false;
@@ -144,16 +133,39 @@ public class BossEnemy : MonoBehaviour
         }
         delayBetweenAttacks = attackPattern[currentAttackIndex].delayBetweenAttacks;
     }
-    private IEnumerator HeavySwing()
+    public void StartHeavySwing()
     {
         isAttacking = true;
+        Debug.Log("StartHeavySwing");
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", false);
+        anim.SetTrigger("meleeAttack");
+    }
+    public void StartMagmaPool()
+    {
+        isAttacking = true;
+        Debug.Log("StartMagmaPool");
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", false);
+        anim.SetTrigger("magmaPool");
+    }
+    public void StartHomingDeath()
+    {
+        isAttacking = true;
+        Debug.Log("StartHomingDeath");
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", false);
+        anim.SetTrigger("homingDeath");
+    }
+    private IEnumerator HeavySwing()
+    {
+       
         
         // check if the player is within range for a melee attack
         if (Vector3.Distance(transform.position, player.position) <= heavySwingRange)
         {
             bossEnemy.isStopped = true;
-            transform.LookAt(player);
-            anim.SetTrigger("meleeAttack");
+            transform.LookAt(player);          
             slashAttack.SetActive(true);
             // apply damage to the player
             player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
@@ -166,10 +178,8 @@ public class BossEnemy : MonoBehaviour
 
     private IEnumerator MagmaPool()
     {
-        isAttacking = true;
-        bossEnemy.isStopped = true;
-        anim.SetBool("isRunning", false);
-        anim.SetTrigger("spellAttack");
+       
+        bossEnemy.isStopped = true;       
         magmaPool.SetActive(true);
         Debug.Log("Magma Pool");
         if (PhotonNetwork.IsMasterClient)
@@ -183,12 +193,10 @@ public class BossEnemy : MonoBehaviour
 
     private IEnumerator HomingDeath()
     {
-        isAttacking = true;
+       
         bossEnemy.isStopped = true;
-        anim.SetBool("isRunning", false);
         homingDeath.SetActive(true);
-        Debug.Log("Homing Death");
-        anim.SetTrigger("spellAttack");
+        Debug.Log("Homing Death");    
         // Create a homing death projectile at the boss's position
         if (PhotonNetwork.IsMasterClient)
         {
@@ -218,7 +226,6 @@ public class BossEnemy : MonoBehaviour
 
 public enum AttackType
 {
-    HeavySwing,
     MagmaPool,
     HomingDeath
 }
