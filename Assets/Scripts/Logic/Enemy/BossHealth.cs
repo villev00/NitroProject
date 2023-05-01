@@ -20,7 +20,7 @@ public class BossHealth : BossData
     {
         pv = GetComponent<PhotonView>();
         bossUI = GameObject.Find("Managers").transform.GetChild(1).GetComponent<BossUI>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()

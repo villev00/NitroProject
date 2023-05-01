@@ -46,7 +46,7 @@ public class BossEnemy : MonoBehaviour
     private void Awake()
     {
         bossEnemy = GetComponent<NavMeshAgent>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         bossHealth = GetComponent<BossHealth>();      
     }
 
@@ -70,42 +70,61 @@ public class BossEnemy : MonoBehaviour
         if (bossEnemy.enabled == false) return;
         if (bossHealth.isDead) bossEnemy.isStopped = true;
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
-
+        
         if (isChasing && !playerInAttackRange)
         {
             bossEnemy.SetDestination(player.position);           
-            anim.SetBool("isRunning", true);           
+            anim.SetBool("isRunning", true);
+            if (!isAttacking)
+            {
+                if (Time.time > lastAttackedAt + delayBetweenAttacks)
+                {
+                    PerformAttack(attackPattern[currentAttackIndex].attackType);
+                    lastAttackedAt = Time.time;
+                }
+            }
         }
         else
         {
             bossEnemy.isStopped = true;
             anim.SetBool("isRunning", false);
-        }
 
-        if (!isAttacking)
-        {
-            if (Time.time > lastAttackedAt + delayBetweenAttacks)
-            {
-                PerformAttack(attackPattern[currentAttackIndex].attackType);
-                lastAttackedAt = Time.time;
-            }
-        }
-
-        if (playerInAttackRange)
-        {
             if (!isAttacking)
             {
                 if (Time.time > lastAttackedAt + timeBetweenAttacks)
                 {
                     StartHeavySwing();
                     lastAttackedAt = Time.time;
-                }                              
+                }
             }
         }
-             
-        if (attackPattern[currentAttackIndex].attackType == AttackType.MagmaPool) magmaPoolInUse = true; else magmaPoolInUse = false;
 
-        if (attackPattern[currentAttackIndex].attackType == AttackType.HomingDeath) homingDeathInUse = true; else homingDeathInUse = false;
+        //if (playerInAttackRange)
+        //{
+        //    if (!isAttacking)
+        //    {
+        //        if (Time.time > lastAttackedAt + timeBetweenAttacks)
+        //        {
+        //            StartHeavySwing();
+        //            lastAttackedAt = Time.time;
+        //        }                              
+        //    }
+        //}
+        //else
+        //{
+        //    if (!isAttacking)
+        //    {
+        //        if (Time.time > lastAttackedAt + delayBetweenAttacks)
+        //        {
+        //            PerformAttack(attackPattern[currentAttackIndex].attackType);
+        //            lastAttackedAt = Time.time;
+        //        }
+        //    }
+        //}
+             
+        //if (attackPattern[currentAttackIndex].attackType == AttackType.MagmaPool) magmaPoolInUse = true; else magmaPoolInUse = false;
+
+        //if (attackPattern[currentAttackIndex].attackType == AttackType.HomingDeath) homingDeathInUse = true; else homingDeathInUse = false;
 
     }
 

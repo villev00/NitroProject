@@ -11,6 +11,8 @@ public class BossSpawner : MonoBehaviour
     [SerializeField]
     private GameObject bossHealthSlider;
     private bool hasSpawnedBoss = false;
+    [SerializeField]
+    private SettingsMenu menu;
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player") && !hasSpawnedBoss)
@@ -19,6 +21,7 @@ public class BossSpawner : MonoBehaviour
             hasSpawnedBoss = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
             bossHealthSlider.SetActive(true);
+            menu.ChangeMusic();
         }
     }
     public void SpawnBoss()

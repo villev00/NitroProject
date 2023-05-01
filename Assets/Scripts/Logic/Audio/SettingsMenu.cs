@@ -11,6 +11,7 @@ public class SettingsMenu : MonoBehaviour
 
     public AudioClip buttonSoundClip;
     public AudioClip menuMusicClip;
+    public AudioClip bossMusicClip;
 
     const string MUSIC_VOL_KEY = "MusicVolume";
     const string SOUND_VOL_KEY = "SoundVolume";
@@ -83,5 +84,11 @@ public class SettingsMenu : MonoBehaviour
         PlayButtonSound();
         if (createRoomPanel.activeSelf) createRoomPanel.SetActive(false);
         else createRoomPanel.SetActive(true);
+    }
+
+    public void ChangeMusic()
+    {
+        Destroy(GameObject.Find("Music/Fire and Thunder"));
+        AudioManager.PlayMusic(bossMusicClip);
     }
 }
