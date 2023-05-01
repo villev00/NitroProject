@@ -33,6 +33,10 @@ namespace Logic.Enemy
             spawnData.enemyList.Add(spawnData.fireEnemyRanged);
             spawnData.enemyList.Add(spawnData.aetherEnemyMelee);
             spawnData.enemyList.Add(spawnData.aetherEnemyRanged);
+            
+            spawnData.enemyList.Add(spawnData.lightningEnemyMelee);
+            spawnData.enemyList.Add(spawnData.lightningEnemyRanged);
+        
 
             // add deylay to start spawning enemies 
             StartCoroutine(SpawnEnemyCoroutine());
@@ -42,10 +46,8 @@ namespace Logic.Enemy
         public void addEnemyToList()
         {
             // after puzzle is solved add enemy to list and spawn from list at start fire enemy
-            if (puzzleData.isSolved1 == true )
+            if (puzzleData.isSolved1 == true)
             {
-                spawnData.enemyList.Add(spawnData.lightningEnemyMelee);
-                spawnData.enemyList.Add(spawnData.lightningEnemyRanged);
             }
 
             if (puzzleData.allPuzzlesSolved)
