@@ -46,7 +46,7 @@ public class ChainsOfLightning : MonoBehaviour
     {
         if (!pv.IsMine) return;
         //damage enemies within explosion radius 
-        if (other.CompareTag("Wall")|| other.CompareTag("Enemy") || other.CompareTag("Boss"))
+        if (other.CompareTag("Wall") || other.CompareTag("Ground") || other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
             hitTriggered = true;
             Debug.Log("chains hit: " + other.name);

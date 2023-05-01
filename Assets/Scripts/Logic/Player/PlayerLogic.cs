@@ -54,7 +54,8 @@ public class PlayerLogic : MonoBehaviour
         }
     }
     public void TakeDamage(int damage)
-    {       
+    {
+        return;
         if (flameBarrier != null)
             {
                 data.shield -= damage;
@@ -217,10 +218,10 @@ public class PlayerLogic : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            TestDamage(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    TestDamage(10);
+        //}
       
     }
 

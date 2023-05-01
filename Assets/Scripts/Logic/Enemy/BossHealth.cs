@@ -35,7 +35,7 @@ public class BossHealth : BossData
     void RPC_TakeDamage(float damage, Element element)
     {
         health -= DamageTaken(damage, element);
-        bossUI.ChangeHealthSliderValue(-damage);
+        bossUI.ChangeHealthSliderValue(health);
         if (health <= 0)
         {          
             Debug.Log("Enemy Died");
@@ -48,15 +48,15 @@ public class BossHealth : BossData
     {
         //damage = damageResistance.CalculateDamageWithResistance(damage, element);
         pv.RPC("RPC_TakeDamage", RpcTarget.All, damage, element);
-        FloatingCombatText.Create(transform.position, damage);
+        FloatingCombatText.Create(transform.position, damage, false);
     }
 
     // Damage taken from basic attack
-    public void TakeDamage(float damage, Element element, Vector3 position)
+    public void TakeDamage(float damage, Element element, Vector3 position, bool headshot)
     {
         // damage = damageResistance.CalculateDamageWithResistance(damage, element);
         pv.RPC("RPC_TakeDamage", RpcTarget.All, damage, element);
-        FloatingCombatText.Create(position, damage);
+        FloatingCombatText.Create(position, damage, headshot);
     }
     float DamageTaken(float incomingDamange, Element currentElement)
     {

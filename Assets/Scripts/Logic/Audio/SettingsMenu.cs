@@ -4,6 +4,7 @@ using Data;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class SettingsMenu : MonoBehaviour
 
      
 
+    [SerializeField]
+    TMP_Text musicValueText, soundValueText, sensitivityValueText;
+    
+
     [SerializeField] GameObject settingsPanel, howToPlayPanel, createRoomPanel;
 
     void Start()
@@ -37,23 +42,29 @@ public class SettingsMenu : MonoBehaviour
         AudioManager.Mixer.SetFloat(SOUND_VOL_KEY, Mathf.Log10(soundSlider.value) * 20);
 
         AudioManager.PlayMusic(menuMusicClip);
+
+        musicValueText.text = Mathf.RoundToInt(musicSlider.value * 100).ToString();
+        soundValueText.text = Mathf.RoundToInt(soundSlider.value * 100).ToString();
+        sensitivityValueText.text = sensitivitySlider.value.ToString();
     }
 
     public void SetLevelMusic()
     {
         PlayerPrefs.SetFloat(MUSIC_VOL_KEY, musicSlider.value);
+        musicValueText.text = Mathf.RoundToInt(musicSlider.value * 100).ToString();
         AudioManager.Mixer.SetFloat(MUSIC_VOL_KEY, Mathf.Log10(musicSlider.value) * 20);
     }
 
     public void SetLevelSound()
     {
         PlayerPrefs.SetFloat(SOUND_VOL_KEY, soundSlider.value);
+        soundValueText.text = Mathf.RoundToInt(soundSlider.value * 100).ToString();
         AudioManager.Mixer.SetFloat(SOUND_VOL_KEY, Mathf.Log10(soundSlider.value) * 20);
     }
 
     public void SetSensitivity(float value)
     {
-
+        sensitivityValueText.text = sensitivitySlider.value.ToString();
         PlayerPrefs.SetFloat(SENSITIVITY_KEY, value);
     }
 
