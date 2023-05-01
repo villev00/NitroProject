@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     float time;
     bool isJumping;
 
-    Animator anime;
+    //Animator anime;
 
     float moveSpeed;
     float jumpForce;    // Spagettia
@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
     {       
         if (pv.IsMine)
         {
-            anime = GetComponent<Animator>();
+            //anime = GetComponent<Animator>();
             Camera.main.GetComponent<CameraRotate>().FindPlayer(orientation, cameraHolder);
         }
         time = 0;
@@ -70,18 +70,18 @@ public class PlayerControl : MonoBehaviour
         time += Time.deltaTime;
         if (controller.isGrounded)
         {
-            if (anime.GetBool("isJumping") || anime.GetBool("isFalling"))
-            {
-                anime.SetTrigger("isGrounded");
-                anime.SetBool("isJumping", false);
-                anime.SetBool("isFalling", false);
-            }
+            //if (anime.GetBool("isJumping") || anime.GetBool("isFalling"))
+            //{
+            //    anime.SetTrigger("isGrounded");
+            //    anime.SetBool("isJumping", false);
+            //    anime.SetBool("isFalling", false);
+            //}
             isJumping = false;
             time = 0;
             moveDirection.y = -1;
             if (Input.GetKeyDown("space"))
             {
-                anime.SetBool("isJumping", true);
+                //anime.SetBool("isJumping", true);
                 isJumping = true;
                 moveDirection.y += 1.1f; 
             }
@@ -93,8 +93,8 @@ public class PlayerControl : MonoBehaviour
             if (isJumping) moveDirection.y += jumpForce - gravity * gravityMultiplier * time; // speed was 0.4
             else
             {
-                if(!anime.GetBool("isJumping"))
-                anime.SetBool("isFalling", true);
+                //if(!anime.GetBool("isJumping"))
+                //anime.SetBool("isFalling", true);
                 moveDirection.y -= gravity * gravityMultiplier * time;
             }
         }
