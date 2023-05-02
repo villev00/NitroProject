@@ -39946,6 +39946,7 @@ MonoBehaviour:
   magmaPoolInUse: 0
   homingDeathInUse: 0
   isAttacking: 0
+  isChasing: 0
 --- !u!114 &7470945781573534264
 MonoBehaviour:
   m_ObjectHideFlags: 0
