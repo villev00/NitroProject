@@ -962,6 +962,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 9017317396137134144, guid: 676aa45ff34838e44beedfd9cc0aed5d, type: 3}
   rateOfFire: 0
   bulletSpeed: 0
+  reloadTime: 0
   bullet: {fileID: 2006565949142461861, guid: 3ba6389700eefaf42be35d9cbe38c19a, type: 3}
 --- !u!114 &-5394619225051058619
 MonoBehaviour:
