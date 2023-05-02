@@ -8,17 +8,22 @@ public class ShootingLogic : MonoBehaviour
     [SerializeField]
     ShootingData data = new ShootingData();
 
-    // Update is called once per frame
-    void Update()
+    public int GetBulletAmount()
     {
-        
+        return data.bulletAmount;
     }
-
+    public void SetBulletAmount(int amount)
+    {
+        data.bulletAmount = amount;
+    }
     public float GetRateOfFire()
     {
         return data.rateOfFire;
     }
-
+    public float GetReloadTime()
+    {
+        return data.reloadTime;
+    }
     public int GetDamage()
     {
         return data.bulletDamage;

@@ -13,7 +13,9 @@ public class ShootingController : MonoBehaviour
     ShootingData sData = new ShootingData();
     public float rateOfFire;
     public float bulletSpeed;
+    int bulletAmount;
     bool readyToShoot;
+    [SerializeField] float reloadTime;
     //[SerializeField]
     Camera playerCamera;
     [SerializeField]
@@ -22,7 +24,7 @@ public class ShootingController : MonoBehaviour
 
 
     public UnityAction statChange;
-    
+    PlayerUI playerUI;
 
     PhotonView pv;
     private void Awake()
@@ -30,12 +32,14 @@ public class ShootingController : MonoBehaviour
         pv = GetComponent<PhotonView>();
         if (!pv.IsMine) return;
         sLogic = GetComponent<ShootingLogic>();
+        playerUI = GameObject.Find("UIManager").GetComponent<PlayerUI>();
         playerCamera = Camera.main.GetComponent<Camera>();
         //playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
         //playerCamera = GetComponentInChildren<Camera>(); // Not like this, spagetti ratkasu
         //bulletSpawn = GameObject.Find("SpellSpawn").GetComponent<Transform>(); // Not optimal
         bulletSpawn = Camera.main.transform.GetChild(0).GetChild(0).transform;
         statChange += FetchData;
+       
     }
 
     private void Start()
@@ -44,6 +48,7 @@ public class ShootingController : MonoBehaviour
         FetchData();
         sLogic.SetElement(Element.Fire);
         readyToShoot = true;
+        playerUI.UpdateAmmoAmount(bulletAmount.ToString());
     }
 
     public Transform GetSpellSpawn()
@@ -58,7 +63,7 @@ public class ShootingController : MonoBehaviour
 
     void UserInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToShoot && Cursor.lockState == CursorLockMode.Locked)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && readyToShoot && Cursor.lockState == CursorLockMode.Locked && bulletAmount>0)
         {
             Shoot();
         }
@@ -66,7 +71,9 @@ public class ShootingController : MonoBehaviour
 
     void Shoot()
     {
-        
+        bulletAmount--;
+        playerUI.UpdateAmmoAmount(bulletAmount.ToString());
+        if (bulletAmount == 0) StartCoroutine(ReloadStaff());
         readyToShoot = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -106,17 +113,33 @@ public class ShootingController : MonoBehaviour
         StartCoroutine(ResetShot());
        
     }
+    IEnumerator ReloadStaff()
+    {
+        float waitTime = reloadTime;
+        playerUI.UpdateAmmoAmount(waitTime.ToString());
+        while (waitTime != 0)
+        {
+            yield return new WaitForSeconds(1);
+            waitTime -= 1;
+            playerUI.UpdateAmmoAmount(waitTime.ToString());
+        }
 
+        bulletAmount = sLogic.GetBulletAmount();
+        playerUI.UpdateAmmoAmount(bulletAmount.ToString());
+    }
     IEnumerator ResetShot()
     {
         yield return new WaitForSeconds(1 / rateOfFire);
         readyToShoot = true;
+        playerUI.UpdateAmmoAmount(bulletAmount.ToString());
     }
 
     void FetchData()
     {
         rateOfFire = sLogic.GetRateOfFire();
         bulletSpeed = sLogic.GetBulletSpeed();
+        bulletAmount = sLogic.GetBulletAmount();
+        reloadTime = sLogic.GetReloadTime();
        
     }
 }

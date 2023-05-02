@@ -17,8 +17,10 @@ public class SpellUI : MonoBehaviour
     Spell[] currentSpells= new Spell[3];
    
     [SerializeField] GameObject spellInfoPanel;
-    [SerializeField] GameObject[] spellInfos; 
+    [SerializeField] GameObject[] spellInfos;
 
+
+    [SerializeField] GameObject[] ammoBackground; 
 
     private void Update()
     {
@@ -97,18 +99,27 @@ public class SpellUI : MonoBehaviour
             spellInfoPanel.transform.GetChild(0).gameObject.SetActive(true);
             spellInfoPanel.transform.GetChild(1).gameObject.SetActive(false);
             spellInfoPanel.transform.GetChild(2).gameObject.SetActive(false);
+            ammoBackground[0].gameObject.SetActive(true);
+            ammoBackground[1].gameObject.SetActive(false);
+            ammoBackground[2].gameObject.SetActive(false);
         }
         else if (spells[0].spellElement == Element.Aether)
         {
             spellInfoPanel.transform.GetChild(0).gameObject.SetActive(false);
             spellInfoPanel.transform.GetChild(1).gameObject.SetActive(true);
             spellInfoPanel.transform.GetChild(2).gameObject.SetActive(false);
+            ammoBackground[0].gameObject.SetActive(false);
+            ammoBackground[1].gameObject.SetActive(true);
+            ammoBackground[2].gameObject.SetActive(false);
         }
         else if (spells[0].spellElement == Element.Lightning)
         {
             spellInfoPanel.transform.GetChild(0).gameObject.SetActive(false);
             spellInfoPanel.transform.GetChild(1).gameObject.SetActive(false);
             spellInfoPanel.transform.GetChild(2).gameObject.SetActive(true);
+            ammoBackground[0].gameObject.SetActive(false);
+            ammoBackground[1].gameObject.SetActive(false);
+            ammoBackground[2].gameObject.SetActive(true);
         }
         for (int i = 0; i < spells.Length; i++)
         {
