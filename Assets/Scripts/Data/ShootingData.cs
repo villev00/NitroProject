@@ -7,6 +7,6 @@ public class ShootingData
     public float bulletSpeed = 40;
     public int bulletDamage = 10;
     public Element currentElement;
-    public int bulletAmount = 20;
-    public float reloadTime = 7;
+    public int bulletAmount = 15;
+    public float reloadTime = 10;
 }

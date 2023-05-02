@@ -37,10 +37,10 @@ public class BossEnemy : MonoBehaviour
     int currentAttackIndex = 0;
     List<Attack> attackPattern = new List<Attack>()
     {        
-        new Attack(AttackType.MagmaPool, 2f),       
-        new Attack(AttackType.HomingDeath, 2f),       
-        new Attack(AttackType.MagmaPool, 2f),        
-        new Attack(AttackType.HomingDeath, 2f),
+        new Attack(AttackType.MagmaPool, 8f),       
+        new Attack(AttackType.HomingDeath, 8f),       
+        new Attack(AttackType.MagmaPool, 8f),        
+        new Attack(AttackType.HomingDeath, 8f),
     };
 
     private void Awake()
@@ -71,18 +71,21 @@ public class BossEnemy : MonoBehaviour
         if (bossHealth.isDead) bossEnemy.isStopped = true;
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
         
-        if (!playerInAttackRange)
+        if (!playerInAttackRange && !isAttacking)
         {
+            Debug.Log("chasing");
+            bossEnemy.isStopped = false;
             bossEnemy.SetDestination(player.position);           
             anim.SetBool("isRunning", true);
-            if (!isAttacking)
+                       
+            if (Time.time > lastAttackedAt + delayBetweenAttacks)
             {
-                if (Time.time > lastAttackedAt + delayBetweenAttacks)
-                {
-                    PerformAttack(attackPattern[currentAttackIndex].attackType);
-                    lastAttackedAt = Time.time;
-                }
+                bossEnemy.isStopped = true;
+                anim.SetBool("isRunning", false);
+                PerformAttack(attackPattern[currentAttackIndex].attackType);
+                lastAttackedAt = Time.time;
             }
+            
         }
         else
         {
@@ -130,8 +133,9 @@ public class BossEnemy : MonoBehaviour
 
 
     private void PerformAttack(AttackType attackType)
-    {      
-        bossEnemy.isStopped = true;
+    {
+        Debug.Log("PerformAttack");
+        //bossEnemy.isStopped = true;
         isChasing = false;
         isAttacking = true;
         switch (attackType)
@@ -156,28 +160,38 @@ public class BossEnemy : MonoBehaviour
     public void StartHeavySwing()
     {      
         Debug.Log("StartHeavySwing");
-        anim.SetBool("isRunning", false);
         anim.SetBool("isIdle", false);
         anim.SetTrigger("meleeAttack");
     }
     public void StartMagmaPool()
     {
         Debug.Log("StartMagmaPool");
-        anim.SetBool("isRunning", false);
         anim.SetBool("isIdle", false);
         anim.SetTrigger("magmaPool");
     }
     public void StartHomingDeath()
     {
         Debug.Log("StartHomingDeath");
-        anim.SetBool("isRunning", false);
         anim.SetBool("isIdle", false);
         anim.SetTrigger("homingDeath");
     }
-    private IEnumerator HeavySwing()
+
+    void HeavySwing()
     {
-       
-        
+        StartCoroutine(HeavySwingAttack());
+    }
+    void MagmaPool()
+    {
+        StartCoroutine(MagmaPoolAttack());
+    }
+    void HomingDeath()
+    {
+        StartCoroutine(HomingDeathAttack());
+    }
+    private IEnumerator HeavySwingAttack()
+    {
+
+        Debug.Log(Vector3.Distance(transform.position, player.position));
         // check if the player is within range for a melee attack
         if (Vector3.Distance(transform.position, player.position) <= heavySwingRange)
         {
@@ -193,7 +207,7 @@ public class BossEnemy : MonoBehaviour
         isAttacking = false;
     }
 
-    private IEnumerator MagmaPool()
+    private IEnumerator MagmaPoolAttack()
     {
        
         //bossEnemy.isStopped = true;       
@@ -208,7 +222,7 @@ public class BossEnemy : MonoBehaviour
         isAttacking = false;
     }
 
-    private IEnumerator HomingDeath()
+    private IEnumerator HomingDeathAttack()
     {
        
         //bossEnemy.isStopped = true;
@@ -227,8 +241,13 @@ public class BossEnemy : MonoBehaviour
     }
 
     private void SwitchPlayer()
-    {       
-        SwitchPlayerTime = Random.Range(5f, 12f);
+    {   
+        if (playerInAttackRange)
+        {
+            SwitchPlayerTime = 2f;
+            return;
+        }
+        SwitchPlayerTime = Random.Range(5f, 9f);
         Debug.Log("Changing target");
         if (player == GameObject.FindGameObjectsWithTag("Player")[0].transform)
         {
