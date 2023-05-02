@@ -37,14 +37,21 @@ public class PuzzleSolver : MonoBehaviour
             gameObject.GetComponent<PlayerLogic>().otherPlayer.GetComponent<PhotonView>()
                 .RPC("RPC_DestroyWall", RpcTarget.Others);
             PuzzleManager.instance.pData.wallWasDestroyed = true;
-        }     
+        }       
     }
 
+    [PunRPC]
+    void RPC_Platform()
+    {       
+        PuzzleManager.instance.CheckPlatform();
+    }
 
     [PunRPC]
     void RPC_DestroyWall()
     {
         puzzle1.GetComponent<Puzzle1>().DestroyWall();
+        pv.RPC("RPC_Platform", RpcTarget.All);
+
     }
         
     [PunRPC]
