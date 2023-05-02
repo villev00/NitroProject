@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -23,6 +24,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] GameObject escButton, f1Button;
 
     bool isEscPressed, isF1Pressed;
+
+    [SerializeField] TextMeshProUGUI ammoAmountText;
+
+
     void ChangeAlpha()
     {
         ColorFade(escButton.GetComponent<Image>());
@@ -60,7 +65,10 @@ public class PlayerUI : MonoBehaviour
         }
         
     }
-  
+    public void UpdateAmmoAmount(string ammo)
+    {
+        ammoAmountText.text = ammo;
+    }
     public void ChangePotionText(int amount)
     {
         PotionText.text = amount.ToString();
