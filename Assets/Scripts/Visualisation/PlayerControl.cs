@@ -120,6 +120,7 @@ public class PlayerControl : MonoBehaviour
     {
         moveSpeed = pLogic.GetSpeed(); // movespeed is not updated correctly
         moveSpeed *= 1.5f;
+        moveSpeed = 5;
         //jumpForce = pLogic.GetJumpForce();
         jumpForce = 1.9f; // jumpForcee is not updated correctly
     }
