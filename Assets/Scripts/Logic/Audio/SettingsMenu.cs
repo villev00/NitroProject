@@ -91,4 +91,10 @@ public class SettingsMenu : MonoBehaviour
         Destroy(GameObject.Find("Music/Fire and Thunder"));
         AudioManager.PlayMusic(bossMusicClip);
     }
+    
+    public void ExitGame()
+    {
+        PlayButtonSound();
+        Application.Quit();
+    }
 }
