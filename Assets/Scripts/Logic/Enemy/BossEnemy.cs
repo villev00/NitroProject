@@ -70,7 +70,7 @@ public class BossEnemy : MonoBehaviour
     private void Update()
     {
         if (bossEnemy.enabled == false) return;
-        if (bossHealth.isDead) bossEnemy.isStopped = true;
+        if (bossHealth.isDead) bossEnemy.enabled = false;
         playerInAttackRange = Physics.CheckSphere(transform.position, heavySwingRange, Player);
         
         if (!playerInAttackRange && !isAttacking)
