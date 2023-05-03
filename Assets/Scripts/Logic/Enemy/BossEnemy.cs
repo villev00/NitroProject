@@ -32,15 +32,17 @@ public class BossEnemy : MonoBehaviour
     public bool isChasing;
     int playerIndex;
     Animator anim;
+    [SerializeField]
+    AudioClip slashAudio;
    
     // Attack pattern variables
     int currentAttackIndex = 0;
     List<Attack> attackPattern = new List<Attack>()
     {        
-        new Attack(AttackType.MagmaPool, 8f),       
-        new Attack(AttackType.HomingDeath, 8f),       
-        new Attack(AttackType.MagmaPool, 8f),        
-        new Attack(AttackType.HomingDeath, 8f),
+        new Attack(AttackType.MagmaPool, 6f),       
+        new Attack(AttackType.HomingDeath, 6f),       
+        new Attack(AttackType.MagmaPool, 6f),        
+        new Attack(AttackType.HomingDeath, 6f),
     };
 
     private void Awake()
@@ -199,6 +201,7 @@ public class BossEnemy : MonoBehaviour
             transform.LookAt(player);          
             slashAttack.SetActive(true);
             // apply damage to the player
+            AudioManager.PlaySound(slashAudio, false, false);
             player.GetComponent<PlayerLogic>().TakeDamage(heavySwingDmg);
             Debug.Log("HeavySwing");
         }

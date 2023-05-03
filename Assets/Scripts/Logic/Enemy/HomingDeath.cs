@@ -12,10 +12,13 @@ public class HomingDeath : MonoBehaviour
     PhotonView pv;
     public Transform player;
     private GameObject target;
+    [SerializeField]
+    AudioClip homingDeath;
     private void Start()
     {
         pv = GetComponent<PhotonView>();
         Invoke("DestroyHomingDeath", lifeTime);
+        AudioManager.PlaySound(homingDeath, false, false);
     }
     private void Update()
     {

@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89c2f9c392abb14783279b96173fb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healPotion: {fileID: 8300000, guid: 02d4b99963c228040ae7851faee23f10, type: 3}
 --- !u!114 &-7788132824126735464
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class MagmaPoolLogic : MonoBehaviour
     private void Start()
     {
         pv = GetComponent<PhotonView>();
-        AudioManager.PlaySound(magmaPoolSound, false, true);
+        AudioManager.PlaySound(magmaPoolSound, false, false);
         Invoke("DestroyMagmaPool", magmaPoolDuration);
     }
     private void OnTriggerEnter(Collider other)

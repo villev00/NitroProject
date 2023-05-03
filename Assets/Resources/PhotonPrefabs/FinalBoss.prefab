@@ -39947,6 +39947,7 @@ MonoBehaviour:
   homingDeathInUse: 0
   isAttacking: 0
   isChasing: 0
+  slashAudio: {fileID: 8300000, guid: 7334221b2a624dc489571f958eda9e45, type: 3}
 --- !u!114 &7470945781573534264
 MonoBehaviour:
   m_ObjectHideFlags: 0

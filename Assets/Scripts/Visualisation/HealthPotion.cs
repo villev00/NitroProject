@@ -11,7 +11,8 @@ public class HealthPotion : MonoBehaviour
     PhotonView pv;
     PlayerLogic pLogic;
     PlayerUI playerUI;
-
+    [SerializeField]
+    AudioClip healPotion;
 
     int chargeRate = 5;
     float chargeInterval = 2f;
@@ -53,6 +54,7 @@ public class HealthPotion : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
+            AudioManager.PlaySound(healPotion, false, false);
             UseHealthPotion();
         }
     }
