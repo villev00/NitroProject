@@ -110,4 +110,10 @@ public class SettingsMenu : MonoBehaviour
         
 
     }
+    
+    public void ExitGame()
+    {
+        PlayButtonSound();
+        Application.Quit();
+    }
 }
