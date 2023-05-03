@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] GameObject roomPanel, lobbyPanel, startGame;
+    [SerializeField] GameObject roomPanel, lobbyPanel, startGame, dif;
 
     [SerializeField] TextMeshProUGUI playerCount;
 
@@ -30,7 +30,8 @@ public class RoomController : MonoBehaviourPunCallbacks
         playerCount.text = "Players in Room: \n" + PhotonNetwork.CurrentRoom.PlayerCount;
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            startGame.SetActive(true);
+            startGame.SetActive(true); 
+            dif.SetActive(true);
         }
 
     }
