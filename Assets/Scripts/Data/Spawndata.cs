@@ -20,8 +20,8 @@ namespace Data
         
         public List<GameObject> enemyList;
 
-       
-        public float spawnRate = 3f;
+
+        public float spawnRate;
 
         public int spawnCount = 0;
         public int maxSpawnCount = 20;

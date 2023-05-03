@@ -25,6 +25,11 @@ namespace Logic.Enemy
               
         void Start()
         {
+
+            spawnData.spawnRate = PlayerPrefs.GetInt("spanwAmount");
+            
+            Debug.Log("spawn rate" + spawnData.spawnRate);
+            
             InvokeRepeating("minusEnemyCount", 5, 5);
             playerIndex = PhotonNetwork.LocalPlayer.ActorNumber;
             // get puzzle data from puzzle manager
