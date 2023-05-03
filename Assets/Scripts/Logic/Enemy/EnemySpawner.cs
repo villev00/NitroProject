@@ -26,7 +26,7 @@ namespace Logic.Enemy
         void Start()
         {
 
-            spawnData.spawnRate = PlayerPrefs.GetInt("spanwAmount");
+           // spawnData.spawnRate = PlayerPrefs.GetInt("spanwAmount");
             
             Debug.Log("spawn rate" + spawnData.spawnRate);
             
