@@ -94,11 +94,6 @@ public class SettingsMenu : MonoBehaviour
     
     public void ExitGame()
     {
-     
-        // hide button if
-        
-        
-      
         PlayButtonSound();
         Application.Quit();
     }
